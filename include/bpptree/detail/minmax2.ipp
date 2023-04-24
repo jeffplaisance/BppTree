@@ -1,3 +1,11 @@
+//
+// B++ Tree: A B+ Tree library written in C++
+// Copyright (C) 2023 Jeff Plaisance
+//
+// This software is distributed under the Boost Software License, Version 1.0.
+// See accompanying file LICENSE or copy at http://boost.org/LICENSE_1_0.txt
+//
+
 template <typename Value, typename KeyExtractor, typename Comp>
 template <typename Parent>
 typename BPPTREE_MINMAX_UPPER<Value, KeyExtractor, Comp>::KeyRef BPPTREE_MINMAX_UPPER<Value, KeyExtractor, Comp>::Shared<Parent>::BPPTREE_MINMAX() const {
