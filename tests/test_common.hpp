@@ -65,7 +65,7 @@ template <
         typename Extractor = ValueExtractor,
         typename Comp = MinComparator,
         bool binary_search = false>
-using OrderedTree = typename BppTree<Value>
+using OrderedTree = typename BppTree<Value, 512, 512, 6>
         ::template mixins<
                 typename OrderedBuilder<>
                         ::extractor<KeyValueExtractor>
