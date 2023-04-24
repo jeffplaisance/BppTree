@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ordered &mdash; B++ Tree 0.1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Summed" href="summed.html" />
+    <link rel="prev" title="Indexed" href="indexed.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            B++ Tree
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">B++ Tree</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="api.html">API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="builder.html">Builders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bpp_tree_detail.html">BppTreeDetail</a></li>
+<li class="toctree-l2"><a class="reference internal" href="indexed.html">Indexed</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Ordered</a></li>
+<li class="toctree-l2"><a class="reference internal" href="summed.html">Summed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="min.html">Min</a></li>
+<li class="toctree-l2"><a class="reference internal" href="max.html">Max</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">B++ Tree</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="api.html">API</a></li>
+      <li class="breadcrumb-item active">Ordered</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/ordered.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ordered">
+<span id="api-ordered"></span><h1>Ordered<a class="headerlink" href="#ordered" title="Permalink to this heading"></a></h1>
+<p>Most of the time when using Ordered you will want the value type to be a std::pair. Ordered can support other value
+types, such as std::tuple (using KeyValueExtractor = TupleExtractor) and even arbitrary user defined classes, but they
+require a carefully crafted KeyValueExtractor to work properly.</p>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv4I0000EN7bpptree6detail7OrderedE">
+<span id="_CPPv3I0000EN7bpptree6detail7OrderedE"></span><span id="_CPPv2I0000EN7bpptree6detail7OrderedE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">KeyValue</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">KeyValueExtractor</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">PairExtractor</span></span><span class="p"><span class="pre">&lt;</span></span><span class="m"><span class="pre">0</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">LessThan</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">MinComparator</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">BinarySearch</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">false_type</span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="structbpptree_1_1detail_1_1_ordered"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Ordered</span></span></span><a class="headerlink" href="#_CPPv4I0000EN7bpptree6detail7OrderedE" title="Permalink to this definition"></a><br /></dt>
+<dd><p><a class="reference internal" href="#structbpptree_1_1detail_1_1_ordered"><span class="std std-ref">Ordered</span></a> mixin adds lookup by key into a B++ tree. Values in the B++ tree must be ordered by key to use <a class="reference internal" href="#structbpptree_1_1detail_1_1_ordered"><span class="std std-ref">Ordered</span></a>. Supports lookup, lower_bound, upper_bound, assign, insert, update, and erase by key in O(log N) time </p>
+<dl class="field-list simple">
+<dt class="field-odd">Template Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>KeyValue</strong> – the element type of the B++ tree </p></li>
+<li><p><strong>KeyValueExtractor</strong> – a class which implements functions to get a key from a KeyValue, get a value from a KeyValue, or forward a key and value to another function in the correct order </p></li>
+<li><p><strong>LessThan</strong> – a class which implements operator()(A const&amp; a, B const&amp; b) to return true if a &lt; b and false otherwise </p></li>
+<li><p><strong>BinarySearch</strong> – std::true_type to use binary search within internal and leaf nodes, std::false_type to use linear search. linear search is typically faster for value types, but binary search is likely to be faster if comparing two keys requires an indirection or if the nodes are exceptionally large. </p></li>
+</ul>
+</dd>
+</dl>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-types">Public Types</p>
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4I0EN7bpptree6detail7Ordered8LeafNodeE">
+<span id="_CPPv3I0EN7bpptree6detail7Ordered8LeafNodeE"></span><span id="_CPPv2I0EN7bpptree6detail7Ordered8LeafNodeE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Parent</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="structbpptree_1_1detail_1_1_ordered_1abd3381516a0265ee65ee56aaa63d2390"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">LeafNode</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="n"><span class="pre">Detail</span></span><span class="p"><span class="pre">::</span></span><span class="k"><span class="pre">template</span></span><span class="w"> </span><span class="n"><span class="pre">LeafNode</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0EN7bpptree6detail7Ordered8LeafNodeE" title="bpptree::detail::Ordered::LeafNode::Parent"><span class="n"><span class="pre">Parent</span></span></a><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv4I0EN7bpptree6detail7Ordered8LeafNodeE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4I0_DaEN7bpptree6detail7Ordered12InternalNodeE">
+<span id="_CPPv3I0_DaEN7bpptree6detail7Ordered12InternalNodeE"></span><span id="_CPPv2I0_DaEN7bpptree6detail7Ordered12InternalNodeE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Parent</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">internal_size</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="structbpptree_1_1detail_1_1_ordered_1a5fe3a13917975aa17abff4efa844e676"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">InternalNode</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="n"><span class="pre">Detail</span></span><span class="p"><span class="pre">::</span></span><span class="k"><span class="pre">template</span></span><span class="w"> </span><span class="n"><span class="pre">InternalNode</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0_DaEN7bpptree6detail7Ordered12InternalNodeE" title="bpptree::detail::Ordered::InternalNode::Parent"><span class="n"><span class="pre">Parent</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0_DaEN7bpptree6detail7Ordered12InternalNodeE" title="bpptree::detail::Ordered::InternalNode::internal_size"><span class="n"><span class="pre">internal_size</span></span></a><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv4I0_DaEN7bpptree6detail7Ordered12InternalNodeE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4I0EN7bpptree6detail7Ordered8NodeInfoE">
+<span id="_CPPv3I0EN7bpptree6detail7Ordered8NodeInfoE"></span><span id="_CPPv2I0EN7bpptree6detail7Ordered8NodeInfoE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Parent</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="structbpptree_1_1detail_1_1_ordered_1ac20fdd3c4a763f51263cc1024c2a783f"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">NodeInfo</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="n"><span class="pre">Detail</span></span><span class="p"><span class="pre">::</span></span><span class="k"><span class="pre">template</span></span><span class="w"> </span><span class="n"><span class="pre">NodeInfo</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0EN7bpptree6detail7Ordered8NodeInfoE" title="bpptree::detail::Ordered::NodeInfo::Parent"><span class="n"><span class="pre">Parent</span></span></a><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv4I0EN7bpptree6detail7Ordered8NodeInfoE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv4I0EN7bpptree6detail7Ordered10PersistentE">
+<span id="_CPPv3I0EN7bpptree6detail7Ordered10PersistentE"></span><span id="_CPPv2I0EN7bpptree6detail7Ordered10PersistentE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Parent</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="structbpptree_1_1detail_1_1_ordered_1_1_persistent"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Persistent</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0EN7bpptree6detail7Ordered10PersistentE" title="bpptree::detail::Ordered::Persistent::Parent"><span class="n"><span class="pre">Parent</span></span></a><a class="headerlink" href="#_CPPv4I0EN7bpptree6detail7Ordered10PersistentE" title="Permalink to this definition"></a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-types">Public Types</p>
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N7bpptree6detail7Ordered10Persistent8SelfTypeE">
+<span id="_CPPv3N7bpptree6detail7Ordered10Persistent8SelfTypeE"></span><span id="_CPPv2N7bpptree6detail7Ordered10Persistent8SelfTypeE"></span><span class="target" id="structbpptree_1_1detail_1_1_ordered_1_1_persistent_1a772492c9351d6dd471b2c7c924c5b402"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SelfType</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0EN7bpptree6detail7Ordered10PersistentE" title="bpptree::detail::Ordered::Persistent::Parent"><span class="n"><span class="pre">Parent</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">SelfType</span></span><a class="headerlink" href="#_CPPv4N7bpptree6detail7Ordered10Persistent8SelfTypeE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4IDpEN7bpptree6detail7Ordered10Persistent10PersistentEDpRR2Us">
+<span id="_CPPv3IDpEN7bpptree6detail7Ordered10Persistent10PersistentEDpRR2Us"></span><span id="_CPPv2IDpEN7bpptree6detail7Ordered10Persistent10PersistentEDpRR2Us"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="sig-name descname"><span class="n"><span class="pre">Us</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="structbpptree_1_1detail_1_1_ordered_1_1_persistent_1ae6f6d74b290f3e82c50c148f3a590364"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Persistent</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4IDpEN7bpptree6detail7Ordered10Persistent10PersistentEDpRR2Us" title="bpptree::detail::Ordered::Persistent::Persistent::Us"><span class="n"><span class="pre">Us</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">...</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">us</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4IDpEN7bpptree6detail7Ordered10Persistent10PersistentEDpRR2Us" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4IDpENK7bpptree6detail7Ordered10Persistent8insert_vE8SelfTypeDpRR4Args">
+<span id="_CPPv3IDpENK7bpptree6detail7Ordered10Persistent8insert_vEDpRR4Args"></span><span id="_CPPv2IDpENK7bpptree6detail7Ordered10Persistent8insert_vEDpRR4Args"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="sig-name descname"><span class="n"><span class="pre">Args</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="structbpptree_1_1detail_1_1_ordered_1_1_persistent_1a29ee75ceedd141ccdf2b3e073f7f96bc"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7bpptree6detail7Ordered10Persistent8SelfTypeE" title="bpptree::detail::Ordered::Persistent::SelfType"><span class="n"><span class="pre">SelfType</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">insert_v</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4IDpENK7bpptree6detail7Ordered10Persistent8insert_vE8SelfTypeDpRR4Args" title="bpptree::detail::Ordered::Persistent::insert_v::Args"><span class="n"><span class="pre">Args</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">...</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">args</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4IDpENK7bpptree6detail7Ordered10Persistent8insert_vE8SelfTypeDpRR4Args" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4IDpENK7bpptree6detail7Ordered10Persistent8assign_vE8SelfTypeDpRR4Args">
+<span id="_CPPv3IDpENK7bpptree6detail7Ordered10Persistent8assign_vEDpRR4Args"></span><span id="_CPPv2IDpENK7bpptree6detail7Ordered10Persistent8assign_vEDpRR4Args"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="sig-name descname"><span class="n"><span class="pre">Args</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="structbpptree_1_1detail_1_1_ordered_1_1_persistent_1aec65b91c9a9e0f6c9af23c94eee139dc"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7bpptree6detail7Ordered10Persistent8SelfTypeE" title="bpptree::detail::Ordered::Persistent::SelfType"><span class="n"><span class="pre">SelfType</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">assign_v</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4IDpENK7bpptree6detail7Ordered10Persistent8assign_vE8SelfTypeDpRR4Args" title="bpptree::detail::Ordered::Persistent::assign_v::Args"><span class="n"><span class="pre">Args</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">...</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">args</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4IDpENK7bpptree6detail7Ordered10Persistent8assign_vE8SelfTypeDpRR4Args" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4IDpENK7bpptree6detail7Ordered10Persistent16insert_or_assignE8SelfTypeDpRR4Args">
+<span id="_CPPv3IDpENK7bpptree6detail7Ordered10Persistent16insert_or_assignEDpRR4Args"></span><span id="_CPPv2IDpENK7bpptree6detail7Ordered10Persistent16insert_or_assignEDpRR4Args"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="sig-name descname"><span class="n"><span class="pre">Args</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="structbpptree_1_1detail_1_1_ordered_1_1_persistent_1aebaa15b47f85724f8089fe04b8a541e3"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7bpptree6detail7Ordered10Persistent8SelfTypeE" title="bpptree::detail::Ordered::Persistent::SelfType"><span class="n"><span class="pre">SelfType</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">insert_or_assign</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4IDpENK7bpptree6detail7Ordered10Persistent16insert_or_assignE8SelfTypeDpRR4Args" title="bpptree::detail::Ordered::Persistent::insert_or_assign::Args"><span class="n"><span class="pre">Args</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">...</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">args</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4IDpENK7bpptree6detail7Ordered10Persistent16insert_or_assignE8SelfTypeDpRR4Args" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK7bpptree6detail7Ordered10Persistent9erase_keyERK3Key">
+<span id="_CPPv3NK7bpptree6detail7Ordered10Persistent9erase_keyERK3Key"></span><span id="_CPPv2NK7bpptree6detail7Ordered10Persistent9erase_keyERK3Key"></span><span id="bpptree::detail::Ordered::Persistent::erase_key__KeyCRC"></span><span class="target" id="structbpptree_1_1detail_1_1_ordered_1_1_persistent_1a139b396795bd196c3e378f03682b71ec"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7bpptree6detail7Ordered10Persistent8SelfTypeE" title="bpptree::detail::Ordered::Persistent::SelfType"><span class="n"><span class="pre">SelfType</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">erase_key</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Key</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">key</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK7bpptree6detail7Ordered10Persistent9erase_keyERK3Key" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0ENK7bpptree6detail7Ordered10Persistent10update_keyE8SelfTypeRK3KeyRR1U">
+<span id="_CPPv3I0ENK7bpptree6detail7Ordered10Persistent10update_keyERK3KeyRR1U"></span><span id="_CPPv2I0ENK7bpptree6detail7Ordered10Persistent10update_keyERK3KeyRR1U"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">U</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="structbpptree_1_1detail_1_1_ordered_1_1_persistent_1a103356790d479f64f553ab5cecabaaa2"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7bpptree6detail7Ordered10Persistent8SelfTypeE" title="bpptree::detail::Ordered::Persistent::SelfType"><span class="n"><span class="pre">SelfType</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">update_key</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Key</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">key</span></span>, <a class="reference internal" href="#_CPPv4I0ENK7bpptree6detail7Ordered10Persistent10update_keyE8SelfTypeRK3KeyRR1U" title="bpptree::detail::Ordered::Persistent::update_key::U"><span class="n"><span class="pre">U</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">updater</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I0ENK7bpptree6detail7Ordered10Persistent10update_keyE8SelfTypeRK3KeyRR1U" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK7bpptree6detail7Ordered10PersistentixERK3Key">
+<span id="_CPPv3NK7bpptree6detail7Ordered10PersistentixERK3Key"></span><span id="_CPPv2NK7bpptree6detail7Ordered10PersistentixERK3Key"></span><span id="bpptree::detail::Ordered::Persistent::subscript-operator__KeyCRC"></span><span class="target" id="structbpptree_1_1detail_1_1_ordered_1_1_persistent_1afcd5b7e08c3b50f00d32073b433d1c67"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">GetValue</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">[]</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Key</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">key</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK7bpptree6detail7Ordered10PersistentixERK3Key" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv4I0EN7bpptree6detail7Ordered6SharedE">
+<span id="_CPPv3I0EN7bpptree6detail7Ordered6SharedE"></span><span id="_CPPv2I0EN7bpptree6detail7Ordered6SharedE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Parent</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="structbpptree_1_1detail_1_1_ordered_1_1_shared"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Shared</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0EN7bpptree6detail7Ordered6SharedE" title="bpptree::detail::Ordered::Shared::Parent"><span class="n"><span class="pre">Parent</span></span></a><a class="headerlink" href="#_CPPv4I0EN7bpptree6detail7Ordered6SharedE" title="Permalink to this definition"></a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4IDpEN7bpptree6detail7Ordered6Shared6SharedEDpRR2Us">
+<span id="_CPPv3IDpEN7bpptree6detail7Ordered6Shared6SharedEDpRR2Us"></span><span id="_CPPv2IDpEN7bpptree6detail7Ordered6Shared6SharedEDpRR2Us"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="sig-name descname"><span class="n"><span class="pre">Us</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="structbpptree_1_1detail_1_1_ordered_1_1_shared_1aa07953916a4ea5b59dc44a121963ed49"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Shared</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4IDpEN7bpptree6detail7Ordered6Shared6SharedEDpRR2Us" title="bpptree::detail::Ordered::Shared::Shared::Us"><span class="n"><span class="pre">Us</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">...</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">us</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4IDpEN7bpptree6detail7Ordered6Shared6SharedEDpRR2Us" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK7bpptree6detail7Ordered6Shared6at_keyERK3Key">
+<span id="_CPPv3NK7bpptree6detail7Ordered6Shared6at_keyERK3Key"></span><span id="_CPPv2NK7bpptree6detail7Ordered6Shared6at_keyERK3Key"></span><span id="bpptree::detail::Ordered::Shared::at_key__KeyCRC"></span><span class="target" id="structbpptree_1_1detail_1_1_ordered_1_1_shared_1aef6cfe86dc7a1fcc447f45500c5cbba7"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">decltype</span></span><span class="p"><span class="pre">(</span></span><span class="k"><span class="pre">auto</span></span><span class="p"><span class="pre">)</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">at_key</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Key</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">key</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK7bpptree6detail7Ordered6Shared6at_keyERK3Key" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7bpptree6detail7Ordered6Shared4findERK3Key">
+<span id="_CPPv3N7bpptree6detail7Ordered6Shared4findERK3Key"></span><span id="_CPPv2N7bpptree6detail7Ordered6Shared4findERK3Key"></span><span id="bpptree::detail::Ordered::Shared::find__KeyCR"></span><span class="target" id="structbpptree_1_1detail_1_1_ordered_1_1_shared_1a34527baca8b2f93d1bed2b847c80a575"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0EN7bpptree6detail7Ordered6SharedE" title="bpptree::detail::Ordered::Shared::Parent"><span class="n"><span class="pre">Parent</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">iterator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">find</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Key</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">key</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7bpptree6detail7Ordered6Shared4findERK3Key" title="Permalink to this definition"></a><br /></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterator pointing to the element with key ‘key’ </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK7bpptree6detail7Ordered6Shared10find_constERK3Key">
+<span id="_CPPv3NK7bpptree6detail7Ordered6Shared10find_constERK3Key"></span><span id="_CPPv2NK7bpptree6detail7Ordered6Shared10find_constERK3Key"></span><span id="bpptree::detail::Ordered::Shared::find_const__KeyCRC"></span><span class="target" id="structbpptree_1_1detail_1_1_ordered_1_1_shared_1a02749d3bbe2bf6525821554e5539ddf4"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0EN7bpptree6detail7Ordered6SharedE" title="bpptree::detail::Ordered::Shared::Parent"><span class="n"><span class="pre">Parent</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">const_iterator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">find_const</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Key</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">key</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK7bpptree6detail7Ordered6Shared10find_constERK3Key" title="Permalink to this definition"></a><br /></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>a const_iterator pointing to the element with key ‘key’ </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK7bpptree6detail7Ordered6Shared4findERK3Key">
+<span id="_CPPv3NK7bpptree6detail7Ordered6Shared4findERK3Key"></span><span id="_CPPv2NK7bpptree6detail7Ordered6Shared4findERK3Key"></span><span id="bpptree::detail::Ordered::Shared::find__KeyCRC"></span><span class="target" id="structbpptree_1_1detail_1_1_ordered_1_1_shared_1a9262bce75b74ab9f271880bc5c6c173d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0EN7bpptree6detail7Ordered6SharedE" title="bpptree::detail::Ordered::Shared::Parent"><span class="n"><span class="pre">Parent</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">const_iterator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">find</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Key</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">key</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK7bpptree6detail7Ordered6Shared4findERK3Key" title="Permalink to this definition"></a><br /></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>a const_iterator pointing to the element with key ‘key’ </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7bpptree6detail7Ordered6Shared11lower_boundERK3Key">
+<span id="_CPPv3N7bpptree6detail7Ordered6Shared11lower_boundERK3Key"></span><span id="_CPPv2N7bpptree6detail7Ordered6Shared11lower_boundERK3Key"></span><span id="bpptree::detail::Ordered::Shared::lower_bound__KeyCR"></span><span class="target" id="structbpptree_1_1detail_1_1_ordered_1_1_shared_1ae62c2b9c88de356673630a6bd37f142b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0EN7bpptree6detail7Ordered6SharedE" title="bpptree::detail::Ordered::Shared::Parent"><span class="n"><span class="pre">Parent</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">iterator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">lower_bound</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Key</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">key</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7bpptree6detail7Ordered6Shared11lower_boundERK3Key" title="Permalink to this definition"></a><br /></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterator pointing to the first element with a key &gt;= ‘key’ </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK7bpptree6detail7Ordered6Shared17lower_bound_constERK3Key">
+<span id="_CPPv3NK7bpptree6detail7Ordered6Shared17lower_bound_constERK3Key"></span><span id="_CPPv2NK7bpptree6detail7Ordered6Shared17lower_bound_constERK3Key"></span><span id="bpptree::detail::Ordered::Shared::lower_bound_const__KeyCRC"></span><span class="target" id="structbpptree_1_1detail_1_1_ordered_1_1_shared_1a972febddbcdda1012ee539149ce94d24"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0EN7bpptree6detail7Ordered6SharedE" title="bpptree::detail::Ordered::Shared::Parent"><span class="n"><span class="pre">Parent</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">const_iterator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">lower_bound_const</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Key</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">key</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK7bpptree6detail7Ordered6Shared17lower_bound_constERK3Key" title="Permalink to this definition"></a><br /></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>a const_iterator pointing to the first element with a key &gt;= ‘key’ </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK7bpptree6detail7Ordered6Shared11lower_boundERK3Key">
+<span id="_CPPv3NK7bpptree6detail7Ordered6Shared11lower_boundERK3Key"></span><span id="_CPPv2NK7bpptree6detail7Ordered6Shared11lower_boundERK3Key"></span><span id="bpptree::detail::Ordered::Shared::lower_bound__KeyCRC"></span><span class="target" id="structbpptree_1_1detail_1_1_ordered_1_1_shared_1a82f3416f24882d2c58fac2f54c5208bf"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0EN7bpptree6detail7Ordered6SharedE" title="bpptree::detail::Ordered::Shared::Parent"><span class="n"><span class="pre">Parent</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">const_iterator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">lower_bound</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Key</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">key</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK7bpptree6detail7Ordered6Shared11lower_boundERK3Key" title="Permalink to this definition"></a><br /></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>a const_iterator pointing to the first element with a key &gt;= ‘key’ </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7bpptree6detail7Ordered6Shared11upper_boundERK3Key">
+<span id="_CPPv3N7bpptree6detail7Ordered6Shared11upper_boundERK3Key"></span><span id="_CPPv2N7bpptree6detail7Ordered6Shared11upper_boundERK3Key"></span><span id="bpptree::detail::Ordered::Shared::upper_bound__KeyCR"></span><span class="target" id="structbpptree_1_1detail_1_1_ordered_1_1_shared_1ab57eea266c0420894f300e8cec7f0d2a"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0EN7bpptree6detail7Ordered6SharedE" title="bpptree::detail::Ordered::Shared::Parent"><span class="n"><span class="pre">Parent</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">iterator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">upper_bound</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Key</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">key</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7bpptree6detail7Ordered6Shared11upper_boundERK3Key" title="Permalink to this definition"></a><br /></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>an iterator pointing to the first element with a key &gt;= ‘key’ </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK7bpptree6detail7Ordered6Shared17upper_bound_constERK3Key">
+<span id="_CPPv3NK7bpptree6detail7Ordered6Shared17upper_bound_constERK3Key"></span><span id="_CPPv2NK7bpptree6detail7Ordered6Shared17upper_bound_constERK3Key"></span><span id="bpptree::detail::Ordered::Shared::upper_bound_const__KeyCRC"></span><span class="target" id="structbpptree_1_1detail_1_1_ordered_1_1_shared_1adf6517209ce4d54dba81c0eb2422181c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0EN7bpptree6detail7Ordered6SharedE" title="bpptree::detail::Ordered::Shared::Parent"><span class="n"><span class="pre">Parent</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">const_iterator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">upper_bound_const</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Key</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">key</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK7bpptree6detail7Ordered6Shared17upper_bound_constERK3Key" title="Permalink to this definition"></a><br /></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>a const_iterator pointing to the first element with a key &gt; ‘key’ </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK7bpptree6detail7Ordered6Shared11upper_boundERK3Key">
+<span id="_CPPv3NK7bpptree6detail7Ordered6Shared11upper_boundERK3Key"></span><span id="_CPPv2NK7bpptree6detail7Ordered6Shared11upper_boundERK3Key"></span><span id="bpptree::detail::Ordered::Shared::upper_bound__KeyCRC"></span><span class="target" id="structbpptree_1_1detail_1_1_ordered_1_1_shared_1a0e61ee8343d4653480c44630cb97b624"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0EN7bpptree6detail7Ordered6SharedE" title="bpptree::detail::Ordered::Shared::Parent"><span class="n"><span class="pre">Parent</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">const_iterator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">upper_bound</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Key</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">key</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK7bpptree6detail7Ordered6Shared11upper_boundERK3Key" title="Permalink to this definition"></a><br /></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>a const_iterator pointing to the first element with a key &gt; ‘key’ </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK7bpptree6detail7Ordered6Shared8containsERK3Key">
+<span id="_CPPv3NK7bpptree6detail7Ordered6Shared8containsERK3Key"></span><span id="_CPPv2NK7bpptree6detail7Ordered6Shared8containsERK3Key"></span><span id="bpptree::detail::Ordered::Shared::contains__KeyCRC"></span><span class="target" id="structbpptree_1_1detail_1_1_ordered_1_1_shared_1af4ecb245f290356cb8a06701d7d5734f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">contains</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Key</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">key</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK7bpptree6detail7Ordered6Shared8containsERK3Key" title="Permalink to this definition"></a><br /></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>true if this tree contains an element with key ‘key’, false otherwise </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv4I0EN7bpptree6detail7Ordered9TransientE">
+<span id="_CPPv3I0EN7bpptree6detail7Ordered9TransientE"></span><span id="_CPPv2I0EN7bpptree6detail7Ordered9TransientE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Parent</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="structbpptree_1_1detail_1_1_ordered_1_1_transient"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Transient</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0EN7bpptree6detail7Ordered9TransientE" title="bpptree::detail::Ordered::Transient::Parent"><span class="n"><span class="pre">Parent</span></span></a><a class="headerlink" href="#_CPPv4I0EN7bpptree6detail7Ordered9TransientE" title="Permalink to this definition"></a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4IDpEN7bpptree6detail7Ordered9Transient9TransientEDpRR2Us">
+<span id="_CPPv3IDpEN7bpptree6detail7Ordered9Transient9TransientEDpRR2Us"></span><span id="_CPPv2IDpEN7bpptree6detail7Ordered9Transient9TransientEDpRR2Us"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="sig-name descname"><span class="n"><span class="pre">Us</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="structbpptree_1_1detail_1_1_ordered_1_1_transient_1aaf90bcb44e785b9fc368bd3271e4e79c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Transient</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4IDpEN7bpptree6detail7Ordered9Transient9TransientEDpRR2Us" title="bpptree::detail::Ordered::Transient::Transient::Us"><span class="n"><span class="pre">Us</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">...</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">us</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4IDpEN7bpptree6detail7Ordered9Transient9TransientEDpRR2Us" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4IDpEN7bpptree6detail7Ordered9Transient8insert_vEvDpRR4Args">
+<span id="_CPPv3IDpEN7bpptree6detail7Ordered9Transient8insert_vEDpRR4Args"></span><span id="_CPPv2IDpEN7bpptree6detail7Ordered9Transient8insert_vEDpRR4Args"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="sig-name descname"><span class="n"><span class="pre">Args</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="structbpptree_1_1detail_1_1_ordered_1_1_transient_1aa885e5ae2b4bfe00c7daf197f24892a4"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">insert_v</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4IDpEN7bpptree6detail7Ordered9Transient8insert_vEvDpRR4Args" title="bpptree::detail::Ordered::Transient::insert_v::Args"><span class="n"><span class="pre">Args</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">...</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">args</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4IDpEN7bpptree6detail7Ordered9Transient8insert_vEvDpRR4Args" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4IDpEN7bpptree6detail7Ordered9Transient8assign_vEvDpRR4Args">
+<span id="_CPPv3IDpEN7bpptree6detail7Ordered9Transient8assign_vEDpRR4Args"></span><span id="_CPPv2IDpEN7bpptree6detail7Ordered9Transient8assign_vEDpRR4Args"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="sig-name descname"><span class="n"><span class="pre">Args</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="structbpptree_1_1detail_1_1_ordered_1_1_transient_1af51217ba3b56b09ed35f33fe05463c6d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">assign_v</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4IDpEN7bpptree6detail7Ordered9Transient8assign_vEvDpRR4Args" title="bpptree::detail::Ordered::Transient::assign_v::Args"><span class="n"><span class="pre">Args</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">...</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">args</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4IDpEN7bpptree6detail7Ordered9Transient8assign_vEvDpRR4Args" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7bpptree6detail7Ordered9Transient9erase_keyERK3Key">
+<span id="_CPPv3N7bpptree6detail7Ordered9Transient9erase_keyERK3Key"></span><span id="_CPPv2N7bpptree6detail7Ordered9Transient9erase_keyERK3Key"></span><span id="bpptree::detail::Ordered::Transient::erase_key__KeyCR"></span><span class="target" id="structbpptree_1_1detail_1_1_ordered_1_1_transient_1a40a26f569576f35f2bf3241d5e59a23f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">erase_key</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Key</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">key</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7bpptree6detail7Ordered9Transient9erase_keyERK3Key" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0EN7bpptree6detail7Ordered9Transient10update_keyEvRK3KeyRR1U">
+<span id="_CPPv3I0EN7bpptree6detail7Ordered9Transient10update_keyERK3KeyRR1U"></span><span id="_CPPv2I0EN7bpptree6detail7Ordered9Transient10update_keyERK3KeyRR1U"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">U</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="structbpptree_1_1detail_1_1_ordered_1_1_transient_1a774f41e6970d3de9ff48dba19fd02107"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">update_key</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Key</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">key</span></span>, <a class="reference internal" href="#_CPPv4I0EN7bpptree6detail7Ordered9Transient10update_keyEvRK3KeyRR1U" title="bpptree::detail::Ordered::Transient::update_key::U"><span class="n"><span class="pre">U</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">updater</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN7bpptree6detail7Ordered9Transient10update_keyEvRK3KeyRR1U" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4IDpEN7bpptree6detail7Ordered9Transient16insert_or_assignEvDpRR4Args">
+<span id="_CPPv3IDpEN7bpptree6detail7Ordered9Transient16insert_or_assignEDpRR4Args"></span><span id="_CPPv2IDpEN7bpptree6detail7Ordered9Transient16insert_or_assignEDpRR4Args"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="sig-name descname"><span class="n"><span class="pre">Args</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="structbpptree_1_1detail_1_1_ordered_1_1_transient_1a71969f73a4c7e5ca14169f3555a5cb83"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">insert_or_assign</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4IDpEN7bpptree6detail7Ordered9Transient16insert_or_assignEvDpRR4Args" title="bpptree::detail::Ordered::Transient::insert_or_assign::Args"><span class="n"><span class="pre">Args</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">...</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">args</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4IDpEN7bpptree6detail7Ordered9Transient16insert_or_assignEvDpRR4Args" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7bpptree6detail7Ordered9TransientixERK3Key">
+<span id="_CPPv3N7bpptree6detail7Ordered9TransientixERK3Key"></span><span id="_CPPv2N7bpptree6detail7Ordered9TransientixERK3Key"></span><span id="bpptree::detail::Ordered::Transient::subscript-operator__KeyCR"></span><span class="target" id="structbpptree_1_1detail_1_1_ordered_1_1_transient_1a478dda77cf29961a8fe39bfdc14dab35"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7bpptree6detail7Ordered9Transient8ProxyRefE" title="bpptree::detail::Ordered::Transient::ProxyRef"><span class="n"><span class="pre">ProxyRef</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">[]</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Key</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">key</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7bpptree6detail7Ordered9TransientixERK3Key" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK7bpptree6detail7Ordered9TransientixERK3Key">
+<span id="_CPPv3NK7bpptree6detail7Ordered9TransientixERK3Key"></span><span id="_CPPv2NK7bpptree6detail7Ordered9TransientixERK3Key"></span><span id="bpptree::detail::Ordered::Transient::subscript-operator__KeyCRC"></span><span class="target" id="structbpptree_1_1detail_1_1_ordered_1_1_transient_1a9cd1ef1f3d973c3f1ad1ac5ff102c84b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">GetValue</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">[]</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Key</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">key</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK7bpptree6detail7Ordered9TransientixERK3Key" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv4N7bpptree6detail7Ordered9Transient8ProxyRefE">
+<span id="_CPPv3N7bpptree6detail7Ordered9Transient8ProxyRefE"></span><span id="_CPPv2N7bpptree6detail7Ordered9Transient8ProxyRefE"></span><span id="bpptree::detail::Ordered::Transient::ProxyRef"></span><span class="target" id="structbpptree_1_1detail_1_1_ordered_1_1_transient_1_1_proxy_ref"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ProxyRef</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">bpptree</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">detail</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ProxyOperators</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4N7bpptree6detail7Ordered9Transient8ProxyRefE" title="bpptree::detail::Ordered::Transient::ProxyRef"><span class="n"><span class="pre">ProxyRef</span></span></a><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv4N7bpptree6detail7Ordered9Transient8ProxyRefE" title="Permalink to this definition"></a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7bpptree6detail7Ordered9Transient8ProxyRef8ProxyRefER9TransientRK3Key">
+<span id="_CPPv3N7bpptree6detail7Ordered9Transient8ProxyRef8ProxyRefER9TransientRK3Key"></span><span id="_CPPv2N7bpptree6detail7Ordered9Transient8ProxyRef8ProxyRefER9TransientRK3Key"></span><span id="bpptree::detail::Ordered::Transient::ProxyRef::ProxyRef__TransientR.KeyCR"></span><span class="target" id="structbpptree_1_1detail_1_1_ordered_1_1_transient_1_1_proxy_ref_1a61a0120a3ec0c23bae5187f2543ab6f8"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ProxyRef</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN7bpptree6detail7Ordered9TransientE" title="bpptree::detail::Ordered::Transient"><span class="n"><span class="pre">Transient</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">tree</span></span>, <span class="n"><span class="pre">Key</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">key</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4N7bpptree6detail7Ordered9Transient8ProxyRef8ProxyRefER9TransientRK3Key" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7bpptree6detail7Ordered9Transient8ProxyRefD0Ev">
+<span id="_CPPv3N7bpptree6detail7Ordered9Transient8ProxyRefD0Ev"></span><span id="_CPPv2N7bpptree6detail7Ordered9Transient8ProxyRefD0Ev"></span><span id="bpptree::detail::Ordered::Transient::ProxyRef::~ProxyRef"></span><span class="target" id="structbpptree_1_1detail_1_1_ordered_1_1_transient_1_1_proxy_ref_1ae7f898ca79512e1f8de773e792f67acf"></span><span class="sig-name descname"><span class="n"><span class="pre">~ProxyRef</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N7bpptree6detail7Ordered9Transient8ProxyRefD0Ev" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0EN7bpptree6detail7Ordered9Transient8ProxyRefaSER8ProxyRefRR1V">
+<span id="_CPPv3I0EN7bpptree6detail7Ordered9Transient8ProxyRefaSERR1V"></span><span id="_CPPv2I0EN7bpptree6detail7Ordered9Transient8ProxyRefaSERR1V"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">V</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="structbpptree_1_1detail_1_1_ordered_1_1_transient_1_1_proxy_ref_1a6d62ce0283e1a27ae366ca2b8a27b6c9"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7bpptree6detail7Ordered9Transient8ProxyRefE" title="bpptree::detail::Ordered::Transient::ProxyRef"><span class="n"><span class="pre">ProxyRef</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN7bpptree6detail7Ordered9Transient8ProxyRefaSER8ProxyRefRR1V" title="bpptree::detail::Ordered::Transient::ProxyRef::operator=::V"><span class="n"><span class="pre">V</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN7bpptree6detail7Ordered9Transient8ProxyRefaSER8ProxyRefRR1V" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7bpptree6detail7Ordered9Transient8ProxyRef9check_keyERK8KeyValue">
+<span id="_CPPv3N7bpptree6detail7Ordered9Transient8ProxyRef9check_keyERK8KeyValue"></span><span id="_CPPv2N7bpptree6detail7Ordered9Transient8ProxyRef9check_keyERK8KeyValue"></span><span id="bpptree::detail::Ordered::Transient::ProxyRef::check_key__KeyValueCR"></span><span class="target" id="structbpptree_1_1detail_1_1_ordered_1_1_transient_1_1_proxy_ref_1a055df50a19bc8eedb472a885e71189af"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">check_key</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0000EN7bpptree6detail7OrderedE" title="bpptree::detail::Ordered::KeyValue"><span class="n"><span class="pre">KeyValue</span></span></a><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">key_value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7bpptree6detail7Ordered9Transient8ProxyRef9check_keyERK8KeyValue" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7bpptree6detail7Ordered9Transient8ProxyRefaSER8KeyValue">
+<span id="_CPPv3N7bpptree6detail7Ordered9Transient8ProxyRefaSER8KeyValue"></span><span id="_CPPv2N7bpptree6detail7Ordered9Transient8ProxyRefaSER8KeyValue"></span><span id="bpptree::detail::Ordered::Transient::ProxyRef::assign-operator__KeyValueR"></span><span class="target" id="structbpptree_1_1detail_1_1_ordered_1_1_transient_1_1_proxy_ref_1a3cba20e6b0d61fe70763ece118774b75"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7bpptree6detail7Ordered9Transient8ProxyRefE" title="bpptree::detail::Ordered::Transient::ProxyRef"><span class="n"><span class="pre">ProxyRef</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0000EN7bpptree6detail7OrderedE" title="bpptree::detail::Ordered::KeyValue"><span class="n"><span class="pre">KeyValue</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7bpptree6detail7Ordered9Transient8ProxyRefaSER8KeyValue" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7bpptree6detail7Ordered9Transient8ProxyRefaSERK8KeyValue">
+<span id="_CPPv3N7bpptree6detail7Ordered9Transient8ProxyRefaSERK8KeyValue"></span><span id="_CPPv2N7bpptree6detail7Ordered9Transient8ProxyRefaSERK8KeyValue"></span><span id="bpptree::detail::Ordered::Transient::ProxyRef::assign-operator__KeyValueCR"></span><span class="target" id="structbpptree_1_1detail_1_1_ordered_1_1_transient_1_1_proxy_ref_1a402d67b6a82d99477ad1a166f953abe1"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7bpptree6detail7Ordered9Transient8ProxyRefE" title="bpptree::detail::Ordered::Transient::ProxyRef"><span class="n"><span class="pre">ProxyRef</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0000EN7bpptree6detail7OrderedE" title="bpptree::detail::Ordered::KeyValue"><span class="n"><span class="pre">KeyValue</span></span></a><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7bpptree6detail7Ordered9Transient8ProxyRefaSERK8KeyValue" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7bpptree6detail7Ordered9Transient8ProxyRefaSERR8KeyValue">
+<span id="_CPPv3N7bpptree6detail7Ordered9Transient8ProxyRefaSERR8KeyValue"></span><span id="_CPPv2N7bpptree6detail7Ordered9Transient8ProxyRefaSERR8KeyValue"></span><span id="bpptree::detail::Ordered::Transient::ProxyRef::assign-operator__KeyValueRR"></span><span class="target" id="structbpptree_1_1detail_1_1_ordered_1_1_transient_1_1_proxy_ref_1af6d921ce5588c1f591b15d90e5933110"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7bpptree6detail7Ordered9Transient8ProxyRefE" title="bpptree::detail::Ordered::Transient::ProxyRef"><span class="n"><span class="pre">ProxyRef</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0000EN7bpptree6detail7OrderedE" title="bpptree::detail::Ordered::KeyValue"><span class="n"><span class="pre">KeyValue</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7bpptree6detail7Ordered9Transient8ProxyRefaSERR8KeyValue" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK7bpptree6detail7Ordered9Transient8ProxyRefcv8GetValueEv">
+<span id="_CPPv3NK7bpptree6detail7Ordered9Transient8ProxyRefcv8GetValueEv"></span><span id="_CPPv2NK7bpptree6detail7Ordered9Transient8ProxyRefcv8GetValueEv"></span><span id="bpptree::detail::Ordered::Transient::ProxyRef::castto-GetValue-operatorC"></span><span class="target" id="structbpptree_1_1detail_1_1_ordered_1_1_transient_1_1_proxy_ref_1a6ece178ed10e38af113c0679b214c131"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="w"> </span><span class="n"><span class="pre">GetValue</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK7bpptree6detail7Ordered9Transient8ProxyRefcv8GetValueEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK7bpptree6detail7Ordered9Transient8ProxyRef3getEv">
+<span id="_CPPv3NK7bpptree6detail7Ordered9Transient8ProxyRef3getEv"></span><span id="_CPPv2NK7bpptree6detail7Ordered9Transient8ProxyRef3getEv"></span><span id="bpptree::detail::Ordered::Transient::ProxyRef::getC"></span><span class="target" id="structbpptree_1_1detail_1_1_ordered_1_1_transient_1_1_proxy_ref_1a67667f1e99510d5b0014c67767708961"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">GetValue</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK7bpptree6detail7Ordered9Transient8ProxyRef3getEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="indexed.html" class="btn btn-neutral float-left" title="Indexed" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="summed.html" class="btn btn-neutral float-right" title="Summed" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Jeff Plaisance.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
