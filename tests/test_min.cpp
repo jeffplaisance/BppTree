@@ -53,7 +53,7 @@ static void do_stuff(TreeType& tree, safe_vector<uint32_t>& vec) {
 }
 
 TEST(BppTreeTest, TestMinTransient) {
-    using TreeType = BppTree<pair<uint32_t, uint32_t>, 128, 128, 10>::mixins<IndexedBuilder<>, MinBuilder<>::extractor<PairExtractor<0>>>;
+    using TreeType = BppTree<pair<uint32_t, uint32_t>, 128, 128, 4>::mixins<IndexedBuilder<>, MinBuilder<>::extractor<PairExtractor<0>>>;
     TreeType::Transient tree{};
     safe_vector<uint32_t> vec{};
     for (uint32_t i = 0; i < 1024; ++i) {
@@ -77,7 +77,7 @@ TEST(BppTreeTest, TestMinTransient) {
 }
 
 TEST(BppTreeTest, TestMinPersistent) {
-    using TreeType = BppTree<pair<uint32_t, uint32_t>, 128, 128, 10>::mixins<IndexedBuilder<>, MinBuilder<>::extractor<PairExtractor<0>>>;
+    using TreeType = BppTree<pair<uint32_t, uint32_t>, 128, 128, 4>::mixins<IndexedBuilder<>, MinBuilder<>::extractor<PairExtractor<0>>>;
     TreeType::Persistent tree{};
     safe_vector<uint32_t> vec{};
     for (uint32_t i = 0; i < 1024; ++i) {
@@ -102,7 +102,7 @@ TEST(BppTreeTest, TestMinPersistent) {
 }
 
 TEST(BppTreeTest, TestMaxTransient) {
-    using TreeType = BppTree<pair<uint32_t, uint32_t>, 128, 128, 10>::mixins<IndexedBuilder<>, MaxBuilder<>::extractor<PairExtractor<0>>>;
+    using TreeType = BppTree<pair<uint32_t, uint32_t>, 128, 128, 4>::mixins<IndexedBuilder<>, MaxBuilder<>::extractor<PairExtractor<0>>>;
     TreeType::Transient tree{};
     safe_vector<uint32_t> vec{};
     for (uint32_t i = 0; i < 1024; ++i) {
@@ -156,7 +156,7 @@ TEST(BppTreeTest, TestMaxTransient) {
 }
 
 TEST(BppTreeTest, TestMaxPersistent) {
-    using TreeType = BppTree<pair<uint32_t, uint32_t>, 128, 128, 10>::mixins<IndexedBuilder<>, MaxBuilder<>::extractor<PairExtractor<0>>>;
+    using TreeType = BppTree<pair<uint32_t, uint32_t>, 128, 128, 4>::mixins<IndexedBuilder<>, MaxBuilder<>::extractor<PairExtractor<0>>>;
     TreeType::Persistent tree{};
     safe_vector<uint32_t> vec{};
     for (uint32_t i = 0; i < 1024; ++i) {
