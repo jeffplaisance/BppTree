@@ -6,8 +6,8 @@
 B++ Tree
 =============
 
-.. image:: https://github.com/jeffplaisance/BppTree/actions/workflows/workflow/badge.svg
-   :target: https://github.com/jeffplaisance/BppTree/actions?query=workflow%3Aworkflow+branch%3Amain
+.. image:: https://github.com/jeffplaisance/BppTree/actions/workflows/workflow.yml/badge.svg
+   :target: https://github.com/jeffplaisance/BppTree/actions?query=workflow%3ATests+branch%3Amain
    :alt: GitHub Actions Badge
 
 .. image:: https://codecov.io/gh/jeffplaisance/BppTree/branch/main/graph/badge.svg
