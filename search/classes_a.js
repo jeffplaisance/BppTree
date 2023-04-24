@@ -4,5 +4,5 @@ var searchData=
   ['nodeinfobase_497',['NodeInfoBase',['../structbpptree_1_1detail_1_1NodeInfoBase.html',1,'bpptree::detail']]],
   ['nodeptr_498',['NodePtr',['../classbpptree_1_1detail_1_1NodePtr.html',1,'bpptree::detail']]],
   ['nodeptr_3c_20nodetype_20_3e_499',['NodePtr&lt; NodeType &gt;',['../classbpptree_1_1detail_1_1NodePtr.html',1,'bpptree::detail']]],
-  ['nodetypes_500',['NodeTypes',['../structbpptree_1_1detail_1_1NodeTypes.html',1,'bpptree::detail']]]
+  ['nodetypesdetail_500',['NodeTypesDetail',['../structbpptree_1_1detail_1_1NodeTypesDetail.html',1,'bpptree::detail']]]
 ];

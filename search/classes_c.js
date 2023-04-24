@@ -2,7 +2,7 @@ var searchData=
 [
   ['pairextractor_504',['PairExtractor',['../structbpptree_1_1detail_1_1PairExtractor.html',1,'bpptree::detail']]],
   ['pairextractor_3c_200_20_3e_505',['PairExtractor&lt; 0 &gt;',['../structbpptree_1_1detail_1_1PairExtractor.html',1,'bpptree::detail']]],
-  ['params_506',['Params',['../structbpptree_1_1detail_1_1NodeTypes_1_1Params.html',1,'bpptree::detail::NodeTypes']]],
+  ['params_506',['Params',['../structbpptree_1_1detail_1_1NodeTypesDetail_1_1Params.html',1,'bpptree::detail::NodeTypesDetail']]],
   ['persistent_507',['Persistent',['../structbpptree_1_1detail_1_1BPPTREE__MINMAX__UPPERDetail_1_1Persistent.html',1,'bpptree::detail::BPPTREE_MINMAX_UPPERDetail&lt; Value, KeyExtractor, Comp &gt;::Persistent&lt; Parent &gt;'],['../structbpptree_1_1detail_1_1BppTreeDetail_1_1Persistent.html',1,'bpptree::detail::BppTreeDetail&lt; Value, LeafNodeBytes, InternalNodeBytes, depthLimit, Ts &gt;::Persistent'],['../structbpptree_1_1detail_1_1Indexed_1_1Persistent.html',1,'bpptree::detail::Indexed&lt; Value, SizeType &gt;::Persistent&lt; Parent &gt;'],['../structbpptree_1_1detail_1_1Ordered_1_1Persistent.html',1,'bpptree::detail::Ordered&lt; KeyValue, KeyValueExtractor, LessThan, BinarySearch &gt;::Persistent&lt; Parent &gt;'],['../structbpptree_1_1detail_1_1Summed_1_1Persistent.html',1,'bpptree::detail::Summed&lt; Value, Extractor &gt;::Persistent&lt; Parent &gt;']]],
   ['proxyoperators_508',['ProxyOperators',['../structbpptree_1_1detail_1_1ProxyOperators.html',1,'bpptree::detail']]],
   ['proxyoperators_3c_20proxyref_20_3e_509',['ProxyOperators&lt; ProxyRef &gt;',['../structbpptree_1_1detail_1_1ProxyOperators.html',1,'bpptree::detail']]],

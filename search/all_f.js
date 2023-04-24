@@ -1,7 +1,7 @@
 var searchData=
 [
   ['rbegin_332',['rbegin',['../structbpptree_1_1detail_1_1BppTreeDetail_1_1Shared.html#ab7b0588dc10a1f091edd3050b7b0e5e8',1,'bpptree::detail::BppTreeDetail::Shared::rbegin()'],['../structbpptree_1_1detail_1_1BppTreeDetail_1_1Shared.html#a2496d2e5995358d01e088fbcaf20d04a',1,'bpptree::detail::BppTreeDetail::Shared::rbegin() const']]],
-  ['refcount_333',['refCount',['../structbpptree_1_1detail_1_1NodeTypes_1_1LeafNode.html#a8780ecab7a9ca0fd7c218ee99cc3b8eb',1,'bpptree::detail::NodeTypes::LeafNode::refCount()'],['../structbpptree_1_1detail_1_1NodeTypes_1_1InternalNode.html#ab17033160ee29503b3b8c3feb0d95442',1,'bpptree::detail::NodeTypes::InternalNode::refCount()']]],
+  ['refcount_333',['refCount',['../structbpptree_1_1detail_1_1NodeTypesDetail_1_1LeafNode.html#ab5868591248f14137b7f7d27354388ce',1,'bpptree::detail::NodeTypesDetail::LeafNode::refCount()'],['../structbpptree_1_1detail_1_1NodeTypesDetail_1_1InternalNode.html#a091a1637a94a7a0f0b2c375655f8e02f',1,'bpptree::detail::NodeTypesDetail::InternalNode::refCount()']]],
   ['reference_334',['reference',['../structbpptree_1_1detail_1_1IteratorDetail.html#a3f353f14a422222bf2dd1e7db3a15651',1,'bpptree::detail::IteratorDetail']]],
   ['rend_335',['rend',['../structbpptree_1_1detail_1_1BppTreeDetail_1_1Shared.html#a4cebf5fa44e89ce566dafc285829d89a',1,'bpptree::detail::BppTreeDetail::Shared::rend() const'],['../structbpptree_1_1detail_1_1BppTreeDetail_1_1Shared.html#a0b1f24a881060c2b5053c40e1a48c0cb',1,'bpptree::detail::BppTreeDetail::Shared::rend()'],['../structbpptree_1_1detail_1_1IteratorDetail.html#a6a5d315f3d2d093242283eec68b6a264',1,'bpptree::detail::IteratorDetail::rend()']]],
   ['replace_336',['Replace',['../structbpptree_1_1detail_1_1Replace.html',1,'bpptree::detail']]],
@@ -14,8 +14,8 @@ var searchData=
   ['reverse_5fiterator_343',['reverse_iterator',['../structbpptree_1_1detail_1_1BppTreeDetail_1_1Shared.html#a5509af2bbc55584e6de6a92dc663352f',1,'bpptree::detail::BppTreeDetail::Shared']]],
   ['right_344',['right',['../structbpptree_1_1detail_1_1Split.html#a66f30bc268720c92bce9e8181decc1ea',1,'bpptree::detail::Split']]],
   ['root_345',['root',['../structbpptree_1_1detail_1_1ModifyTypes_1_1DoReplace.html#a9868f05a8ae323285f8e27df500ef8c9',1,'bpptree::detail::ModifyTypes::DoReplace::root()'],['../structbpptree_1_1detail_1_1ModifyTypes_1_1DoSplit.html#ae16718dd8ff490799a5f5db6bb3f0e98',1,'bpptree::detail::ModifyTypes::DoSplit::root()']]],
-  ['roottype_346',['RootType',['../structbpptree_1_1detail_1_1NodeTypes.html#a577cfb8d85cfba1dd07843b46837afcc',1,'bpptree::detail::NodeTypes']]],
-  ['rootvariant_347',['RootVariant',['../structbpptree_1_1detail_1_1NodeTypes_1_1RootVariant.html',1,'bpptree::detail::NodeTypes']]],
+  ['roottype_346',['RootType',['../structbpptree_1_1detail_1_1NodeTypesDetail.html#ab9f37b456a13dc65ec354ea0aec937d1',1,'bpptree::detail::NodeTypesDetail']]],
+  ['rootvariant_347',['RootVariant',['../structbpptree_1_1detail_1_1NodeTypesDetail_1_1RootVariant.html',1,'bpptree::detail::NodeTypesDetail']]],
   ['rootvariant_348',['rootVariant',['../structbpptree_1_1detail_1_1BppTreeDetail_1_1Shared.html#a782d925cb69c9dc3c76afdb8e7bd8b5c',1,'bpptree::detail::BppTreeDetail::Shared']]],
-  ['rootvariant_3c_201_2c_20us_2e_2e_2e_20_3e_349',['RootVariant&lt; 1, Us... &gt;',['../structbpptree_1_1detail_1_1NodeTypes_1_1RootVariant_3_011_00_01Us_8_8_8_01_4.html',1,'bpptree::detail::NodeTypes']]]
+  ['rootvariant_3c_201_2c_20us_2e_2e_2e_20_3e_349',['RootVariant&lt; 1, Us... &gt;',['../structbpptree_1_1detail_1_1NodeTypesDetail_1_1RootVariant_3_011_00_01Us_8_8_8_01_4.html',1,'bpptree::detail::NodeTypesDetail']]]
 ];

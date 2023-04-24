@@ -4,5 +4,5 @@ var searchData=
   ['replacetype_853',['ReplaceType',['../structbpptree_1_1detail_1_1InternalNodeBase.html#add7f045840251c30b24aec172be0e30f',1,'bpptree::detail::InternalNodeBase::ReplaceType()'],['../structbpptree_1_1detail_1_1LeafNodeBase.html#a100afa85932335dbd7751edb183749b1',1,'bpptree::detail::LeafNodeBase::ReplaceType()']]],
   ['result_854',['result',['../structbpptree_1_1detail_1_1chain.html#afcc51012df6ce014edb943b3e18d45e2',1,'bpptree::detail::chain']]],
   ['reverse_5fiterator_855',['reverse_iterator',['../structbpptree_1_1detail_1_1BppTreeDetail_1_1Shared.html#a5509af2bbc55584e6de6a92dc663352f',1,'bpptree::detail::BppTreeDetail::Shared']]],
-  ['roottype_856',['RootType',['../structbpptree_1_1detail_1_1NodeTypes.html#a577cfb8d85cfba1dd07843b46837afcc',1,'bpptree::detail::NodeTypes']]]
+  ['roottype_856',['RootType',['../structbpptree_1_1detail_1_1NodeTypesDetail.html#ab9f37b456a13dc65ec354ea0aec937d1',1,'bpptree::detail::NodeTypesDetail']]]
 ];

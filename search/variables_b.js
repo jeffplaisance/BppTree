@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['refcount_807',['refCount',['../structbpptree_1_1detail_1_1NodeTypes_1_1LeafNode.html#a8780ecab7a9ca0fd7c218ee99cc3b8eb',1,'bpptree::detail::NodeTypes::LeafNode::refCount()'],['../structbpptree_1_1detail_1_1NodeTypes_1_1InternalNode.html#ab17033160ee29503b3b8c3feb0d95442',1,'bpptree::detail::NodeTypes::InternalNode::refCount()']]],
+  ['refcount_807',['refCount',['../structbpptree_1_1detail_1_1NodeTypesDetail_1_1LeafNode.html#ab5868591248f14137b7f7d27354388ce',1,'bpptree::detail::NodeTypesDetail::LeafNode::refCount()'],['../structbpptree_1_1detail_1_1NodeTypesDetail_1_1InternalNode.html#a091a1637a94a7a0f0b2c375655f8e02f',1,'bpptree::detail::NodeTypesDetail::InternalNode::refCount()']]],
   ['rend_808',['rend',['../structbpptree_1_1detail_1_1IteratorDetail.html#a6a5d315f3d2d093242283eec68b6a264',1,'bpptree::detail::IteratorDetail']]],
   ['ret_809',['ret',['../minmax2_8ipp.html#a339672ff94e6199019102f50d317c3d7',1,'minmax2.ipp']]],
   ['right_810',['right',['../structbpptree_1_1detail_1_1Split.html#a66f30bc268720c92bce9e8181decc1ea',1,'bpptree::detail::Split']]],

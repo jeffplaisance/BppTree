@@ -11,7 +11,7 @@ var searchData=
   ['findkeyindex_106',['findKeyIndex',['../structbpptree_1_1detail_1_1OrderedDetail_1_1LeafNode.html#afc501f7959af21ae9336380fececffc3',1,'bpptree::detail::OrderedDetail::LeafNode::findKeyIndex()'],['../structbpptree_1_1detail_1_1OrderedDetail_1_1InternalNode.html#adb19afc025b660fe3734e08c5d77d7c2',1,'bpptree::detail::OrderedDetail::InternalNode::findKeyIndex()']]],
   ['findkeyindexchecked_107',['findKeyIndexChecked',['../structbpptree_1_1detail_1_1OrderedDetail_1_1LeafNode.html#a851330c033d4c2592907359da11ab8e5',1,'bpptree::detail::OrderedDetail::LeafNode::findKeyIndexChecked()'],['../structbpptree_1_1detail_1_1OrderedDetail_1_1InternalNode.html#a2e579bc1cb65a124065b9f3c5d526996',1,'bpptree::detail::OrderedDetail::InternalNode::findKeyIndexChecked()']]],
   ['findlast_108',['FindLast',['../structbpptree_1_1detail_1_1FindLast.html',1,'bpptree::detail']]],
-  ['findmaxdepth_109',['findMaxDepth',['../structbpptree_1_1detail_1_1NodeTypes.html#ac660ecb7b8cfdce0d4bf144eff825759',1,'bpptree::detail::NodeTypes']]],
+  ['findmaxdepth_109',['findMaxDepth',['../structbpptree_1_1detail_1_1NodeTypesDetail.html#a6cf925a32189c2bb0558f21931873aec',1,'bpptree::detail::NodeTypesDetail']]],
   ['first_5felement_110',['first_element',['../namespacebpptree_1_1detail.html#a2eda4beed8448f2cc018f3430ea1ac85',1,'bpptree::detail']]],
   ['firstelement_111',['FirstElement',['../structbpptree_1_1detail_1_1FirstElement.html',1,'bpptree::detail']]],
   ['firstelement_3c_20first_2c_20rest_2e_2e_2e_20_3e_112',['FirstElement&lt; First, Rest... &gt;',['../structbpptree_1_1detail_1_1FirstElement_3_01First_00_01Rest_8_8_8_01_4.html',1,'bpptree::detail']]],
