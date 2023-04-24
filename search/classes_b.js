@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['ordered_0',['Ordered',['../structbpptree_1_1detail_1_1_ordered.html',1,'bpptree::detail']]],
-  ['orderedbuilder_1',['OrderedBuilder',['../structbpptree_1_1detail_1_1_ordered_builder.html',1,'bpptree::detail']]],
-  ['ordereddetail_2',['OrderedDetail',['../structbpptree_1_1detail_1_1_ordered_detail.html',1,'bpptree::detail']]]
+  ['ordered_501',['Ordered',['../structbpptree_1_1detail_1_1Ordered.html',1,'bpptree::detail']]],
+  ['orderedbuilder_502',['OrderedBuilder',['../structbpptree_1_1detail_1_1OrderedBuilder.html',1,'bpptree::detail']]],
+  ['ordereddetail_503',['OrderedDetail',['../structbpptree_1_1detail_1_1OrderedDetail.html',1,'bpptree::detail']]]
 ];
