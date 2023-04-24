@@ -6,6 +6,8 @@
 B++ Tree
 =============
 
+`See full documentation here <https://jeffplaisance.github.io/BppTree>`_
+
 B++ Tree is a header only B+ tree library written in C++. B++ Trees can be mutable or immutable, and you can easily
 convert between the two. B++ Trees also support a variety of mixins, each of which adds additional functionality to the
 tree. You can add as many mixins to a B++ Tree as you want, enabling you to create things such as a map that can be
