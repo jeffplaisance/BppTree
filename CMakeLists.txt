@@ -28,8 +28,10 @@ add_executable(
         tests/test_reference_wrapper.cpp
         tests/test_iterator_insert_erase.cpp
         tests/test_deque.cpp
-        tests/test_persistent_random_modifications.cpp
-        tests/test_sum_lower_bound.cpp tests/test_inverted_index.cpp)
+        tests/test_random_modifications_indexed.cpp
+        tests/test_sum_lower_bound.cpp
+        tests/test_inverted_index.cpp
+        tests/test_random_modifications_ordered.cpp)
 
 target_include_directories(btree_test PRIVATE include)
 target_include_directories(btree_test PRIVATE examples)
