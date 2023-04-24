@@ -179,8 +179,8 @@ struct IndexedInternalNode : public Parent {
         if (n > 0) {
             while (this->getIndex(it) < this->length - 1) {
                 this->incIndex(it);
-                if (static_cast<size_t>(childCounts[this->getIndex(it)]) < static_cast<size_t>(n)) {
-                    n -= childCounts[this->getIndex(it)];
+                if (static_cast<ssize>(childCounts[this->getIndex(it)]) < n) {
+                    n -= static_cast<ssize>(childCounts[this->getIndex(it)]);
                 } else {
                     this->pointers[this->getIndex(it)]->seekFirst(it);
                     --n;
@@ -192,8 +192,8 @@ struct IndexedInternalNode : public Parent {
         if (n < 0) {
             while (this->getIndex(it) > 0) {
                 this->decIndex(it);
-                if (static_cast<size_t>(childCounts[this->getIndex(it)]) < static_cast<size_t>(-n)) {
-                    n += childCounts[this->getIndex(it)];
+                if (static_cast<ssize>(childCounts[this->getIndex(it)]) < -n) {
+                    n += static_cast<ssize>(childCounts[this->getIndex(it)]);
                 } else {
                     this->pointers[this->getIndex(it)]->seekLast(it);
                     ++n;
