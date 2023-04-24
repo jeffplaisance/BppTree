@@ -4,7 +4,7 @@
 using namespace std;
 
 TEST(BppTreeTest, TestSumLowerBound) {
-    using TreeType = BppTree<uint32_t>::mixins<SummedBuilder<>>::Transient;
+    using TreeType = BppTree<uint32_t, 512, 512, 4>::mixins<SummedBuilder<>>::Transient;
     TreeType tree{};
     for (uint32_t i = 1; i <= 1024; ++i) {
         tree.push_back(i);

@@ -238,7 +238,7 @@ TEST(BppTreeTest, TestReferenceWrapperPersistent) {
 }
 
 TEST(BppTreeTest, TestRefWrapMin) {
-    using TreeType = BppTree<std::shared_ptr<tuple<uint32_t, uint32_t>>, 256, 256, 10>
+    using TreeType = BppTree<std::shared_ptr<tuple<uint32_t, uint32_t>>, 256, 256, 6>
             ::mixins<
                     IndexedBuilder<>,
                     MinBuilder<>::extractor<PointerTupleExtractor<0>>::compare<PointerComparator>>;

@@ -6,7 +6,7 @@
 
 TEST(BppTreeTest, TestPersistentRandomModificationsIndexedIterator) {
     size_t n = 1000*1000;
-    using TreeType = BppTree<size_t>::mixins2<Indexed>::Persistent;
+    using TreeType = BppTree<size_t, 512, 512, 6>::mixins2<Indexed>::Persistent;
     TreeType tree{};
     std::vector<size_t> vec{};
     for (size_t i = 0; i < n; ++i) {
@@ -36,7 +36,7 @@ TEST(BppTreeTest, TestPersistentRandomModificationsIndexedIterator) {
 
 TEST(BppTreeTest, TestPersistentRandomModificationsIndexed) {
     size_t n = 1000*1000;
-    using TreeType = BppTree<size_t>::mixins2<Indexed>::Persistent;
+    using TreeType = BppTree<size_t, 512, 512, 6>::mixins2<Indexed>::Persistent;
     TreeType tree{};
     std::vector<size_t> vec{};
     for (size_t i = 0; i < n; ++i) {
@@ -62,7 +62,7 @@ TEST(BppTreeTest, TestPersistentRandomModificationsIndexed) {
 
 TEST(BppTreeTest, TestPersistentRandomModificationsOrdered) {
     size_t n = 1000*1000;
-    using TreeType = BppTree<std::pair<size_t, size_t>>::mixins2<Ordered, Indexed>::Persistent;
+    using TreeType = BppTree<std::pair<size_t, size_t>, 512, 512, 6>::mixins2<Ordered, Indexed>::Persistent;
     TreeType tree{};
     std::map<size_t, size_t> map{};
     for (size_t i = 0; i < n; ++i) {
@@ -101,7 +101,7 @@ TEST(BppTreeTest, TestPersistentRandomModificationsOrdered) {
 
 TEST(BppTreeTest, TestPersistentRandomModificationsOrderedIterator) {
     size_t n = 1000*1000;
-    using TreeType = BppTree<std::pair<size_t, size_t>>::mixins2<Ordered, Indexed>::Persistent;
+    using TreeType = BppTree<std::pair<size_t, size_t>, 512, 512, 6>::mixins2<Ordered, Indexed>::Persistent;
     TreeType tree{};
     std::map<size_t, size_t> map{};
     for (size_t i = 0; i < n; ++i) {
@@ -145,7 +145,7 @@ TEST(BppTreeTest, TestPersistentRandomModificationsOrderedIterator) {
 
 TEST(BppTreeTest, TestTransientRandomModificationsOrdered) {
     size_t n = 1000*1000;
-    using TreeType = BppTree<std::tuple<size_t, size_t>>::mixins<OrderedBuilder<>::extractor<TupleExtractor<0>>, IndexedBuilder<>>::Transient;
+    using TreeType = BppTree<std::tuple<size_t, size_t>, 512, 512, 6>::mixins<OrderedBuilder<>::extractor<TupleExtractor<0>>, IndexedBuilder<>>::Transient;
     TreeType tree{};
     std::map<size_t, size_t> map{};
     for (size_t i = 0; i < n; ++i) {

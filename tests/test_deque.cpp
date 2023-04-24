@@ -6,7 +6,7 @@ TEST(BppTreeTest, TestDeque) {
     static constexpr int n = 10*1000*1000;
     auto rand_ints = RandInts<int32_t, n>::ints;
     std::deque<int32_t> deq{};
-    using TreeType = BppTree<int32_t>::mixins<>::Transient;
+    using TreeType = BppTree<int32_t, 512, 512, 10>::mixins<>::Transient;
     TreeType tree{};
     for (auto i : rand_ints) {
         if (i & 1) {
@@ -36,7 +36,7 @@ TEST(BppTreeTest, TestPersistentDeque) {
     static constexpr int n = 1000*1000;
     auto rand_ints = RandInts<int32_t, n>::ints;
     std::deque<int32_t> deq{};
-    using TreeType = BppTree<int32_t>::mixins<>::Persistent;
+    using TreeType = BppTree<int32_t, 512, 512, 8>::mixins<>::Persistent;
     TreeType tree{};
     for (auto i : rand_ints) {
         if (i & 1) {

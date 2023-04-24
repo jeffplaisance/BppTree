@@ -7,16 +7,16 @@
 #include "bpptree/summed.hpp"
 #include "bpptree/indexed.hpp"
 
-template <typename Term>
+template <typename Term, size_t leaf_node_size = 512, size_t internal_node_size = 512, size_t max_depth = 16>
 struct InvertedIndex {
 
     using Value = std::pair<Term, uint32_t>;
     
-    using TermList = typename bpptree::BppTree<Value>::template mixins<
+    using TermList = typename bpptree::BppTree<Value, leaf_node_size, internal_node_size, max_depth>::template mixins<
         bpptree::OrderedBuilder<>,
         bpptree::SummedBuilder<bpptree::detail::PairExtractor<1>>>;
 
-    using DocList = typename bpptree::BppTree<uint32_t>::template mixins<bpptree::IndexedBuilder<uint32_t>>;
+    using DocList = typename bpptree::BppTree<uint32_t, leaf_node_size, internal_node_size, max_depth>::template mixins<bpptree::IndexedBuilder<uint32_t>>;
 
     template <typename Derived>
     struct Shared {

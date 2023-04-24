@@ -183,7 +183,7 @@ TEST(BppTreeTest, TestOrderedTransientSet) {
     static constexpr int n = 100*1000;
     safe_vector<int32_t> const& rand_ints = RandInts<int32_t, n>::ints;
 
-    using TreeType = BppTree<int32_t>::mixins<OrderedBuilder<>::extractor<ValueExtractor>>::Transient;
+    using TreeType = BppTree<int32_t, 512, 512, 6>::mixins<OrderedBuilder<>::extractor<ValueExtractor>>::Transient;
     TreeType tree{};
     std::set<int32_t> set{};
     for (int32_t i : rand_ints) {
