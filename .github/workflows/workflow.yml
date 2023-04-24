@@ -9,11 +9,27 @@ on:
   pull_request:
     branches: [ main ]
 
+env:
+  CTEST_OUTPUT_ON_FAILURE: 1
+  CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
 jobs:
   build:
 
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v3
+
+      - name: configure
+        run: cmake -S . -Bbuild -DENABLE_TEST_COVERAGE=1 -DCMAKE_BUILD_TYPE=Debug
+
+      - name: build
+        run: cmake --build build -j4
+
+      - name: test
+        run: |
+          cd build
+          ctest --build-config Debug
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3

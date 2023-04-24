@@ -3,6 +3,8 @@ project(btree_clion)
 
 set(CMAKE_CXX_STANDARD 17)
 
+option(ENABLE_TEST_COVERAGE "Enable test coverage" OFF)
+
 include(FetchContent)
 FetchContent_Declare(
         googletest
@@ -42,9 +44,15 @@ target_compile_options(btree_test PRIVATE -Wextra)
 target_compile_options(btree_test PRIVATE -Wconversion)
 target_compile_options(btree_test PRIVATE -Wsign-conversion)
 target_compile_options(btree_test PRIVATE -Wfloat-conversion)
+target_compile_options(btree_test PRIVATE -Werror)
 target_compile_options(btree_test PRIVATE -fsanitize=undefined)
 target_link_options(btree_test PRIVATE -fsanitize=undefined)
 target_compile_definitions(btree_test PRIVATE BPPTREE_TEST_COUNT_ALLOCATIONS)
 
 #target_compile_options(btree_clion PRIVATE -ftime-trace)
 #target_link_options(btree_clion PRIVATE -ftime-trace)
+
+if(ENABLE_TEST_COVERAGE)
+    target_compile_options(btree_test PRIVATE -g -fprofile-arcs -ftest-coverage)
+    target_link_options(btree_test PRIVATE -fprofile-arcs -ftest-coverage)
+endif()
