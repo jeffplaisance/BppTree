@@ -3,7 +3,7 @@
 #include "inverted_index.hpp"
 
 TEST(BppTreeTest, TestInvertedIndex) {
-    InvertedIndex<uint32_t, 512, 512, 4>::Transient index{};
+    InvertedIndex<uint32_t, 512, 512, 2>::Transient index{};
     index.insert(5u, 0u);
     index.insert(8u, 0u);
     index.insert(8u, 2u);
