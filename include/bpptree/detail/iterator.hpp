@@ -11,9 +11,10 @@
 #include <type_traits>
 #include <cstdint>
 #include <utility>
+#include <vector>
+#include <limits>
 #include "common.hpp"
 #include "helpers.hpp"
-#include <vector>
 #include "bpptree/bpptree.hpp"
 
 namespace bpptree::detail {
