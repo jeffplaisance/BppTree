@@ -16,7 +16,7 @@ template <
         int InternalNodeBytes = 512,
         int depthLimit = 16,
         typename... Ts>
-struct NodeTypes {
+struct NodeTypesDetail {
     template <typename Parent>
     struct Params;
 

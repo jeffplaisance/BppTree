@@ -47,7 +47,7 @@ template <
 class BppTreeDetail {
 private:
 
-    using NodeTypes = NodeTypes<Value, LeafNodeBytes, InternalNodeBytes, depthLimit, Ts...>;
+    using NodeTypes = NodeTypesDetail<Value, LeafNodeBytes, InternalNodeBytes, depthLimit, Ts...>;
 
     static constexpr int leaf_node_size = NodeTypes::leaf_node_size;
 
