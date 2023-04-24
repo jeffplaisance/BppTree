@@ -6,6 +6,14 @@
 B++ Tree
 =============
 
+.. image:: https://github.com/jeffplaisance/BppTree/actions/workflows/workflow/badge.svg
+   :target: https://github.com/jeffplaisance/BppTree/actions?query=workflow%3Aworkflow+branch%3Amain
+   :alt: GitHub Actions Badge
+
+.. image:: https://codecov.io/gh/jeffplaisance/BppTree/branch/main/graph/badge.svg
+   :target: https://codecov.io/gh/jeffplaisance/BppTree
+   :alt: CodeCov Badge
+
 `See full documentation here <https://jeffplaisance.github.io/BppTree>`_
 
 B++ Tree is a header only B+ tree library written in C++. B++ Trees can be mutable or immutable, and you can easily
