@@ -9,6 +9,7 @@
 #pragma once
 
 #include <new>
+#include <cstring>
 #include "common.hpp"
 
 namespace bpptree::detail {
