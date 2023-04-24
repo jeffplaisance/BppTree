@@ -26,7 +26,7 @@ jobs:
         run: cmake -S . -Bbuild -DENABLE_TEST_COVERAGE=1 -DCMAKE_BUILD_TYPE=Debug
 
       - name: build
-        run: cmake --build build -j4
+        run: cmake --build build -j1
 
       - name: test
         run: |
