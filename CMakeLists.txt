@@ -4,6 +4,7 @@ project(btree_clion)
 set(CMAKE_CXX_STANDARD 17)
 
 option(ENABLE_TEST_COVERAGE "Enable test coverage" OFF)
+option(ENABLE_UBSAN "Enable undefined behavior sanitizer" OFF)
 
 include(FetchContent)
 FetchContent_Declare(
@@ -46,9 +47,12 @@ target_compile_options(btree_test PRIVATE -Wsign-conversion)
 target_compile_options(btree_test PRIVATE -Wfloat-conversion)
 target_compile_options(btree_test PRIVATE -Wno-unknown-pragmas)
 target_compile_options(btree_test PRIVATE -Werror)
+target_compile_definitions(btree_test PRIVATE BPPTREE_TEST_COUNT_ALLOCATIONS)
+
+if (ENABLE_UBSAN)
 target_compile_options(btree_test PRIVATE -fsanitize=undefined)
 target_link_options(btree_test PRIVATE -fsanitize=undefined)
-target_compile_definitions(btree_test PRIVATE BPPTREE_TEST_COUNT_ALLOCATIONS)
+endif()
 
 #target_compile_options(btree_clion PRIVATE -ftime-trace)
 #target_link_options(btree_clion PRIVATE -ftime-trace)
