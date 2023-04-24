@@ -29,7 +29,7 @@ using namespace bpptree::detail;
 
 TEST(BppTreeTest, TestUninitializedArray) {
     reset_counters();
-    using TreeType = BppTree<DestructorChecker, 128, 128, 10>::mixins2<Indexed>;
+    using TreeType = BppTree<DestructorChecker, 256, 256, 5>::mixins2<Indexed>;
     TreeType::Transient tree{};
     tree.emplace_back(0xdecafc0ffeeadded);
     for (uint32_t i = 1; i < 65536; ++i) {
