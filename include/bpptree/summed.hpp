@@ -51,7 +51,7 @@ public:
         [[nodiscard]] typename Parent::iterator sum_lower_bound(SumType target) {
             typename Parent::iterator ret(this->self());
             std::as_const(this->self()).dispatch([target, &ret](auto& root) {
-                root->seekIndexForward(ret, target);
+                root->seek_index_forward(ret, target);
             });
             return ret;
         }
@@ -62,7 +62,7 @@ public:
         [[nodiscard]] typename Parent::const_iterator sum_lower_bound_const(SumType target) const {
             typename Parent::const_iterator ret(this->self());
             std::as_const(this->self()).dispatch([target, &ret](auto& root) {
-                root->seekIndexForward(ret, target);
+                root->seek_index_forward(ret, target);
             });
             return ret;
         }

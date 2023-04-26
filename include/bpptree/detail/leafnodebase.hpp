@@ -25,13 +25,13 @@ struct LeafNodeBase : public Parent {
 
     static constexpr int depth = 1;
 
-    static constexpr int itShift = 0;
+    static constexpr int it_shift = 0;
 
-    static constexpr int itBits = bits_required<LeafSize>();
+    static constexpr int it_bits = bits_required<LeafSize>();
 
-    static constexpr uint64_t itMask = (1ULL << itBits) - 1;
+    static constexpr uint64_t it_mask = (1ULL << it_bits) - 1;
 
-    static constexpr uint64_t itClear = ~(itMask << itShift);
+    static constexpr uint64_t it_clear = ~(it_mask << it_shift);
 
     uint16_t length = 0;
     bool persistent = false;
@@ -49,48 +49,48 @@ struct LeafNodeBase : public Parent {
         }
     }
 
-    static IndexType getIndex(uint64_t it) noexcept {
-        return (it >> itShift) & itMask;
+    static IndexType get_index(uint64_t it) noexcept {
+        return (it >> it_shift) & it_mask;
     }
 
-    static void clearIndex(uint64_t& it) noexcept {
-        it = it & itClear;
+    static void clear_index(uint64_t& it) noexcept {
+        it = it & it_clear;
     }
 
-    static void setIndex(uint64_t& it, uint64_t index) noexcept {
-        clearIndex(it);
-        it = it | (index << itShift);
+    static void set_index(uint64_t& it, uint64_t index) noexcept {
+        clear_index(it);
+        it = it | (index << it_shift);
     }
 
     template <typename T, std::enable_if_t<std::is_integral_v<T>, bool> = true>
-    static void setIndex(uint64_t& it, T const t) noexcept {
-        setIndex(it, static_cast<uint64_t const>(t));
+    static void set_index(uint64_t& it, T const t) noexcept {
+        set_index(it, static_cast<uint64_t const>(t));
     }
 
     template <typename... Args>
-    void computeDeltaInsert(IndexType index, InfoType& nodeInfo, Args const&... args) const {
-        this->self().computeDeltaInsert2(index, nodeInfo, args...);
+    void compute_delta_insert(IndexType index, InfoType& node_info, Args const&... args) const {
+        this->self().compute_delta_insert2(index, node_info, args...);
     }
 
     template <typename... Args>
-    void computeDeltaInsert2(IndexType, InfoType&, Args const&...) const {}
+    void compute_delta_insert2(IndexType, InfoType&, Args const&...) const {}
 
     template <typename... Args>
-    void computeDeltaSet(IndexType index, InfoType& nodeInfo, Args const&... args) const {
-        this->self().computeDeltaSet2(index, nodeInfo, args...);
+    void compute_delta_set(IndexType index, InfoType& node_info, Args const&... args) const {
+        this->self().compute_delta_set2(index, node_info, args...);
     }
 
     template <typename... Args>
-    void computeDeltaSet2(IndexType, InfoType&, Args const&...) const {}
+    void compute_delta_set2(IndexType, InfoType&, Args const&...) const {}
 
-    void computeDeltaErase(IndexType index, InfoType& nodeInfo) const {
-        this->self().computeDeltaErase2(index, nodeInfo);
+    void compute_delta_erase(IndexType index, InfoType& node_info) const {
+        this->self().compute_delta_erase2(index, node_info);
     }
 
-    void computeDeltaErase2(IndexType, InfoType&) const {}
+    void compute_delta_erase2(IndexType, InfoType&) const {}
 
     template <typename... Args>
-    void insertNoSplit(LeafNodeBase& node, IndexType index, Args&&... args) {
+    void insert_no_split(LeafNodeBase& node, IndexType index, Args&&... args) {
         for (IndexType i = length - 1; i >= index; --i) {
             if (persistent) {
                 node.values.set(i + 1, node.length, values[i]);
@@ -108,7 +108,7 @@ struct LeafNodeBase : public Parent {
     }
 
     template <typename T>
-    void setElement(LeafNodeBase& left, LeafNodeBase& right, IndexType index, IndexType split_point, T&& t) {
+    void set_element(LeafNodeBase& left, LeafNodeBase& right, IndexType index, IndexType split_point, T&& t) {
         if (index < split_point) {
             left.values.set(index, left.length, std::forward<T>(t));
         } else {
@@ -117,13 +117,13 @@ struct LeafNodeBase : public Parent {
     }
 
     template <typename... Args>
-    bool insertSplit(LeafNodeBase& left, LeafNodeBase& right, IndexType index, uint64_t& iter, bool rightMost, Args&&... args) {
-        IndexType split_point = rightMost && index == LeafSize ? index : (LeafSize + 1) / 2;
+    bool insert_split(LeafNodeBase& left, LeafNodeBase& right, IndexType index, uint64_t& iter, bool right_most, Args&&... args) {
+        IndexType split_point = right_most && index == LeafSize ? index : (LeafSize + 1) / 2;
         for (IndexType i = length - 1; i >= index; --i) {
             if (persistent) {
-                setElement(left, right, i + 1, split_point, values[i]);
+                set_element(left, right, i + 1, split_point, values[i]);
             } else {
-                setElement(left, right, i + 1, split_point, std::move(values[i]));
+                set_element(left, right, i + 1, split_point, std::move(values[i]));
             }
         }
         if (index < split_point) {
@@ -133,9 +133,9 @@ struct LeafNodeBase : public Parent {
         }
         for (IndexType i = persistent ? 0 : split_point; i < index; ++i) {
             if (persistent) {
-                setElement(left, right, i, split_point, values[i]);
+                set_element(left, right, i, split_point, values[i]);
             } else {
-                setElement(left, right, i, split_point, std::move(values[i]));
+                set_element(left, right, i, split_point, std::move(values[i]));
             }
         }
         if constexpr (!std::is_trivially_destructible_v<Value>) {
@@ -146,71 +146,71 @@ struct LeafNodeBase : public Parent {
         left.length = static_cast<uint16_t>(split_point);
         right.length = static_cast<uint16_t>(LeafSize + 1 - split_point);
         if (index >= split_point) {
-            setIndex(iter, index - split_point);
+            set_index(iter, index - split_point);
             return false;
         }
-        setIndex(iter, index);
+        set_index(iter, index);
         return true;
     }
 
     template <typename R, typename S, typename... Args>
-    void insertIndex(IndexType index, R&& doReplace, S&& doSplit, size_t& size, uint64_t& iter, bool rightMost, Args&&... args) {
+    void insert_index(IndexType index, R&& do_replace, S&& do_split, size_t& size, uint64_t& iter, bool right_most, Args&&... args) {
         ++size;
         if (length != LeafSize) {
-            setIndex(iter, index);
+            set_index(iter, index);
             ReplaceType replace{};
-            computeDeltaInsert(index, replace.delta, args...);
+            compute_delta_insert(index, replace.delta, args...);
             if (persistent) {
-                replace.delta.ptr = makePtr<NodeType>();
-                replace.delta.ptrChanged = true;
-                insertNoSplit(*replace.delta.ptr, index, std::forward<Args>(args)...);
-                doReplace(replace);
+                replace.delta.ptr = make_ptr<NodeType>();
+                replace.delta.ptr_changed = true;
+                insert_no_split(*replace.delta.ptr, index, std::forward<Args>(args)...);
+                do_replace(replace);
             } else {
-                insertNoSplit(this->self(), index, std::forward<Args>(args)...);
-                doReplace(replace);
+                insert_no_split(this->self(), index, std::forward<Args>(args)...);
+                do_replace(replace);
             }
         } else {
-            auto right = makePtr<NodeType>();
+            auto right = make_ptr<NodeType>();
             if (persistent) {
-                NodePtr<NodeType> left = makePtr<NodeType>();
-                bool new_element_left = insertSplit(*left, *right, index, iter, rightMost, std::forward<Args>(args)...);
-                doSplit(SplitType(std::move(left), std::move(right), true, new_element_left));
+                NodePtr<NodeType> left = make_ptr<NodeType>();
+                bool new_element_left = insert_split(*left, *right, index, iter, right_most, std::forward<Args>(args)...);
+                do_split(SplitType(std::move(left), std::move(right), true, new_element_left));
             } else {
-                bool new_element_left = insertSplit(this->self(), *right, index, iter, rightMost, std::forward<Args>(args)...);
-                doSplit(SplitType(&(this->self()), std::move(right), false, new_element_left));
+                bool new_element_left = insert_split(this->self(), *right, index, iter, right_most, std::forward<Args>(args)...);
+                do_split(SplitType(&(this->self()), std::move(right), false, new_element_left));
             }
         }
     }
 
     template <typename T, typename F, typename R, typename S, typename... Args>
-    void insert(T const& searchVal, F&& finder, R&& doReplace, S&& doSplit, size_t& size, uint64_t& iter, bool rightMost, Args&&... args) {
-        auto [index, remainder] = finder(this->self(), searchVal);
-        insertIndex(index, doReplace, doSplit, size, iter, rightMost, std::forward<Args>(args)...);
+    void insert(T const& search_val, F&& finder, R&& do_replace, S&& do_split, size_t& size, uint64_t& iter, bool right_most, Args&&... args) {
+        auto [index, remainder] = finder(this->self(), search_val);
+        insert_index(index, do_replace, do_split, size, iter, right_most, std::forward<Args>(args)...);
     }
 
     template <typename R, typename... Args>
-    void assign2(IndexType index, R&& doReplace, uint64_t& iter, Args&&... args) {
-        setIndex(iter, index);
+    void assign2(IndexType index, R&& do_replace, uint64_t& iter, Args&&... args) {
+        set_index(iter, index);
         ReplaceType replace{};
-        computeDeltaSet(index, replace.delta, args...);
+        compute_delta_set(index, replace.delta, args...);
         if (persistent) {
-            replace.delta.ptr = makePtr<NodeType>(this->self(), false);
-            replace.delta.ptrChanged = true;
+            replace.delta.ptr = make_ptr<NodeType>(this->self(), false);
+            replace.delta.ptr_changed = true;
             replace.delta.ptr->values.emplace(index, replace.delta.ptr->length, std::forward<Args>(args)...);
-            doReplace(replace);
+            do_replace(replace);
         } else {
             values.emplace_unchecked(index, std::forward<Args>(args)...);
-            doReplace(replace);
+            do_replace(replace);
         }
     }
 
     template <typename T, typename F, typename R, typename... Args>
-    void assign(T const& searchVal, F&& finder, R&& doReplace, uint64_t& iter, Args&&... args) {
-        auto [index, remainder] = finder(this->self(), searchVal);
-        assign2(index, doReplace, iter, std::forward<Args>(args)...);
+    void assign(T const& search_val, F&& finder, R&& do_replace, uint64_t& iter, Args&&... args) {
+        auto [index, remainder] = finder(this->self(), search_val);
+        assign2(index, do_replace, iter, std::forward<Args>(args)...);
     }
 
-    bool erase(LeafNodeBase& node, IndexType index, uint64_t& iter, bool rightMost) {
+    bool erase(LeafNodeBase& node, IndexType index, uint64_t& iter, bool right_most) {
         if (persistent) {
             for (IndexType i = 0; i < index; ++i) {
                 node.values.set(i, node.length, values[i]);
@@ -227,81 +227,81 @@ struct LeafNodeBase : public Parent {
             node.values.destruct(length - 1);
         }
         node.length = length - 1;
-        bool carry = index == node.length && !rightMost;
-        setIndex(iter, carry ? 0 : index);
+        bool carry = index == node.length && !right_most;
+        set_index(iter, carry ? 0 : index);
         return carry;
     }
 
     template <typename R, typename E>
-    void erase(IndexType index, R&& doReplace, E&& doErase, uint64_t& iter, bool rightMost) {
+    void erase(IndexType index, R&& do_replace, E&& do_erase, uint64_t& iter, bool right_most) {
         if (length > 1) {
             ReplaceType replace{};
-            computeDeltaErase(index, replace.delta);
+            compute_delta_erase(index, replace.delta);
             if (persistent) {
-                replace.delta.ptr = makePtr<NodeType>();
-                replace.delta.ptrChanged = true;
-                replace.carry = erase(*replace.delta.ptr, index, iter, rightMost);
-                doReplace(replace);
+                replace.delta.ptr = make_ptr<NodeType>();
+                replace.delta.ptr_changed = true;
+                replace.carry = erase(*replace.delta.ptr, index, iter, right_most);
+                do_replace(replace);
             } else {
-                replace.carry = erase(this->self(), index, iter, rightMost);
-                doReplace(replace);
+                replace.carry = erase(this->self(), index, iter, right_most);
+                do_replace(replace);
             }
         } else {
-            setIndex(iter, 0);
-            doErase();
+            set_index(iter, 0);
+            do_erase();
         }
     }
 
     template <typename T, typename F, typename R, typename E>
-    void erase(T const& searchVal, F&& finder, R&& doReplace, E&& doErase, size_t& size, uint64_t& iter, bool rightMost) {
-        auto [index, remainder] = finder(this->self(), searchVal);
+    void erase(T const& search_val, F&& finder, R&& do_replace, E&& do_erase, size_t& size, uint64_t& iter, bool right_most) {
+        auto [index, remainder] = finder(this->self(), search_val);
         --size;
-        erase(index, doReplace, doErase, iter, rightMost);
+        erase(index, do_replace, do_erase, iter, right_most);
     }
 
     template <typename T, typename F, typename R, typename U>
-    void update(T const& searchVal, F&& finder, R&& doReplace, uint64_t& iter, U&& updater) {
-        auto [index, remainder] = finder(this->self(), searchVal);
-        assign2(index, doReplace, iter, updater(std::as_const(values[index])));
+    void update(T const& search_val, F&& finder, R&& do_replace, uint64_t& iter, U&& updater) {
+        auto [index, remainder] = finder(this->self(), search_val);
+        assign2(index, do_replace, iter, updater(std::as_const(values[index])));
     }
 
     template <typename T, typename F, typename R, typename U>
-    void update2(T const& searchVal, F&& finder, R&& doReplace, uint64_t& iter, U&& updater) {
-        auto [index, remainder] = finder(this->self(), searchVal);
+    void update2(T const& search_val, F&& finder, R&& do_replace, uint64_t& iter, U&& updater) {
+        auto [index, remainder] = finder(this->self(), search_val);
         updater(
-                [this, index = index, &doReplace, &iter](auto&&... args)
+                [this, index = index, &do_replace, &iter](auto&&... args)
                 // clang incorrectly warns on unused capture without this-> before assign2
-                { this->assign2(index, doReplace, iter, std::forward<decltype(args)>(args)...); },
+                { this->assign2(index, do_replace, iter, std::forward<decltype(args)>(args)...); },
                 std::as_const(values[index]));
     }
 
-    Value const& getIter(uint64_t it) const {
-        return values[getIndex(it)];
+    Value const& get_iter(uint64_t it) const {
+        return values[get_index(it)];
     }
 
-    void makePersistent() {
+    void make_persistent() {
         persistent = true;
     }
 
-    void seekFirst(uint64_t& it) const {
-        clearIndex(it);
+    void seek_first(uint64_t& it) const {
+        clear_index(it);
     }
 
-    void seekLast(uint64_t& it) const {
-        setIndex(it, length - 1);
+    void seek_last(uint64_t& it) const {
+        set_index(it, length - 1);
     }
 
-    void seekEnd(uint64_t& it) const {
-        setIndex(it, length);
+    void seek_end(uint64_t& it) const {
+        set_index(it, length);
     }
 
-    void seekBegin(typename LeafNodeBase::SelfType const*& leaf, uint64_t& it) const {
-        clearIndex(it);
+    void seek_begin(typename LeafNodeBase::SelfType const*& leaf, uint64_t& it) const {
+        clear_index(it);
         leaf = &this->self();
     }
 
-    void seekEnd(typename LeafNodeBase::SelfType const*& leaf, uint64_t& it) const {
-        setIndex(it, length);
+    void seek_end(typename LeafNodeBase::SelfType const*& leaf, uint64_t& it) const {
+        set_index(it, length);
         leaf = &this->self();
     }
 
@@ -314,23 +314,23 @@ struct LeafNodeBase : public Parent {
     }
 
     ssize advance(typename LeafNodeBase::SelfType const*& leaf, uint64_t& it, ssize n) const {
-        auto sum = getIndex(it) + n;
+        auto sum = get_index(it) + n;
         if (sum >= length) {
             auto ret = sum - (length - 1);
-            setIndex(it, length - 1);
+            set_index(it, length - 1);
             return ret;
         }
         if (sum < 0) {
-            clearIndex(it);
+            clear_index(it);
             return sum;
         }
         leaf = &this->self();
-        setIndex(it, sum);
+        set_index(it, sum);
         return 0;
     }
 
-    void getIndexes(uint64_t it, std::vector<uint16_t>& indexes) const {
-        IndexType index = getIndex(it);
+    void get_indexes(uint64_t it, std::vector<uint16_t>& indexes) const {
+        IndexType index = get_index(it);
         indexes.emplace_back(index);
     }
 };

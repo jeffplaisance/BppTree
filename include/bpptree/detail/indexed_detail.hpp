@@ -19,45 +19,45 @@ struct IndexedLeafNode : public Parent {
 
     using InfoType = typename Parent::InfoType;
 
-    auto findIndex(SizeType searchVal) const {
-        return std::tuple<IndexType, SizeType>(searchVal - 1, 0);
+    auto find_index(SizeType search_val) const {
+        return std::tuple<IndexType, SizeType>(search_val - 1, 0);
     }
 
-    auto insertionIndex(SizeType searchVal) const {
-        return std::tuple<IndexType, SizeType>(searchVal, 0);
+    auto insertion_index(SizeType search_val) const {
+        return std::tuple<IndexType, SizeType>(search_val, 0);
     }
 
-    Value const& at_index(SizeType searchVal) const {
-        return this->values[searchVal - 1];
+    Value const& at_index(SizeType search_val) const {
+        return this->values[search_val - 1];
     }
 
     template <typename I>
-    void seekIndex(
+    void seek_index(
             I& it,
             SizeType index
     ) const {
-        this->setIndex(it.iter, index - 1);
+        this->set_index(it.iter, index - 1);
         it.leaf = &this->self();
     }
 
     template <typename... Args>
-    void computeDeltaInsert2(IndexType index, InfoType& nodeInfo, Args const&... args) const {
-        nodeInfo.children = 1;
-        Parent::computeDeltaInsert2(index, nodeInfo, args...);
+    void compute_delta_insert2(IndexType index, InfoType& node_info, Args const&... args) const {
+        node_info.children = 1;
+        Parent::compute_delta_insert2(index, node_info, args...);
     }
 
     template <typename... Args>
-    void computeDeltaSet2(IndexType index, InfoType& nodeInfo, Args const&... args) const {
-        Parent::computeDeltaSet2(index, nodeInfo, args...);
+    void compute_delta_set2(IndexType index, InfoType& node_info, Args const&... args) const {
+        Parent::compute_delta_set2(index, node_info, args...);
     }
 
-    void computeDeltaErase2(IndexType index, InfoType& nodeInfo) const {
+    void compute_delta_erase2(IndexType index, InfoType& node_info) const {
         if constexpr (std::is_unsigned_v<SizeType>) {
-            nodeInfo.children = std::numeric_limits<SizeType>::max();
+            node_info.children = std::numeric_limits<SizeType>::max();
         } else {
-            nodeInfo.children = -1;
+            node_info.children = -1;
         }
-        Parent::computeDeltaErase2(index, nodeInfo);
+        Parent::compute_delta_erase2(index, node_info);
     }
 
     SizeType children() {
@@ -65,7 +65,7 @@ struct IndexedLeafNode : public Parent {
     }
 
     void order(uint64_t it, SizeType& size) const {
-        size += static_cast<SizeType>(this->getIndex(it));
+        size += static_cast<SizeType>(this->get_index(it));
     }
 };
 
@@ -82,53 +82,53 @@ struct IndexedInternalNode : public Parent {
     template <typename PtrType>
     using SplitType = typename Parent::template SplitType<PtrType>;
 
-    Array<SizeType, InternalSize> childCounts{};
+    Array<SizeType, InternalSize> child_counts{};
 
-    void moveElement2(IndexType destIndex, NodeType& source, IndexType sourceIndex) {
-        childCounts[destIndex] = std::move(source.childCounts[sourceIndex]);
-        Parent::moveElement2(destIndex, source, sourceIndex);
+    void move_element2(IndexType dest_index, NodeType& source, IndexType source_index) {
+        child_counts[dest_index] = std::move(source.child_counts[source_index]);
+        Parent::move_element2(dest_index, source, source_index);
     }
 
-    void copyElement2(IndexType destIndex, NodeType const& source, IndexType sourceIndex) {
-        childCounts[destIndex] = source.childCounts[sourceIndex];
-        Parent::copyElement2(destIndex, source, sourceIndex);
+    void copy_element2(IndexType dest_index, NodeType const& source, IndexType source_index) {
+        child_counts[dest_index] = source.child_counts[source_index];
+        Parent::copy_element2(dest_index, source, source_index);
     }
 
-    void replaceElement2(IndexType index, InfoType<ChildType>& t) {
-        childCounts[index] += t.children;
-        Parent::replaceElement2(index, t);
+    void replace_element2(IndexType index, InfoType<ChildType>& t) {
+        child_counts[index] += t.children;
+        Parent::replace_element2(index, t);
     }
 
-    void setElement2(IndexType index, InfoType<ChildType>& t) {
-        childCounts[index] = t.children;
-        Parent::setElement2(index, t);
+    void set_element2(IndexType index, InfoType<ChildType>& t) {
+        child_counts[index] = t.children;
+        Parent::set_element2(index, t);
     }
 
-    void computeDeltaSplit2(SplitType<ChildType> const& split, InfoType<NodeType>& nodeInfo, IndexType index) const {
-        nodeInfo.children = split.left.children + split.right.children - childCounts[index];
-        Parent::computeDeltaSplit2(split, nodeInfo, index);
+    void compute_delta_split2(SplitType<ChildType> const& split, InfoType<NodeType>& node_info, IndexType index) const {
+        node_info.children = split.left.children + split.right.children - child_counts[index];
+        Parent::compute_delta_split2(split, node_info, index);
     }
 
-    void computeDeltaReplace2(InfoType<ChildType> const& update, InfoType<NodeType>& nodeInfo, IndexType index) const {
-        nodeInfo.children = update.children;
-        Parent::computeDeltaReplace2(update, nodeInfo, index);
+    void compute_delta_replace2(InfoType<ChildType> const& update, InfoType<NodeType>& node_info, IndexType index) const {
+        node_info.children = update.children;
+        Parent::compute_delta_replace2(update, node_info, index);
     }
 
-    void computeDeltaErase2(IndexType index, InfoType<NodeType>& nodeInfo) const {
+    void compute_delta_erase2(IndexType index, InfoType<NodeType>& node_info) const {
         if constexpr (std::is_unsigned_v<SizeType>) {
-            nodeInfo.children = ~childCounts[index] + 1;
+            node_info.children = ~child_counts[index] + 1;
         } else {
-            nodeInfo.children = -childCounts[index];
+            node_info.children = -child_counts[index];
         }
-        Parent::computeDeltaErase2(index, nodeInfo);
+        Parent::compute_delta_erase2(index, node_info);
     }
 
-    auto findIndex(SizeType searchVal) const {
-        std::tuple<IndexType, SizeType> ret(0, searchVal);
+    auto find_index(SizeType search_val) const {
+        std::tuple<IndexType, SizeType> ret(0, search_val);
         auto& [index, remainder] = ret;
         while (index < this->length - 1) {
-            if (childCounts[index] < remainder) {
-                remainder -= childCounts[index];
+            if (child_counts[index] < remainder) {
+                remainder -= child_counts[index];
                 ++index;
             } else {
                 break;
@@ -137,37 +137,37 @@ struct IndexedInternalNode : public Parent {
         return ret;
     }
 
-    auto insertionIndex(SizeType searchVal) const {
-        return findIndex(searchVal);
+    auto insertion_index(SizeType search_val) const {
+        return find_index(search_val);
     }
 
-    Value const& at_index(SizeType searchVal) const {
-        auto [index, remainder] = findIndex(searchVal);
+    Value const& at_index(SizeType search_val) const {
+        auto [index, remainder] = find_index(search_val);
         return this->pointers[index]->at_index(remainder);
     }
 
     template <typename I>
-    void seekIndex(
+    void seek_index(
             I& it,
-            SizeType searchVal
+            SizeType search_val
     ) const {
-        auto [index, remainder] = findIndex(searchVal);
-        this->setIndex(it.iter, index);
-        this->pointers[this->getIndex(it.iter)]->seekIndex(it, remainder);
+        auto [index, remainder] = find_index(search_val);
+        this->set_index(it.iter, index);
+        this->pointers[this->get_index(it.iter)]->seek_index(it, remainder);
     }
 
     SizeType children() {
         SizeType ret = 0;
         for (IndexType i = 0; i < this->length; ++i) {
-            ret += childCounts[i];
+            ret += child_counts[i];
         }
         return ret;
     }
 
     void order(uint64_t it, SizeType& size) const {
-        IndexType index = this->getIndex(it);
+        IndexType index = this->get_index(it);
         for (IndexType i = 0; i < index; ++i) {
-            size += childCounts[i];
+            size += child_counts[i];
         }
         this->pointers[index]->order(it, size);
     }
@@ -175,14 +175,14 @@ struct IndexedInternalNode : public Parent {
     template <typename L>
     ssize advance(L const*& leaf, uint64_t& it, ssize n) const {
         start:
-        n = this->pointers[this->getIndex(it)]->advance(leaf, it, n);
+        n = this->pointers[this->get_index(it)]->advance(leaf, it, n);
         if (n > 0) {
-            while (this->getIndex(it) < this->length - 1) {
-                this->incIndex(it);
-                if (static_cast<ssize>(childCounts[this->getIndex(it)]) < n) {
-                    n -= static_cast<ssize>(childCounts[this->getIndex(it)]);
+            while (this->get_index(it) < this->length - 1) {
+                this->inc_index(it);
+                if (static_cast<ssize>(child_counts[this->get_index(it)]) < n) {
+                    n -= static_cast<ssize>(child_counts[this->get_index(it)]);
                 } else {
-                    this->pointers[this->getIndex(it)]->seekFirst(it);
+                    this->pointers[this->get_index(it)]->seek_first(it);
                     --n;
                     goto start;
                 }
@@ -190,12 +190,12 @@ struct IndexedInternalNode : public Parent {
             return n;
         }
         if (n < 0) {
-            while (this->getIndex(it) > 0) {
-                this->decIndex(it);
-                if (static_cast<ssize>(childCounts[this->getIndex(it)]) < -n) {
-                    n += static_cast<ssize>(childCounts[this->getIndex(it)]);
+            while (this->get_index(it) > 0) {
+                this->dec_index(it);
+                if (static_cast<ssize>(child_counts[this->get_index(it)]) < -n) {
+                    n += static_cast<ssize>(child_counts[this->get_index(it)]);
                 } else {
-                    this->pointers[this->getIndex(it)]->seekLast(it);
+                    this->pointers[this->get_index(it)]->seek_last(it);
                     ++n;
                     goto start;
                 }

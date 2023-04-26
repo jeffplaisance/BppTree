@@ -65,35 +65,35 @@ struct BPPTREE_CONCAT(BPPTREE_MINMAX_UPPER, Detail) {
         }
 
         template <typename T, typename... Args>
-        void computeDelta(T index, InfoType& nodeInfo, Args const&... args) const {
+        void compute_delta(T index, InfoType& node_info, Args const&... args) const {
             IndexType min_max_index = BPPTREE_CONCAT(BPPTREE_MINMAX, _excluding)(index);
             if (min_max_index >= 0) {
                 decltype(auto) a = extractor(args...);
                 decltype(auto) b = extractor(this->values[min_max_index]);
-                nodeInfo.BPPTREE_MINMAX = comp(a, b) ? a : b;
+                node_info.BPPTREE_MINMAX = comp(a, b) ? a : b;
             } else {
-                nodeInfo.BPPTREE_MINMAX = extractor(args...);
+                node_info.BPPTREE_MINMAX = extractor(args...);
             }
         }
 
         template <typename... Args>
-        void computeDeltaInsert2(IndexType index, InfoType& nodeInfo, Args const&... args) const {
-            computeDelta(Empty::empty, nodeInfo, args...);
-            Parent::computeDeltaInsert2(index, nodeInfo, args...);
+        void compute_delta_insert2(IndexType index, InfoType& node_info, Args const&... args) const {
+            compute_delta(Empty::empty, node_info, args...);
+            Parent::compute_delta_insert2(index, node_info, args...);
         }
 
         template <typename... Args>
-        void computeDeltaSet2(IndexType index, InfoType& nodeInfo, Args const&... args) const {
-            computeDelta(index, nodeInfo, args...);
-            Parent::computeDeltaSet2(index, nodeInfo, args...);
+        void compute_delta_set2(IndexType index, InfoType& node_info, Args const&... args) const {
+            compute_delta(index, node_info, args...);
+            Parent::compute_delta_set2(index, node_info, args...);
         }
 
-        void computeDeltaErase2(IndexType index, InfoType& nodeInfo) const {
+        void compute_delta_erase2(IndexType index, InfoType& node_info) const {
             IndexType min_max_index = BPPTREE_CONCAT(BPPTREE_MINMAX, _excluding)(index);
             if (min_max_index >= 0) {
-                nodeInfo.BPPTREE_MINMAX = extractor(this->values[min_max_index]);
+                node_info.BPPTREE_MINMAX = extractor(this->values[min_max_index]);
             }
-            Parent::computeDeltaErase2(index, nodeInfo);
+            Parent::compute_delta_erase2(index, node_info);
         }
 
         [[nodiscard]] KeyRef BPPTREE_MINMAX() const {
@@ -105,12 +105,12 @@ struct BPPTREE_CONCAT(BPPTREE_MINMAX_UPPER, Detail) {
         }
 
         [[nodiscard]] KeyRef BPPTREE_MINMAX(uint64_t begin, uint64_t end) const {
-            IndexType beginIndex = this->getIndex(begin);
-            IndexType endIndex = this->getIndex(end);
-            if (beginIndex > endIndex) {
+            IndexType begin_index = this->get_index(begin);
+            IndexType end_index = this->get_index(end);
+            if (begin_index > end_index) {
                 throw std::out_of_range("cannot call " BPPTREE_MINMAXSTR " on empty range");
             }
-            IndexType min_max_index = BPPTREE_CONCAT(BPPTREE_MINMAX, _excluding)(beginIndex, endIndex);
+            IndexType min_max_index = BPPTREE_CONCAT(BPPTREE_MINMAX, _excluding)(begin_index, end_index);
             return extractor(this->values[min_max_index]);
         }
 
@@ -128,19 +128,19 @@ struct BPPTREE_CONCAT(BPPTREE_MINMAX_UPPER, Detail) {
                 throw std::out_of_range("cannot call " BPPTREE_MINMAXSTR " on empty node");
             }
             IndexType min_max_index = BPPTREE_CONCAT(BPPTREE_MINMAX, _excluding)();
-            this->setIndex(it.iter, min_max_index);
+            this->set_index(it.iter, min_max_index);
             it.leaf = &this->self();
         }
 
         template <typename It>
         void BPPTREE_MINMAX(It& it, uint64_t begin, uint64_t end) const {
-            IndexType beginIndex = this->getIndex(begin);
-            IndexType endIndex = this->getIndex(end);
-            if (beginIndex > endIndex) {
+            IndexType begin_index = this->get_index(begin);
+            IndexType end_index = this->get_index(end);
+            if (begin_index > end_index) {
                 throw std::out_of_range("cannot call " BPPTREE_MINMAXSTR " on empty range");
             }
-            IndexType min_max_index = BPPTREE_CONCAT(BPPTREE_MINMAX, _excluding)(beginIndex, endIndex);
-            this->setIndex(it.iter, min_max_index);
+            IndexType min_max_index = BPPTREE_CONCAT(BPPTREE_MINMAX, _excluding)(begin_index, end_index);
+            this->set_index(it.iter, min_max_index);
             it.leaf = &this->self();
         }
 
@@ -182,29 +182,29 @@ struct BPPTREE_CONCAT(BPPTREE_MINMAX_UPPER, Detail) {
             }
         }
 
-        void eraseElement2(IndexType index) {
+        void erase_element2(IndexType index) {
             BPPTREE_MINMAXS.destruct(index);
-            Parent::eraseElement2(index);
+            Parent::erase_element2(index);
         }
 
-        void moveElement2(IndexType destIndex, NodeType& source, IndexType sourceIndex) {
-            BPPTREE_MINMAXS.set(destIndex, this->length, source.BPPTREE_MINMAXS.move(sourceIndex));
-            Parent::moveElement2(destIndex, source, sourceIndex);
+        void move_element2(IndexType dest_index, NodeType& source, IndexType source_index) {
+            BPPTREE_MINMAXS.set(dest_index, this->length, source.BPPTREE_MINMAXS.move(source_index));
+            Parent::move_element2(dest_index, source, source_index);
         }
 
-        void copyElement2(IndexType destIndex, NodeType const& source, IndexType sourceIndex) {
-            BPPTREE_MINMAXS.set(destIndex, this->length, source.BPPTREE_MINMAXS[sourceIndex]);
-            Parent::copyElement2(destIndex, source, sourceIndex);
+        void copy_element2(IndexType dest_index, NodeType const& source, IndexType source_index) {
+            BPPTREE_MINMAXS.set(dest_index, this->length, source.BPPTREE_MINMAXS[source_index]);
+            Parent::copy_element2(dest_index, source, source_index);
         }
 
-        void replaceElement2(IndexType index, InfoType<ChildType>& t) {
+        void replace_element2(IndexType index, InfoType<ChildType>& t) {
             BPPTREE_MINMAXS[index] = std::move(t.BPPTREE_MINMAX);
-            Parent::replaceElement2(index, t);
+            Parent::replace_element2(index, t);
         }
 
-        void setElement2(IndexType index, InfoType<ChildType>& t) {
+        void set_element2(IndexType index, InfoType<ChildType>& t) {
             BPPTREE_MINMAXS.set(index, this->length, std::move(t.BPPTREE_MINMAX));
-            Parent::setElement2(index, t);
+            Parent::set_element2(index, t);
         }
 
         template <typename T = Empty, bool enable_exclude = !std::is_same_v<T, Empty>>
@@ -243,10 +243,10 @@ struct BPPTREE_CONCAT(BPPTREE_MINMAX_UPPER, Detail) {
             return BPPTREE_CONCAT(BPPTREE_MINMAX, _excluding)(0, this->length, exclude_index);
         }
 
-        void computeDeltaSplit2(SplitType<ChildType> const& split, InfoType<NodeType>& nodeInfo, IndexType index) const {
+        void compute_delta_split2(SplitType<ChildType> const& split, InfoType<NodeType>& node_info, IndexType index) const {
             auto [BPPTREE_MINMAX, min_max_index] = BPPTREE_CONCAT(BPPTREE_MINMAX, _excluding)(index);
             if (BPPTREE_MINMAX == nullptr) {
-                nodeInfo.BPPTREE_MINMAX = std::min(split.left.BPPTREE_MINMAX, split.right.BPPTREE_MINMAX, comp);
+                node_info.BPPTREE_MINMAX = std::min(split.left.BPPTREE_MINMAX, split.right.BPPTREE_MINMAX, comp);
             } else {
                 if (comp(split.left.BPPTREE_MINMAX, *BPPTREE_MINMAX)) {
                     BPPTREE_MINMAX = &split.left.BPPTREE_MINMAX;
@@ -254,27 +254,27 @@ struct BPPTREE_CONCAT(BPPTREE_MINMAX_UPPER, Detail) {
                 if (comp(split.right.BPPTREE_MINMAX, *BPPTREE_MINMAX)) {
                     BPPTREE_MINMAX = &split.right.BPPTREE_MINMAX;
                 }
-                nodeInfo.BPPTREE_MINMAX = *BPPTREE_MINMAX;
+                node_info.BPPTREE_MINMAX = *BPPTREE_MINMAX;
             }
-            Parent::computeDeltaSplit2(split, nodeInfo, index);
+            Parent::compute_delta_split2(split, node_info, index);
         }
 
-        void computeDeltaReplace2(InfoType<ChildType> const& update, InfoType<NodeType>& nodeInfo, IndexType index) const {
+        void compute_delta_replace2(InfoType<ChildType> const& update, InfoType<NodeType>& node_info, IndexType index) const {
             auto [BPPTREE_MINMAX, min_max_index] = BPPTREE_CONCAT(BPPTREE_MINMAX, _excluding)(index);
             if (BPPTREE_MINMAX != nullptr && comp(*BPPTREE_MINMAX, update.BPPTREE_MINMAX)) {
-                nodeInfo.BPPTREE_MINMAX = *BPPTREE_MINMAX;
+                node_info.BPPTREE_MINMAX = *BPPTREE_MINMAX;
             } else {
-                nodeInfo.BPPTREE_MINMAX = update.BPPTREE_MINMAX;
+                node_info.BPPTREE_MINMAX = update.BPPTREE_MINMAX;
             }
-            Parent::computeDeltaReplace2(update, nodeInfo, index);
+            Parent::compute_delta_replace2(update, node_info, index);
         }
 
-        void computeDeltaErase2(IndexType index, InfoType<NodeType>& nodeInfo) const {
+        void compute_delta_erase2(IndexType index, InfoType<NodeType>& node_info) const {
             auto [BPPTREE_MINMAX, min_max_index] = BPPTREE_CONCAT(BPPTREE_MINMAX, _excluding)(index);
             if (BPPTREE_MINMAX != nullptr) {
-                nodeInfo.BPPTREE_MINMAX = *BPPTREE_MINMAX;
+                node_info.BPPTREE_MINMAX = *BPPTREE_MINMAX;
             }
-            Parent::computeDeltaErase2(index, nodeInfo);
+            Parent::compute_delta_erase2(index, node_info);
         }
 
         [[nodiscard]] KeyRef BPPTREE_MINMAX() const {
@@ -285,33 +285,33 @@ struct BPPTREE_CONCAT(BPPTREE_MINMAX_UPPER, Detail) {
             return *BPPTREE_MINMAX;
         }
 
-        [[nodiscard]] Key const& BPPTREE_CONCAT(BPPTREE_MINMAX, _internal)(Key const& smallest, IndexType beginIndex, IndexType endIndex) const {
-            auto [BPPTREE_MINMAX, min_max_index] = BPPTREE_CONCAT(BPPTREE_MINMAX, _excluding)(beginIndex, endIndex);
+        [[nodiscard]] Key const& BPPTREE_CONCAT(BPPTREE_MINMAX, _internal)(Key const& smallest, IndexType begin_index, IndexType end_index) const {
+            auto [BPPTREE_MINMAX, min_max_index] = BPPTREE_CONCAT(BPPTREE_MINMAX, _excluding)(begin_index, end_index);
             return BPPTREE_MINMAX != nullptr && comp(*BPPTREE_MINMAX, smallest) ? *BPPTREE_MINMAX : smallest;
         }
 
         [[nodiscard]] KeyRef BPPTREE_CONCAT(BPPTREE_MINMAX, _after)(uint64_t begin) const {
-            IndexType beginIndex = this->getIndex(begin);
-            decltype(auto) first = this->pointers[beginIndex]->BPPTREE_CONCAT(BPPTREE_MINMAX, _after)(begin);
-            return BPPTREE_CONCAT(BPPTREE_MINMAX, _internal)(first, beginIndex+1, this->length);
+            IndexType begin_index = this->get_index(begin);
+            decltype(auto) first = this->pointers[begin_index]->BPPTREE_CONCAT(BPPTREE_MINMAX, _after)(begin);
+            return BPPTREE_CONCAT(BPPTREE_MINMAX, _internal)(first, begin_index+1, this->length);
         }
 
         [[nodiscard]] KeyRef BPPTREE_CONCAT(BPPTREE_MINMAX, _before)(uint64_t end) const {
-            IndexType endIndex = this->getIndex(end);
-            decltype(auto) last = this->pointers[endIndex]->BPPTREE_CONCAT(BPPTREE_MINMAX, _before)(end);
-            return BPPTREE_CONCAT(BPPTREE_MINMAX, _internal)(last, 0, endIndex);
+            IndexType end_index = this->get_index(end);
+            decltype(auto) last = this->pointers[end_index]->BPPTREE_CONCAT(BPPTREE_MINMAX, _before)(end);
+            return BPPTREE_CONCAT(BPPTREE_MINMAX, _internal)(last, 0, end_index);
         }
 
         [[nodiscard]] KeyRef BPPTREE_MINMAX(uint64_t begin, uint64_t end) const {
-            IndexType beginIndex = this->getIndex(begin);
-            IndexType endIndex = this->getIndex(end);
-            if (beginIndex == endIndex) {
-                return this->pointers[beginIndex]->BPPTREE_MINMAX(begin, end);
+            IndexType begin_index = this->get_index(begin);
+            IndexType end_index = this->get_index(end);
+            if (begin_index == end_index) {
+                return this->pointers[begin_index]->BPPTREE_MINMAX(begin, end);
             }
-            decltype(auto) first = this->pointers[beginIndex]->BPPTREE_CONCAT(BPPTREE_MINMAX, _after)(begin);
-            decltype(auto) last = this->pointers[endIndex]->BPPTREE_CONCAT(BPPTREE_MINMAX, _before)(end);
+            decltype(auto) first = this->pointers[begin_index]->BPPTREE_CONCAT(BPPTREE_MINMAX, _after)(begin);
+            decltype(auto) last = this->pointers[end_index]->BPPTREE_CONCAT(BPPTREE_MINMAX, _before)(end);
             decltype(auto) tmp = std::min(first, last, comp);
-            return BPPTREE_CONCAT(BPPTREE_MINMAX, _internal)(tmp, beginIndex+1, endIndex);
+            return BPPTREE_CONCAT(BPPTREE_MINMAX, _internal)(tmp, begin_index+1, end_index);
         }
 
         template <typename It>
@@ -320,15 +320,15 @@ struct BPPTREE_CONCAT(BPPTREE_MINMAX_UPPER, Detail) {
                 throw std::out_of_range("cannot call " BPPTREE_MINMAXSTR " on empty node");
             }
             auto [BPPTREE_MINMAX, min_max_index] = BPPTREE_CONCAT(BPPTREE_MINMAX, _excluding)();
-            this->setIndex(it.iter, min_max_index);
+            this->set_index(it.iter, min_max_index);
             this->pointers[min_max_index]->BPPTREE_MINMAX(it);
         }
 
         template <typename It>
-        void BPPTREE_CONCAT(BPPTREE_MINMAX, _internal)(It& it, It const& smallest, IndexType beginIndex, IndexType endIndex) const {
-            auto [BPPTREE_MINMAX, min_max_index] = BPPTREE_CONCAT(BPPTREE_MINMAX, _excluding)(beginIndex, endIndex);
+        void BPPTREE_CONCAT(BPPTREE_MINMAX, _internal)(It& it, It const& smallest, IndexType begin_index, IndexType end_index) const {
+            auto [BPPTREE_MINMAX, min_max_index] = BPPTREE_CONCAT(BPPTREE_MINMAX, _excluding)(begin_index, end_index);
             if (BPPTREE_MINMAX != nullptr && comp(*BPPTREE_MINMAX, extractor(smallest.get()))) {
-                this->setIndex(it.iter, min_max_index);
+                this->set_index(it.iter, min_max_index);
                 this->pointers[min_max_index]->BPPTREE_MINMAX(it);
             } else {
                 it = smallest;
@@ -337,39 +337,39 @@ struct BPPTREE_CONCAT(BPPTREE_MINMAX_UPPER, Detail) {
 
         template <typename It>
         void BPPTREE_CONCAT(BPPTREE_MINMAX, _after)(It& it, uint64_t begin) const {
-            IndexType beginIndex = this->getIndex(begin);
+            IndexType begin_index = this->get_index(begin);
             It b(it);
-            this->setIndex(b.iter, beginIndex);
-            this->pointers[beginIndex]->BPPTREE_CONCAT(BPPTREE_MINMAX, _after)(b, begin);
-            BPPTREE_CONCAT(BPPTREE_MINMAX, _internal)(it, b, beginIndex + 1, this->length);
+            this->set_index(b.iter, begin_index);
+            this->pointers[begin_index]->BPPTREE_CONCAT(BPPTREE_MINMAX, _after)(b, begin);
+            BPPTREE_CONCAT(BPPTREE_MINMAX, _internal)(it, b, begin_index + 1, this->length);
         }
 
         template <typename It>
         void BPPTREE_CONCAT(BPPTREE_MINMAX, _before)(It& it, uint64_t end) const {
-            IndexType endIndex = this->getIndex(end);
+            IndexType end_index = this->get_index(end);
             It e(it);
-            this->setIndex(e.iter, endIndex);
-            this->pointers[endIndex]->BPPTREE_CONCAT(BPPTREE_MINMAX, _before)(e, end);
-            BPPTREE_CONCAT(BPPTREE_MINMAX, _internal)(it, e, 0, endIndex);
+            this->set_index(e.iter, end_index);
+            this->pointers[end_index]->BPPTREE_CONCAT(BPPTREE_MINMAX, _before)(e, end);
+            BPPTREE_CONCAT(BPPTREE_MINMAX, _internal)(it, e, 0, end_index);
         }
 
         template <typename It>
         void BPPTREE_MINMAX(It& it, uint64_t begin, uint64_t end) const {
-            IndexType beginIndex = this->getIndex(begin);
-            IndexType endIndex = this->getIndex(end);
-            if (beginIndex == endIndex) {
-                this->setIndex(it.iter, beginIndex);
-                this->pointers[beginIndex]->BPPTREE_MINMAX(it, begin, end);
+            IndexType begin_index = this->get_index(begin);
+            IndexType end_index = this->get_index(end);
+            if (begin_index == end_index) {
+                this->set_index(it.iter, begin_index);
+                this->pointers[begin_index]->BPPTREE_MINMAX(it, begin, end);
                 return;
             }
             It b(it);
-            this->setIndex(b.iter, beginIndex);
-            this->pointers[beginIndex]->BPPTREE_CONCAT(BPPTREE_MINMAX, _after)(b, begin);
+            this->set_index(b.iter, begin_index);
+            this->pointers[begin_index]->BPPTREE_CONCAT(BPPTREE_MINMAX, _after)(b, begin);
             It e(it);
-            this->setIndex(e.iter, endIndex);
-            this->pointers[endIndex]->BPPTREE_CONCAT(BPPTREE_MINMAX, _before)(e, end);
+            this->set_index(e.iter, end_index);
+            this->pointers[end_index]->BPPTREE_CONCAT(BPPTREE_MINMAX, _before)(e, end);
             It const& tmp = comp(extractor(b.get()), extractor(e.get())) ? b : e;
-            BPPTREE_CONCAT(BPPTREE_MINMAX, _internal)(it, tmp, beginIndex + 1, endIndex);
+            BPPTREE_CONCAT(BPPTREE_MINMAX, _internal)(it, tmp, begin_index + 1, end_index);
         }
     };
 

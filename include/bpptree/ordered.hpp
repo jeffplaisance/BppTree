@@ -38,7 +38,7 @@ private:
 
     static constexpr LessThan less_than{};
 
-    static constexpr bool binarySearch = BinarySearch::value;
+    static constexpr bool binary_search = BinarySearch::value;
 
     using Key = std::remove_cv_t<std::remove_reference_t<decltype(extractor.get_key(std::declval<KeyValue const&>()))>>;
 
@@ -46,7 +46,7 @@ private:
 
     using Value = std::remove_cv_t<std::remove_reference_t<GetValue>>;
 
-    using Detail = OrderedDetail<KeyValue, KeyValueExtractor, LessThan, binarySearch>;
+    using Detail = OrderedDetail<KeyValue, KeyValueExtractor, LessThan, binary_search>;
 public:
     template <typename Parent>
     using LeafNode = typename Detail::template LeafNode<Parent>;
@@ -73,8 +73,8 @@ public:
         void seek_key_internal(Key const& key, It& it) const {
             this->self().dispatch(
                     [&key, &it](auto& root) {
-                        if (!root->seekKey(it.leaf, it.iter, key, [](auto const& a, auto const& b){ return less_than(a, b); })) {
-                            root->seekEnd(it.leaf, it.iter);
+                        if (!root->seek_key(it.leaf, it.iter, key, [](auto const& a, auto const& b){ return less_than(a, b); })) {
+                            root->seek_end(it.leaf, it.iter);
                         }
                     }
             );
@@ -111,7 +111,7 @@ public:
          */
         [[nodiscard]] typename Parent::iterator lower_bound(Key const& key) {
             typename Parent::iterator ret(this->self());
-            std::as_const(this->self()).dispatch([&key, &ret](auto& root) { root->seekKey(ret.leaf, ret.iter, key, [](auto const& a, auto const& b){ return less_than(a, b); }); });
+            std::as_const(this->self()).dispatch([&key, &ret](auto& root) { root->seek_key(ret.leaf, ret.iter, key, [](auto const& a, auto const& b){ return less_than(a, b); }); });
             return ret;
         }
 
@@ -120,7 +120,7 @@ public:
          */
         [[nodiscard]] typename Parent::const_iterator lower_bound_const(Key const& key) const {
             typename Parent::const_iterator ret(this->self());
-            this->self().dispatch([&key, &ret](auto& root) { root->seekKey(ret.leaf, ret.iter, key, [](auto const& a, auto const& b){ return less_than(a, b); }); });
+            this->self().dispatch([&key, &ret](auto& root) { root->seek_key(ret.leaf, ret.iter, key, [](auto const& a, auto const& b){ return less_than(a, b); }); });
             return ret;
         }
 
@@ -137,7 +137,7 @@ public:
          */
         [[nodiscard]] typename Parent::iterator upper_bound(Key const& key) {
             typename Parent::iterator ret(this->self());
-            std::as_const(this->self()).dispatch([&key, &ret](auto& root) { root->seekKey(ret.leaf, ret.iter, key, [](auto const& a, auto const& b){ return !less_than(b, a); }); });
+            std::as_const(this->self()).dispatch([&key, &ret](auto& root) { root->seek_key(ret.leaf, ret.iter, key, [](auto const& a, auto const& b){ return !less_than(b, a); }); });
             return ret;
         }
 
@@ -147,7 +147,7 @@ public:
          */
         [[nodiscard]] typename Parent::const_iterator upper_bound_const(Key const& key) const {
             typename Parent::const_iterator ret(this->self());
-            this->self().dispatch([&key, &ret](auto& root) { root->seekKey(ret.leaf, ret.iter, key, [](auto const& a, auto const& b){ return !less_than(b, a); }); });
+            this->self().dispatch([&key, &ret](auto& root) { root->seek_key(ret.leaf, ret.iter, key, [](auto const& a, auto const& b){ return !less_than(b, a); }); });
             return ret;
         }
 
@@ -183,7 +183,7 @@ public:
             this->self().dispatch(
                 Modify<InsertOrAssign<DuplicatePolicy::ignore>>(),
                 [](auto const& node, Key const& key) {
-                    return std::tuple<IndexType, Key const&>(node.lowerBoundIndex(key), key);
+                    return std::tuple<IndexType, Key const&>(node.lower_bound_index(key), key);
                 },
                 extractor.get_key(std::as_const(args)...),
                 std::forward<Args>(args)...
@@ -195,7 +195,7 @@ public:
             this->self().dispatch(
                 Modify<Assign>(),
                 [](auto const& node, Key const& key) {
-                    return std::tuple<IndexType, Key const&>(node.findKeyIndexChecked(key), key);
+                    return std::tuple<IndexType, Key const&>(node.find_key_index_checked(key), key);
                 },
                 extractor.get_key(std::as_const(args)...),
                 std::forward<Args>(args)...
@@ -206,7 +206,7 @@ public:
             this->self().dispatch(
                     Modify<Erase>(),
                     [](auto const& node, Key const& key) {
-                        return std::tuple<IndexType, Key const&>(node.findKeyIndexChecked(key), key);
+                        return std::tuple<IndexType, Key const&>(node.find_key_index_checked(key), key);
                     },
                     key
             );
@@ -217,16 +217,16 @@ public:
             this->self().dispatch(
                     Modify<Update2>(),
                     [](auto const& node, Key const& key) {
-                        return std::tuple<IndexType, Key const&>(node.findKeyIndexChecked(key), key);
+                        return std::tuple<IndexType, Key const&>(node.find_key_index_checked(key), key);
                     },
                     key,
                     [&key, &updater](auto&& callback, auto const& v) {
-                        Value newVal = updater(extractor.get_value(v));
-                        decltype(auto) extracted = extractor.apply([](auto const&... args){ return extractor.get_key(args...); }, key, newVal);
+                        Value new_val = updater(extractor.get_value(v));
+                        decltype(auto) extracted = extractor.apply([](auto const&... args){ return extractor.get_key(args...); }, key, new_val);
                         if (less_than(extracted, key) || less_than(key, extracted)) { //NOLINT
                             throw std::logic_error("key from value does not match key passed to update_key!");
                         }
-                        extractor.apply(callback, key, newVal);
+                        extractor.apply(callback, key, new_val);
                     }
             );
         }
@@ -236,7 +236,7 @@ public:
             this->self().dispatch(
                 Modify<InsertOrAssign<DuplicatePolicy::replace>>(),
                 [](auto const& node, Key const& key) {
-                    return std::tuple<IndexType, Key const&>(node.lowerBoundIndex(key), key);
+                    return std::tuple<IndexType, Key const&>(node.lower_bound_index(key), key);
                 },
                 extractor.get_key(std::as_const(args)...),
                 std::forward<Args>(args)...

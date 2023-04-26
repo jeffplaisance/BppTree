@@ -53,7 +53,7 @@ TEST(BppTreeTest, TestReferenceWrapperTransient) {
         typename OrderedTree<std::shared_ptr<std::tuple<int, int>>, PointerTupleExtractor<0>, int64_t, SummedTupleExtractor<1>, PointerComparator>::Transient tree{};
         int start = 0;
         int end = n - 1;
-        auto startTime = std::chrono::steady_clock::now();
+        auto start_time = std::chrono::steady_clock::now();
         for (int i = 0; i < n / 2; i++) {
             tree.insert_or_assign(std::shared_ptr<std::tuple<int, int>>(new std::tuple(end, rand_ints[end]), [&deallocations2](std::tuple<int, int>* t){ delete t; ++deallocations2; }));
             tree.insert_or_assign(std::shared_ptr<std::tuple<int, int>>(new std::tuple(start, rand_ints[start]), [&deallocations2](std::tuple<int, int>* t){ delete t; ++deallocations2; }));
@@ -63,22 +63,22 @@ TEST(BppTreeTest, TestReferenceWrapperTransient) {
         }
         cout << "shared_ptr allocations: " << allocations2 << endl;
         cout << "shared_ptr deallocations: " << deallocations2 << endl;
-        auto endTime = std::chrono::steady_clock::now();
-        std::chrono::duration<double> elapsed = endTime - startTime;
+        auto end_time = std::chrono::steady_clock::now();
+        std::chrono::duration<double> elapsed = end_time - start_time;
         cout << elapsed.count() << 's' << endl;
         EXPECT_TRUE(std::is_sorted(tree.begin(), tree.end(),
                                    [](auto const& a, auto const& b) { return *a.get() < *b.get(); }));
         auto sorted_rand_ints = rand_ints;
         std::sort(sorted_rand_ints.begin(), sorted_rand_ints.end());
         int64_t sum = 0;
-        startTime = std::chrono::steady_clock::now();
+        start_time = std::chrono::steady_clock::now();
         for (int i = 0; i < n; i++) {
             sum += std::get<1>(*tree.at_key(&sorted_rand_ints[i]));
             auto it = tree.find(&sorted_rand_ints[i]);
             ASSERT_EQ(sum, tree.sum_inclusive(it));
         }
-        endTime = std::chrono::steady_clock::now();
-        elapsed = endTime - startTime;
+        end_time = std::chrono::steady_clock::now();
+        elapsed = end_time - start_time;
         cout << elapsed.count() << 's' << endl;
         cout << sum << endl;
         cout << tree.sum() << endl;
@@ -150,7 +150,7 @@ TEST(BppTreeTest, TestReferenceWrapperPersistent) {
         TreeType tree{};
         int start = 0;
         int end = n - 1;
-        auto startTime = std::chrono::steady_clock::now();
+        auto start_time = std::chrono::steady_clock::now();
         for (int i = 0; i < n / 2; i++) {
             tree = tree.insert_or_assign(std::shared_ptr<std::tuple<int, int>>(new std::tuple(end, rand_ints[end]), [&deallocations2](std::tuple<int, int>* t){ delete t; ++deallocations2; }));
             tree = tree.insert_or_assign(std::shared_ptr<std::tuple<int, int>>(new std::tuple(start, rand_ints[start]), [&deallocations2](std::tuple<int, int>* t){ delete t; ++deallocations2; }));
@@ -160,22 +160,22 @@ TEST(BppTreeTest, TestReferenceWrapperPersistent) {
         }
         cout << "shared_ptr allocations: " << allocations2 << endl;
         cout << "shared_ptr deallocations: " << deallocations2 << endl;
-        auto endTime = std::chrono::steady_clock::now();
-        std::chrono::duration<double> elapsed = endTime - startTime;
+        auto end_time = std::chrono::steady_clock::now();
+        std::chrono::duration<double> elapsed = end_time - start_time;
         cout << elapsed.count() << 's' << endl;
         EXPECT_TRUE(std::is_sorted(tree.begin(), tree.end(),
                                    [](auto const& a, auto const& b) { return *a.get() < *b.get(); }));
         auto sorted_rand_ints = rand_ints;
         std::sort(sorted_rand_ints.begin(), sorted_rand_ints.end());
         int64_t sum = 0;
-        startTime = std::chrono::steady_clock::now();
+        start_time = std::chrono::steady_clock::now();
         for (int i = 0; i < n; i++) {
             sum += std::get<1>(*tree.at_key(&sorted_rand_ints[i]));
             auto it = tree.find(&sorted_rand_ints[i]);
             ASSERT_EQ(sum, tree.sum_inclusive(it));
         }
-        endTime = std::chrono::steady_clock::now();
-        elapsed = endTime - startTime;
+        end_time = std::chrono::steady_clock::now();
+        elapsed = end_time - start_time;
         cout << elapsed.count() << 's' << endl;
         cout << sum << endl;
         cout << tree.sum() << endl;
@@ -256,29 +256,29 @@ TEST(BppTreeTest, TestRefWrapMin) {
     for (uint32_t i = 0; i < tree.size(); ++i) {
         for (uint32_t j = i + 1; j <= tree.size(); ++j) {
             auto vec_it = std::min_element(vec.begin()+i, vec.begin()+j);
-            const auto treeBegin = tree.begin() + i;
-            const auto treeEnd = tree.begin() + j;
-            EXPECT_LT(treeBegin, treeEnd);
-            EXPECT_FALSE(treeEnd < treeBegin);
-            EXPECT_LE(treeBegin, treeEnd);
-            EXPECT_FALSE(treeEnd <= treeBegin);
-            EXPECT_GT(treeEnd, treeBegin);
-            EXPECT_FALSE(treeBegin > treeEnd);
-            EXPECT_GE(treeEnd, treeBegin);
-            EXPECT_FALSE(treeBegin >= treeEnd);
-            EXPECT_EQ(treeBegin+(j-i), treeEnd);
-            EXPECT_FALSE(treeBegin+(j-i) != treeEnd);
-            EXPECT_LE(treeBegin+(j-i), treeEnd);
-            EXPECT_LE(treeEnd, treeBegin+(j-i));
-            EXPECT_GE(treeBegin+(j-i), treeEnd);
-            EXPECT_GE(treeEnd, treeBegin+(j-i));
-            EXPECT_FALSE(treeBegin+(j-i) < treeEnd);
-            EXPECT_FALSE(treeEnd < treeBegin+(j-i));
-            EXPECT_FALSE(treeBegin+(j-i) > treeEnd);
-            EXPECT_FALSE(treeEnd > treeBegin+(j-i));
-            EXPECT_EQ(treeEnd - treeBegin, j - i);
-            auto min = tree.min(treeBegin, treeEnd);
-            auto tree_it = tree.min_element(treeBegin, treeEnd);
+            const auto tree_begin = tree.begin() + i;
+            const auto tree_end = tree.begin() + j;
+            EXPECT_LT(tree_begin, tree_end);
+            EXPECT_FALSE(tree_end < tree_begin);
+            EXPECT_LE(tree_begin, tree_end);
+            EXPECT_FALSE(tree_end <= tree_begin);
+            EXPECT_GT(tree_end, tree_begin);
+            EXPECT_FALSE(tree_begin > tree_end);
+            EXPECT_GE(tree_end, tree_begin);
+            EXPECT_FALSE(tree_begin >= tree_end);
+            EXPECT_EQ(tree_begin+(j-i), tree_end);
+            EXPECT_FALSE(tree_begin+(j-i) != tree_end);
+            EXPECT_LE(tree_begin+(j-i), tree_end);
+            EXPECT_LE(tree_end, tree_begin+(j-i));
+            EXPECT_GE(tree_begin+(j-i), tree_end);
+            EXPECT_GE(tree_end, tree_begin+(j-i));
+            EXPECT_FALSE(tree_begin+(j-i) < tree_end);
+            EXPECT_FALSE(tree_end < tree_begin+(j-i));
+            EXPECT_FALSE(tree_begin+(j-i) > tree_end);
+            EXPECT_FALSE(tree_end > tree_begin+(j-i));
+            EXPECT_EQ(tree_end - tree_begin, j - i);
+            auto min = tree.min(tree_begin, tree_end);
+            auto tree_it = tree.min_element(tree_begin, tree_end);
             EXPECT_FALSE(*min != std::get<0>(*tree_it.get()) || *min != *vec_it);
         }
     }

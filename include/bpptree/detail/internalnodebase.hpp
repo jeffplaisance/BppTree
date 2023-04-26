@@ -32,143 +32,143 @@ struct InternalNodeBase : public Parent {
 
     static constexpr int depth = Depth;
 
-    static constexpr int itShift = ChildType::itShift + ChildType::itBits;
+    static constexpr int it_shift = ChildType::it_shift + ChildType::it_bits;
 
-    static constexpr int itBits = bits_required<InternalSize>();
+    static constexpr int it_bits = bits_required<InternalSize>();
 
-    static constexpr uint64_t itMask = (1ULL << itBits) - 1;
+    static constexpr uint64_t it_mask = (1ULL << it_bits) - 1;
 
-    static constexpr uint64_t itClear = ~(itMask << itShift);
+    static constexpr uint64_t it_clear = ~(it_mask << it_shift);
 
     uint16_t length = 0;
     bool persistent = false;
     Array<NodePtr<ChildType>, InternalSize> pointers{};
 
-    static IndexType getIndex(uint64_t it) noexcept {
-        return (it >> itShift) & itMask;
+    static IndexType get_index(uint64_t it) noexcept {
+        return (it >> it_shift) & it_mask;
     }
 
-    static void clearIndex(uint64_t& it) noexcept {
-        it = it & itClear;
+    static void clear_index(uint64_t& it) noexcept {
+        it = it & it_clear;
     }
 
-    static void setIndex(uint64_t& it, uint64_t index) noexcept {
-        clearIndex(it);
-        it = it | (index << itShift);
+    static void set_index(uint64_t& it, uint64_t index) noexcept {
+        clear_index(it);
+        it = it | (index << it_shift);
     }
 
     template <typename T, std::enable_if_t<std::is_integral_v<T>, bool> = true>
-    static void setIndex(uint64_t& it, T const t) noexcept {
-        setIndex(it, static_cast<uint64_t const>(t));
+    static void set_index(uint64_t& it, T const t) noexcept {
+        set_index(it, static_cast<uint64_t const>(t));
     }
 
-    static void incIndex(uint64_t& it) noexcept {
-        it += 1ULL << itShift;
+    static void inc_index(uint64_t& it) noexcept {
+        it += 1ULL << it_shift;
     }
 
-    static void decIndex(uint64_t& it) noexcept {
-        it -= 1ULL << itShift;
+    static void dec_index(uint64_t& it) noexcept {
+        it -= 1ULL << it_shift;
     }
 
-    void eraseElement(IndexType index) {
-        this->self().eraseElement2(index);
+    void erase_element(IndexType index) {
+        this->self().erase_element2(index);
     }
 
-    void eraseElement2(IndexType index) {
+    void erase_element2(IndexType index) {
         pointers[index] = nullptr;
     }
 
-    void moveElement(IndexType destIndex, NodeType& source, IndexType sourceIndex) {
-        this->self().moveElement2(destIndex, source, sourceIndex);
+    void move_element(IndexType dest_index, NodeType& source, IndexType source_index) {
+        this->self().move_element2(dest_index, source, source_index);
     }
 
-    void moveElement2(IndexType destIndex, NodeType& source, IndexType sourceIndex) {
-        pointers[destIndex] = std::move(source.pointers[sourceIndex]);
+    void move_element2(IndexType dest_index, NodeType& source, IndexType source_index) {
+        pointers[dest_index] = std::move(source.pointers[source_index]);
     }
 
-    void copyElement(IndexType destIndex, NodeType const& source, IndexType sourceIndex) {
-        this->self().copyElement2(destIndex, source, sourceIndex);
+    void copy_element(IndexType dest_index, NodeType const& source, IndexType source_index) {
+        this->self().copy_element2(dest_index, source, source_index);
     }
 
-    void copyElement2(IndexType destIndex, NodeType const& source, IndexType sourceIndex) {
-        pointers[destIndex] = source.pointers[sourceIndex];
+    void copy_element2(IndexType dest_index, NodeType const& source, IndexType source_index) {
+        pointers[dest_index] = source.pointers[source_index];
     }
 
-    void replaceElement(IndexType index, InfoType<ChildType>& t) {
-        this->self().replaceElement2(index, t);
+    void replace_element(IndexType index, InfoType<ChildType>& t) {
+        this->self().replace_element2(index, t);
     }
 
-    void replaceElement2(IndexType index, InfoType<ChildType>& t) {
-        if (t.ptrChanged) {
+    void replace_element2(IndexType index, InfoType<ChildType>& t) {
+        if (t.ptr_changed) {
             pointers[index] = std::move(t.ptr);
         }
     }
 
-    void setElement(IndexType index, InfoType<ChildType>& t) {
-        this->self().setElement2(index, t);
+    void set_element(IndexType index, InfoType<ChildType>& t) {
+        this->self().set_element2(index, t);
     }
 
-    void setElement2(IndexType index, InfoType<ChildType>& t) {
-        if (t.ptrChanged) {
+    void set_element2(IndexType index, InfoType<ChildType>& t) {
+        if (t.ptr_changed) {
             pointers[index] = std::move(t.ptr);
         }
     }
 
-    void computeDeltaSplit(SplitType<ChildType> const& split, InfoType<NodeType>& nodeInfo, IndexType index) const {
-        this->self().computeDeltaSplit2(split, nodeInfo, index);
+    void compute_delta_split(SplitType<ChildType> const& split, InfoType<NodeType>& node_info, IndexType index) const {
+        this->self().compute_delta_split2(split, node_info, index);
     }
 
-    void computeDeltaSplit2(SplitType<ChildType> const&, InfoType<NodeType>&, IndexType) const {}
+    void compute_delta_split2(SplitType<ChildType> const&, InfoType<NodeType>&, IndexType) const {}
 
-    void computeDeltaReplace(InfoType<ChildType> const& update, InfoType<NodeType>& nodeInfo, IndexType index) const {
-        this->self().computeDeltaReplace2(update, nodeInfo, index);
+    void compute_delta_replace(InfoType<ChildType> const& update, InfoType<NodeType>& node_info, IndexType index) const {
+        this->self().compute_delta_replace2(update, node_info, index);
     }
 
-    void computeDeltaReplace2(InfoType<ChildType> const&, InfoType<NodeType>&, IndexType) const {}
+    void compute_delta_replace2(InfoType<ChildType> const&, InfoType<NodeType>&, IndexType) const {}
 
-    void computeDeltaErase(IndexType index, InfoType<NodeType>& nodeInfo) const {
-        this->self().computeDeltaErase2(index, nodeInfo);
+    void compute_delta_erase(IndexType index, InfoType<NodeType>& node_info) const {
+        this->self().compute_delta_erase2(index, node_info);
     }
 
-    void computeDeltaErase2(IndexType, InfoType<NodeType>&) const {}
+    void compute_delta_erase2(IndexType, InfoType<NodeType>&) const {}
 
     template <typename R>
-    void insertReplace(IndexType index, ReplaceType<ChildType>& replace, R&& doReplace, uint64_t& iter) {
+    void insert_replace(IndexType index, ReplaceType<ChildType>& replace, R&& do_replace, uint64_t& iter) {
         ReplaceType<NodeType> result{};
         result.carry = replace.carry && index == length - 1;
-        setIndex(iter, !replace.carry ? index : result.carry ? 0 : index + 1);
-        computeDeltaReplace(replace.delta, result.delta, index);
+        set_index(iter, !replace.carry ? index : result.carry ? 0 : index + 1);
+        compute_delta_replace(replace.delta, result.delta, index);
         if (persistent) {
-            result.delta.ptr = makePtr<NodeType>(this->self(), false);
-            result.delta.ptr->replaceElement(index, replace.delta);
-            result.delta.ptrChanged = true;
-            doReplace(result);
+            result.delta.ptr = make_ptr<NodeType>(this->self(), false);
+            result.delta.ptr->replace_element(index, replace.delta);
+            result.delta.ptr_changed = true;
+            do_replace(result);
         } else {
-            replaceElement(index, replace.delta);
-            doReplace(result);
+            replace_element(index, replace.delta);
+            do_replace(result);
         }
     }
 
-    void insertSplitReplace(InternalNodeBase& node, IndexType index, SplitType<ChildType>& split) {
+    void insert_split_replace(InternalNodeBase& node, IndexType index, SplitType<ChildType>& split) {
         for (IndexType i = length - 1; i > index; --i) {
             if (persistent) {
-                node.copyElement(i + 1, this->self(), i);
+                node.copy_element(i + 1, this->self(), i);
             } else {
-                node.moveElement(i + 1, this->self(), i);
+                node.move_element(i + 1, this->self(), i);
             }
         }
-        node.setElement(index, split.left);
-        node.setElement(index + 1, split.right);
+        node.set_element(index, split.left);
+        node.set_element(index + 1, split.right);
         if (persistent) {
             for (IndexType i = 0; i < index; ++i) {
-                node.copyElement(i, this->self(), i);
+                node.copy_element(i, this->self(), i);
             }
         }
         node.length = length + 1;
     }
 
     template <typename F>
-    static void setElement2(InternalNodeBase& left, InternalNodeBase& right, IndexType index, IndexType split_point, F&& f) {
+    static void set_element2(InternalNodeBase& left, InternalNodeBase& right, IndexType index, IndexType split_point, F&& f) {
         if (index < split_point) {
             f(left, index);
         } else {
@@ -176,245 +176,245 @@ struct InternalNodeBase : public Parent {
         }
     }
 
-    void setElement(InternalNodeBase& left, InternalNodeBase& right, IndexType index, IndexType splitPoint, InfoType<ChildType>& update) {
-        setElement2(left, right, index, splitPoint,
-                    [&update](InternalNodeBase& node, IndexType destIndex)
-                    { node.setElement(destIndex, update); }
+    void set_element(InternalNodeBase& left, InternalNodeBase& right, IndexType index, IndexType split_point, InfoType<ChildType>& update) {
+        set_element2(left, right, index, split_point,
+                    [&update](InternalNodeBase& node, IndexType dest_index)
+                    { node.set_element(dest_index, update); }
         );
     }
 
-    void copyElement(InternalNodeBase& left, InternalNodeBase& right, IndexType destIndex, NodeType& source, IndexType sourceIndex, IndexType splitPoint) {
-        setElement2(left, right, destIndex, splitPoint,
-                    [&source, sourceIndex](InternalNodeBase& node, IndexType destIndex)
-                    { node.copyElement(destIndex, source, sourceIndex); }
+    void copy_element(InternalNodeBase& left, InternalNodeBase& right, IndexType dest_index, NodeType& source, IndexType source_index, IndexType split_point) {
+        set_element2(left, right, dest_index, split_point,
+                    [&source, source_index](InternalNodeBase& node, IndexType dest_index)
+                    { node.copy_element(dest_index, source, source_index); }
         );
     }
 
-    void moveElement(InternalNodeBase& left, InternalNodeBase& right, IndexType destIndex, NodeType& source, IndexType sourceIndex, IndexType splitPoint) {
-        setElement2(left, right, destIndex, splitPoint,
-                    [&source, sourceIndex](InternalNodeBase& node, IndexType destIndex)
-                    { node.moveElement(destIndex, source, sourceIndex); }
+    void move_element(InternalNodeBase& left, InternalNodeBase& right, IndexType dest_index, NodeType& source, IndexType source_index, IndexType split_point) {
+        set_element2(left, right, dest_index, split_point,
+                    [&source, source_index](InternalNodeBase& node, IndexType dest_index)
+                    { node.move_element(dest_index, source, source_index); }
         );
     }
 
-    bool insertSplitSplit(InternalNodeBase& left, InternalNodeBase& right, IndexType index, SplitType<ChildType>& split, uint64_t& iter, bool rightMost) {
-        IndexType split_point = rightMost && index + 1 == InternalSize ? index + 1 : (InternalSize + 1) / 2;
+    bool insert_split_split(InternalNodeBase& left, InternalNodeBase& right, IndexType index, SplitType<ChildType>& split, uint64_t& iter, bool right_most) {
+        IndexType split_point = right_most && index + 1 == InternalSize ? index + 1 : (InternalSize + 1) / 2;
         for (IndexType i = length - 1; i > index; --i) {
             if (persistent) {
-                copyElement(left, right, i + 1, this->self(), i, split_point);
+                copy_element(left, right, i + 1, this->self(), i, split_point);
             } else {
-                moveElement(left, right, i + 1, this->self(), i, split_point);
+                move_element(left, right, i + 1, this->self(), i, split_point);
             }
         }
-        if (!split.left.ptrChanged) {
+        if (!split.left.ptr_changed) {
             split.left.ptr = std::move(pointers[index]);
-            split.left.ptrChanged = true;
+            split.left.ptr_changed = true;
         }
-        setElement(left, right, index, split_point, split.left);
-        setElement(left, right, index + 1, split_point, split.right);
+        set_element(left, right, index, split_point, split.left);
+        set_element(left, right, index + 1, split_point, split.right);
         for (IndexType i = persistent ? 0 : split_point; i < index; ++i) {
             if (persistent) {
-                copyElement(left, right, i, this->self(), i, split_point);
+                copy_element(left, right, i, this->self(), i, split_point);
             } else {
-                moveElement(left, right, i, this->self(), i, split_point);
+                move_element(left, right, i, this->self(), i, split_point);
             }
         }
         for (IndexType i = split_point; i < left.length; ++i) {
-            left.eraseElement(i);
+            left.erase_element(i);
         }
         left.length = static_cast<uint16_t>(split_point);
         right.length = static_cast<uint16_t>(InternalSize + 1 - split_point);
         IndexType insertion_index = split.new_element_left ? index : index + 1;
         if (insertion_index >= split_point) {
-            setIndex(iter, insertion_index - split_point);
+            set_index(iter, insertion_index - split_point);
             return false;
         }
-        setIndex(iter, insertion_index);
+        set_index(iter, insertion_index);
         return true;
     }
 
     template <typename R, typename S>
-    void insertSplit(
+    void insert_split(
             IndexType index,
             SplitType<ChildType>& split,
-            R&& doReplace,
-            S&& doSplit,
+            R&& do_replace,
+            S&& do_split,
             uint64_t& iter,
-            bool rightMost
+            bool right_most
     ) {
         if (length != InternalSize) {
-            setIndex(iter, split.new_element_left ? index : index + 1);
+            set_index(iter, split.new_element_left ? index : index + 1);
             ReplaceType<NodeType> replace{};
-            computeDeltaSplit(split, replace.delta, index);
+            compute_delta_split(split, replace.delta, index);
             if (persistent) {
-                replace.delta.ptr = makePtr<NodeType>();
-                insertSplitReplace(*replace.delta.ptr, index, split);
-                replace.delta.ptrChanged = true;
-                doReplace(replace);
+                replace.delta.ptr = make_ptr<NodeType>();
+                insert_split_replace(*replace.delta.ptr, index, split);
+                replace.delta.ptr_changed = true;
+                do_replace(replace);
             } else {
-                insertSplitReplace(this->self(), index, split);
-                doReplace(replace);
+                insert_split_replace(this->self(), index, split);
+                do_replace(replace);
             }
         } else {
-            auto right = makePtr<NodeType>();
+            auto right = make_ptr<NodeType>();
             if (persistent) {
-                auto left = makePtr<NodeType>();
-                bool new_element_left = insertSplitSplit(*left, *right, index, split, iter, rightMost);
-                doSplit(SplitType<NodeType>(std::move(left), std::move(right), true, new_element_left));
+                auto left = make_ptr<NodeType>();
+                bool new_element_left = insert_split_split(*left, *right, index, split, iter, right_most);
+                do_split(SplitType<NodeType>(std::move(left), std::move(right), true, new_element_left));
             } else {
-                bool new_element_left = insertSplitSplit(this->self(), *right, index, split, iter, rightMost);
-                doSplit(SplitType<NodeType>(&(this->self()), std::move(right), false, new_element_left));
+                bool new_element_left = insert_split_split(this->self(), *right, index, split, iter, right_most);
+                do_split(SplitType<NodeType>(&(this->self()), std::move(right), false, new_element_left));
             }
         }
     }
 
     template <typename T, typename F, typename R, typename S, typename... Args>
-    void insert(T const& searchVal, F&& finder, R&& doReplace, S&& doSplit, size_t& size, uint64_t& iter, bool rightMost, Args&&... args) {
-        auto [index, remainder] = finder(this->self(), searchVal);
+    void insert(T const& search_val, F&& finder, R&& do_replace, S&& do_split, size_t& size, uint64_t& iter, bool right_most, Args&&... args) {
+        auto [index, remainder] = finder(this->self(), search_val);
         pointers[index]->insert(remainder,
                                 finder,
-                                [this, index = index, &doReplace, &iter](auto&& replace)
-                                { this->insertReplace(index, replace, doReplace, iter); },
-                                [this, index = index, &doReplace, &doSplit, &iter, rightMost](auto&& split)
-                                { this->insertSplit(index, split, doReplace, doSplit, iter, rightMost); },
+                                [this, index = index, &do_replace, &iter](auto&& replace)
+                                { this->insert_replace(index, replace, do_replace, iter); },
+                                [this, index = index, &do_replace, &do_split, &iter, right_most](auto&& split)
+                                { this->insert_split(index, split, do_replace, do_split, iter, right_most); },
                                 size,
                                 iter,
-                                rightMost && index == length - 1,
+                                right_most && index == length - 1,
                                 std::forward<Args>(args)...);
     }
 
     template <typename T, typename F, typename R, typename... Args>
-    void assign(T const& searchVal, F&& finder, R&& doReplace, uint64_t& iter, Args&&... args) {
-        auto [index, remainder] = finder(this->self(), searchVal);
+    void assign(T const& search_val, F&& finder, R&& do_replace, uint64_t& iter, Args&&... args) {
+        auto [index, remainder] = finder(this->self(), search_val);
         pointers[index]->assign(remainder,
                  finder,
-                 [this, index = index, &doReplace, &iter](auto&& replace)
-                 { this->insertReplace(index, replace, doReplace, iter); },
+                 [this, index = index, &do_replace, &iter](auto&& replace)
+                 { this->insert_replace(index, replace, do_replace, iter); },
                  iter,
                  std::forward<Args>(args)...
         );
     }
 
-    bool erase(InternalNodeBase& node, IndexType index, uint64_t& iter, bool rightMost) {
+    bool erase(InternalNodeBase& node, IndexType index, uint64_t& iter, bool right_most) {
         if (persistent) {
             for (IndexType i = 0; i < index; ++i) {
-                node.copyElement(i, this->self(), i);
+                node.copy_element(i, this->self(), i);
             }
         }
         for (IndexType i = index + 1; i < length; ++i) {
             if (persistent) {
-                node.copyElement(i - 1, this->self(), i);
+                node.copy_element(i - 1, this->self(), i);
             } else {
-                node.moveElement(i - 1, this->self(), i);
+                node.move_element(i - 1, this->self(), i);
             }
         }
         if (node.length == length) {
-            node.eraseElement(length - 1);
+            node.erase_element(length - 1);
         }
         node.length = length - 1;
         bool carry = index == node.length;
-        if (carry && rightMost) {
-            node.seekEnd(iter);
+        if (carry && right_most) {
+            node.seek_end(iter);
             return false;
         }
-        setIndex(iter, carry ? 0 : index);
+        set_index(iter, carry ? 0 : index);
         return carry;
     }
 
     template <typename R, typename E>
-    void erase(IndexType index, R&& doReplace, E&& doErase, uint64_t& iter, bool rightMost) {
+    void erase(IndexType index, R&& do_replace, E&& do_erase, uint64_t& iter, bool right_most) {
         if (length > 1) {
             ReplaceType<NodeType> replace{};
-            computeDeltaErase(index, replace.delta);
+            compute_delta_erase(index, replace.delta);
             if (persistent) {
-                replace.delta.ptr = makePtr<NodeType>();
-                replace.delta.ptrChanged = true;
-                replace.carry = erase(*replace.delta.ptr, index, iter, rightMost);
-                doReplace(replace);
+                replace.delta.ptr = make_ptr<NodeType>();
+                replace.delta.ptr_changed = true;
+                replace.carry = erase(*replace.delta.ptr, index, iter, right_most);
+                do_replace(replace);
             } else {
-                replace.carry = erase(this->self(), index, iter, rightMost);
-                doReplace(replace);
+                replace.carry = erase(this->self(), index, iter, right_most);
+                do_replace(replace);
             }
         } else {
-            setIndex(iter, 0);
-            doErase();
+            set_index(iter, 0);
+            do_erase();
         }
     }
 
     template <typename T, typename F, typename R, typename E>
-    void erase(T const& searchVal, F&& finder, R&& doReplace, E&& doErase, size_t& size, uint64_t& iter, bool rightMost) {
-        auto [index, remainder] = finder(this->self(), searchVal);
+    void erase(T const& search_val, F&& finder, R&& do_replace, E&& do_erase, size_t& size, uint64_t& iter, bool right_most) {
+        auto [index, remainder] = finder(this->self(), search_val);
         pointers[index]->erase(remainder,
                                finder,
-                               [this, index = index, &doReplace, &iter](auto&& replace)
-                               { this->insertReplace(index, replace, doReplace, iter); },
-                               [this, index = index, &doReplace, &doErase, &iter, rightMost]()
-                               { this->erase(index, doReplace, doErase, iter, rightMost); },
+                               [this, index = index, &do_replace, &iter](auto&& replace)
+                               { this->insert_replace(index, replace, do_replace, iter); },
+                               [this, index = index, &do_replace, &do_erase, &iter, right_most]()
+                               { this->erase(index, do_replace, do_erase, iter, right_most); },
                                size,
                                iter,
-                               rightMost && index == length - 1);
+                               right_most && index == length - 1);
     }
 
     template <typename T, typename F, typename R, typename U>
-    void update(T const& searchVal, F&& finder, R&& doReplace, uint64_t& iter, U&& updater) {
-        auto [index, remainder] = finder(this->self(), searchVal);
+    void update(T const& search_val, F&& finder, R&& do_replace, uint64_t& iter, U&& updater) {
+        auto [index, remainder] = finder(this->self(), search_val);
         pointers[index]->update(remainder,
                                 finder,
-                                [this, index = index, &doReplace, &iter](auto&& replace)
-                                { this->insertReplace(index, replace, doReplace, iter); },
+                                [this, index = index, &do_replace, &iter](auto&& replace)
+                                { this->insert_replace(index, replace, do_replace, iter); },
                                 iter,
                                 updater
         );
     }
 
     template <typename T, typename F, typename R, typename U>
-    void update2(T const& searchVal, F&& finder, R&& doReplace, uint64_t& iter, U&& updater) {
-        auto [index, remainder] = finder(this->self(), searchVal);
+    void update2(T const& search_val, F&& finder, R&& do_replace, uint64_t& iter, U&& updater) {
+        auto [index, remainder] = finder(this->self(), search_val);
         pointers[index]->update2(remainder,
                                 finder,
-                                [this, index = index, &doReplace, &iter](auto&& replace)
-                                { this->insertReplace(index, replace, doReplace, iter); },
+                                [this, index = index, &do_replace, &iter](auto&& replace)
+                                { this->insert_replace(index, replace, do_replace, iter); },
                                 iter,
                                 updater
         );
     }
 
-    Value const& getIter(uint64_t it) const {
-        return pointers[getIndex(it)]->getIter(it);
+    Value const& get_iter(uint64_t it) const {
+        return pointers[get_index(it)]->get_iter(it);
     }
 
-    void makePersistent() {
+    void make_persistent() {
         if (!persistent) {
             persistent = true;
             for (IndexType i = 0; i < length; ++i) {
-                pointers[i]->makePersistent();
+                pointers[i]->make_persistent();
             }
         }
     }
 
-    void seekFirst(uint64_t& it) const {
-        clearIndex(it);
-        pointers[0]->seekFirst(it);
+    void seek_first(uint64_t& it) const {
+        clear_index(it);
+        pointers[0]->seek_first(it);
     }
 
-    void seekLast(uint64_t& it) const {
-        setIndex(it, length - 1);
-        pointers[length - 1]->seekLast(it);
+    void seek_last(uint64_t& it) const {
+        set_index(it, length - 1);
+        pointers[length - 1]->seek_last(it);
     }
 
-    void seekEnd(uint64_t& it) const {
-        setIndex(it, length - 1);
-        pointers[length - 1]->seekEnd(it);
+    void seek_end(uint64_t& it) const {
+        set_index(it, length - 1);
+        pointers[length - 1]->seek_end(it);
     }
 
-    void seekBegin(typename InternalNodeBase::template LeafNodeType<LeafSize> const*& leaf, uint64_t& it) const {
-        clearIndex(it);
-        pointers[0]->seekBegin(leaf, it);
+    void seek_begin(typename InternalNodeBase::template LeafNodeType<LeafSize> const*& leaf, uint64_t& it) const {
+        clear_index(it);
+        pointers[0]->seek_begin(leaf, it);
     }
 
-    void seekEnd(typename InternalNodeBase::template LeafNodeType<LeafSize> const*& leaf, uint64_t& it) const {
-        setIndex(it, length - 1);
-        pointers[length - 1]->seekEnd(leaf, it);
+    void seek_end(typename InternalNodeBase::template LeafNodeType<LeafSize> const*& leaf, uint64_t& it) const {
+        set_index(it, length - 1);
+        pointers[length - 1]->seek_end(leaf, it);
     }
 
     Value const& front() const {
@@ -427,20 +427,20 @@ struct InternalNodeBase : public Parent {
 
     ssize advance(typename InternalNodeBase::template LeafNodeType<LeafSize> const*& leaf, uint64_t& it, ssize n) const {
         while (true) {
-            n = pointers[getIndex(it)]->advance(leaf, it, n);
+            n = pointers[get_index(it)]->advance(leaf, it, n);
             if (n > 0) {
-                if (getIndex(it) < length - 1) {
-                    incIndex(it);
-                    pointers[getIndex(it)]->seekFirst(it);
+                if (get_index(it) < length - 1) {
+                    inc_index(it);
+                    pointers[get_index(it)]->seek_first(it);
                     --n;
                     continue;
                 }
                 return n;
             }
             if (n < 0) {
-                if (getIndex(it) > 0) {
-                    decIndex(it);
-                    pointers[getIndex(it)]->seekLast(it);
+                if (get_index(it) > 0) {
+                    dec_index(it);
+                    pointers[get_index(it)]->seek_last(it);
                     ++n;
                     continue;
                 }
@@ -450,10 +450,10 @@ struct InternalNodeBase : public Parent {
         }
     }
 
-    void getIndexes(uint64_t it, std::vector<uint16_t>& indexes) const {
-        IndexType index = getIndex(it);
+    void get_indexes(uint64_t it, std::vector<uint16_t>& indexes) const {
+        IndexType index = get_index(it);
         indexes.emplace_back(index);
-        pointers[index]->getIndexes(it, indexes);
+        pointers[index]->get_indexes(it, indexes);
     }
 };
 } //end namespace bpptree::detail

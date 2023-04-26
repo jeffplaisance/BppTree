@@ -98,66 +98,66 @@ struct NodeTypesDetail {
     };
 
     template<int leaf_size>
-    static constexpr int getLeafNodeSize3() {
+    static constexpr int get_leaf_node_size3() {
         if constexpr (sizeof(LeafNode<leaf_size>) <= leaf_node_bytes) {
             return leaf_size;
         } else {
-            return getLeafNodeSize3<leaf_size - 1>();
+            return get_leaf_node_size3<leaf_size - 1>();
         }
     }
 
     template<int leaf_size>
-    static constexpr int getLeafNodeSize2() {
+    static constexpr int get_leaf_node_size2() {
         if constexpr (sizeof(LeafNode<leaf_size>) > leaf_node_bytes) {
-            return getLeafNodeSize3<leaf_size - 1>();
+            return get_leaf_node_size3<leaf_size - 1>();
         } else {
-            return getLeafNodeSize2<leaf_size + 1>();
+            return get_leaf_node_size2<leaf_size + 1>();
         }
     }
 
-    static constexpr int getLeafNodeSize() {
+    static constexpr int get_leaf_node_size() {
         constexpr int initial = (leaf_node_bytes-8)/sizeof(Value);
-        return getLeafNodeSize2<initial>();
+        return get_leaf_node_size2<initial>();
     }
 
-    static constexpr int leaf_node_size = getLeafNodeSize();
+    static constexpr int leaf_node_size = get_leaf_node_size();
     static_assert(leaf_node_size > 0);
     static_assert(leaf_node_size < 65536);
 
     template<int internal_size>
-    static constexpr int getInternalNodeSize3() {
+    static constexpr int get_internal_node_size3() {
         if constexpr (sizeof(InternalNode<leaf_node_size, internal_size, 3>) <= internal_node_bytes) {
             return internal_size;
         } else {
-            return getInternalNodeSize3<internal_size - 1>();
+            return get_internal_node_size3<internal_size - 1>();
         }
     }
 
     template<int internal_size>
-    static constexpr int getInternalNodeSize2() {
+    static constexpr int get_internal_node_size2() {
         if constexpr (sizeof(InternalNode<leaf_node_size, internal_size, 3>) > internal_node_bytes) {
-            return getInternalNodeSize3<internal_size - 1>();
+            return get_internal_node_size3<internal_size - 1>();
         } else {
-            return getInternalNodeSize2<internal_size + 8>();
+            return get_internal_node_size2<internal_size + 8>();
         }
     }
 
-    static constexpr int getInternalNodeSize() {
-        return getInternalNodeSize2<1>();
+    static constexpr int get_internal_node_size() {
+        return get_internal_node_size2<1>();
     }
 
-    static constexpr int internal_node_size = getInternalNodeSize();
+    static constexpr int internal_node_size = get_internal_node_size();
     static_assert(internal_node_size >= 4);
     static_assert(internal_node_size < 65536);
 
     template <size_t size, int depth>
-    static constexpr int findMaxDepth() {
+    static constexpr int find_max_depth() {
         if constexpr (size > 64) {
             return depth - 1;
         } else if constexpr (depth == depth_limit) {
             return depth;
         } else {
-            return findMaxDepth<size + bits_required<internal_node_size>(), depth + 1>();
+            return find_max_depth<size + bits_required<internal_node_size>(), depth + 1>();
         }
     }
 
@@ -170,7 +170,7 @@ struct NodeTypesDetail {
         }
     }
 
-    static constexpr int max_depth = findMaxDepth<bits_required<leaf_node_size>(), 1>();
+    static constexpr int max_depth = find_max_depth<bits_required<leaf_node_size>(), 1>();
 
     static constexpr size_t max_size = leaf_node_size * pow<internal_node_size, max_depth - 1>();
 

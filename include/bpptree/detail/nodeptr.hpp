@@ -36,7 +36,7 @@ class NodePtr {
 
     PtrType* ptr = nullptr;
 
-    void decRef() noexcept {
+    void dec_ref() noexcept {
         if (ptr != nullptr) {
             if (--ptr->ref_count == 0) {
                 delete ptr;
@@ -46,7 +46,7 @@ class NodePtr {
         }
     }
 
-    void incRef() const noexcept {
+    void inc_ref() const noexcept {
         if (ptr != nullptr) {
             ++ptr->ref_count;
             if constexpr (count_allocations) ++increments;
@@ -61,7 +61,7 @@ public:
     NodePtr(PtrType* p) noexcept : ptr(p) {} //NOLINT
 
     NodePtr(NodePtr const& other) noexcept : ptr(other.ptr) {
-        incRef();
+        inc_ref();
     }
 
     NodePtr(NodePtr&& other) noexcept : ptr(other.ptr) {
@@ -70,15 +70,15 @@ public:
 
     // NOLINTNEXTLINE(bugprone-unhandled-self-assignment)
     NodePtr& operator=(NodePtr const& rhs) noexcept {
-        // call incRef on rhs before calling decRef on this to ensure safe self-assignment
-        rhs.incRef();
-        decRef();
+        // call inc_ref on rhs before calling dec_ref on this to ensure safe self-assignment
+        rhs.inc_ref();
+        dec_ref();
         ptr = rhs.ptr;
         return *this;
     }
 
     NodePtr& operator=(NodePtr&& rhs) noexcept {
-        decRef();
+        dec_ref();
         ptr = rhs.ptr;
         rhs.ptr = nullptr;
         return *this;
@@ -102,12 +102,12 @@ public:
 
 public:
     ~NodePtr() noexcept {
-        decRef();
+        dec_ref();
     }
 };
 
 template <typename PtrType, typename... Ts>
-NodePtr<PtrType> makePtr(Ts&&... ts) noexcept {
+NodePtr<PtrType> make_ptr(Ts&&... ts) noexcept {
     if constexpr (count_allocations) {
         ++allocations;
         ++increments;

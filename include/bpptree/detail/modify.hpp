@@ -41,7 +41,7 @@ struct ModifyTypes {
         template <typename ReplaceType>
         void operator()(ReplaceType&& replace) {
             bool do_collapse = false;
-            if (replace.delta.ptrChanged) {
+            if (replace.delta.ptr_changed) {
                 if constexpr (NodeType::depth > 1) {
                     if (replace.delta.ptr->length == 1) {
                         do_collapse = true;
@@ -71,16 +71,16 @@ struct ModifyTypes {
         void operator()([[maybe_unused]] SplitType&& split) {
             if constexpr (NodeType::depth < max_depth) {
                 using NewRootType = InternalNode<NodeType::depth + 1>;
-                auto rootNode = makePtr<NewRootType>();
-                if (!split.left.ptrChanged) {
+                auto root_node = make_ptr<NewRootType>();
+                if (!split.left.ptr_changed) {
                     split.left.ptr = std::move(root);
-                    split.left.ptrChanged = true;
+                    split.left.ptr_changed = true;
                 }
-                rootNode->setElement(0, split.left);
-                rootNode->setElement(1, split.right);
-                rootNode->length = 2;
-                rootNode->setIndex(iter, split.new_element_left ? 0 : 1);
-                tree.root_variant = std::move(rootNode);
+                root_node->set_element(0, split.left);
+                root_node->set_element(1, split.right);
+                root_node->length = 2;
+                root_node->set_index(iter, split.new_element_left ? 0 : 1);
+                tree.root_variant = std::move(root_node);
             } else {
                 throw std::logic_error("maximum depth exceeded");
             }
@@ -94,16 +94,16 @@ struct ModifyTypes {
         explicit DoErase(TreeType& tree) noexcept : tree(tree) {}
 
         void operator()() {
-            tree.root_variant = makePtr<LeafNode>();
+            tree.root_variant = make_ptr<LeafNode>();
         }
     };
 
     template <typename Operation>
     struct Modify {
         template <typename TreeType, typename NodeType, typename F, typename T, typename... Us>
-        uint64_t operator()(TreeType& tree, NodePtr<NodeType>& root, F&& finder, T const& searchVal, Us&&... params) {
+        uint64_t operator()(TreeType& tree, NodePtr<NodeType>& root, F&& finder, T const& search_val, Us&&... params) {
             uint64_t ret = 0;
-            Operation()(*root, searchVal, finder,
+            Operation()(*root, search_val, finder,
                 DoReplace<TreeType, NodeType>(tree, root),
                 DoSplit<TreeType, NodeType>(tree, root, ret),
                 DoErase<TreeType>(tree),

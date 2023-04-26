@@ -19,10 +19,10 @@
 
 namespace bpptree::detail {
 
-template <typename Value, typename Tree, typename LeafNode, bool isConst, bool reverse>
+template <typename Value, typename Tree, typename LeafNode, bool is_const, bool reverse>
 struct IteratorDetail {
 
-    using TreeType = std::conditional_t<isConst, Tree const, Tree>;
+    using TreeType = std::conditional_t<is_const, Tree const, Tree>;
 
     static constexpr int direction = reverse ? -1 : 1;
 
@@ -47,7 +47,7 @@ struct IteratorDetail {
             });
             mod_count = tree->mod_count;
         }
-        return leaf->getIter(iter);
+        return leaf->get_iter(iter);
     }
 
     struct ProxyRef : public ProxyOperators<ProxyRef> {
@@ -114,15 +114,15 @@ struct IteratorDetail {
         }
     };
 
-    template <bool C = isConst, std::enable_if_t<!C, bool> = true>
+    template <bool C = is_const, std::enable_if_t<!C, bool> = true>
     [[nodiscard]] ProxyRef operator*() {
-        static_assert(C == isConst);
+        static_assert(C == is_const);
         return ProxyRef(*this);
     }
 
-    template <bool C = isConst, std::enable_if_t<C, bool> = true>
+    template <bool C = is_const, std::enable_if_t<C, bool> = true>
     [[nodiscard]] Value const& operator*() const {
-        static_assert(C == isConst);
+        static_assert(C == is_const);
         return get();
     }
 
@@ -139,7 +139,7 @@ struct IteratorDetail {
             }
             iter = 0;
             if (n == 1) {
-                std::as_const(*tree).dispatch([this](auto const& root) { root->seekBegin(leaf, iter); });
+                std::as_const(*tree).dispatch([this](auto const& root) { root->seek_begin(leaf, iter); });
                 mod_count = tree->mod_count;
                 return;
             }
@@ -153,7 +153,7 @@ struct IteratorDetail {
             std::as_const(*tree).dispatch([this, remainder](auto const& root) {
                 auto r = root->advance(leaf, iter, remainder);
                 if (r > 0) {
-                    root->seekEnd(leaf, iter);
+                    root->seek_end(leaf, iter);
                 }
                 if (r < 0) {
                     leaf = nullptr;
@@ -260,9 +260,9 @@ struct IteratorDetail {
         return !(*this == rhs); //NOLINT
     }
 
-    [[nodiscard]] std::vector<uint16_t> getIndexes() const {
+    [[nodiscard]] std::vector<uint16_t> get_indexes() const {
         std::vector<uint16_t> ret;
-        std::as_const(*tree).dispatch([this, &ret](auto const& root) { root->getIndexes(iter, ret); });
+        std::as_const(*tree).dispatch([this, &ret](auto const& root) { root->get_indexes(iter, ret); });
         return ret;
     }
 
@@ -272,7 +272,7 @@ struct IteratorDetail {
 
     using pointer = void;
 
-    using reference = std::conditional_t<isConst, Value const&, ProxyRef>;
+    using reference = std::conditional_t<is_const, Value const&, ProxyRef>;
 
     using iterator_category = std::conditional_t<
             IsIndexedTree<TreeType, IteratorDetail>::value,

@@ -16,7 +16,7 @@
 
 namespace bpptree::detail {
 
-template <typename KeyValue, typename KeyValueExtractor, typename LessThan, bool binarySearch>
+template <typename KeyValue, typename KeyValueExtractor, typename LessThan, bool binary_search>
 struct OrderedDetail {
 private:
     static constexpr KeyValueExtractor extractor{};
@@ -31,11 +31,11 @@ public:
         using InfoType = typename Parent::InfoType;
 
         template <typename Comp>
-        IndexType findKeyIndex(Key const& searchVal, Comp const& comp) const {
-            if constexpr (!binarySearch) {
+        IndexType find_key_index(Key const& search_val, Comp const& comp) const {
+            if constexpr (!binary_search) {
                 IndexType index = 0;
                 while (index < this->length) {
-                    if (comp(extractor.get_key(this->values[index]), searchVal)) {
+                    if (comp(extractor.get_key(this->values[index]), search_val)) {
                         ++index;
                     } else {
                         break;
@@ -43,98 +43,98 @@ public:
                 }
                 return index;
             } else {
-                auto it = std::lower_bound(this->values.cbegin(), this->values.cbegin() + this->length, searchVal,
+                auto it = std::lower_bound(this->values.cbegin(), this->values.cbegin() + this->length, search_val,
                                            [&comp](auto const& a, auto const& b) { return comp(extractor.get_key(a), b); });
                 return static_cast<IndexType>(std::distance(this->values.cbegin(), it));
             }
         }
 
-        IndexType lowerBoundIndex(Key const& searchVal) const {
-            return findKeyIndex(searchVal, [](auto const& a, auto const& b) { return less_than(a, b); });
+        IndexType lower_bound_index(Key const& search_val) const {
+            return find_key_index(search_val, [](auto const& a, auto const& b) { return less_than(a, b); });
         }
 
-        IndexType findKeyIndexChecked(Key const& searchVal) const {
-            IndexType ret = lowerBoundIndex(searchVal);
+        IndexType find_key_index_checked(Key const& search_val) const {
+            IndexType ret = lower_bound_index(search_val);
             if (ret >= this->length) {
                 throw std::logic_error("key not found!");
             }
             decltype(auto) extracted = extractor.get_key(this->values[ret]);
-            if (less_than(extracted, searchVal) || less_than(searchVal, extracted)) {
+            if (less_than(extracted, search_val) || less_than(search_val, extracted)) {
                 throw std::logic_error("key not found!");
             }
             return ret;
         }
 
         template <typename... Args>
-        void computeDeltaInsert2(IndexType index, InfoType& nodeInfo, Args const& ... args) const {
+        void compute_delta_insert2(IndexType index, InfoType& node_info, Args const& ... args) const {
             if (index == this->length) {
-                nodeInfo.key = extractor.get_key(args...);
+                node_info.key = extractor.get_key(args...);
             } else {
-                nodeInfo.key = lastKey();
+                node_info.key = last_key();
             }
-            Parent::computeDeltaInsert2(index, nodeInfo, args...);
+            Parent::compute_delta_insert2(index, node_info, args...);
         }
 
         template <typename... Args>
-        void computeDeltaSet2(IndexType index, InfoType& nodeInfo, Args const& ... args) const {
+        void compute_delta_set2(IndexType index, InfoType& node_info, Args const& ... args) const {
             if (index == this->length - 1) {
-                nodeInfo.key = extractor.get_key(args...);
+                node_info.key = extractor.get_key(args...);
             } else {
-                nodeInfo.key = lastKey();
+                node_info.key = last_key();
             }
-            Parent::computeDeltaSet2(index, nodeInfo, args...);
+            Parent::compute_delta_set2(index, node_info, args...);
         }
 
-        void computeDeltaErase2(IndexType index, InfoType& nodeInfo) const {
+        void compute_delta_erase2(IndexType index, InfoType& node_info) const {
             if (index == this->length - 1) {
-                nodeInfo.key = extractor.get_key(this->values[this->length - 2]);
+                node_info.key = extractor.get_key(this->values[this->length - 2]);
             } else {
-                nodeInfo.key = lastKey();
+                node_info.key = last_key();
             }
-            Parent::computeDeltaErase2(index, nodeInfo);
+            Parent::compute_delta_erase2(index, node_info);
         }
 
         template <DuplicatePolicy duplicate_policy, typename F, typename R, typename S, typename... Args>
-        void insertOrAssign(Key const& searchVal, F&& finder, R&& doReplace, S&& doSplit,
-                            size_t& size, uint64_t& iter, bool rightMost, Args&& ... args) {
-            auto [index, remainder] = finder(this->self(), searchVal);
+        void insert_or_assign(Key const& search_val, F&& finder, R&& do_replace, S&& do_split,
+                            size_t& size, uint64_t& iter, bool right_most, Args&& ... args) {
+            auto [index, remainder] = finder(this->self(), search_val);
 
             if constexpr (duplicate_policy != DuplicatePolicy::insert) {
                 if (index < this->length) {
                     decltype(auto) extracted = extractor.get_key(std::as_const(this->values[index]));
-                    if (!less_than(extracted, searchVal) && !less_than(searchVal, extracted)) {
+                    if (!less_than(extracted, search_val) && !less_than(search_val, extracted)) {
                         if constexpr (duplicate_policy == DuplicatePolicy::replace) {
-                            this->self().assign2(index, doReplace, iter, std::forward<Args>(args)...);
+                            this->self().assign2(index, do_replace, iter, std::forward<Args>(args)...);
                         }
                         return;
                     }
                 }
             }
-            this->self().insertIndex(index, doReplace, doSplit, size, iter, rightMost, std::forward<Args>(args)...);
+            this->self().insert_index(index, do_replace, do_split, size, iter, right_most, std::forward<Args>(args)...);
         }
 
-        decltype(auto) firstKey() const {
+        decltype(auto) first_key() const {
             return extractor.get_key(this->values[0]);
         }
 
-        decltype(auto) lastKey() const {
+        decltype(auto) last_key() const {
             return extractor.get_key(this->values[this->length - 1]);
         }
 
-        decltype(auto) at_key(Key const& searchVal) const {
-            IndexType index = findKeyIndexChecked(searchVal);
+        decltype(auto) at_key(Key const& search_val) const {
+            IndexType index = find_key_index_checked(search_val);
             return extractor.get_value(this->values[index]);
         }
 
         template <typename Comp>
-        bool seekKey(
+        bool seek_key(
                 typename Parent::SelfType const*& leaf,
                 uint64_t& it,
                 Key const& key,
                 Comp const& comp
         ) const {
-            IndexType index = findKeyIndex(key, comp);
-            this->setIndex(it, index);
+            IndexType index = find_key_index(key, comp);
+            this->set_index(it, index);
             leaf = &this->self();
             if (index < this->length) {
                 decltype(auto) extracted = extractor.get_key(this->values[index]);
@@ -144,7 +144,7 @@ public:
         }
 
         bool contains(Key const& key) const {
-            IndexType index = lowerBoundIndex(key);
+            IndexType index = lower_bound_index(key);
             if (index < this->length) {
                 decltype(auto) extracted = extractor.get_key(this->values[index]);
                 return !less_than(extracted, key) && !less_than(key, extracted);
@@ -180,66 +180,66 @@ public:
             }
         }
 
-        void eraseElement2(IndexType index) {
+        void erase_element2(IndexType index) {
             keys.destruct(index);
-            Parent::eraseElement2(index);
+            Parent::erase_element2(index);
         }
 
-        void moveElement2(IndexType destIndex, NodeType& source, IndexType sourceIndex) {
-            keys.set(destIndex, this->length, source.keys.move(sourceIndex));
-            Parent::moveElement2(destIndex, source, sourceIndex);
+        void move_element2(IndexType dest_index, NodeType& source, IndexType source_index) {
+            keys.set(dest_index, this->length, source.keys.move(source_index));
+            Parent::move_element2(dest_index, source, source_index);
         }
 
-        void copyElement2(IndexType destIndex, NodeType const& source, IndexType sourceIndex) {
-            keys.set(destIndex, this->length, source.keys[sourceIndex]);
-            Parent::copyElement2(destIndex, source, sourceIndex);
+        void copy_element2(IndexType dest_index, NodeType const& source, IndexType source_index) {
+            keys.set(dest_index, this->length, source.keys[source_index]);
+            Parent::copy_element2(dest_index, source, source_index);
         }
 
-        void replaceElement2(IndexType index, InfoType<ChildType>& t) {
+        void replace_element2(IndexType index, InfoType<ChildType>& t) {
             keys[index] = std::move(t.key);
-            Parent::replaceElement2(index, t);
+            Parent::replace_element2(index, t);
         }
 
-        void setElement2(IndexType index, InfoType<ChildType>& t) {
+        void set_element2(IndexType index, InfoType<ChildType>& t) {
             keys.set(index, this->length, std::move(t.key));
-            Parent::setElement2(index, t);
+            Parent::set_element2(index, t);
         }
 
         void
-        computeDeltaSplit2(SplitType<ChildType> const& split, InfoType<NodeType>& nodeInfo, IndexType index) const {
+        compute_delta_split2(SplitType<ChildType> const& split, InfoType<NodeType>& node_info, IndexType index) const {
             if (index == this->length - 1) {
-                nodeInfo.key = split.right.key;
+                node_info.key = split.right.key;
             } else {
-                nodeInfo.key = lastKey();
+                node_info.key = last_key();
             }
-            Parent::computeDeltaSplit2(split, nodeInfo, index);
+            Parent::compute_delta_split2(split, node_info, index);
         }
 
         void
-        computeDeltaReplace2(InfoType<ChildType> const& update, InfoType<NodeType>& nodeInfo, IndexType index) const {
+        compute_delta_replace2(InfoType<ChildType> const& update, InfoType<NodeType>& node_info, IndexType index) const {
             if (index == this->length - 1) {
-                nodeInfo.key = update.key;
+                node_info.key = update.key;
             } else {
-                nodeInfo.key = lastKey();
+                node_info.key = last_key();
             }
-            Parent::computeDeltaReplace2(update, nodeInfo, index);
+            Parent::compute_delta_replace2(update, node_info, index);
         }
 
-        void computeDeltaErase2(IndexType index, InfoType<NodeType>& nodeInfo) const {
+        void compute_delta_erase2(IndexType index, InfoType<NodeType>& node_info) const {
             if (index == this->length - 1) {
-                nodeInfo.key = this->keys[this->length - 2];
+                node_info.key = this->keys[this->length - 2];
             } else {
-                nodeInfo.key = lastKey();
+                node_info.key = last_key();
             }
-            Parent::computeDeltaErase2(index, nodeInfo);
+            Parent::compute_delta_erase2(index, node_info);
         }
 
         template <typename Comp>
-        IndexType findKeyIndex(Key const& searchVal, Comp const& comp) const {
-            if constexpr (!binarySearch) {
+        IndexType find_key_index(Key const& search_val, Comp const& comp) const {
+            if constexpr (!binary_search) {
                 IndexType index = 0;
                 while (index < this->length - 1) {
-                    if (comp(keys[index], searchVal)) {
+                    if (comp(keys[index], search_val)) {
                         ++index;
                     } else {
                         break;
@@ -250,63 +250,63 @@ public:
                 if (this->length == 0) {
                     return 0;
                 }
-                auto it = std::lower_bound(keys.cbegin(), keys.cbegin() + (this->length - 1), searchVal, comp);
+                auto it = std::lower_bound(keys.cbegin(), keys.cbegin() + (this->length - 1), search_val, comp);
                 return static_cast<IndexType>(std::distance(keys.cbegin(), it));
             }
         }
 
-        IndexType lowerBoundIndex(Key const& searchVal) const {
-            return findKeyIndex(searchVal, [](auto const& a, auto const& b) { return less_than(a, b); });
+        IndexType lower_bound_index(Key const& search_val) const {
+            return find_key_index(search_val, [](auto const& a, auto const& b) { return less_than(a, b); });
         }
 
-        IndexType findKeyIndexChecked(Key const& searchVal) const {
-            return lowerBoundIndex(searchVal);
+        IndexType find_key_index_checked(Key const& search_val) const {
+            return lower_bound_index(search_val);
         }
 
         template <DuplicatePolicy duplicate_policy, typename F, typename R, typename S, typename... Args>
-        void insertOrAssign(Key const& searchVal, F&& finder, R&& doReplace, S&& doSplit,
-                            size_t& size, uint64_t& iter, bool rightMost, Args&& ... args) {
-            auto [index, remainder] = finder(this->self(), searchVal);
-            this->pointers[index]->template insertOrAssign<duplicate_policy>(remainder,
+        void insert_or_assign(Key const& search_val, F&& finder, R&& do_replace, S&& do_split,
+                            size_t& size, uint64_t& iter, bool right_most, Args&& ... args) {
+            auto [index, remainder] = finder(this->self(), search_val);
+            this->pointers[index]->template insert_or_assign<duplicate_policy>(remainder,
                                                   finder,
-                                                  [this, index = index, &doReplace, &iter](auto&& replace) {
-                                                      this->insertReplace(index, replace, doReplace, iter);
+                                                  [this, index = index, &do_replace, &iter](auto&& replace) {
+                                                      this->insert_replace(index, replace, do_replace, iter);
                                                   },
-                                                  [this, index = index, &doReplace, &doSplit, rightMost, &iter](auto&& split) {
-                                                      this->insertSplit(index, split, doReplace, doSplit, iter, rightMost);
+                                                  [this, index = index, &do_replace, &do_split, right_most, &iter](auto&& split) {
+                                                      this->insert_split(index, split, do_replace, do_split, iter, right_most);
                                                   },
                                                   size,
                                                   iter,
-                                                  rightMost && index == this->length - 1,
+                                                  right_most && index == this->length - 1,
                                                   std::forward<Args>(args)...);
         }
 
-        decltype(auto) at_key(Key const& searchVal) const {
-            return this->pointers[lowerBoundIndex(searchVal)]->at_key(searchVal);
+        decltype(auto) at_key(Key const& search_val) const {
+            return this->pointers[lower_bound_index(search_val)]->at_key(search_val);
         }
 
         template <typename L, typename Comp>
-        bool seekKey(
+        bool seek_key(
                 L const*& leaf,
                 uint64_t& it,
                 Key const& key,
                 Comp const& comp
         ) const {
-            IndexType index = findKeyIndex(key, comp);
-            this->setIndex(it, index);
-            return this->pointers[index]->seekKey(leaf, it, key, comp);
+            IndexType index = find_key_index(key, comp);
+            this->set_index(it, index);
+            return this->pointers[index]->seek_key(leaf, it, key, comp);
         }
 
         bool contains(Key const& key) const {
-            return this->pointers[lowerBoundIndex(key)]->contains(key);
+            return this->pointers[lower_bound_index(key)]->contains(key);
         }
 
-        decltype(auto) firstKey() const {
-            return this->pointers[0]->firstKey();
+        decltype(auto) first_key() const {
+            return this->pointers[0]->first_key();
         }
 
-        decltype(auto) lastKey() const {
-            return this->pointers[this->length - 1]->lastKey();
+        decltype(auto) last_key() const {
+            return this->pointers[this->length - 1]->last_key();
         }
     };
 
@@ -318,7 +318,7 @@ public:
 
         template <typename P>
         NodeInfo(P&& p, const bool changed) noexcept : Parent(std::forward<P>(p), changed),
-                                                              key(changed ? this->ptr->lastKey() : p->lastKey()) {}
+                                                              key(changed ? this->ptr->last_key() : p->last_key()) {}
     };
 };
 } //end namespace bpptree::detail

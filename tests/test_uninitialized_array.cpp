@@ -8,19 +8,19 @@
 struct DestructorChecker {
 
     size_t unlikely_value;
-    bool wasDestructed;
+    bool was_destructed;
 
     explicit DestructorChecker(size_t u) {
         EXPECT_EQ(u, 0xdecafc0ffeeadded);
         EXPECT_NE(unlikely_value, u);
         unlikely_value = u;
-        wasDestructed = false;
+        was_destructed = false;
     }
 
     ~DestructorChecker() {
-        EXPECT_FALSE(wasDestructed);
+        EXPECT_FALSE(was_destructed);
         unlikely_value = 0;
-        wasDestructed = true;
+        was_destructed = true;
     }
 };
 

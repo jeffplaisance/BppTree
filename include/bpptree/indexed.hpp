@@ -55,7 +55,7 @@ struct Indexed {
         template <typename It>
         void seek_index_internal(SizeType index, It& it) const {
             this->self().dispatch([index, &it](auto& root) {
-                root->seekIndex(it, index + 1);
+                root->seek_index(it, index + 1);
             });
         }
 
@@ -119,8 +119,8 @@ struct Indexed {
         void insert_index(SizeType index, Args&&... args) {
             this->self().dispatch(
                 Modify<Insert>(),
-                [](auto const& node, auto const& searchVal) {
-                    return node.insertionIndex(searchVal);
+                [](auto const& node, auto const& search_val) {
+                    return node.insertion_index(search_val);
                 },
                 index,
                 std::forward<Args>(args)...
@@ -134,8 +134,8 @@ struct Indexed {
         void assign_index(SizeType index, Args&&... args) {
             this->self().dispatch(
                 Modify<Assign>(),
-                [](auto const& node, auto const& searchVal) {
-                    return node.findIndex(searchVal);
+                [](auto const& node, auto const& search_val) {
+                    return node.find_index(search_val);
                 },
                 index + 1,
                 std::forward<Args>(args)...
@@ -148,8 +148,8 @@ struct Indexed {
         void erase_index(SizeType index) {
             this->self().dispatch(
                 Modify<Erase>(),
-                [](auto const& node, auto const& searchVal) {
-                    return node.findIndex(searchVal);
+                [](auto const& node, auto const& search_val) {
+                    return node.find_index(search_val);
                 },
                 index + 1
             );
@@ -163,8 +163,8 @@ struct Indexed {
         void update_index(SizeType index, U&& updater) {
             this->self().dispatch(
                     Modify<Update>(),
-                    [](auto const& node, auto const& searchVal) {
-                        return node.findIndex(searchVal);
+                    [](auto const& node, auto const& search_val) {
+                        return node.find_index(search_val);
                     },
                     index + 1,
                     updater

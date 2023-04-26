@@ -6,7 +6,7 @@
 
 using namespace std;
 
-SummedIndexedTree<uint32_t>::Transient makeTree() {
+SummedIndexedTree<uint32_t>::Transient make_tree() {
     SummedIndexedTree<uint32_t>::Transient tree{};
     auto it3 = tree.begin();
     for (uint32_t i = 1; i < 8192; ++i) {
@@ -39,7 +39,7 @@ SummedIndexedTree<uint32_t>::Transient makeTree() {
 
 TEST(BppTreeTest, TestIterators) {
     if constexpr (true) {
-        SummedIndexedTree<uint32_t>::Transient tree = makeTree();
+        SummedIndexedTree<uint32_t>::Transient tree = make_tree();
         auto it = tree.end();
         auto it2 = tree.rbegin();
         auto rend = tree.rend();
@@ -56,7 +56,7 @@ TEST(BppTreeTest, TestIterators) {
         EXPECT_EQ(it, begin);
     }
     if constexpr (true) {
-        SummedIndexedTree<uint32_t>::Transient tree = makeTree();
+        SummedIndexedTree<uint32_t>::Transient tree = make_tree();
         auto it = tree.begin();
         auto it2 = tree.rend();
         auto end = tree.end();

@@ -20,29 +20,29 @@ static void do_stuff(TreeType& tree, Vector<uint32_t>& vec) {
     for (uint32_t i = 0; i < tree.size(); ++i) {
         for (uint32_t j = i + 1; j <= tree.size(); ++j) {
             auto vec_it = std::min_element(vec.begin()+i, vec.begin()+j);
-            const auto treeBegin = tree.begin() + i;
-            const auto treeEnd = tree.begin() + j;
-            EXPECT_LT(treeBegin, treeEnd);
-            EXPECT_FALSE(treeEnd < treeBegin);
-            EXPECT_LE(treeBegin, treeEnd);
-            EXPECT_FALSE(treeEnd <= treeBegin);
-            EXPECT_GT(treeEnd, treeBegin);
-            EXPECT_FALSE(treeBegin > treeEnd);
-            EXPECT_GE(treeEnd, treeBegin);
-            EXPECT_FALSE(treeBegin >= treeEnd);
-            EXPECT_EQ(treeBegin+(j-i), treeEnd);
-            EXPECT_FALSE(treeBegin+(j-i) != treeEnd);
-            EXPECT_LE(treeBegin+(j-i), treeEnd);
-            EXPECT_LE(treeEnd, treeBegin+(j-i));
-            EXPECT_GE(treeBegin+(j-i), treeEnd);
-            EXPECT_GE(treeEnd, treeBegin+(j-i));
-            EXPECT_FALSE(treeBegin+(j-i) < treeEnd);
-            EXPECT_FALSE(treeEnd < treeBegin+(j-i));
-            EXPECT_FALSE(treeBegin+(j-i) > treeEnd);
-            EXPECT_FALSE(treeEnd > treeBegin+(j-i));
-            EXPECT_EQ(treeEnd - treeBegin, j - i);
-            auto min = tree.min(treeBegin, treeEnd);
-            auto tree_it = tree.min_element(treeBegin, treeEnd);
+            const auto tree_begin = tree.begin() + i;
+            const auto tree_end = tree.begin() + j;
+            EXPECT_LT(tree_begin, tree_end);
+            EXPECT_FALSE(tree_end < tree_begin);
+            EXPECT_LE(tree_begin, tree_end);
+            EXPECT_FALSE(tree_end <= tree_begin);
+            EXPECT_GT(tree_end, tree_begin);
+            EXPECT_FALSE(tree_begin > tree_end);
+            EXPECT_GE(tree_end, tree_begin);
+            EXPECT_FALSE(tree_begin >= tree_end);
+            EXPECT_EQ(tree_begin+(j-i), tree_end);
+            EXPECT_FALSE(tree_begin+(j-i) != tree_end);
+            EXPECT_LE(tree_begin+(j-i), tree_end);
+            EXPECT_LE(tree_end, tree_begin+(j-i));
+            EXPECT_GE(tree_begin+(j-i), tree_end);
+            EXPECT_GE(tree_end, tree_begin+(j-i));
+            EXPECT_FALSE(tree_begin+(j-i) < tree_end);
+            EXPECT_FALSE(tree_end < tree_begin+(j-i));
+            EXPECT_FALSE(tree_begin+(j-i) > tree_end);
+            EXPECT_FALSE(tree_end > tree_begin+(j-i));
+            EXPECT_EQ(tree_end - tree_begin, j - i);
+            auto min = tree.min(tree_begin, tree_end);
+            auto tree_it = tree.min_element(tree_begin, tree_end);
             EXPECT_FALSE(min != std::get<0>(tree_it.get()) || min != *vec_it);
         }
     }
@@ -62,13 +62,13 @@ TEST(BppTreeTest, TestMinTransient) {
         vec.emplace_back(r);
     }
     do_stuff(tree, vec);
-    auto treeCopy = tree.persistent();
+    auto tree_copy = tree.persistent();
     for (size_t i = 0; i < 512; ++i) {
         tree.erase_index(i);
         vec.erase(vec.begin()+signed_cast(i));
     }
     do_stuff(tree, vec);
-    tree = treeCopy.transient();
+    tree = tree_copy.transient();
     std::sort(tree.begin(),tree.end());
     EXPECT_TRUE(std::is_sorted(tree.begin(), tree.end()));
     for (uint32_t i = 0; i < tree.size(); ++i) {
@@ -86,13 +86,13 @@ TEST(BppTreeTest, TestMinPersistent) {
         vec.emplace_back(r);
     }
     do_stuff(tree, vec);
-    auto treeCopy = tree;
+    auto tree_copy = tree;
     for (size_t i = 0; i < 512; ++i) {
         tree = tree.erase_index(i);
         vec.erase(vec.begin()+signed_cast(i));
     }
     do_stuff(tree, vec);
-    TreeType::Transient transient = treeCopy.transient();
+    TreeType::Transient transient = tree_copy.transient();
     std::sort(transient.begin(),transient.end());
     tree = transient.persistent();
     EXPECT_TRUE(std::is_sorted(tree.begin(), tree.end()));
@@ -117,29 +117,29 @@ TEST(BppTreeTest, TestMaxTransient) {
     for (uint32_t i = 0; i < tree.size(); ++i) {
         for (uint32_t j = i + 1; j <= tree.size(); ++j) {
             auto vec_it = std::max_element(vec.begin()+i, vec.begin()+j);
-            const auto treeBegin = tree.begin() + i;
-            const auto treeEnd = tree.begin() + j;
-            EXPECT_LT(treeBegin, treeEnd);
-            EXPECT_FALSE(treeEnd < treeBegin);
-            EXPECT_LE(treeBegin, treeEnd);
-            EXPECT_FALSE(treeEnd <= treeBegin);
-            EXPECT_GT(treeEnd, treeBegin);
-            EXPECT_FALSE(treeBegin > treeEnd);
-            EXPECT_GE(treeEnd, treeBegin);
-            EXPECT_FALSE(treeBegin >= treeEnd);
-            EXPECT_EQ(treeBegin+(j-i), treeEnd);
-            EXPECT_FALSE(treeBegin+(j-i) != treeEnd);
-            EXPECT_LE(treeBegin+(j-i), treeEnd);
-            EXPECT_LE(treeEnd, treeBegin+(j-i));
-            EXPECT_GE(treeBegin+(j-i), treeEnd);
-            EXPECT_GE(treeEnd, treeBegin+(j-i));
-            EXPECT_FALSE(treeBegin+(j-i) < treeEnd);
-            EXPECT_FALSE(treeEnd < treeBegin+(j-i));
-            EXPECT_FALSE(treeBegin+(j-i) > treeEnd);
-            EXPECT_FALSE(treeEnd > treeBegin+(j-i));
-            EXPECT_EQ(treeEnd - treeBegin, j - i);
-            auto max = tree.max(treeBegin, treeEnd);
-            auto tree_it = tree.max_element(treeBegin, treeEnd);
+            const auto tree_begin = tree.begin() + i;
+            const auto tree_end = tree.begin() + j;
+            EXPECT_LT(tree_begin, tree_end);
+            EXPECT_FALSE(tree_end < tree_begin);
+            EXPECT_LE(tree_begin, tree_end);
+            EXPECT_FALSE(tree_end <= tree_begin);
+            EXPECT_GT(tree_end, tree_begin);
+            EXPECT_FALSE(tree_begin > tree_end);
+            EXPECT_GE(tree_end, tree_begin);
+            EXPECT_FALSE(tree_begin >= tree_end);
+            EXPECT_EQ(tree_begin+(j-i), tree_end);
+            EXPECT_FALSE(tree_begin+(j-i) != tree_end);
+            EXPECT_LE(tree_begin+(j-i), tree_end);
+            EXPECT_LE(tree_end, tree_begin+(j-i));
+            EXPECT_GE(tree_begin+(j-i), tree_end);
+            EXPECT_GE(tree_end, tree_begin+(j-i));
+            EXPECT_FALSE(tree_begin+(j-i) < tree_end);
+            EXPECT_FALSE(tree_end < tree_begin+(j-i));
+            EXPECT_FALSE(tree_begin+(j-i) > tree_end);
+            EXPECT_FALSE(tree_end > tree_begin+(j-i));
+            EXPECT_EQ(tree_end - tree_begin, j - i);
+            auto max = tree.max(tree_begin, tree_end);
+            auto tree_it = tree.max_element(tree_begin, tree_end);
             EXPECT_EQ(max, tree_it->first);
             ASSERT_EQ(max, *vec_it);
         }
@@ -171,29 +171,29 @@ TEST(BppTreeTest, TestMaxPersistent) {
     for (uint32_t i = 0; i < tree.size(); ++i) {
         for (uint32_t j = i + 1; j <= tree.size(); ++j) {
             auto vec_it = std::max_element(vec.begin()+i, vec.begin()+j);
-            const auto treeBegin = tree.begin() + i;
-            const auto treeEnd = tree.begin() + j;
-            EXPECT_LT(treeBegin, treeEnd);
-            EXPECT_FALSE(treeEnd < treeBegin);
-            EXPECT_LE(treeBegin, treeEnd);
-            EXPECT_FALSE(treeEnd <= treeBegin);
-            EXPECT_GT(treeEnd, treeBegin);
-            EXPECT_FALSE(treeBegin > treeEnd);
-            EXPECT_GE(treeEnd, treeBegin);
-            EXPECT_FALSE(treeBegin >= treeEnd);
-            EXPECT_EQ(treeBegin+(j-i), treeEnd);
-            EXPECT_FALSE(treeBegin+(j-i) != treeEnd);
-            EXPECT_LE(treeBegin+(j-i), treeEnd);
-            EXPECT_LE(treeEnd, treeBegin+(j-i));
-            EXPECT_GE(treeBegin+(j-i), treeEnd);
-            EXPECT_GE(treeEnd, treeBegin+(j-i));
-            EXPECT_FALSE(treeBegin+(j-i) < treeEnd);
-            EXPECT_FALSE(treeEnd < treeBegin+(j-i));
-            EXPECT_FALSE(treeBegin+(j-i) > treeEnd);
-            EXPECT_FALSE(treeEnd > treeBegin+(j-i));
-            EXPECT_EQ(treeEnd - treeBegin, j - i);
-            auto max = tree.max(treeBegin, treeEnd);
-            auto tree_it = tree.max_element(treeBegin, treeEnd);
+            const auto tree_begin = tree.begin() + i;
+            const auto tree_end = tree.begin() + j;
+            EXPECT_LT(tree_begin, tree_end);
+            EXPECT_FALSE(tree_end < tree_begin);
+            EXPECT_LE(tree_begin, tree_end);
+            EXPECT_FALSE(tree_end <= tree_begin);
+            EXPECT_GT(tree_end, tree_begin);
+            EXPECT_FALSE(tree_begin > tree_end);
+            EXPECT_GE(tree_end, tree_begin);
+            EXPECT_FALSE(tree_begin >= tree_end);
+            EXPECT_EQ(tree_begin+(j-i), tree_end);
+            EXPECT_FALSE(tree_begin+(j-i) != tree_end);
+            EXPECT_LE(tree_begin+(j-i), tree_end);
+            EXPECT_LE(tree_end, tree_begin+(j-i));
+            EXPECT_GE(tree_begin+(j-i), tree_end);
+            EXPECT_GE(tree_end, tree_begin+(j-i));
+            EXPECT_FALSE(tree_begin+(j-i) < tree_end);
+            EXPECT_FALSE(tree_end < tree_begin+(j-i));
+            EXPECT_FALSE(tree_begin+(j-i) > tree_end);
+            EXPECT_FALSE(tree_end > tree_begin+(j-i));
+            EXPECT_EQ(tree_end - tree_begin, j - i);
+            auto max = tree.max(tree_begin, tree_end);
+            auto tree_it = tree.max_element(tree_begin, tree_end);
             EXPECT_FALSE(max != std::get<0>(tree_it.get()) || max != *vec_it);
         }
     }

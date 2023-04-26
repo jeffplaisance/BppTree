@@ -2,51 +2,51 @@
 #include "test_common.hpp"
 
 template <bool reverse, typename T, typename B, typename E>
-static void run_test(T& tree, B&& beginF, E&& endF) {
+static void run_test(T& tree, B&& begin_f, E&& end_f) {
     static constexpr int n = 1000*1000;
     auto const& rand_ints = RandInts<int32_t, n>::ints;
-    auto begin = beginF();
+    auto begin = begin_f();
     for (int32_t i : rand_ints) {
         tree.insert(begin, i);
         EXPECT_EQ(*begin, i);
         EXPECT_EQ(reverse? tree.back() : tree.front(), i);
     }
-    auto end = endF();
+    auto end = end_f();
     for (int32_t i : rand_ints) {
         tree.insert(end, i);
         EXPECT_EQ(*end, i);
         EXPECT_EQ(reverse ? tree.front() : tree.back(), i);
         ++end;
-        EXPECT_EQ(end, endF());
+        EXPECT_EQ(end, end_f());
     }
     while (!tree.empty()) {
         --end;
-        begin = beginF();
+        begin = begin_f();
         EXPECT_EQ(tree.front(), tree.back());
         EXPECT_EQ(*begin, *end);
         //invalidates end
         tree.erase(begin);
-        EXPECT_EQ(begin, beginF());
-        end = endF() - 1;
+        EXPECT_EQ(begin, begin_f());
+        end = end_f() - 1;
         //invalidates begin
         tree.erase(end);
-        EXPECT_EQ(end, endF());
+        EXPECT_EQ(end, end_f());
     }
-    begin = beginF();
+    begin = begin_f();
     for (int32_t i : rand_ints) {
         tree.insert(begin, i);
         EXPECT_EQ(*begin, i);
         EXPECT_EQ(reverse? tree.back() : tree.front(), i);
     }
-    end = endF();
+    end = end_f();
     for (int32_t i : rand_ints) {
         tree.insert(end, i);
         EXPECT_EQ(*end, i);
         EXPECT_EQ(reverse ? tree.front() : tree.back(), i);
         ++end;
-        EXPECT_EQ(end, endF());
+        EXPECT_EQ(end, end_f());
     }
-    auto middle = beginF() + signed_cast(rand_ints.size());
+    auto middle = begin_f() + signed_cast(rand_ints.size());
     while (!tree.empty()) {
         --middle;
         auto i = *middle;

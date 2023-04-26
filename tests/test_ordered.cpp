@@ -15,27 +15,27 @@ void test_ordered_transient() {
     typename OrderedTree<std::pair<int, int>, PairExtractor<0>, int64_t, PairExtractor<1>, MinComparator, binary_search>::Transient tree{};
     int start = 0;
     int end = n - 1;
-    auto startTime = std::chrono::steady_clock::now();
+    auto start_time = std::chrono::steady_clock::now();
     for (int i = 0; i < n / 2; i++) {
         tree[end] = rand_ints[end];
         tree[start] = std::make_pair(start, rand_ints[start]);
         ++start;
         --end;
     }
-    auto endTime = std::chrono::steady_clock::now();
-    std::chrono::duration<double> elapsed = endTime - startTime;
+    auto end_time = std::chrono::steady_clock::now();
+    std::chrono::duration<double> elapsed = end_time - start_time;
     cout << elapsed.count() << 's' << endl;
     auto sorted_rand_ints = rand_ints;
     std::sort(sorted_rand_ints.begin(), sorted_rand_ints.end());
     int64_t sum = 0;
-    startTime = std::chrono::steady_clock::now();
+    start_time = std::chrono::steady_clock::now();
     for (int i = 0; i < n; i++) {
         sum += tree.at_key(sorted_rand_ints[i]%n);
         auto it = tree.find(sorted_rand_ints[i]%n);
         EXPECT_EQ(sum, tree.sum_inclusive(it));
     }
-    endTime = std::chrono::steady_clock::now();
-    elapsed = endTime - startTime;
+    end_time = std::chrono::steady_clock::now();
+    elapsed = end_time - start_time;
     cout << elapsed.count() << 's' << endl;
     cout << sum << endl;
     cout << tree.sum() << endl;
@@ -115,27 +115,27 @@ void test_ordered_persistent() {
     typename OrderedTree<std::pair<int, int>, PairExtractor<0>, int64_t, PairExtractor<1>, MinComparator, binary_search>::Persistent tree{};
     int start = 0;
     int end = n - 1;
-    auto startTime = std::chrono::steady_clock::now();
+    auto start_time = std::chrono::steady_clock::now();
     for (int i = 0; i < n / 2; i++) {
         tree = tree.insert_or_assign(end, rand_ints[end]);
         tree = tree.insert_or_assign(start, rand_ints[start]);
         ++start;
         --end;
     }
-    auto endTime = std::chrono::steady_clock::now();
-    std::chrono::duration<double> elapsed = endTime - startTime;
+    auto end_time = std::chrono::steady_clock::now();
+    std::chrono::duration<double> elapsed = end_time - start_time;
     cout << elapsed.count() << 's' << endl;
     auto sorted_rand_ints = rand_ints;
     std::sort(sorted_rand_ints.begin(), sorted_rand_ints.end());
     int64_t sum = 0;
-    startTime = std::chrono::steady_clock::now();
+    start_time = std::chrono::steady_clock::now();
     for (int i = 0; i < n; i++) {
         sum += tree.at_key(sorted_rand_ints[i]%n);
         auto it = tree.find(sorted_rand_ints[i]%n);
         EXPECT_EQ(sum, tree.sum_inclusive(it));
     }
-    endTime = std::chrono::steady_clock::now();
-    elapsed = endTime - startTime;
+    end_time = std::chrono::steady_clock::now();
+    elapsed = end_time - start_time;
     cout << elapsed.count() << 's' << endl;
     cout << sum << endl;
     cout << tree.sum() << endl;

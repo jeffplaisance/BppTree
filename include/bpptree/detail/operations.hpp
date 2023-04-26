@@ -16,46 +16,46 @@ namespace bpptree::detail {
 
 struct Assign {
     template<typename N, typename T, typename F, typename R, typename S, typename E, typename... Args>
-    void operator()(N& node, T const &searchVal, F const& finder, R&& doReplace, S&&, E&&, size_t&, uint64_t& iter, bool, Args&&... args) {
-        node.assign(searchVal, finder, doReplace, iter, std::forward<decltype(args)>(args)...);
+    void operator()(N& node, T const &search_val, F const& finder, R&& do_replace, S&&, E&&, size_t&, uint64_t& iter, bool, Args&&... args) {
+        node.assign(search_val, finder, do_replace, iter, std::forward<decltype(args)>(args)...);
     }
 };
 
 struct Erase {
     template<typename N, typename T, typename F, typename R, typename S, typename E>
-    void operator()(N& node, T const &searchVal, F const& finder, R&& doReplace, S&&, E&& doErase, size_t& size, uint64_t& iter, bool rightMost) {
-        node.erase(searchVal, finder, doReplace, doErase, size, iter, rightMost);
+    void operator()(N& node, T const &search_val, F const& finder, R&& do_replace, S&&, E&& do_erase, size_t& size, uint64_t& iter, bool right_most) {
+        node.erase(search_val, finder, do_replace, do_erase, size, iter, right_most);
     }
 };
 
 struct Insert {
     template<typename N, typename T, typename F, typename R, typename S, typename E, typename... Args>
-    void operator()(N& node, T const &searchVal, F const& finder, R&& doReplace, S&& doSplit, E&&, size_t &size, uint64_t& iter, bool rightMost, Args&&... args) {
-        node.insert(searchVal, finder, doReplace, doSplit, size, iter, rightMost, std::forward<decltype(args)>(args)...);
+    void operator()(N& node, T const &search_val, F const& finder, R&& do_replace, S&& do_split, E&&, size_t &size, uint64_t& iter, bool right_most, Args&&... args) {
+        node.insert(search_val, finder, do_replace, do_split, size, iter, right_most, std::forward<decltype(args)>(args)...);
     }
 };
 
 struct Update {
     template<typename N, typename T, typename F, typename R, typename S, typename E, typename U>
-    void operator()(N& node, T const &searchVal, F const& finder, R&& doReplace, S&&, E&&, size_t&, uint64_t& iter, bool, U&& updater) {
-        node.update(searchVal, finder, doReplace, iter, updater);
+    void operator()(N& node, T const &search_val, F const& finder, R&& do_replace, S&&, E&&, size_t&, uint64_t& iter, bool, U&& updater) {
+        node.update(search_val, finder, do_replace, iter, updater);
     }
 };
 
 struct Update2 {
     template<typename N, typename T, typename F, typename R, typename S, typename E, typename U>
-    void operator()(N& node, T const &searchVal, F const& finder, R&& doReplace, S&&, E&&, size_t&, uint64_t& iter, bool, U&& updater) {
-        node.update2(searchVal, finder, doReplace, iter, updater);
+    void operator()(N& node, T const &search_val, F const& finder, R&& do_replace, S&&, E&&, size_t&, uint64_t& iter, bool, U&& updater) {
+        node.update2(search_val, finder, do_replace, iter, updater);
     }
 };
 
 template <DuplicatePolicy duplicate_policy>
 struct InsertOrAssign {
     template<typename N, typename T, typename F, typename R, typename S, typename E, typename... Args>
-    void operator()(N& node, T const &searchVal, F const& finder, R&& doReplace, S&& doSplit, E&&,
-            size_t &size, uint64_t& iter, bool rightMost, Args&&... args) {
-        node.template insertOrAssign<duplicate_policy>(searchVal, finder, doReplace, doSplit,
-                            size, iter, rightMost, std::forward<decltype(args)>(args)...);
+    void operator()(N& node, T const &search_val, F const& finder, R&& do_replace, S&& do_split, E&&,
+            size_t &size, uint64_t& iter, bool right_most, Args&&... args) {
+        node.template insert_or_assign<duplicate_policy>(search_val, finder, do_replace, do_split,
+                            size, iter, right_most, std::forward<decltype(args)>(args)...);
     }
 };
 
@@ -72,6 +72,6 @@ static constexpr auto find_last = [](auto const& node, Empty const&) {
 };
 
 static constexpr auto find_iterator = [](auto const& node, uint64_t const& it) {
-    return std::tuple<int32_t, uint64_t>(node.getIndex(it), it);
+    return std::tuple<int32_t, uint64_t>(node.get_index(it), it);
 };
 } //end namespace bpptree::detail

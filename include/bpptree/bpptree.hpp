@@ -72,7 +72,7 @@ public:
         size_t tree_size;
         uint64_t mod_count = 0;
 
-        Shared() noexcept : Parent(), root_variant(makePtr<LeafNode>()), tree_size(0) {}
+        Shared() noexcept : Parent(), root_variant(make_ptr<LeafNode>()), tree_size(0) {}
 
         Shared(RootType const& root_variant, size_t size) noexcept : Parent(), root_variant(root_variant), tree_size(size) {}
 
@@ -130,25 +130,25 @@ public:
     public:
         [[nodiscard]] iterator begin() {
             iterator ret(this->self());
-            std::as_const(this->self()).dispatch([&ret](auto const& root) { root->seekBegin(ret.leaf, ret.iter); });
+            std::as_const(this->self()).dispatch([&ret](auto const& root) { root->seek_begin(ret.leaf, ret.iter); });
             return ret;
         }
 
         [[nodiscard]] iterator end() {
             iterator ret(this->self());
-            std::as_const(this->self()).dispatch([&ret](auto const& root) { root->seekEnd(ret.leaf, ret.iter); });
+            std::as_const(this->self()).dispatch([&ret](auto const& root) { root->seek_end(ret.leaf, ret.iter); });
             return ret;
         }
 
         [[nodiscard]] const_iterator cbegin() const {
             const_iterator ret(this->self());
-            this->self().dispatch([&ret](auto const& root) { root->seekBegin(ret.leaf, ret.iter); });
+            this->self().dispatch([&ret](auto const& root) { root->seek_begin(ret.leaf, ret.iter); });
             return ret;
         }
 
         [[nodiscard]] const_iterator cend() const {
             const_iterator ret(this->self());
-            this->self().dispatch([&ret](auto const& root) { root->seekEnd(ret.leaf, ret.iter); });
+            this->self().dispatch([&ret](auto const& root) { root->seek_end(ret.leaf, ret.iter); });
             return ret;
         }
 
@@ -162,7 +162,7 @@ public:
 
         [[nodiscard]] reverse_iterator rbegin() {
             reverse_iterator ret(this->self());
-            std::as_const(this->self()).dispatch([&ret](auto const& root) { root->seekEnd(ret.leaf, ret.iter); });
+            std::as_const(this->self()).dispatch([&ret](auto const& root) { root->seek_end(ret.leaf, ret.iter); });
             ++ret;
             return ret;
         }
@@ -176,7 +176,7 @@ public:
 
         [[nodiscard]] const_reverse_iterator crbegin() const {
             const_reverse_iterator ret(this->self());
-            this->self().dispatch([&ret](auto const& root) { root->seekEnd(ret.leaf, ret.iter); });
+            this->self().dispatch([&ret](auto const& root) { root->seek_end(ret.leaf, ret.iter); });
             ++ret;
             return ret;
         }
@@ -318,7 +318,7 @@ public:
         }
 
         void clear() {
-            this->self().root_variant = makePtr<LeafNode>();
+            this->self().root_variant = make_ptr<LeafNode>();
             this->tree_size = 0;
             this->mod_count++;
         }
@@ -331,7 +331,7 @@ public:
         template <typename... Us>
         explicit Persistent(Us&&... us) noexcept : Parent(std::forward<Us>(us)...) {
             this->self().dispatch([](auto&, auto& root) {
-                root->makePersistent();
+                root->make_persistent();
             });
         }
 

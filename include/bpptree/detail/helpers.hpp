@@ -203,12 +203,12 @@ struct WrappedCastingExtractor {
 template <typename Parent, typename PtrType>
 struct NodeInfoBase : public Parent {
     NodePtr<PtrType> ptr{};
-    bool ptrChanged = false;
+    bool ptr_changed = false;
 
     NodeInfoBase() = default;
 
     template <typename P>
-    NodeInfoBase(P&& p, const bool changed) : ptr(), ptrChanged(changed) {
+    NodeInfoBase(P&& p, const bool changed) : ptr(), ptr_changed(changed) {
         if (changed) {
             this->ptr = std::forward<P>(p);
         }
@@ -233,9 +233,9 @@ struct Split {
     bool new_element_left;
 
     template <typename LP, typename RP>
-    Split(LP&& leftPtr, NodePtr<RP>&& rightPtr, bool left_changed, bool new_element_left) :
-            left(std::forward<LP>(leftPtr), left_changed),
-            right(std::move(rightPtr), true),
+    Split(LP&& left_ptr, NodePtr<RP>&& right_ptr, bool left_changed, bool new_element_left) :
+            left(std::forward<LP>(left_ptr), left_changed),
+            right(std::move(right_ptr), true),
             new_element_left(new_element_left) {}
 };
 
