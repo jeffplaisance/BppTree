@@ -50,9 +50,11 @@ struct Update2 {
 };
 
 struct InsertOrAssign {
-    template<typename N, typename T, typename F, typename R, typename S, typename E, typename... Args>
-    void operator()(N& node, T const &searchVal, F&& finder, R&& doReplace, S&& doSplit, E&&, size_t &size, uint64_t& iter, bool rightMost, Args&&... args) {
-        node.insertOrAssign(searchVal, finder, doReplace, doSplit, size, iter, rightMost, std::forward<decltype(args)>(args)...);
+    template<typename N, typename T, typename F, typename R, typename S, typename E, typename P, typename... Args>
+    void operator()(N& node, T const &searchVal, F&& finder, R&& doReplace, S&& doSplit, E&&,
+            size_t &size, uint64_t& iter, bool rightMost, P const& duplicate_policy, Args&&... args) {
+        node.insertOrAssign(searchVal, finder, doReplace, doSplit,
+                            size, iter, rightMost, duplicate_policy, std::forward<decltype(args)>(args)...);
     }
 };
 
