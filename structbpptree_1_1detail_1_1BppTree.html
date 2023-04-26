@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>B++ Tree: bpptree::detail::BppTree&lt; Value, LeafNodeBytes, InternalNodeBytes, depthLimit &gt; Struct Template Reference</title>
+<title>B++ Tree: bpptree::detail::BppTree&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -70,7 +70,7 @@ $(function() {
 <a href="#pub-types">Public Types</a> &#124;
 <a href="structbpptree_1_1detail_1_1BppTree-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">bpptree::detail::BppTree&lt; Value, LeafNodeBytes, InternalNodeBytes, depthLimit &gt; Struct Template Reference</div>  </div>
+<div class="title">bpptree::detail::BppTree&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit &gt; Struct Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -83,44 +83,44 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a4c98aa9960ca08e70614b0148dbfcd5e"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
-<tr class="memitem:a4c98aa9960ca08e70614b0148dbfcd5e"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1BppTree.html#a4c98aa9960ca08e70614b0148dbfcd5e">mixins</a> = <a class="el" href="classbpptree_1_1detail_1_1BppTreeDetail.html">BppTreeDetail</a>&lt; Value, LeafNodeBytes, InternalNodeBytes, depthLimit, typename Args::template build&lt; Value &gt;... &gt;</td></tr>
-<tr class="separator:a4c98aa9960ca08e70614b0148dbfcd5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9f86fcecb0515bb44b9ddc4645258e3c"><td class="memTemplParams" colspan="2">template&lt;template&lt; typename... &gt; typename... Ts&gt; </td></tr>
-<tr class="memitem:a9f86fcecb0515bb44b9ddc4645258e3c"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1BppTree.html#a9f86fcecb0515bb44b9ddc4645258e3c">mixins2</a> = <a class="el" href="classbpptree_1_1detail_1_1BppTreeDetail.html">BppTreeDetail</a>&lt; Value, LeafNodeBytes, InternalNodeBytes, depthLimit, Ts&lt; Value &gt;... &gt;</td></tr>
-<tr class="separator:a9f86fcecb0515bb44b9ddc4645258e3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0259aad0480084c92380f2236447b022"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
+<tr class="memitem:a0259aad0480084c92380f2236447b022"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1BppTree.html#a0259aad0480084c92380f2236447b022">mixins</a> = <a class="el" href="classbpptree_1_1detail_1_1BppTreeDetail.html">BppTreeDetail</a>&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, typename Args::template build&lt; Value &gt;... &gt;</td></tr>
+<tr class="separator:a0259aad0480084c92380f2236447b022"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada557ba5f350a9c7b770f7524fe29f1c"><td class="memTemplParams" colspan="2">template&lt;template&lt; typename... &gt; typename... Ts&gt; </td></tr>
+<tr class="memitem:ada557ba5f350a9c7b770f7524fe29f1c"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1BppTree.html#ada557ba5f350a9c7b770f7524fe29f1c">mixins2</a> = <a class="el" href="classbpptree_1_1detail_1_1BppTreeDetail.html">BppTreeDetail</a>&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts&lt; Value &gt;... &gt;</td></tr>
+<tr class="separator:ada557ba5f350a9c7b770f7524fe29f1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="a4c98aa9960ca08e70614b0148dbfcd5e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4c98aa9960ca08e70614b0148dbfcd5e">&#9670;&nbsp;</a></span>mixins</h2>
+<a id="a0259aad0480084c92380f2236447b022"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0259aad0480084c92380f2236447b022">&#9670;&nbsp;</a></span>mixins</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Value , int LeafNodeBytes = 512, int InternalNodeBytes = 512, int depthLimit = 16&gt; </div>
+template&lt;typename Value , int leaf_node_bytes = 512, int internal_node_bytes = 512, int depth_limit = 16&gt; </div>
 <div class="memtemplate">
 template&lt;typename... Args&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1BppTree.html">bpptree::detail::BppTree</a>&lt; Value, LeafNodeBytes, InternalNodeBytes, depthLimit &gt;::<a class="el" href="structbpptree_1_1detail_1_1BppTree.html#a4c98aa9960ca08e70614b0148dbfcd5e">mixins</a> =  <a class="el" href="classbpptree_1_1detail_1_1BppTreeDetail.html">BppTreeDetail</a>&lt;Value, LeafNodeBytes, InternalNodeBytes, depthLimit, typename Args::template build&lt;Value&gt;...&gt;</td>
+          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1BppTree.html">bpptree::detail::BppTree</a>&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit &gt;::<a class="el" href="structbpptree_1_1detail_1_1BppTree.html#a0259aad0480084c92380f2236447b022">mixins</a> =  <a class="el" href="classbpptree_1_1detail_1_1BppTreeDetail.html">BppTreeDetail</a>&lt;Value, leaf_node_bytes, internal_node_bytes, depth_limit, typename Args::template build&lt;Value&gt;...&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a9f86fcecb0515bb44b9ddc4645258e3c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9f86fcecb0515bb44b9ddc4645258e3c">&#9670;&nbsp;</a></span>mixins2</h2>
+<a id="ada557ba5f350a9c7b770f7524fe29f1c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada557ba5f350a9c7b770f7524fe29f1c">&#9670;&nbsp;</a></span>mixins2</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Value , int LeafNodeBytes = 512, int InternalNodeBytes = 512, int depthLimit = 16&gt; </div>
+template&lt;typename Value , int leaf_node_bytes = 512, int internal_node_bytes = 512, int depth_limit = 16&gt; </div>
 <div class="memtemplate">
 template&lt;template&lt; typename... &gt; typename... Ts&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1BppTree.html">bpptree::detail::BppTree</a>&lt; Value, LeafNodeBytes, InternalNodeBytes, depthLimit &gt;::<a class="el" href="structbpptree_1_1detail_1_1BppTree.html#a9f86fcecb0515bb44b9ddc4645258e3c">mixins2</a> =  <a class="el" href="classbpptree_1_1detail_1_1BppTreeDetail.html">BppTreeDetail</a>&lt;Value, LeafNodeBytes, InternalNodeBytes, depthLimit, Ts&lt;Value&gt;...&gt;</td>
+          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1BppTree.html">bpptree::detail::BppTree</a>&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit &gt;::<a class="el" href="structbpptree_1_1detail_1_1BppTree.html#ada557ba5f350a9c7b770f7524fe29f1c">mixins2</a> =  <a class="el" href="classbpptree_1_1detail_1_1BppTreeDetail.html">BppTreeDetail</a>&lt;Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts&lt;Value&gt;...&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">

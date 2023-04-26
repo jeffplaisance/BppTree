@@ -109,7 +109,7 @@ $(function() {
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordtype">void</span> decRef() noexcept {</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keywordflow">if</span> (ptr != <span class="keyword">nullptr</span>) {</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            <span class="keywordflow">if</span> (--ptr-&gt;refCount == 0) {</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            <span class="keywordflow">if</span> (--ptr-&gt;ref_count == 0) {</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                <span class="keyword">delete</span> ptr;</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                <span class="keywordflow">if</span> constexpr (count_allocations) ++<a class="code" href="namespacebpptree_1_1detail.html#aea6e3c9bf0a2379aef84322c0aecea4b">deallocations</a>;</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            }</div>
@@ -119,7 +119,7 @@ $(function() {
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">void</span> incRef() <span class="keyword">const</span> noexcept {</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="keywordflow">if</span> (ptr != <span class="keyword">nullptr</span>) {</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            ++ptr-&gt;refCount;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            ++ptr-&gt;ref_count;</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            <span class="keywordflow">if</span> constexpr (count_allocations) ++<a class="code" href="namespacebpptree_1_1detail.html#a30a0e98b7bb5ceef1f9eb9ae1398cee2">increments</a>;</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        }</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    }</div>

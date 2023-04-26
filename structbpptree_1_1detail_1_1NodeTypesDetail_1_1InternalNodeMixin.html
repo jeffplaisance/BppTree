@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>B++ Tree: bpptree::detail::NodeTypesDetail&lt; Value, LeafNodeBytes, InternalNodeBytes, depthLimit, Ts &gt;::InternalNodeMixin&lt; Parent, LeafSize, InternalSize, Depth &gt; Struct Template Reference</title>
+<title>B++ Tree: bpptree::detail::NodeTypesDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts &gt;::InternalNodeMixin&lt; Parent, leaf_size, internal_size, depth &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -69,7 +69,7 @@ $(function() {
 <a href="#pub-types">Public Types</a> &#124;
 <a href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1InternalNodeMixin-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">bpptree::detail::NodeTypesDetail&lt; Value, LeafNodeBytes, InternalNodeBytes, depthLimit, Ts &gt;::InternalNodeMixin&lt; Parent, LeafSize, InternalSize, Depth &gt; Struct Template Reference</div>  </div>
+<div class="title">bpptree::detail::NodeTypesDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts &gt;::InternalNodeMixin&lt; Parent, leaf_size, internal_size, depth &gt; Struct Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -77,45 +77,45 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a9cea4fb7c1e851970789710095cc8acb"><td class="memTemplParams" colspan="2">template&lt;typename P &gt; </td></tr>
-<tr class="memitem:a9cea4fb7c1e851970789710095cc8acb"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1InternalNodeMixin.html#a9cea4fb7c1e851970789710095cc8acb">InternalNodeBaseCurried</a> = <a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase.html">InternalNodeBase</a>&lt; P, Value, LeafSize, InternalSize, Depth &gt;</td></tr>
-<tr class="separator:a9cea4fb7c1e851970789710095cc8acb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4cae86766dae46730b26d6383a335bb0"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1InternalNodeMixin.html#a4cae86766dae46730b26d6383a335bb0">Type</a> = <a class="el" href="namespacebpptree_1_1detail.html#a78484cdb1b5b426eeaadd4c477a98c7b">chain_t</a>&lt; Parent, <a class="el" href="structbpptree_1_1detail_1_1curry2.html">curry2</a>&lt; Ts::template <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1InternalNode.html">InternalNode</a>, InternalSize &gt;::template mixin..., <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1InternalNodeMixin.html#a9cea4fb7c1e851970789710095cc8acb">InternalNodeBaseCurried</a>, <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1Params.html">Params</a> &gt;</td></tr>
-<tr class="separator:a4cae86766dae46730b26d6383a335bb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5371f58d151d2fbfcdd6a1236585cc99"><td class="memTemplParams" colspan="2">template&lt;typename P &gt; </td></tr>
+<tr class="memitem:a5371f58d151d2fbfcdd6a1236585cc99"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1InternalNodeMixin.html#a5371f58d151d2fbfcdd6a1236585cc99">InternalNodeBaseCurried</a> = <a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase.html">InternalNodeBase</a>&lt; P, Value, leaf_size, internal_size, depth &gt;</td></tr>
+<tr class="separator:a5371f58d151d2fbfcdd6a1236585cc99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a069a773be572a65657d9431e59c1821e"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1InternalNodeMixin.html#a069a773be572a65657d9431e59c1821e">Type</a> = <a class="el" href="namespacebpptree_1_1detail.html#a78484cdb1b5b426eeaadd4c477a98c7b">chain_t</a>&lt; Parent, <a class="el" href="structbpptree_1_1detail_1_1curry2.html">curry2</a>&lt; Ts::template <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1InternalNode.html">InternalNode</a>, internal_size &gt;::template mixin..., <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1InternalNodeMixin.html#a5371f58d151d2fbfcdd6a1236585cc99">InternalNodeBaseCurried</a>, <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1Params.html">Params</a> &gt;</td></tr>
+<tr class="separator:a069a773be572a65657d9431e59c1821e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="a9cea4fb7c1e851970789710095cc8acb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9cea4fb7c1e851970789710095cc8acb">&#9670;&nbsp;</a></span>InternalNodeBaseCurried</h2>
+<a id="a5371f58d151d2fbfcdd6a1236585cc99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5371f58d151d2fbfcdd6a1236585cc99">&#9670;&nbsp;</a></span>InternalNodeBaseCurried</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Value , int LeafNodeBytes = 512, int InternalNodeBytes = 512, int depthLimit = 16, typename... Ts&gt; </div>
+template&lt;typename Value , ssize leaf_node_bytes = 512, ssize internal_node_bytes = 512, ssize depth_limit = 16, typename... Ts&gt; </div>
 <div class="memtemplate">
-template&lt;typename Parent , auto LeafSize, auto InternalSize, auto Depth&gt; </div>
+template&lt;typename Parent , auto leaf_size, auto internal_size, auto depth&gt; </div>
 <div class="memtemplate">
 template&lt;typename P &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html">bpptree::detail::NodeTypesDetail</a>&lt; Value, LeafNodeBytes, InternalNodeBytes, depthLimit, Ts &gt;::<a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1InternalNodeMixin.html">InternalNodeMixin</a>&lt; Parent, LeafSize, InternalSize, Depth &gt;::<a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1InternalNodeMixin.html#a9cea4fb7c1e851970789710095cc8acb">InternalNodeBaseCurried</a> =  <a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase.html">InternalNodeBase</a>&lt;P, Value, LeafSize, InternalSize, Depth&gt;</td>
+          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html">bpptree::detail::NodeTypesDetail</a>&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts &gt;::<a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1InternalNodeMixin.html">InternalNodeMixin</a>&lt; Parent, leaf_size, internal_size, depth &gt;::<a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1InternalNodeMixin.html#a5371f58d151d2fbfcdd6a1236585cc99">InternalNodeBaseCurried</a> =  <a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase.html">InternalNodeBase</a>&lt;P, Value, leaf_size, internal_size, depth&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a4cae86766dae46730b26d6383a335bb0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4cae86766dae46730b26d6383a335bb0">&#9670;&nbsp;</a></span>Type</h2>
+<a id="a069a773be572a65657d9431e59c1821e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a069a773be572a65657d9431e59c1821e">&#9670;&nbsp;</a></span>Type</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Value , int LeafNodeBytes = 512, int InternalNodeBytes = 512, int depthLimit = 16, typename... Ts&gt; </div>
+template&lt;typename Value , ssize leaf_node_bytes = 512, ssize internal_node_bytes = 512, ssize depth_limit = 16, typename... Ts&gt; </div>
 <div class="memtemplate">
-template&lt;typename Parent , auto LeafSize, auto InternalSize, auto Depth&gt; </div>
+template&lt;typename Parent , auto leaf_size, auto internal_size, auto depth&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html">bpptree::detail::NodeTypesDetail</a>&lt; Value, LeafNodeBytes, InternalNodeBytes, depthLimit, Ts &gt;::<a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1InternalNodeMixin.html">InternalNodeMixin</a>&lt; Parent, LeafSize, InternalSize, Depth &gt;::<a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1InternalNodeMixin.html#a4cae86766dae46730b26d6383a335bb0">Type</a> =  <a class="el" href="namespacebpptree_1_1detail.html#a78484cdb1b5b426eeaadd4c477a98c7b">chain_t</a>&lt;Parent, <a class="el" href="structbpptree_1_1detail_1_1curry2.html">curry2</a>&lt;Ts::template <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1InternalNode.html">InternalNode</a>, InternalSize&gt;::template mixin..., <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1InternalNodeMixin.html#a9cea4fb7c1e851970789710095cc8acb">InternalNodeBaseCurried</a>, <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1Params.html">Params</a>&gt;</td>
+          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html">bpptree::detail::NodeTypesDetail</a>&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts &gt;::<a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1InternalNodeMixin.html">InternalNodeMixin</a>&lt; Parent, leaf_size, internal_size, depth &gt;::<a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1InternalNodeMixin.html#a069a773be572a65657d9431e59c1821e">Type</a> =  <a class="el" href="namespacebpptree_1_1detail.html#a78484cdb1b5b426eeaadd4c477a98c7b">chain_t</a>&lt;Parent, <a class="el" href="structbpptree_1_1detail_1_1curry2.html">curry2</a>&lt;Ts::template <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1InternalNode.html">InternalNode</a>, internal_size&gt;::template mixin..., <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1InternalNodeMixin.html#a5371f58d151d2fbfcdd6a1236585cc99">InternalNodeBaseCurried</a>, <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1Params.html">Params</a>&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
