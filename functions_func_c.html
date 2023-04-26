@@ -76,15 +76,15 @@ $(function() {
 : <a class="el" href="structbpptree_1_1detail_1_1Ordered_1_1Transient_1_1ProxyRef.html#a055df50a19bc8eedb472a885e71189af">bpptree::detail::Ordered&lt; KeyValue, KeyValueExtractor, LessThan, BinarySearch &gt;::Transient&lt; Parent &gt;::ProxyRef</a>
 </li>
 <li>children()
-: <a class="el" href="structbpptree_1_1detail_1_1IndexedInternalNode.html#acd5419d1ee8098b4feae4ef9a62ac084">bpptree::detail::IndexedInternalNode&lt; Parent, Value, SizeType, InternalSize &gt;</a>
+: <a class="el" href="structbpptree_1_1detail_1_1IndexedInternalNode.html#acb15f3b376145906f8ff5d7293f005c8">bpptree::detail::IndexedInternalNode&lt; Parent, Value, SizeType, internal_size &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1IndexedLeafNode.html#a21ef47164fea870abf14c6b7595b5316">bpptree::detail::IndexedLeafNode&lt; Parent, Value, SizeType &gt;</a>
 </li>
 <li>clear()
 : <a class="el" href="structbpptree_1_1detail_1_1BppTreeDetail_1_1Transient.html#aaeac0e4e4dc4519a70ce1c5ca25aee9b">bpptree::detail::BppTreeDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts &gt;::Transient</a>
 </li>
 <li>clear_index()
-: <a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase.html#a1886d782fd76494536b04a1f84f650a7">bpptree::detail::InternalNodeBase&lt; Parent, Value, LeafSize, InternalSize, Depth &gt;</a>
-, <a class="el" href="structbpptree_1_1detail_1_1LeafNodeBase.html#ab74a8a9aa6b3c769a5630205e25b3103">bpptree::detail::LeafNodeBase&lt; Parent, Value, LeafSize &gt;</a>
+: <a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase.html#a2ef9f9d338eb3d2537f8224b70f5cadb">bpptree::detail::InternalNodeBase&lt; Parent, Value, leaf_size, internal_size, depth_v &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1LeafNodeBase.html#a7d524bb1af141acf823d4cbacd825d58">bpptree::detail::LeafNodeBase&lt; Parent, Value, leaf_size &gt;</a>
 </li>
 <li>collapse()
 : <a class="el" href="structbpptree_1_1detail_1_1ModifyTypes.html#a56fdc04c3cc87e4abeb4bb8727b45949">bpptree::detail::ModifyTypes&lt; LeafNode, InternalNode, max_depth &gt;</a>
@@ -93,74 +93,74 @@ $(function() {
 : <a class="el" href="structbpptree_1_1detail_1_1BPPTREE__MINMAX__UPPERDetail_1_1LeafNode.html#a5813a36ffc68810bcbad7cb510a67c64">bpptree::detail::BPPTREE_MINMAX_UPPERDetail&lt; Value, KeyExtractor, Comp &gt;::LeafNode&lt; Parent &gt;</a>
 </li>
 <li>compute_delta_erase()
-: <a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase.html#aca7e62835e881684bd029e6ed85713bd">bpptree::detail::InternalNodeBase&lt; Parent, Value, LeafSize, InternalSize, Depth &gt;</a>
-, <a class="el" href="structbpptree_1_1detail_1_1LeafNodeBase.html#a37c73673df49b77c3199a8b57ce89c09">bpptree::detail::LeafNodeBase&lt; Parent, Value, LeafSize &gt;</a>
+: <a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase.html#a52f243ebf585cac27f2736e01ff95e98">bpptree::detail::InternalNodeBase&lt; Parent, Value, leaf_size, internal_size, depth_v &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1LeafNodeBase.html#a52d7e6c2b690ad4c0465c0157f8a1858">bpptree::detail::LeafNodeBase&lt; Parent, Value, leaf_size &gt;</a>
 </li>
 <li>compute_delta_erase2()
 : <a class="el" href="structbpptree_1_1detail_1_1BPPTREE__MINMAX__UPPERDetail_1_1InternalNode.html#abe4c7f8b07c5602f61ad9353ccf56222">bpptree::detail::BPPTREE_MINMAX_UPPERDetail&lt; Value, KeyExtractor, Comp &gt;::InternalNode&lt; Parent, internal_size &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1BPPTREE__MINMAX__UPPERDetail_1_1LeafNode.html#aa744ec815d7333cc7c6c5c6ab325f9d2">bpptree::detail::BPPTREE_MINMAX_UPPERDetail&lt; Value, KeyExtractor, Comp &gt;::LeafNode&lt; Parent &gt;</a>
-, <a class="el" href="structbpptree_1_1detail_1_1IndexedInternalNode.html#a560eceffd3ac8371ad6b3f839d2b0b68">bpptree::detail::IndexedInternalNode&lt; Parent, Value, SizeType, InternalSize &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1IndexedInternalNode.html#adf071ffc6248f14768bb20a14a24b6f5">bpptree::detail::IndexedInternalNode&lt; Parent, Value, SizeType, internal_size &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1IndexedLeafNode.html#a17f56657f416a7ec2a5d72beeec3df6b">bpptree::detail::IndexedLeafNode&lt; Parent, Value, SizeType &gt;</a>
-, <a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase.html#aff9cbad719bfcfdd15f53a16789fa0f6">bpptree::detail::InternalNodeBase&lt; Parent, Value, LeafSize, InternalSize, Depth &gt;</a>
-, <a class="el" href="structbpptree_1_1detail_1_1LeafNodeBase.html#a752a6ace2a4250175c0e1fe72f716898">bpptree::detail::LeafNodeBase&lt; Parent, Value, LeafSize &gt;</a>
-, <a class="el" href="structbpptree_1_1detail_1_1OrderedDetail_1_1InternalNode.html#af5f5000f6f8d92fb1a8ea99824f80099">bpptree::detail::OrderedDetail&lt; KeyValue, KeyValueExtractor, LessThan, binary_search &gt;::InternalNode&lt; Parent, InternalSize &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase.html#a066ebeccdadf0fd6ae0541805b4f9ff2">bpptree::detail::InternalNodeBase&lt; Parent, Value, leaf_size, internal_size, depth_v &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1LeafNodeBase.html#a43c6ab69411c05fa3bbfbdb9a8e3114e">bpptree::detail::LeafNodeBase&lt; Parent, Value, leaf_size &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1OrderedDetail_1_1InternalNode.html#a470a44119b59ee98cb3c900f20e5c16b">bpptree::detail::OrderedDetail&lt; KeyValue, KeyValueExtractor, LessThan, binary_search &gt;::InternalNode&lt; Parent, internal_size &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1OrderedDetail_1_1LeafNode.html#a961fdfc5a029bfa5c6aacfe8141f0fc1">bpptree::detail::OrderedDetail&lt; KeyValue, KeyValueExtractor, LessThan, binary_search &gt;::LeafNode&lt; Parent &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1SummedInternalNode.html#a281ce3e510571a744ac3177dc585ad4d">bpptree::detail::SummedInternalNode&lt; Parent, SumType, internal_size &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1SummedLeafNode.html#a7fc80252f0b035028b10f23fd25cc8e5">bpptree::detail::SummedLeafNode&lt; Parent, SumType, Extractor &gt;</a>
 </li>
 <li>compute_delta_insert()
-: <a class="el" href="structbpptree_1_1detail_1_1LeafNodeBase.html#aeaae37ceaaf27697225fe91885cd0f17">bpptree::detail::LeafNodeBase&lt; Parent, Value, LeafSize &gt;</a>
+: <a class="el" href="structbpptree_1_1detail_1_1LeafNodeBase.html#a19e331f738677ba7af0c86ca1d67bd6d">bpptree::detail::LeafNodeBase&lt; Parent, Value, leaf_size &gt;</a>
 </li>
 <li>compute_delta_insert2()
 : <a class="el" href="structbpptree_1_1detail_1_1BPPTREE__MINMAX__UPPERDetail_1_1LeafNode.html#af0ed480a4208458e767a899eb39d044e">bpptree::detail::BPPTREE_MINMAX_UPPERDetail&lt; Value, KeyExtractor, Comp &gt;::LeafNode&lt; Parent &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1IndexedLeafNode.html#aa533346c69127dff044e10209ab1c9a2">bpptree::detail::IndexedLeafNode&lt; Parent, Value, SizeType &gt;</a>
-, <a class="el" href="structbpptree_1_1detail_1_1LeafNodeBase.html#ade826d6961ae714ec5a1025c673d3589">bpptree::detail::LeafNodeBase&lt; Parent, Value, LeafSize &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1LeafNodeBase.html#a21e3e9961631c205928e9ad2a9c7c88e">bpptree::detail::LeafNodeBase&lt; Parent, Value, leaf_size &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1OrderedDetail_1_1LeafNode.html#a67976de2780e2e9a1080612b4a79e0c4">bpptree::detail::OrderedDetail&lt; KeyValue, KeyValueExtractor, LessThan, binary_search &gt;::LeafNode&lt; Parent &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1SummedLeafNode.html#a6236d86024d0f4304188cea73af78716">bpptree::detail::SummedLeafNode&lt; Parent, SumType, Extractor &gt;</a>
 </li>
 <li>compute_delta_replace()
-: <a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase.html#ab27a69509c6991f4ba29346839daf14e">bpptree::detail::InternalNodeBase&lt; Parent, Value, LeafSize, InternalSize, Depth &gt;</a>
+: <a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase.html#a7db0db07f93d852e2983941d0815f67e">bpptree::detail::InternalNodeBase&lt; Parent, Value, leaf_size, internal_size, depth_v &gt;</a>
 </li>
 <li>compute_delta_replace2()
 : <a class="el" href="structbpptree_1_1detail_1_1BPPTREE__MINMAX__UPPERDetail_1_1InternalNode.html#a774f4b3b4918bdab8249072e65759bdb">bpptree::detail::BPPTREE_MINMAX_UPPERDetail&lt; Value, KeyExtractor, Comp &gt;::InternalNode&lt; Parent, internal_size &gt;</a>
-, <a class="el" href="structbpptree_1_1detail_1_1IndexedInternalNode.html#ac54f7616b10c42db594d803ef97a7191">bpptree::detail::IndexedInternalNode&lt; Parent, Value, SizeType, InternalSize &gt;</a>
-, <a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase.html#af72bf95496f72df5f68fff4bdedafccf">bpptree::detail::InternalNodeBase&lt; Parent, Value, LeafSize, InternalSize, Depth &gt;</a>
-, <a class="el" href="structbpptree_1_1detail_1_1OrderedDetail_1_1InternalNode.html#a2d41fadded2295799187baa3f2b987d8">bpptree::detail::OrderedDetail&lt; KeyValue, KeyValueExtractor, LessThan, binary_search &gt;::InternalNode&lt; Parent, InternalSize &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1IndexedInternalNode.html#a55ba16a4805b1f2fa17420800ebeb707">bpptree::detail::IndexedInternalNode&lt; Parent, Value, SizeType, internal_size &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase.html#a3e85951a4fafb841911dd19a63fa52cb">bpptree::detail::InternalNodeBase&lt; Parent, Value, leaf_size, internal_size, depth_v &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1OrderedDetail_1_1InternalNode.html#acaf75caec3ff41d298c2bd9f0eddc4fb">bpptree::detail::OrderedDetail&lt; KeyValue, KeyValueExtractor, LessThan, binary_search &gt;::InternalNode&lt; Parent, internal_size &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1SummedInternalNode.html#aefdeabcba1534011547e63f7cb2b27a3">bpptree::detail::SummedInternalNode&lt; Parent, SumType, internal_size &gt;</a>
 </li>
 <li>compute_delta_set()
-: <a class="el" href="structbpptree_1_1detail_1_1LeafNodeBase.html#a8878ad4ef5eb3f42981edc8295817c03">bpptree::detail::LeafNodeBase&lt; Parent, Value, LeafSize &gt;</a>
+: <a class="el" href="structbpptree_1_1detail_1_1LeafNodeBase.html#ab47b351e2f233c6a8dfcab82eb332610">bpptree::detail::LeafNodeBase&lt; Parent, Value, leaf_size &gt;</a>
 </li>
 <li>compute_delta_set2()
 : <a class="el" href="structbpptree_1_1detail_1_1BPPTREE__MINMAX__UPPERDetail_1_1LeafNode.html#a709a6a6ffe8d4567a3c96a0be20ad554">bpptree::detail::BPPTREE_MINMAX_UPPERDetail&lt; Value, KeyExtractor, Comp &gt;::LeafNode&lt; Parent &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1IndexedLeafNode.html#acb2f34c98911a69470dce08c95b4c20d">bpptree::detail::IndexedLeafNode&lt; Parent, Value, SizeType &gt;</a>
-, <a class="el" href="structbpptree_1_1detail_1_1LeafNodeBase.html#a71c474515d5279323d04ab18bbbbedee">bpptree::detail::LeafNodeBase&lt; Parent, Value, LeafSize &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1LeafNodeBase.html#a0605dab95c40c1d4e935bbeb21118c1e">bpptree::detail::LeafNodeBase&lt; Parent, Value, leaf_size &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1OrderedDetail_1_1LeafNode.html#a388c672263c9998d9855e62fd79e8b10">bpptree::detail::OrderedDetail&lt; KeyValue, KeyValueExtractor, LessThan, binary_search &gt;::LeafNode&lt; Parent &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1SummedLeafNode.html#a42daa8ce36e4ead2cf4bdd60da43d247">bpptree::detail::SummedLeafNode&lt; Parent, SumType, Extractor &gt;</a>
 </li>
 <li>compute_delta_split()
-: <a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase.html#a25cefc0ff8f66809e7cf0ff6ea2e4fb7">bpptree::detail::InternalNodeBase&lt; Parent, Value, LeafSize, InternalSize, Depth &gt;</a>
+: <a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase.html#a85fd559244f6f059da518699418a7f03">bpptree::detail::InternalNodeBase&lt; Parent, Value, leaf_size, internal_size, depth_v &gt;</a>
 </li>
 <li>compute_delta_split2()
 : <a class="el" href="structbpptree_1_1detail_1_1BPPTREE__MINMAX__UPPERDetail_1_1InternalNode.html#a15cd1de6df1dacd6bdeeca55ddb1a956">bpptree::detail::BPPTREE_MINMAX_UPPERDetail&lt; Value, KeyExtractor, Comp &gt;::InternalNode&lt; Parent, internal_size &gt;</a>
-, <a class="el" href="structbpptree_1_1detail_1_1IndexedInternalNode.html#a54ff26aa1c2688578453baa094476db8">bpptree::detail::IndexedInternalNode&lt; Parent, Value, SizeType, InternalSize &gt;</a>
-, <a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase.html#ab38b56241b3dd13f44b67ba3f413d0ab">bpptree::detail::InternalNodeBase&lt; Parent, Value, LeafSize, InternalSize, Depth &gt;</a>
-, <a class="el" href="structbpptree_1_1detail_1_1OrderedDetail_1_1InternalNode.html#a5a55824c5bb5e50b380a7b2341432a78">bpptree::detail::OrderedDetail&lt; KeyValue, KeyValueExtractor, LessThan, binary_search &gt;::InternalNode&lt; Parent, InternalSize &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1IndexedInternalNode.html#af8eed541d8aac8fbf0c83cca3d5bfe1b">bpptree::detail::IndexedInternalNode&lt; Parent, Value, SizeType, internal_size &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase.html#acbfc2205ac43bfbb22a683782af5ffa3">bpptree::detail::InternalNodeBase&lt; Parent, Value, leaf_size, internal_size, depth_v &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1OrderedDetail_1_1InternalNode.html#ab7cb4bb1cee694e5c98ae8e7bec8d6c8">bpptree::detail::OrderedDetail&lt; KeyValue, KeyValueExtractor, LessThan, binary_search &gt;::InternalNode&lt; Parent, internal_size &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1SummedInternalNode.html#af093932da8f686171f13580cf5beba9a">bpptree::detail::SummedInternalNode&lt; Parent, SumType, internal_size &gt;</a>
 </li>
 <li>contains()
 : <a class="el" href="structbpptree_1_1detail_1_1Ordered_1_1Shared.html#af4ecb245f290356cb8a06701d7d5734f">bpptree::detail::Ordered&lt; KeyValue, KeyValueExtractor, LessThan, BinarySearch &gt;::Shared&lt; Parent &gt;</a>
-, <a class="el" href="structbpptree_1_1detail_1_1OrderedDetail_1_1InternalNode.html#ac5239f729aeb381777e2ae8e4aa5e049">bpptree::detail::OrderedDetail&lt; KeyValue, KeyValueExtractor, LessThan, binary_search &gt;::InternalNode&lt; Parent, InternalSize &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1OrderedDetail_1_1InternalNode.html#af4b69bb5164fccab1a96f1a3b5ce5594">bpptree::detail::OrderedDetail&lt; KeyValue, KeyValueExtractor, LessThan, binary_search &gt;::InternalNode&lt; Parent, internal_size &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1OrderedDetail_1_1LeafNode.html#a95b6bfd4c5dd77bcdd97f52bfcaba29c">bpptree::detail::OrderedDetail&lt; KeyValue, KeyValueExtractor, LessThan, binary_search &gt;::LeafNode&lt; Parent &gt;</a>
 </li>
 <li>copy_element()
-: <a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase.html#a7641b12c2910b8d883944b37600c4c0e">bpptree::detail::InternalNodeBase&lt; Parent, Value, LeafSize, InternalSize, Depth &gt;</a>
+: <a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase.html#a02e359d668bae1b3b66066589cb3be2a">bpptree::detail::InternalNodeBase&lt; Parent, Value, leaf_size, internal_size, depth_v &gt;</a>
 </li>
 <li>copy_element2()
 : <a class="el" href="structbpptree_1_1detail_1_1BPPTREE__MINMAX__UPPERDetail_1_1InternalNode.html#a3b32a46864da63262371c18ed4d59099">bpptree::detail::BPPTREE_MINMAX_UPPERDetail&lt; Value, KeyExtractor, Comp &gt;::InternalNode&lt; Parent, internal_size &gt;</a>
-, <a class="el" href="structbpptree_1_1detail_1_1IndexedInternalNode.html#a7e504302756a1f5962d179d75b47d3a0">bpptree::detail::IndexedInternalNode&lt; Parent, Value, SizeType, InternalSize &gt;</a>
-, <a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase.html#a32f4e95f623765aeea8d701dc460b93a">bpptree::detail::InternalNodeBase&lt; Parent, Value, LeafSize, InternalSize, Depth &gt;</a>
-, <a class="el" href="structbpptree_1_1detail_1_1OrderedDetail_1_1InternalNode.html#ae90aedf7a83d723affdde3bcf9c947df">bpptree::detail::OrderedDetail&lt; KeyValue, KeyValueExtractor, LessThan, binary_search &gt;::InternalNode&lt; Parent, InternalSize &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1IndexedInternalNode.html#a041c97241e5616fbc3668c72ec37ec75">bpptree::detail::IndexedInternalNode&lt; Parent, Value, SizeType, internal_size &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase.html#a257a3fcbd651ca9330a1c1ff24a02eaf">bpptree::detail::InternalNodeBase&lt; Parent, Value, leaf_size, internal_size, depth_v &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1OrderedDetail_1_1InternalNode.html#a98421239e772ecbdd250c97d3f54a466">bpptree::detail::OrderedDetail&lt; KeyValue, KeyValueExtractor, LessThan, binary_search &gt;::InternalNode&lt; Parent, internal_size &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1SummedInternalNode.html#ac94565833f5dfe464e5cf622c31b390b">bpptree::detail::SummedInternalNode&lt; Parent, SumType, internal_size &gt;</a>
 </li>
 <li>crbegin()

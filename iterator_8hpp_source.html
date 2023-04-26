@@ -185,15 +185,15 @@ $(function() {
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        }</div>
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    };</div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160; </div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <span class="keyword">template</span> &lt;<span class="keywordtype">bool</span> C = is_const, std::enable_if_t&lt;!C, <span class="keywordtype">bool</span>&gt; = true&gt;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <span class="keyword">template</span> &lt;<span class="keywordtype">bool</span> c = is_const, std::enable_if_t&lt;!c, <span class="keywordtype">bool</span>&gt; = true&gt;</div>
 <div class="line"><a name="l00118"></a><span class="lineno"><a class="line" href="structbpptree_1_1detail_1_1IteratorDetail.html#aee7272f080683d888f8dc861160832be">  118</a></span>&#160;    [[nodiscard]] <a class="code" href="structbpptree_1_1detail_1_1IteratorDetail_1_1ProxyRef.html">ProxyRef</a> <a class="code" href="structbpptree_1_1detail_1_1IteratorDetail.html#aee7272f080683d888f8dc861160832be">operator*</a>() {</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        static_assert(C == is_const);</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        static_assert(c == is_const);</div>
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="structbpptree_1_1detail_1_1IteratorDetail_1_1ProxyRef.html">ProxyRef</a>(*<span class="keyword">this</span>);</div>
 <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    }</div>
 <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160; </div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <span class="keyword">template</span> &lt;<span class="keywordtype">bool</span> C = is_const, std::enable_if_t&lt;C, <span class="keywordtype">bool</span>&gt; = true&gt;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <span class="keyword">template</span> &lt;<span class="keywordtype">bool</span> c = is_const, std::enable_if_t&lt;c, <span class="keywordtype">bool</span>&gt; = true&gt;</div>
 <div class="line"><a name="l00124"></a><span class="lineno"><a class="line" href="structbpptree_1_1detail_1_1IteratorDetail.html#a64bed00953b3d65c50904175a30ac8de">  124</a></span>&#160;    [[nodiscard]] Value <span class="keyword">const</span>&amp; <a class="code" href="structbpptree_1_1detail_1_1IteratorDetail.html#a64bed00953b3d65c50904175a30ac8de">operator*</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        static_assert(C == is_const);</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        static_assert(c == is_const);</div>
 <div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="structbpptree_1_1detail_1_1IteratorDetail.html#a78e44a60cdccb3c004cc0f3efdd8d6d4">get</a>();</div>
 <div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    }</div>
 <div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160; </div>

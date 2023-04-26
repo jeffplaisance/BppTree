@@ -90,9 +90,9 @@ Public Types</h2></td></tr>
 <tr class="memitem:a3bbcb87c0bda2e4a34113430f521a8bc"><td class="memTemplParams" colspan="2">template&lt;typename Parent &gt; </td></tr>
 <tr class="memitem:a3bbcb87c0bda2e4a34113430f521a8bc"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1Indexed.html#a3bbcb87c0bda2e4a34113430f521a8bc">LeafNode</a> = <a class="el" href="structbpptree_1_1detail_1_1IndexedLeafNode.html">IndexedLeafNode</a>&lt; Parent, Value, SizeType &gt;</td></tr>
 <tr class="separator:a3bbcb87c0bda2e4a34113430f521a8bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a21ecf6bd7e4e94042043af8449725382"><td class="memTemplParams" colspan="2">template&lt;typename Parent , auto InternalSize&gt; </td></tr>
-<tr class="memitem:a21ecf6bd7e4e94042043af8449725382"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1Indexed.html#a21ecf6bd7e4e94042043af8449725382">InternalNode</a> = <a class="el" href="structbpptree_1_1detail_1_1IndexedInternalNode.html">IndexedInternalNode</a>&lt; Parent, Value, SizeType, InternalSize &gt;</td></tr>
-<tr class="separator:a21ecf6bd7e4e94042043af8449725382"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3be194a353605039693c6cb7e849e10e"><td class="memTemplParams" colspan="2">template&lt;typename Parent , auto internal_size&gt; </td></tr>
+<tr class="memitem:a3be194a353605039693c6cb7e849e10e"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1Indexed.html#a3be194a353605039693c6cb7e849e10e">InternalNode</a> = <a class="el" href="structbpptree_1_1detail_1_1IndexedInternalNode.html">IndexedInternalNode</a>&lt; Parent, Value, SizeType, internal_size &gt;</td></tr>
+<tr class="separator:a3be194a353605039693c6cb7e849e10e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a590b795dfbd83900255a206da47ca4d3"><td class="memTemplParams" colspan="2">template&lt;typename Parent &gt; </td></tr>
 <tr class="memitem:a590b795dfbd83900255a206da47ca4d3"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1Indexed.html#a590b795dfbd83900255a206da47ca4d3">NodeInfo</a> = <a class="el" href="structbpptree_1_1detail_1_1IndexedNodeInfo.html">IndexedNodeInfo</a>&lt; Parent, SizeType &gt;</td></tr>
 <tr class="separator:a590b795dfbd83900255a206da47ca4d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -109,18 +109,18 @@ struct bpptree::detail::Indexed&lt; Value, SizeType &gt;</h3>
   </dd>
 </dl>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="a21ecf6bd7e4e94042043af8449725382"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a21ecf6bd7e4e94042043af8449725382">&#9670;&nbsp;</a></span>InternalNode</h2>
+<a id="a3be194a353605039693c6cb7e849e10e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3be194a353605039693c6cb7e849e10e">&#9670;&nbsp;</a></span>InternalNode</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;typename Value , typename SizeType  = size_t&gt; </div>
 <div class="memtemplate">
-template&lt;typename Parent , auto InternalSize&gt; </div>
+template&lt;typename Parent , auto internal_size&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1Indexed.html">bpptree::detail::Indexed</a>&lt; Value, SizeType &gt;::<a class="el" href="structbpptree_1_1detail_1_1Indexed.html#a21ecf6bd7e4e94042043af8449725382">InternalNode</a> =  <a class="el" href="structbpptree_1_1detail_1_1IndexedInternalNode.html">IndexedInternalNode</a>&lt;Parent, Value, SizeType, InternalSize&gt;</td>
+          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1Indexed.html">bpptree::detail::Indexed</a>&lt; Value, SizeType &gt;::<a class="el" href="structbpptree_1_1detail_1_1Indexed.html#a3be194a353605039693c6cb7e849e10e">InternalNode</a> =  <a class="el" href="structbpptree_1_1detail_1_1IndexedInternalNode.html">IndexedInternalNode</a>&lt;Parent, Value, SizeType, internal_size&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
