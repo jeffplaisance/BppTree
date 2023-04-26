@@ -247,11 +247,11 @@ public:
 
         template <typename... Args>
         uint64_t insert2(uint64_t const& it, Args&&... args) {
-            return this->self().dispatch(Modify<Insert>(), FindIterator(), it, std::forward<Args>(args)...);
+            return this->self().dispatch(Modify<Insert>(), find_iterator, it, std::forward<Args>(args)...);
         }
 
         uint64_t erase2(uint64_t const& it) {
-            return this->self().dispatch(Modify<Erase>(), FindIterator(), it);
+            return this->self().dispatch(Modify<Erase>(), find_iterator, it);
         }
 
     protected:
@@ -261,7 +261,7 @@ public:
     public:
         template <typename It, typename... Args>
         void assign(It const& it, Args&&... args) {
-            this->self().dispatch(Modify<Assign>(), FindIterator(), it.iter, std::forward<Args>(args)...);
+            this->self().dispatch(Modify<Assign>(), find_iterator, it.iter, std::forward<Args>(args)...);
         }
 
         template <typename It, typename... Args>
@@ -282,17 +282,17 @@ public:
 
         template <typename It, typename U>
         void update(It const& it, U&& updater) {
-            this->self().dispatch(Modify<Update>(), FindIterator(), it.iter, updater);
+            this->self().dispatch(Modify<Update>(), find_iterator, it.iter, updater);
         }
 
         template <typename... Args>
         void emplace_front(Args&&... args) {
-            this->self().dispatch(Modify<Insert>(), FindFirst(), Empty::empty, std::forward<Args>(args)...);
+            this->self().dispatch(Modify<Insert>(), find_first, Empty::empty, std::forward<Args>(args)...);
         }
 
         template <typename... Args>
         void emplace_back(Args&&... args) {
-            this->self().dispatch(Modify<Insert>(), FindLast(), Empty::empty, std::forward<Args>(args)...);
+            this->self().dispatch(Modify<Insert>(), find_last, Empty::empty, std::forward<Args>(args)...);
         }
 
         template <typename... Args>
@@ -307,13 +307,13 @@ public:
 
         Value pop_front() {
             Value ret = this->self().front();
-            this->self().dispatch(Modify<Erase>(), FindFirst(), Empty::empty);
+            this->self().dispatch(Modify<Erase>(), find_first, Empty::empty);
             return ret;
         }
 
         Value pop_back() {
             Value ret = this->self().back();
-            this->self().dispatch(Modify<Erase>(), FindLast(), Empty::empty);
+            this->self().dispatch(Modify<Erase>(), find_last, Empty::empty);
             return ret;
         }
 

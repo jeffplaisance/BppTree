@@ -52,8 +52,8 @@ target_compile_options(btree_test PRIVATE -Werror)
 target_compile_definitions(btree_test PRIVATE BPPTREE_TEST_COUNT_ALLOCATIONS)
 
 if (ENABLE_UBSAN)
-target_compile_options(btree_test PRIVATE -fsanitize=undefined)
-target_link_options(btree_test PRIVATE -fsanitize=undefined)
+    target_compile_options(btree_test PRIVATE -fsanitize=undefined)
+    target_link_options(btree_test PRIVATE -fsanitize=undefined)
 endif()
 
 #target_compile_options(btree_clion PRIVATE -ftime-trace)
