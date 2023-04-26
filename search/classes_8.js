@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['leafnode_486',['LeafNode',['../structbpptree_1_1detail_1_1BPPTREE__MINMAX__UPPERDetail_1_1LeafNode.html',1,'bpptree::detail::BPPTREE_MINMAX_UPPERDetail&lt; Value, KeyExtractor, Comp &gt;::LeafNode&lt; Parent &gt;'],['../structbpptree_1_1detail_1_1NodeTypesDetail_1_1LeafNode.html',1,'bpptree::detail::NodeTypesDetail&lt; Value, LeafNodeBytes, InternalNodeBytes, depthLimit, Ts &gt;::LeafNode&lt; LeafSize &gt;'],['../structbpptree_1_1detail_1_1OrderedDetail_1_1LeafNode.html',1,'bpptree::detail::OrderedDetail&lt; KeyValue, KeyValueExtractor, LessThan, binarySearch &gt;::LeafNode&lt; Parent &gt;']]],
-  ['leafnodebase_487',['LeafNodeBase',['../structbpptree_1_1detail_1_1LeafNodeBase.html',1,'bpptree::detail']]],
-  ['leafnodemixin_488',['LeafNodeMixin',['../structbpptree_1_1detail_1_1NodeTypesDetail_1_1LeafNodeMixin.html',1,'bpptree::detail::NodeTypesDetail']]]
+  ['leafnode_489',['LeafNode',['../structbpptree_1_1detail_1_1BPPTREE__MINMAX__UPPERDetail_1_1LeafNode.html',1,'bpptree::detail::BPPTREE_MINMAX_UPPERDetail&lt; Value, KeyExtractor, Comp &gt;::LeafNode&lt; Parent &gt;'],['../structbpptree_1_1detail_1_1NodeTypesDetail_1_1LeafNode.html',1,'bpptree::detail::NodeTypesDetail&lt; Value, LeafNodeBytes, InternalNodeBytes, depthLimit, Ts &gt;::LeafNode&lt; LeafSize &gt;'],['../structbpptree_1_1detail_1_1OrderedDetail_1_1LeafNode.html',1,'bpptree::detail::OrderedDetail&lt; KeyValue, KeyValueExtractor, LessThan, binarySearch &gt;::LeafNode&lt; Parent &gt;']]],
+  ['leafnodebase_490',['LeafNodeBase',['../structbpptree_1_1detail_1_1LeafNodeBase.html',1,'bpptree::detail']]],
+  ['leafnodemixin_491',['LeafNodeMixin',['../structbpptree_1_1detail_1_1NodeTypesDetail_1_1LeafNodeMixin.html',1,'bpptree::detail::NodeTypesDetail']]]
 ];
