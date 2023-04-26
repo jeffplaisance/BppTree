@@ -12,19 +12,20 @@
 #include <functional>
 #include "nodeptr.hpp"
 
-#if defined(__cpp_lib_hardware_interference_size)
-#define BPPTREE_CACHE_ALIGN std::hardware_constructive_interference_size
-#else
-#define BPPTREE_CACHE_ALIGN 64
-#endif
-
 namespace bpptree {
 namespace detail {
 
+#if defined(__cpp_lib_hardware_interference_size)
+using std::hardware_constructive_interference_size;
+#else
+static constexpr size_t hardware_constructive_interference_size = 64;
+#endif
+
 using IndexType = std::int_fast32_t;
 
+//a std::array that doesn't cause warnings when you index into it with signed integers when -Wsign-conversion is enabled
 template <typename T, size_t N>
-struct safe_array : std::array<T, N> {
+struct Array : std::array<T, N> {
     template <typename I, std::enable_if_t<std::is_integral_v<I>, bool> = true>
     decltype(auto) operator[](I const index) noexcept {
         return std::array<T, N>::operator[](static_cast<size_t const>(index));

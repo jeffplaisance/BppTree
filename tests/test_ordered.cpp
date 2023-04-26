@@ -11,7 +11,7 @@ template <bool binary_search>
 void test_ordered_transient() {
     static constexpr int n = 1000*1000;
 
-    safe_vector<int32_t> const& rand_ints = RandInts<int32_t, n>::ints;
+    Vector<int32_t> const& rand_ints = RandInts<int32_t, n>::ints;
     typename OrderedTree<std::pair<int, int>, PairExtractor<0>, int64_t, PairExtractor<1>, MinComparator, binary_search>::Transient tree{};
     int start = 0;
     int end = n - 1;
@@ -111,7 +111,7 @@ template <bool binary_search>
 void test_ordered_persistent() {
     static constexpr int n = 100*1000;
 
-    safe_vector<int32_t> const& rand_ints = RandInts<int32_t, n>::ints;
+    Vector<int32_t> const& rand_ints = RandInts<int32_t, n>::ints;
     typename OrderedTree<std::pair<int, int>, PairExtractor<0>, int64_t, PairExtractor<1>, MinComparator, binary_search>::Persistent tree{};
     int start = 0;
     int end = n - 1;
@@ -181,7 +181,7 @@ TEST(BppTreeTest, TestOrderedPersistentBinarySearch) {
 
 TEST(BppTreeTest, TestOrderedTransientSet) {
     static constexpr int n = 100*1000;
-    safe_vector<int32_t> const& rand_ints = RandInts<int32_t, n>::ints;
+    Vector<int32_t> const& rand_ints = RandInts<int32_t, n>::ints;
 
     using TreeType = BppTree<int32_t, 512, 512, 6>::mixins<OrderedBuilder<>::extractor<ValueExtractor>>::Transient;
     TreeType tree{};

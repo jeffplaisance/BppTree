@@ -15,7 +15,7 @@ inline constexpr int num_ints_small = 100*1000;
 inline constexpr int num_ints_large = 1000*1000;
 
 template <typename T>
-struct safe_vector : std::vector<T> {
+struct Vector : std::vector<T> {
 
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "HidingNonVirtualFunction"
@@ -38,8 +38,8 @@ struct safe_vector : std::vector<T> {
 template <typename T, size_t n>
 struct RandInts {
 
-    static safe_vector<T> get_ints() {
-        safe_vector<T> rand_ints{};
+    static Vector<T> get_ints() {
+        Vector<T> rand_ints{};
         for (size_t i = 0; i < n; ++i) {
             rand_ints.push_back(static_cast<T>(i));
         }
@@ -49,7 +49,7 @@ struct RandInts {
         return rand_ints;
     }
 
-    static inline safe_vector<T> const ints = get_ints();
+    static inline Vector<T> const ints = get_ints();
 };
 
 template <

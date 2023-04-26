@@ -52,7 +52,7 @@ struct NodeTypesDetail {
     #endif
 
     template <auto LeafSize>
-    struct alignas(BPPTREE_CACHE_ALIGN) LeafNode : public LeafNodeMixin<LeafNode<LeafSize>, LeafSize>::Type {
+    struct alignas(hardware_constructive_interference_size) LeafNode : public LeafNodeMixin<LeafNode<LeafSize>, LeafSize>::Type {
 
         using Parent = typename LeafNodeMixin<LeafNode<LeafSize>, LeafSize>::Type;
 
@@ -67,7 +67,7 @@ struct NodeTypesDetail {
     };
 
     template<auto LeafSize, auto InternalSize, auto Depth>
-    struct alignas(BPPTREE_CACHE_ALIGN) InternalNode : public InternalNodeMixin<InternalNode<LeafSize, InternalSize, Depth>, LeafSize, InternalSize, Depth>::Type {
+    struct alignas(hardware_constructive_interference_size) InternalNode : public InternalNodeMixin<InternalNode<LeafSize, InternalSize, Depth>, LeafSize, InternalSize, Depth>::Type {
 
         using Parent = typename InternalNodeMixin<InternalNode<LeafSize, InternalSize, Depth>, LeafSize, InternalSize, Depth>::Type;
 

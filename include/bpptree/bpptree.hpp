@@ -103,7 +103,7 @@ public:
             return treeSize;
         }
 
-        [[nodiscard]] size_t max_size() {
+        [[nodiscard]] constexpr size_t max_size() {
             return maxSize;
         }
 
@@ -111,7 +111,7 @@ public:
             return std::as_const(this->self()).dispatch([](auto const& root){ return static_cast<size_t>(root->depth); });
         }
 
-        [[nodiscard]] size_t max_depth() {
+        [[nodiscard]] constexpr size_t max_depth() {
             return maxDepth;
         }
 

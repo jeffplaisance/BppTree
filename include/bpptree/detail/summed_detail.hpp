@@ -103,7 +103,7 @@ struct SummedInternalNode : public Parent {
     template <typename PtrType>
     using SplitType = typename Parent::template SplitType<PtrType>;
 
-    safe_array<SumType, internal_size> child_sums{};
+    Array<SumType, internal_size> child_sums{};
 
     void moveElement2(IndexType destIndex, NodeType& source, IndexType sourceIndex) {
         child_sums[destIndex] = std::move(source.child_sums[sourceIndex]);

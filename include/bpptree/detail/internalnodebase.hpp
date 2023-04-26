@@ -42,7 +42,7 @@ struct InternalNodeBase : public Parent {
 
     uint16_t length = 0;
     bool persistent = false;
-    safe_array<NodePtr<ChildType>, InternalSize> pointers{};
+    Array<NodePtr<ChildType>, InternalSize> pointers{};
 
     static IndexType getIndex(uint64_t it) noexcept {
         return (it >> itShift) & itMask;

@@ -45,24 +45,24 @@ struct PointerComparator {
 };
 
 TEST(BppTreeTest, TestReferenceWrapperTransient) {
-    uint64_t allocations = 0;
-    uint64_t deallocations = 0;
+    uint64_t allocations2 = 0;
+    uint64_t deallocations2 = 0;
     {
         static constexpr int n = 1000 * 1000;
-        safe_vector<int32_t> const& rand_ints = RandInts<int32_t, n>::ints;
+        Vector<int32_t> const& rand_ints = RandInts<int32_t, n>::ints;
         typename OrderedTree<std::shared_ptr<std::tuple<int, int>>, PointerTupleExtractor<0>, int64_t, SummedTupleExtractor<1>, PointerComparator>::Transient tree{};
         int start = 0;
         int end = n - 1;
         auto startTime = std::chrono::steady_clock::now();
         for (int i = 0; i < n / 2; i++) {
-            tree.insert_or_assign(std::shared_ptr<std::tuple<int, int>>(new std::tuple(end, rand_ints[end]), [&deallocations](std::tuple<int, int>* t){ delete t; ++deallocations; }));
-            tree.insert_or_assign(std::shared_ptr<std::tuple<int, int>>(new std::tuple(start, rand_ints[start]), [&deallocations](std::tuple<int, int>* t){ delete t; ++deallocations; }));
+            tree.insert_or_assign(std::shared_ptr<std::tuple<int, int>>(new std::tuple(end, rand_ints[end]), [&deallocations2](std::tuple<int, int>* t){ delete t; ++deallocations2; }));
+            tree.insert_or_assign(std::shared_ptr<std::tuple<int, int>>(new std::tuple(start, rand_ints[start]), [&deallocations2](std::tuple<int, int>* t){ delete t; ++deallocations2; }));
             ++start;
             --end;
-            allocations += 2;
+            allocations2 += 2;
         }
-        cout << "shared_ptr allocations: " << allocations << endl;
-        cout << "shared_ptr deallocations: " << deallocations << endl;
+        cout << "shared_ptr allocations: " << allocations2 << endl;
+        cout << "shared_ptr deallocations: " << deallocations2 << endl;
         auto endTime = std::chrono::steady_clock::now();
         std::chrono::duration<double> elapsed = endTime - startTime;
         cout << elapsed.count() << 's' << endl;
@@ -87,15 +87,15 @@ TEST(BppTreeTest, TestReferenceWrapperTransient) {
         start = 0;
         end = n - 1;
         for (int i = 0; i < n / 2; i++) {
-            tree.insert_or_assign(std::shared_ptr<std::tuple<int, int>>(new std::tuple(end, rand_ints[end]), [&deallocations](std::tuple<int, int>* t){ delete t; ++deallocations; }));
-            tree.insert_or_assign(std::shared_ptr<std::tuple<int, int>>(new std::tuple(start, rand_ints[start]), [&deallocations](std::tuple<int, int>* t){ delete t; ++deallocations; }));
+            tree.insert_or_assign(std::shared_ptr<std::tuple<int, int>>(new std::tuple(end, rand_ints[end]), [&deallocations2](std::tuple<int, int>* t){ delete t; ++deallocations2; }));
+            tree.insert_or_assign(std::shared_ptr<std::tuple<int, int>>(new std::tuple(start, rand_ints[start]), [&deallocations2](std::tuple<int, int>* t){ delete t; ++deallocations2; }));
             ++start;
             --end;
-            allocations += 2;
+            allocations2 += 2;
         }
         cout << "size: " << tree.size() << ", n: " << n << endl;
-        cout << "shared_ptr allocations: " << allocations << endl;
-        cout << "shared_ptr deallocations: " << deallocations << endl;
+        cout << "shared_ptr allocations: " << allocations2 << endl;
+        cout << "shared_ptr deallocations: " << deallocations2 << endl;
         cout << "deleting every other element from ordered tree" << endl;
         sorted_rand_ints.clear();
         int deleted_keys = 0;
@@ -103,7 +103,7 @@ TEST(BppTreeTest, TestReferenceWrapperTransient) {
             if (i % 2 == 0) {
                 tree.erase_key(&rand_ints[i]);
                 ++deleted_keys;
-                ASSERT_EQ(deleted_keys, deallocations - 1000000);
+                ASSERT_EQ(deleted_keys, deallocations2 - 1000000);
             } else {
                 sorted_rand_ints.push_back(rand_ints[i] % n);
             }
@@ -111,8 +111,8 @@ TEST(BppTreeTest, TestReferenceWrapperTransient) {
         sort(sorted_rand_ints.begin(), sorted_rand_ints.end());
         cout << "deleted " << deleted_keys << " keys" << endl;
         cout << "size: " << tree.size() << endl;
-        cout << "shared_ptr allocations: " << allocations << endl;
-        cout << "shared_ptr deallocations: " << deallocations << endl;
+        cout << "shared_ptr allocations: " << allocations2 << endl;
+        cout << "shared_ptr deallocations: " << deallocations2 << endl;
         sum = 0;
         for (size_t i = 0; i < sorted_rand_ints.size(); i++) {
             sum += std::get<1>(*tree.at_key(&sorted_rand_ints[i]));
@@ -127,39 +127,39 @@ TEST(BppTreeTest, TestReferenceWrapperTransient) {
             if (i % 2 == 1) {
                 tree.erase_key(&rand_ints[i]);
                 ++deleted_keys;
-                ASSERT_EQ(deleted_keys, deallocations - 1500000);
+                ASSERT_EQ(deleted_keys, deallocations2 - 1500000);
             }
         }
         cout << "deleted " << deleted_keys << " keys" << endl;
         cout << "size: " << tree.size() << endl;
-        cout << "shared_ptr allocations: " << allocations << endl;
-        cout << "shared_ptr deallocations: " << deallocations << endl;
+        cout << "shared_ptr allocations: " << allocations2 << endl;
+        cout << "shared_ptr deallocations: " << deallocations2 << endl;
         cout << "leaving scope, tree will be deleted" << endl;
     }
-    cout << "shared_ptr allocations: " << allocations << endl;
-    cout << "shared_ptr deallocations: " << deallocations << endl;
+    cout << "shared_ptr allocations: " << allocations2 << endl;
+    cout << "shared_ptr deallocations: " << deallocations2 << endl;
 }
 
 TEST(BppTreeTest, TestReferenceWrapperPersistent) {
-    uint64_t allocations = 0;
-    uint64_t deallocations = 0;
+    uint64_t allocations2 = 0;
+    uint64_t deallocations2 = 0;
     {
         static constexpr int n = 100 * 1000;
-        safe_vector<int32_t> const& rand_ints = RandInts<int32_t, n>::ints;
+        Vector<int32_t> const& rand_ints = RandInts<int32_t, n>::ints;
         using TreeType = OrderedTree<std::shared_ptr<std::tuple<int, int>>, PointerTupleExtractor<0>, int64_t, SummedTupleExtractor<1>, PointerComparator>::Persistent;
         TreeType tree{};
         int start = 0;
         int end = n - 1;
         auto startTime = std::chrono::steady_clock::now();
         for (int i = 0; i < n / 2; i++) {
-            tree = tree.insert_or_assign(std::shared_ptr<std::tuple<int, int>>(new std::tuple(end, rand_ints[end]), [&deallocations](std::tuple<int, int>* t){ delete t; ++deallocations; }));
-            tree = tree.insert_or_assign(std::shared_ptr<std::tuple<int, int>>(new std::tuple(start, rand_ints[start]), [&deallocations](std::tuple<int, int>* t){ delete t; ++deallocations; }));
+            tree = tree.insert_or_assign(std::shared_ptr<std::tuple<int, int>>(new std::tuple(end, rand_ints[end]), [&deallocations2](std::tuple<int, int>* t){ delete t; ++deallocations2; }));
+            tree = tree.insert_or_assign(std::shared_ptr<std::tuple<int, int>>(new std::tuple(start, rand_ints[start]), [&deallocations2](std::tuple<int, int>* t){ delete t; ++deallocations2; }));
             ++start;
             --end;
-            allocations += 2;
+            allocations2 += 2;
         }
-        cout << "shared_ptr allocations: " << allocations << endl;
-        cout << "shared_ptr deallocations: " << deallocations << endl;
+        cout << "shared_ptr allocations: " << allocations2 << endl;
+        cout << "shared_ptr deallocations: " << deallocations2 << endl;
         auto endTime = std::chrono::steady_clock::now();
         std::chrono::duration<double> elapsed = endTime - startTime;
         cout << elapsed.count() << 's' << endl;
@@ -184,15 +184,15 @@ TEST(BppTreeTest, TestReferenceWrapperPersistent) {
         start = 0;
         end = n - 1;
         for (int i = 0; i < n / 2; i++) {
-            tree = tree.insert_or_assign(std::shared_ptr<std::tuple<int, int>>(new std::tuple(end, rand_ints[end]), [&deallocations](std::tuple<int, int>* t){ delete t; ++deallocations; }));
-            tree = tree.insert_or_assign(std::shared_ptr<std::tuple<int, int>>(new std::tuple(start, rand_ints[start]), [&deallocations](std::tuple<int, int>* t){ delete t; ++deallocations; }));
+            tree = tree.insert_or_assign(std::shared_ptr<std::tuple<int, int>>(new std::tuple(end, rand_ints[end]), [&deallocations2](std::tuple<int, int>* t){ delete t; ++deallocations2; }));
+            tree = tree.insert_or_assign(std::shared_ptr<std::tuple<int, int>>(new std::tuple(start, rand_ints[start]), [&deallocations2](std::tuple<int, int>* t){ delete t; ++deallocations2; }));
             ++start;
             --end;
-            allocations += 2;
+            allocations2 += 2;
         }
         cout << "size: " << tree.size() << ", n: " << n << endl;
-        cout << "shared_ptr allocations: " << allocations << endl;
-        cout << "shared_ptr deallocations: " << deallocations << endl;
+        cout << "shared_ptr allocations: " << allocations2 << endl;
+        cout << "shared_ptr deallocations: " << deallocations2 << endl;
         cout << "deleting every other element from ordered tree" << endl;
         sorted_rand_ints.clear();
         int deleted_keys = 0;
@@ -200,7 +200,7 @@ TEST(BppTreeTest, TestReferenceWrapperPersistent) {
             if (i % 2 == 0) {
                 tree = tree.erase_key(&rand_ints[i]);
                 ++deleted_keys;
-                ASSERT_EQ(deleted_keys, deallocations - 100000);
+                ASSERT_EQ(deleted_keys, deallocations2 - 100000);
             } else {
                 sorted_rand_ints.push_back(rand_ints[i] % n);
             }
@@ -208,8 +208,8 @@ TEST(BppTreeTest, TestReferenceWrapperPersistent) {
         sort(sorted_rand_ints.begin(), sorted_rand_ints.end());
         cout << "deleted " << deleted_keys << " keys" << endl;
         cout << "size: " << tree.size() << endl;
-        cout << "shared_ptr allocations: " << allocations << endl;
-        cout << "shared_ptr deallocations: " << deallocations << endl;
+        cout << "shared_ptr allocations: " << allocations2 << endl;
+        cout << "shared_ptr deallocations: " << deallocations2 << endl;
         sum = 0;
         for (size_t i = 0; i < sorted_rand_ints.size(); i++) {
             sum += std::get<1>(*tree.at_key(&sorted_rand_ints[i]));
@@ -224,17 +224,17 @@ TEST(BppTreeTest, TestReferenceWrapperPersistent) {
             if (i % 2 == 1) {
                tree = tree.erase_key(&rand_ints[i]);
                 ++deleted_keys;
-                ASSERT_EQ(deleted_keys, deallocations - 150000);
+                ASSERT_EQ(deleted_keys, deallocations2 - 150000);
             }
         }
         cout << "deleted " << deleted_keys << " keys" << endl;
         cout << "size: " << tree.size() << endl;
-        cout << "shared_ptr allocations: " << allocations << endl;
-        cout << "shared_ptr deallocations: " << deallocations << endl;
+        cout << "shared_ptr allocations: " << allocations2 << endl;
+        cout << "shared_ptr deallocations: " << deallocations2 << endl;
         cout << "leaving scope, tree will be deleted" << endl;
     }
-    cout << "shared_ptr allocations: " << allocations << endl;
-    cout << "shared_ptr deallocations: " << deallocations << endl;
+    cout << "shared_ptr allocations: " << allocations2 << endl;
+    cout << "shared_ptr deallocations: " << deallocations2 << endl;
 }
 
 TEST(BppTreeTest, TestRefWrapMin) {
@@ -243,7 +243,7 @@ TEST(BppTreeTest, TestRefWrapMin) {
                     IndexedBuilder<>,
                     MinBuilder<>::extractor<PointerTupleExtractor<0>>::compare<PointerComparator>>;
     TreeType::Transient tree{};
-    safe_vector<uint32_t> vec{};
+    Vector<uint32_t> vec{};
     for (uint32_t i = 0; i < 1024; ++i) {
         auto r = static_cast<uint32_t>(rand());
         tree.emplace_back(std::make_shared<std::tuple<uint32_t, uint32_t>>(r, i));

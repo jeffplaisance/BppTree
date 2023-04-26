@@ -57,7 +57,7 @@ static void run_test(T& tree, B&& beginF, E&& endF) {
     }
     static constexpr int32_t m = 100*1000;
     auto rand_ints2 = RandInts<uint32_t, m>::ints;
-    safe_vector<int32_t> vec{};
+    Vector<int32_t> vec{};
     for (int32_t i = 0; i < m; ++i) {
         size_t index = rand_ints2[i] % (tree.size() + 1);
         if constexpr (!reverse) {
