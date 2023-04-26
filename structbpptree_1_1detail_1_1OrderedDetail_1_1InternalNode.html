@@ -127,9 +127,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a1c0eddd059e4ce38416d48fb9f9b96d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2e579bc1cb65a124065b9f3c5d526996"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacebpptree_1_1detail.html#ac54e96357f0c783fb2ec2d9d30158321">IndexType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1OrderedDetail_1_1InternalNode.html#a2e579bc1cb65a124065b9f3c5d526996">findKeyIndexChecked</a> (Key <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a> &amp;searchVal) <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a></td></tr>
 <tr class="separator:a2e579bc1cb65a124065b9f3c5d526996"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a33cbb909fa8bcde2b4b6a361b1976b61"><td class="memTemplParams" colspan="2">template&lt;typename F , typename R , typename S , typename... Args&gt; </td></tr>
-<tr class="memitem:a33cbb909fa8bcde2b4b6a361b1976b61"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1OrderedDetail_1_1InternalNode.html#a33cbb909fa8bcde2b4b6a361b1976b61">insertOrAssign</a> (Key <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a> &amp;searchVal, F &amp;&amp;finder, R &amp;&amp;doReplace, S &amp;&amp;doSplit, size_t &amp;size, uint64_t &amp;iter, bool rightMost, Args &amp;&amp;... args)</td></tr>
-<tr class="separator:a33cbb909fa8bcde2b4b6a361b1976b61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77b400c6567f58014b42457be71b378f"><td class="memTemplParams" colspan="2">template&lt;typename F , typename R , typename S , typename P , typename... Args&gt; </td></tr>
+<tr class="memitem:a77b400c6567f58014b42457be71b378f"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1OrderedDetail_1_1InternalNode.html#a77b400c6567f58014b42457be71b378f">insertOrAssign</a> (Key <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a> &amp;searchVal, F &amp;&amp;finder, R &amp;&amp;doReplace, S &amp;&amp;doSplit, size_t &amp;size, uint64_t &amp;iter, bool rightMost, P <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a> &amp;duplicate_policy, Args &amp;&amp;... args)</td></tr>
+<tr class="separator:a77b400c6567f58014b42457be71b378f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a08aa01c5d4feb8e76c1ddffdb3be7771"><td class="memItemLeft" align="right" valign="top">decltype(auto)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1OrderedDetail_1_1InternalNode.html#a08aa01c5d4feb8e76c1ddffdb3be7771">at_key</a> (Key <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a> &amp;searchVal) <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a></td></tr>
 <tr class="separator:a08aa01c5d4feb8e76c1ddffdb3be7771"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a76b942626d1f73aa2e78c73e6f66bcaf"><td class="memTemplParams" colspan="2">template&lt;typename L , typename Comp &gt; </td></tr>
@@ -683,8 +683,8 @@ template&lt;typename Parent , auto InternalSize&gt; </div>
 
 </div>
 </div>
-<a id="a33cbb909fa8bcde2b4b6a361b1976b61"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a33cbb909fa8bcde2b4b6a361b1976b61">&#9670;&nbsp;</a></span>insertOrAssign()</h2>
+<a id="a77b400c6567f58014b42457be71b378f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77b400c6567f58014b42457be71b378f">&#9670;&nbsp;</a></span>insertOrAssign()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -693,7 +693,7 @@ template&lt;typename KeyValue , typename KeyValueExtractor , typename LessThan ,
 <div class="memtemplate">
 template&lt;typename Parent , auto InternalSize&gt; </div>
 <div class="memtemplate">
-template&lt;typename F , typename R , typename S , typename... Args&gt; </div>
+template&lt;typename F , typename R , typename S , typename P , typename... Args&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -739,6 +739,12 @@ template&lt;typename F , typename R , typename S , typename... Args&gt; </div>
           <td></td>
           <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>rightMost</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">P <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a> &amp;&#160;</td>
+          <td class="paramname"><em>duplicate_policy</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>

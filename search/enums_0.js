@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['empty_865',['Empty',['../namespacebpptree_1_1detail.html#a9700ba1762f72ee6cd7468c33ab18fbb',1,'bpptree::detail']]]
+  ['duplicatepolicy_873',['DuplicatePolicy',['../namespacebpptree_1_1detail.html#a57789808e17b02fb1c940b7be698f319',1,'bpptree::detail']]]
 ];
