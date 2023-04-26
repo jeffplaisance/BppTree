@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>B++ Tree: bpptree::detail::IteratorDetail&lt; Value, Tree, LeafNode, isConst, reverse &gt; Struct Template Reference</title>
+<title>B++ Tree: bpptree::detail::IteratorDetail&lt; Value, Tree, LeafNode, is_const, reverse &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -73,7 +73,7 @@ $(function() {
 <a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="structbpptree_1_1detail_1_1IteratorDetail-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">bpptree::detail::IteratorDetail&lt; Value, Tree, LeafNode, isConst, reverse &gt; Struct Template Reference</div>  </div>
+<div class="title">bpptree::detail::IteratorDetail&lt; Value, Tree, LeafNode, is_const, reverse &gt; Struct Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -86,188 +86,188 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a0be6b5015c9b17943e21eca5aaa41f53"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a0be6b5015c9b17943e21eca5aaa41f53">TreeType</a> = std::conditional_t&lt; isConst, Tree <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a>, Tree &gt;</td></tr>
-<tr class="separator:a0be6b5015c9b17943e21eca5aaa41f53"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a11ae09a84015b8dbc79f7dcf160287a8"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a11ae09a84015b8dbc79f7dcf160287a8">difference_type</a> = <a class="el" href="namespacebpptree_1_1detail.html#a09d4ddfe5112e73c4d2e3332783d3b00">ssize</a></td></tr>
-<tr class="separator:a11ae09a84015b8dbc79f7dcf160287a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a19437be665aa4ee1edf200e9bb3c5a67"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a19437be665aa4ee1edf200e9bb3c5a67">value_type</a> = Value</td></tr>
-<tr class="separator:a19437be665aa4ee1edf200e9bb3c5a67"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af71325405e88580c31b7311d81f011a3"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#af71325405e88580c31b7311d81f011a3">pointer</a> = void</td></tr>
-<tr class="separator:af71325405e88580c31b7311d81f011a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3f353f14a422222bf2dd1e7db3a15651"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a3f353f14a422222bf2dd1e7db3a15651">reference</a> = std::conditional_t&lt; isConst, Value <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a>  &amp;, <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail_1_1ProxyRef.html">ProxyRef</a> &gt;</td></tr>
-<tr class="separator:a3f353f14a422222bf2dd1e7db3a15651"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4463f97cbef0b395009b3780cd4ac858"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a4463f97cbef0b395009b3780cd4ac858">iterator_category</a> = std::conditional_t&lt; <a class="el" href="structbpptree_1_1detail_1_1IsIndexedTree.html">IsIndexedTree</a>&lt; <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a0be6b5015c9b17943e21eca5aaa41f53">TreeType</a>, <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">IteratorDetail</a> &gt;::value, std::random_access_iterator_tag, std::bidirectional_iterator_tag &gt;</td></tr>
-<tr class="separator:a4463f97cbef0b395009b3780cd4ac858"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba96b0e8549dffcaa0d7cadd2c99ff4b"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#aba96b0e8549dffcaa0d7cadd2c99ff4b">TreeType</a> = std::conditional_t&lt; is_const, Tree <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a>, Tree &gt;</td></tr>
+<tr class="separator:aba96b0e8549dffcaa0d7cadd2c99ff4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a668998e284ca7e1bcd3c4c9d78121dc5"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a668998e284ca7e1bcd3c4c9d78121dc5">difference_type</a> = <a class="el" href="namespacebpptree_1_1detail.html#a09d4ddfe5112e73c4d2e3332783d3b00">ssize</a></td></tr>
+<tr class="separator:a668998e284ca7e1bcd3c4c9d78121dc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a894bf7d079d59c5b6aaf895dc7e35b70"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a894bf7d079d59c5b6aaf895dc7e35b70">value_type</a> = Value</td></tr>
+<tr class="separator:a894bf7d079d59c5b6aaf895dc7e35b70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7da35b7ab4d91c842423be9dbd3a784"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#ac7da35b7ab4d91c842423be9dbd3a784">pointer</a> = void</td></tr>
+<tr class="separator:ac7da35b7ab4d91c842423be9dbd3a784"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0e144387d175f54eaa6b18975b81a74"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#aa0e144387d175f54eaa6b18975b81a74">reference</a> = std::conditional_t&lt; is_const, Value <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a>  &amp;, <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail_1_1ProxyRef.html">ProxyRef</a> &gt;</td></tr>
+<tr class="separator:aa0e144387d175f54eaa6b18975b81a74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a353e082da11e4c704f04cc0c729e6d72"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a353e082da11e4c704f04cc0c729e6d72">iterator_category</a> = std::conditional_t&lt; <a class="el" href="structbpptree_1_1detail_1_1IsIndexedTree.html">IsIndexedTree</a>&lt; <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#aba96b0e8549dffcaa0d7cadd2c99ff4b">TreeType</a>, <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">IteratorDetail</a> &gt;::value, std::random_access_iterator_tag, std::bidirectional_iterator_tag &gt;</td></tr>
+<tr class="separator:a353e082da11e4c704f04cc0c729e6d72"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a184047bef08bedb4979717aaa66d838b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a184047bef08bedb4979717aaa66d838b">IteratorDetail</a> (<a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a0be6b5015c9b17943e21eca5aaa41f53">TreeType</a> &amp;<a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a4e34dde917ca7fa0443776635154f354">tree</a>) noexcept</td></tr>
-<tr class="separator:a184047bef08bedb4979717aaa66d838b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a377ea540110b1495c07c033a81d39797"><td class="memItemLeft" align="right" valign="top">Value <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a>  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a377ea540110b1495c07c033a81d39797">get</a> () <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a></td></tr>
-<tr class="separator:a377ea540110b1495c07c033a81d39797"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afd8eb3511dcbe6698cfc7921418b671f"><td class="memTemplParams" colspan="2">template&lt;bool C = isConst, std::enable_if_t&lt;!C, bool &gt;  = true&gt; </td></tr>
-<tr class="memitem:afd8eb3511dcbe6698cfc7921418b671f"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail_1_1ProxyRef.html">ProxyRef</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#afd8eb3511dcbe6698cfc7921418b671f">operator*</a> ()</td></tr>
-<tr class="separator:afd8eb3511dcbe6698cfc7921418b671f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6265bb4f38b543e70a62fa673016aab2"><td class="memTemplParams" colspan="2">template&lt;bool C = isConst, std::enable_if_t&lt; C, bool &gt;  = true&gt; </td></tr>
-<tr class="memitem:a6265bb4f38b543e70a62fa673016aab2"><td class="memTemplItemLeft" align="right" valign="top">Value <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a>  &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a6265bb4f38b543e70a62fa673016aab2">operator*</a> () <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a></td></tr>
-<tr class="separator:a6265bb4f38b543e70a62fa673016aab2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab6795b82000801ca24305a3a7a8639f2"><td class="memItemLeft" align="right" valign="top">Value <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a>  *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#ab6795b82000801ca24305a3a7a8639f2">operator-&gt;</a> () <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a></td></tr>
-<tr class="separator:ab6795b82000801ca24305a3a7a8639f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9cf8ca22bb17510e4527143a5f236ef1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a9cf8ca22bb17510e4527143a5f236ef1">advance</a> (<a class="el" href="namespacebpptree_1_1detail.html#a09d4ddfe5112e73c4d2e3332783d3b00">ssize</a> n)</td></tr>
-<tr class="separator:a9cf8ca22bb17510e4527143a5f236ef1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade64c20e6db2c93b831dbeedbfa68d91"><td class="memItemLeft" align="right" valign="top">auto &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#ade64c20e6db2c93b831dbeedbfa68d91">operator++</a> ()</td></tr>
-<tr class="separator:ade64c20e6db2c93b831dbeedbfa68d91"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e778f4185c936c4c2e9c0533dc25215"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a1e778f4185c936c4c2e9c0533dc25215">operator++</a> (int) &amp;</td></tr>
-<tr class="separator:a1e778f4185c936c4c2e9c0533dc25215"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab4765173654387cb622c52c0ca23438c"><td class="memItemLeft" align="right" valign="top">auto &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#ab4765173654387cb622c52c0ca23438c">operator--</a> ()</td></tr>
-<tr class="separator:ab4765173654387cb622c52c0ca23438c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a874739e94c2c4cd44c57c01014028d91"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a874739e94c2c4cd44c57c01014028d91">operator--</a> (int) &amp;</td></tr>
-<tr class="separator:a874739e94c2c4cd44c57c01014028d91"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ee081987d7f82d9e694e097cbc70fc1"><td class="memItemLeft" align="right" valign="top">auto &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a5ee081987d7f82d9e694e097cbc70fc1">operator+=</a> (<a class="el" href="namespacebpptree_1_1detail.html#a09d4ddfe5112e73c4d2e3332783d3b00">ssize</a> n)</td></tr>
-<tr class="separator:a5ee081987d7f82d9e694e097cbc70fc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6503e8d4ba100d9d03b358ec2d6028c7"><td class="memItemLeft" align="right" valign="top">auto &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a6503e8d4ba100d9d03b358ec2d6028c7">operator-=</a> (<a class="el" href="namespacebpptree_1_1detail.html#a09d4ddfe5112e73c4d2e3332783d3b00">ssize</a> n)</td></tr>
-<tr class="separator:a6503e8d4ba100d9d03b358ec2d6028c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a652b259a9ace2292ead12587384ebb37"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a652b259a9ace2292ead12587384ebb37">operator+</a> (<a class="el" href="namespacebpptree_1_1detail.html#a09d4ddfe5112e73c4d2e3332783d3b00">ssize</a> n) <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a></td></tr>
-<tr class="separator:a652b259a9ace2292ead12587384ebb37"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab764951806519a4aa483edc63eee4fdd"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#ab764951806519a4aa483edc63eee4fdd">operator-</a> (<a class="el" href="namespacebpptree_1_1detail.html#a09d4ddfe5112e73c4d2e3332783d3b00">ssize</a> n) <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a></td></tr>
-<tr class="separator:ab764951806519a4aa483edc63eee4fdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a19243dfc0047d3c395aeed2fbdfc7671"><td class="memItemLeft" align="right" valign="top">Value <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a>  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a19243dfc0047d3c395aeed2fbdfc7671">operator[]</a> (int64_t n) <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a></td></tr>
-<tr class="separator:a19243dfc0047d3c395aeed2fbdfc7671"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad35493bb6464b2863673aaf85ce85781"><td class="memTemplParams" colspan="2">template&lt;typename T , std::enable_if_t&lt; IsTreeIterator&lt; T &gt;::value &amp;&amp;IsIndexedTree&lt; TreeType, T &gt;::value, bool &gt;  = true&gt; </td></tr>
-<tr class="memitem:ad35493bb6464b2863673aaf85ce85781"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#ad35493bb6464b2863673aaf85ce85781">operator-</a> (T <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a> &amp;it) <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a></td></tr>
-<tr class="separator:ad35493bb6464b2863673aaf85ce85781"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e3541ccb574d6a6824287fcfedceee4"><td class="memTemplParams" colspan="2">template&lt;typename RHS &gt; </td></tr>
-<tr class="memitem:a3e3541ccb574d6a6824287fcfedceee4"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a3e3541ccb574d6a6824287fcfedceee4">operator&lt;</a> (RHS <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a> &amp;rhs) <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a></td></tr>
-<tr class="separator:a3e3541ccb574d6a6824287fcfedceee4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac578fe95aca41788d9e259c8b21d4afd"><td class="memTemplParams" colspan="2">template&lt;typename RHS &gt; </td></tr>
-<tr class="memitem:ac578fe95aca41788d9e259c8b21d4afd"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#ac578fe95aca41788d9e259c8b21d4afd">operator==</a> (RHS <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a> &amp;rhs) <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a></td></tr>
-<tr class="separator:ac578fe95aca41788d9e259c8b21d4afd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3f4bad10b38a4d57b3be73ccf137d5d3"><td class="memTemplParams" colspan="2">template&lt;typename RHS &gt; </td></tr>
-<tr class="memitem:a3f4bad10b38a4d57b3be73ccf137d5d3"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a3f4bad10b38a4d57b3be73ccf137d5d3">operator&gt;</a> (RHS <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a> &amp;rhs) <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a></td></tr>
-<tr class="separator:a3f4bad10b38a4d57b3be73ccf137d5d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae2ebf92c1aff857dca69795da5c5e0dc"><td class="memTemplParams" colspan="2">template&lt;typename RHS &gt; </td></tr>
-<tr class="memitem:ae2ebf92c1aff857dca69795da5c5e0dc"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#ae2ebf92c1aff857dca69795da5c5e0dc">operator&lt;=</a> (RHS <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a> &amp;rhs) <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a></td></tr>
-<tr class="separator:ae2ebf92c1aff857dca69795da5c5e0dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d4b94b7e84a1109419d6dd4507bf01f"><td class="memTemplParams" colspan="2">template&lt;typename RHS &gt; </td></tr>
-<tr class="memitem:a9d4b94b7e84a1109419d6dd4507bf01f"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a9d4b94b7e84a1109419d6dd4507bf01f">operator&gt;=</a> (RHS <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a> &amp;rhs) <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a></td></tr>
-<tr class="separator:a9d4b94b7e84a1109419d6dd4507bf01f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8453f2910d79f67cbdfb01e50c6d2168"><td class="memTemplParams" colspan="2">template&lt;typename RHS &gt; </td></tr>
-<tr class="memitem:a8453f2910d79f67cbdfb01e50c6d2168"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a8453f2910d79f67cbdfb01e50c6d2168">operator!=</a> (RHS <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a> &amp;rhs) <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a></td></tr>
-<tr class="separator:a8453f2910d79f67cbdfb01e50c6d2168"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af16524ed0e12c0fba3ac4cb43a02f190"><td class="memItemLeft" align="right" valign="top">std::vector&lt; uint16_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#af16524ed0e12c0fba3ac4cb43a02f190">getIndexes</a> () <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a></td></tr>
-<tr class="separator:af16524ed0e12c0fba3ac4cb43a02f190"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88302ac6adba478f1d04970ba1719cce"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a88302ac6adba478f1d04970ba1719cce">IteratorDetail</a> (<a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#aba96b0e8549dffcaa0d7cadd2c99ff4b">TreeType</a> &amp;<a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#abbc43aaf2ee04c6dd4e15175c007bcd1">tree</a>) noexcept</td></tr>
+<tr class="separator:a88302ac6adba478f1d04970ba1719cce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78e44a60cdccb3c004cc0f3efdd8d6d4"><td class="memItemLeft" align="right" valign="top">Value <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a>  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a78e44a60cdccb3c004cc0f3efdd8d6d4">get</a> () <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a></td></tr>
+<tr class="separator:a78e44a60cdccb3c004cc0f3efdd8d6d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee7272f080683d888f8dc861160832be"><td class="memTemplParams" colspan="2">template&lt;bool C = is_const, std::enable_if_t&lt;!C, bool &gt;  = true&gt; </td></tr>
+<tr class="memitem:aee7272f080683d888f8dc861160832be"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail_1_1ProxyRef.html">ProxyRef</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#aee7272f080683d888f8dc861160832be">operator*</a> ()</td></tr>
+<tr class="separator:aee7272f080683d888f8dc861160832be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64bed00953b3d65c50904175a30ac8de"><td class="memTemplParams" colspan="2">template&lt;bool C = is_const, std::enable_if_t&lt; C, bool &gt;  = true&gt; </td></tr>
+<tr class="memitem:a64bed00953b3d65c50904175a30ac8de"><td class="memTemplItemLeft" align="right" valign="top">Value <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a>  &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a64bed00953b3d65c50904175a30ac8de">operator*</a> () <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a></td></tr>
+<tr class="separator:a64bed00953b3d65c50904175a30ac8de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cb6ef2d8728f27106d5588b5b00dce1"><td class="memItemLeft" align="right" valign="top">Value <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a>  *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a7cb6ef2d8728f27106d5588b5b00dce1">operator-&gt;</a> () <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a></td></tr>
+<tr class="separator:a7cb6ef2d8728f27106d5588b5b00dce1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac70b3e764c414c79baeeac57a4a06dc5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#ac70b3e764c414c79baeeac57a4a06dc5">advance</a> (<a class="el" href="namespacebpptree_1_1detail.html#a09d4ddfe5112e73c4d2e3332783d3b00">ssize</a> n)</td></tr>
+<tr class="separator:ac70b3e764c414c79baeeac57a4a06dc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee3124e97b133b966a64dbf93c0b2f39"><td class="memItemLeft" align="right" valign="top">auto &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#aee3124e97b133b966a64dbf93c0b2f39">operator++</a> ()</td></tr>
+<tr class="separator:aee3124e97b133b966a64dbf93c0b2f39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91b6b94d5dc33529b17a2d323f5eafb3"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a91b6b94d5dc33529b17a2d323f5eafb3">operator++</a> (int) &amp;</td></tr>
+<tr class="separator:a91b6b94d5dc33529b17a2d323f5eafb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e06683edf5054c81bda1b262053a048"><td class="memItemLeft" align="right" valign="top">auto &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a9e06683edf5054c81bda1b262053a048">operator--</a> ()</td></tr>
+<tr class="separator:a9e06683edf5054c81bda1b262053a048"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6a636e1127d1e260d6b6ad29e53e796"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#ae6a636e1127d1e260d6b6ad29e53e796">operator--</a> (int) &amp;</td></tr>
+<tr class="separator:ae6a636e1127d1e260d6b6ad29e53e796"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a878babff720adc32c8cc7d9f6a4a8474"><td class="memItemLeft" align="right" valign="top">auto &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a878babff720adc32c8cc7d9f6a4a8474">operator+=</a> (<a class="el" href="namespacebpptree_1_1detail.html#a09d4ddfe5112e73c4d2e3332783d3b00">ssize</a> n)</td></tr>
+<tr class="separator:a878babff720adc32c8cc7d9f6a4a8474"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d9345c01aa241100d6e0ed3ec6f2e28"><td class="memItemLeft" align="right" valign="top">auto &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a3d9345c01aa241100d6e0ed3ec6f2e28">operator-=</a> (<a class="el" href="namespacebpptree_1_1detail.html#a09d4ddfe5112e73c4d2e3332783d3b00">ssize</a> n)</td></tr>
+<tr class="separator:a3d9345c01aa241100d6e0ed3ec6f2e28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79521ed79e737d9f9be5400bf8d6b838"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a79521ed79e737d9f9be5400bf8d6b838">operator+</a> (<a class="el" href="namespacebpptree_1_1detail.html#a09d4ddfe5112e73c4d2e3332783d3b00">ssize</a> n) <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a></td></tr>
+<tr class="separator:a79521ed79e737d9f9be5400bf8d6b838"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a167628085a431e20a795d33be3890427"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a167628085a431e20a795d33be3890427">operator-</a> (<a class="el" href="namespacebpptree_1_1detail.html#a09d4ddfe5112e73c4d2e3332783d3b00">ssize</a> n) <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a></td></tr>
+<tr class="separator:a167628085a431e20a795d33be3890427"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f8c462c561a0a22ae347e24982b2794"><td class="memItemLeft" align="right" valign="top">Value <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a>  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a3f8c462c561a0a22ae347e24982b2794">operator[]</a> (int64_t n) <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a></td></tr>
+<tr class="separator:a3f8c462c561a0a22ae347e24982b2794"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66c6713efe54b52d7e427a866f3ebd81"><td class="memTemplParams" colspan="2">template&lt;typename T , std::enable_if_t&lt; IsTreeIterator&lt; T &gt;::value &amp;&amp;IsIndexedTree&lt; TreeType, T &gt;::value, bool &gt;  = true&gt; </td></tr>
+<tr class="memitem:a66c6713efe54b52d7e427a866f3ebd81"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a66c6713efe54b52d7e427a866f3ebd81">operator-</a> (T <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a> &amp;it) <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a></td></tr>
+<tr class="separator:a66c6713efe54b52d7e427a866f3ebd81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1279489db4534c2b37389e7de2348a45"><td class="memTemplParams" colspan="2">template&lt;typename RHS &gt; </td></tr>
+<tr class="memitem:a1279489db4534c2b37389e7de2348a45"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a1279489db4534c2b37389e7de2348a45">operator&lt;</a> (RHS <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a> &amp;rhs) <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a></td></tr>
+<tr class="separator:a1279489db4534c2b37389e7de2348a45"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfdfd89c4f40c6c4768931934925097a"><td class="memTemplParams" colspan="2">template&lt;typename RHS &gt; </td></tr>
+<tr class="memitem:adfdfd89c4f40c6c4768931934925097a"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#adfdfd89c4f40c6c4768931934925097a">operator==</a> (RHS <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a> &amp;rhs) <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a></td></tr>
+<tr class="separator:adfdfd89c4f40c6c4768931934925097a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5c70231e74bdb9df959c40e6c185446"><td class="memTemplParams" colspan="2">template&lt;typename RHS &gt; </td></tr>
+<tr class="memitem:af5c70231e74bdb9df959c40e6c185446"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#af5c70231e74bdb9df959c40e6c185446">operator&gt;</a> (RHS <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a> &amp;rhs) <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a></td></tr>
+<tr class="separator:af5c70231e74bdb9df959c40e6c185446"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36573bb51c14d985480ff4b286dc4d4d"><td class="memTemplParams" colspan="2">template&lt;typename RHS &gt; </td></tr>
+<tr class="memitem:a36573bb51c14d985480ff4b286dc4d4d"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a36573bb51c14d985480ff4b286dc4d4d">operator&lt;=</a> (RHS <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a> &amp;rhs) <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a></td></tr>
+<tr class="separator:a36573bb51c14d985480ff4b286dc4d4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac3b0c871a2682ea322268162d837f05"><td class="memTemplParams" colspan="2">template&lt;typename RHS &gt; </td></tr>
+<tr class="memitem:aac3b0c871a2682ea322268162d837f05"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#aac3b0c871a2682ea322268162d837f05">operator&gt;=</a> (RHS <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a> &amp;rhs) <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a></td></tr>
+<tr class="separator:aac3b0c871a2682ea322268162d837f05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2304d2aadb661bd971008133be4be10"><td class="memTemplParams" colspan="2">template&lt;typename RHS &gt; </td></tr>
+<tr class="memitem:ac2304d2aadb661bd971008133be4be10"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#ac2304d2aadb661bd971008133be4be10">operator!=</a> (RHS <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a> &amp;rhs) <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a></td></tr>
+<tr class="separator:ac2304d2aadb661bd971008133be4be10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b415c721f0ea31ec0613834fbdf3bf4"><td class="memItemLeft" align="right" valign="top">std::vector&lt; uint16_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a8b415c721f0ea31ec0613834fbdf3bf4">get_indexes</a> () <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a></td></tr>
+<tr class="separator:a8b415c721f0ea31ec0613834fbdf3bf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:aa1e49a83de3b06ee99932a8e3a7b43ea"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#aa1e49a83de3b06ee99932a8e3a7b43ea">iter</a> = 0</td></tr>
-<tr class="separator:aa1e49a83de3b06ee99932a8e3a7b43ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a74b1a19fd2f1f9c45e7508d408d135b0"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a74b1a19fd2f1f9c45e7508d408d135b0">mod_count</a></td></tr>
-<tr class="separator:a74b1a19fd2f1f9c45e7508d408d135b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4e34dde917ca7fa0443776635154f354"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a0be6b5015c9b17943e21eca5aaa41f53">TreeType</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a4e34dde917ca7fa0443776635154f354">tree</a></td></tr>
-<tr class="separator:a4e34dde917ca7fa0443776635154f354"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae00c0160109acc6a7cc4ddcf6d4d0614"><td class="memItemLeft" align="right" valign="top">LeafNode <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a>  *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#ae00c0160109acc6a7cc4ddcf6d4d0614">leaf</a></td></tr>
-<tr class="separator:ae00c0160109acc6a7cc4ddcf6d4d0614"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad405991e0f5a9492b6e6757008ccf0f5"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#ad405991e0f5a9492b6e6757008ccf0f5">iter</a> = 0</td></tr>
+<tr class="separator:ad405991e0f5a9492b6e6757008ccf0f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f4f66b0124ac1d20486ba7455cd11b9"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a2f4f66b0124ac1d20486ba7455cd11b9">mod_count</a></td></tr>
+<tr class="separator:a2f4f66b0124ac1d20486ba7455cd11b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbc43aaf2ee04c6dd4e15175c007bcd1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#aba96b0e8549dffcaa0d7cadd2c99ff4b">TreeType</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#abbc43aaf2ee04c6dd4e15175c007bcd1">tree</a></td></tr>
+<tr class="separator:abbc43aaf2ee04c6dd4e15175c007bcd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a558e038d9b16cad3b3f3c765609a2466"><td class="memItemLeft" align="right" valign="top">LeafNode <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a>  *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a558e038d9b16cad3b3f3c765609a2466">leaf</a></td></tr>
+<tr class="separator:a558e038d9b16cad3b3f3c765609a2466"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
-<tr class="memitem:ab958e4d7d48bee195ce71012ce1eb526"><td class="memItemLeft" align="right" valign="top">static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#ab958e4d7d48bee195ce71012ce1eb526">direction</a> = reverse ? -1 : 1</td></tr>
-<tr class="separator:ab958e4d7d48bee195ce71012ce1eb526"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5f9c27ef99cfd9d52b77aab6814cf0b0"><td class="memItemLeft" align="right" valign="top">static constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a5f9c27ef99cfd9d52b77aab6814cf0b0">is_reversed</a> = reverse</td></tr>
-<tr class="separator:a5f9c27ef99cfd9d52b77aab6814cf0b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6a5d315f3d2d093242283eec68b6a264"><td class="memItemLeft" align="right" valign="top">static constexpr uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a6a5d315f3d2d093242283eec68b6a264">rend</a> = std::numeric_limits&lt;uint64_t&gt;::max()</td></tr>
-<tr class="separator:a6a5d315f3d2d093242283eec68b6a264"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7424a1361cde5e7a279b39d41bbccec"><td class="memItemLeft" align="right" valign="top">static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#ab7424a1361cde5e7a279b39d41bbccec">direction</a> = reverse ? -1 : 1</td></tr>
+<tr class="separator:ab7424a1361cde5e7a279b39d41bbccec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8086a4a8abd7663a9dec396ccaffd0c9"><td class="memItemLeft" align="right" valign="top">static constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a8086a4a8abd7663a9dec396ccaffd0c9">is_reversed</a> = reverse</td></tr>
+<tr class="separator:a8086a4a8abd7663a9dec396ccaffd0c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae453c844195271ada7e26921c7dc600c"><td class="memItemLeft" align="right" valign="top">static constexpr uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#ae453c844195271ada7e26921c7dc600c">rend</a> = std::numeric_limits&lt;uint64_t&gt;::max()</td></tr>
+<tr class="separator:ae453c844195271ada7e26921c7dc600c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="a11ae09a84015b8dbc79f7dcf160287a8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a11ae09a84015b8dbc79f7dcf160287a8">&#9670;&nbsp;</a></span>difference_type</h2>
+<a id="a668998e284ca7e1bcd3c4c9d78121dc5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a668998e284ca7e1bcd3c4c9d78121dc5">&#9670;&nbsp;</a></span>difference_type</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, bool reverse&gt; </div>
+template&lt;typename Value , typename Tree , typename LeafNode , bool is_const, bool reverse&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, isConst, reverse &gt;::<a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a11ae09a84015b8dbc79f7dcf160287a8">difference_type</a> =  <a class="el" href="namespacebpptree_1_1detail.html#a09d4ddfe5112e73c4d2e3332783d3b00">ssize</a></td>
+          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, is_const, reverse &gt;::<a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a668998e284ca7e1bcd3c4c9d78121dc5">difference_type</a> =  <a class="el" href="namespacebpptree_1_1detail.html#a09d4ddfe5112e73c4d2e3332783d3b00">ssize</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a4463f97cbef0b395009b3780cd4ac858"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4463f97cbef0b395009b3780cd4ac858">&#9670;&nbsp;</a></span>iterator_category</h2>
+<a id="a353e082da11e4c704f04cc0c729e6d72"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a353e082da11e4c704f04cc0c729e6d72">&#9670;&nbsp;</a></span>iterator_category</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, bool reverse&gt; </div>
+template&lt;typename Value , typename Tree , typename LeafNode , bool is_const, bool reverse&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, isConst, reverse &gt;::<a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a4463f97cbef0b395009b3780cd4ac858">iterator_category</a> =  std::conditional_t&lt; <a class="el" href="structbpptree_1_1detail_1_1IsIndexedTree.html">IsIndexedTree</a>&lt;<a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a0be6b5015c9b17943e21eca5aaa41f53">TreeType</a>, <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">IteratorDetail</a>&gt;::value, std::random_access_iterator_tag, std::bidirectional_iterator_tag&gt;</td>
+          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, is_const, reverse &gt;::<a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a353e082da11e4c704f04cc0c729e6d72">iterator_category</a> =  std::conditional_t&lt; <a class="el" href="structbpptree_1_1detail_1_1IsIndexedTree.html">IsIndexedTree</a>&lt;<a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#aba96b0e8549dffcaa0d7cadd2c99ff4b">TreeType</a>, <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">IteratorDetail</a>&gt;::value, std::random_access_iterator_tag, std::bidirectional_iterator_tag&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="af71325405e88580c31b7311d81f011a3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af71325405e88580c31b7311d81f011a3">&#9670;&nbsp;</a></span>pointer</h2>
+<a id="ac7da35b7ab4d91c842423be9dbd3a784"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7da35b7ab4d91c842423be9dbd3a784">&#9670;&nbsp;</a></span>pointer</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, bool reverse&gt; </div>
+template&lt;typename Value , typename Tree , typename LeafNode , bool is_const, bool reverse&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, isConst, reverse &gt;::<a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#af71325405e88580c31b7311d81f011a3">pointer</a> =  void</td>
+          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, is_const, reverse &gt;::<a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#ac7da35b7ab4d91c842423be9dbd3a784">pointer</a> =  void</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a3f353f14a422222bf2dd1e7db3a15651"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3f353f14a422222bf2dd1e7db3a15651">&#9670;&nbsp;</a></span>reference</h2>
+<a id="aa0e144387d175f54eaa6b18975b81a74"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0e144387d175f54eaa6b18975b81a74">&#9670;&nbsp;</a></span>reference</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, bool reverse&gt; </div>
+template&lt;typename Value , typename Tree , typename LeafNode , bool is_const, bool reverse&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, isConst, reverse &gt;::<a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a3f353f14a422222bf2dd1e7db3a15651">reference</a> =  std::conditional_t&lt;isConst, Value <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a>&amp;, <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail_1_1ProxyRef.html">ProxyRef</a>&gt;</td>
+          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, is_const, reverse &gt;::<a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#aa0e144387d175f54eaa6b18975b81a74">reference</a> =  std::conditional_t&lt;is_const, Value <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a>&amp;, <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail_1_1ProxyRef.html">ProxyRef</a>&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a0be6b5015c9b17943e21eca5aaa41f53"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0be6b5015c9b17943e21eca5aaa41f53">&#9670;&nbsp;</a></span>TreeType</h2>
+<a id="aba96b0e8549dffcaa0d7cadd2c99ff4b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba96b0e8549dffcaa0d7cadd2c99ff4b">&#9670;&nbsp;</a></span>TreeType</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, bool reverse&gt; </div>
+template&lt;typename Value , typename Tree , typename LeafNode , bool is_const, bool reverse&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, isConst, reverse &gt;::<a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a0be6b5015c9b17943e21eca5aaa41f53">TreeType</a> =  std::conditional_t&lt;isConst, Tree <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a>, Tree&gt;</td>
+          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, is_const, reverse &gt;::<a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#aba96b0e8549dffcaa0d7cadd2c99ff4b">TreeType</a> =  std::conditional_t&lt;is_const, Tree <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a>, Tree&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a19437be665aa4ee1edf200e9bb3c5a67"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a19437be665aa4ee1edf200e9bb3c5a67">&#9670;&nbsp;</a></span>value_type</h2>
+<a id="a894bf7d079d59c5b6aaf895dc7e35b70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a894bf7d079d59c5b6aaf895dc7e35b70">&#9670;&nbsp;</a></span>value_type</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, bool reverse&gt; </div>
+template&lt;typename Value , typename Tree , typename LeafNode , bool is_const, bool reverse&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, isConst, reverse &gt;::<a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a19437be665aa4ee1edf200e9bb3c5a67">value_type</a> =  Value</td>
+          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, is_const, reverse &gt;::<a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a894bf7d079d59c5b6aaf895dc7e35b70">value_type</a> =  Value</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -275,21 +275,21 @@ template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, b
 </div>
 </div>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a184047bef08bedb4979717aaa66d838b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a184047bef08bedb4979717aaa66d838b">&#9670;&nbsp;</a></span>IteratorDetail()</h2>
+<a id="a88302ac6adba478f1d04970ba1719cce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88302ac6adba478f1d04970ba1719cce">&#9670;&nbsp;</a></span>IteratorDetail()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, bool reverse&gt; </div>
+template&lt;typename Value , typename Tree , typename LeafNode , bool is_const, bool reverse&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, isConst, reverse &gt;::<a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">IteratorDetail</a> </td>
+          <td class="memname"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, is_const, reverse &gt;::<a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">IteratorDetail</a> </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a0be6b5015c9b17943e21eca5aaa41f53">TreeType</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#aba96b0e8549dffcaa0d7cadd2c99ff4b">TreeType</a> &amp;&#160;</td>
           <td class="paramname"><em>tree</em></td><td>)</td>
           <td></td>
         </tr>
@@ -304,19 +304,19 @@ template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, b
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a9cf8ca22bb17510e4527143a5f236ef1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9cf8ca22bb17510e4527143a5f236ef1">&#9670;&nbsp;</a></span>advance()</h2>
+<a id="ac70b3e764c414c79baeeac57a4a06dc5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac70b3e764c414c79baeeac57a4a06dc5">&#9670;&nbsp;</a></span>advance()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, bool reverse&gt; </div>
+template&lt;typename Value , typename Tree , typename LeafNode , bool is_const, bool reverse&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, isConst, reverse &gt;::advance </td>
+          <td class="memname">void <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, is_const, reverse &gt;::advance </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="namespacebpptree_1_1detail.html#a09d4ddfe5112e73c4d2e3332783d3b00">ssize</a>&#160;</td>
           <td class="paramname"><em>n</em></td><td>)</td>
@@ -332,19 +332,19 @@ template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, b
 
 </div>
 </div>
-<a id="a377ea540110b1495c07c033a81d39797"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a377ea540110b1495c07c033a81d39797">&#9670;&nbsp;</a></span>get()</h2>
+<a id="a78e44a60cdccb3c004cc0f3efdd8d6d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78e44a60cdccb3c004cc0f3efdd8d6d4">&#9670;&nbsp;</a></span>get()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, bool reverse&gt; </div>
+template&lt;typename Value , typename Tree , typename LeafNode , bool is_const, bool reverse&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Value <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a>&amp; <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, isConst, reverse &gt;::get </td>
+          <td class="memname">Value <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a>&amp; <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, is_const, reverse &gt;::get </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -359,19 +359,19 @@ template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, b
 
 </div>
 </div>
-<a id="af16524ed0e12c0fba3ac4cb43a02f190"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af16524ed0e12c0fba3ac4cb43a02f190">&#9670;&nbsp;</a></span>getIndexes()</h2>
+<a id="a8b415c721f0ea31ec0613834fbdf3bf4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b415c721f0ea31ec0613834fbdf3bf4">&#9670;&nbsp;</a></span>get_indexes()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, bool reverse&gt; </div>
+template&lt;typename Value , typename Tree , typename LeafNode , bool is_const, bool reverse&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;uint16_t&gt; <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, isConst, reverse &gt;::getIndexes </td>
+          <td class="memname">std::vector&lt;uint16_t&gt; <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, is_const, reverse &gt;::get_indexes </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -386,13 +386,13 @@ template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, b
 
 </div>
 </div>
-<a id="a8453f2910d79f67cbdfb01e50c6d2168"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8453f2910d79f67cbdfb01e50c6d2168">&#9670;&nbsp;</a></span>operator!=()</h2>
+<a id="ac2304d2aadb661bd971008133be4be10"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2304d2aadb661bd971008133be4be10">&#9670;&nbsp;</a></span>operator!=()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, bool reverse&gt; </div>
+template&lt;typename Value , typename Tree , typename LeafNode , bool is_const, bool reverse&gt; </div>
 <div class="memtemplate">
 template&lt;typename RHS &gt; </div>
 <table class="mlabels">
@@ -400,7 +400,7 @@ template&lt;typename RHS &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, isConst, reverse &gt;::operator!= </td>
+          <td class="memname">bool <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, is_const, reverse &gt;::operator!= </td>
           <td>(</td>
           <td class="paramtype">RHS <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a> &amp;&#160;</td>
           <td class="paramname"><em>rhs</em></td><td>)</td>
@@ -416,21 +416,21 @@ template&lt;typename RHS &gt; </div>
 
 </div>
 </div>
-<a id="afd8eb3511dcbe6698cfc7921418b671f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afd8eb3511dcbe6698cfc7921418b671f">&#9670;&nbsp;</a></span>operator*() <span class="overload">[1/2]</span></h2>
+<a id="aee7272f080683d888f8dc861160832be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee7272f080683d888f8dc861160832be">&#9670;&nbsp;</a></span>operator*() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, bool reverse&gt; </div>
+template&lt;typename Value , typename Tree , typename LeafNode , bool is_const, bool reverse&gt; </div>
 <div class="memtemplate">
-template&lt;bool C = isConst, std::enable_if_t&lt;!C, bool &gt;  = true&gt; </div>
+template&lt;bool C = is_const, std::enable_if_t&lt;!C, bool &gt;  = true&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail_1_1ProxyRef.html">ProxyRef</a> <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, isConst, reverse &gt;::operator* </td>
+          <td class="memname"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail_1_1ProxyRef.html">ProxyRef</a> <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, is_const, reverse &gt;::operator* </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -445,21 +445,21 @@ template&lt;bool C = isConst, std::enable_if_t&lt;!C, bool &gt;  = true&gt; </di
 
 </div>
 </div>
-<a id="a6265bb4f38b543e70a62fa673016aab2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6265bb4f38b543e70a62fa673016aab2">&#9670;&nbsp;</a></span>operator*() <span class="overload">[2/2]</span></h2>
+<a id="a64bed00953b3d65c50904175a30ac8de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64bed00953b3d65c50904175a30ac8de">&#9670;&nbsp;</a></span>operator*() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, bool reverse&gt; </div>
+template&lt;typename Value , typename Tree , typename LeafNode , bool is_const, bool reverse&gt; </div>
 <div class="memtemplate">
-template&lt;bool C = isConst, std::enable_if_t&lt; C, bool &gt;  = true&gt; </div>
+template&lt;bool C = is_const, std::enable_if_t&lt; C, bool &gt;  = true&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Value <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a>&amp; <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, isConst, reverse &gt;::operator* </td>
+          <td class="memname">Value <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a>&amp; <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, is_const, reverse &gt;::operator* </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -474,19 +474,19 @@ template&lt;bool C = isConst, std::enable_if_t&lt; C, bool &gt;  = true&gt; </di
 
 </div>
 </div>
-<a id="a652b259a9ace2292ead12587384ebb37"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a652b259a9ace2292ead12587384ebb37">&#9670;&nbsp;</a></span>operator+()</h2>
+<a id="a79521ed79e737d9f9be5400bf8d6b838"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79521ed79e737d9f9be5400bf8d6b838">&#9670;&nbsp;</a></span>operator+()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, bool reverse&gt; </div>
+template&lt;typename Value , typename Tree , typename LeafNode , bool is_const, bool reverse&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">auto <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, isConst, reverse &gt;::operator+ </td>
+          <td class="memname">auto <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, is_const, reverse &gt;::operator+ </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="namespacebpptree_1_1detail.html#a09d4ddfe5112e73c4d2e3332783d3b00">ssize</a>&#160;</td>
           <td class="paramname"><em>n</em></td><td>)</td>
@@ -502,19 +502,19 @@ template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, b
 
 </div>
 </div>
-<a id="ade64c20e6db2c93b831dbeedbfa68d91"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ade64c20e6db2c93b831dbeedbfa68d91">&#9670;&nbsp;</a></span>operator++() <span class="overload">[1/2]</span></h2>
+<a id="aee3124e97b133b966a64dbf93c0b2f39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee3124e97b133b966a64dbf93c0b2f39">&#9670;&nbsp;</a></span>operator++() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, bool reverse&gt; </div>
+template&lt;typename Value , typename Tree , typename LeafNode , bool is_const, bool reverse&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">auto&amp; <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, isConst, reverse &gt;::operator++ </td>
+          <td class="memname">auto&amp; <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, is_const, reverse &gt;::operator++ </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -529,19 +529,19 @@ template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, b
 
 </div>
 </div>
-<a id="a1e778f4185c936c4c2e9c0533dc25215"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1e778f4185c936c4c2e9c0533dc25215">&#9670;&nbsp;</a></span>operator++() <span class="overload">[2/2]</span></h2>
+<a id="a91b6b94d5dc33529b17a2d323f5eafb3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91b6b94d5dc33529b17a2d323f5eafb3">&#9670;&nbsp;</a></span>operator++() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, bool reverse&gt; </div>
+template&lt;typename Value , typename Tree , typename LeafNode , bool is_const, bool reverse&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">auto <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, isConst, reverse &gt;::operator++ </td>
+          <td class="memname">auto <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, is_const, reverse &gt;::operator++ </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -557,19 +557,19 @@ template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, b
 
 </div>
 </div>
-<a id="a5ee081987d7f82d9e694e097cbc70fc1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5ee081987d7f82d9e694e097cbc70fc1">&#9670;&nbsp;</a></span>operator+=()</h2>
+<a id="a878babff720adc32c8cc7d9f6a4a8474"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a878babff720adc32c8cc7d9f6a4a8474">&#9670;&nbsp;</a></span>operator+=()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, bool reverse&gt; </div>
+template&lt;typename Value , typename Tree , typename LeafNode , bool is_const, bool reverse&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">auto&amp; <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, isConst, reverse &gt;::operator+= </td>
+          <td class="memname">auto&amp; <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, is_const, reverse &gt;::operator+= </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="namespacebpptree_1_1detail.html#a09d4ddfe5112e73c4d2e3332783d3b00">ssize</a>&#160;</td>
           <td class="paramname"><em>n</em></td><td>)</td>
@@ -585,19 +585,19 @@ template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, b
 
 </div>
 </div>
-<a id="ab764951806519a4aa483edc63eee4fdd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab764951806519a4aa483edc63eee4fdd">&#9670;&nbsp;</a></span>operator-() <span class="overload">[1/2]</span></h2>
+<a id="a167628085a431e20a795d33be3890427"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a167628085a431e20a795d33be3890427">&#9670;&nbsp;</a></span>operator-() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, bool reverse&gt; </div>
+template&lt;typename Value , typename Tree , typename LeafNode , bool is_const, bool reverse&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">auto <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, isConst, reverse &gt;::operator- </td>
+          <td class="memname">auto <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, is_const, reverse &gt;::operator- </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="namespacebpptree_1_1detail.html#a09d4ddfe5112e73c4d2e3332783d3b00">ssize</a>&#160;</td>
           <td class="paramname"><em>n</em></td><td>)</td>
@@ -613,13 +613,13 @@ template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, b
 
 </div>
 </div>
-<a id="ad35493bb6464b2863673aaf85ce85781"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad35493bb6464b2863673aaf85ce85781">&#9670;&nbsp;</a></span>operator-() <span class="overload">[2/2]</span></h2>
+<a id="a66c6713efe54b52d7e427a866f3ebd81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66c6713efe54b52d7e427a866f3ebd81">&#9670;&nbsp;</a></span>operator-() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, bool reverse&gt; </div>
+template&lt;typename Value , typename Tree , typename LeafNode , bool is_const, bool reverse&gt; </div>
 <div class="memtemplate">
 template&lt;typename T , std::enable_if_t&lt; IsTreeIterator&lt; T &gt;::value &amp;&amp;IsIndexedTree&lt; TreeType, T &gt;::value, bool &gt;  = true&gt; </div>
 <table class="mlabels">
@@ -627,7 +627,7 @@ template&lt;typename T , std::enable_if_t&lt; IsTreeIterator&lt; T &gt;::value &
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">auto <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, isConst, reverse &gt;::operator- </td>
+          <td class="memname">auto <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, is_const, reverse &gt;::operator- </td>
           <td>(</td>
           <td class="paramtype">T <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a> &amp;&#160;</td>
           <td class="paramname"><em>it</em></td><td>)</td>
@@ -643,19 +643,19 @@ template&lt;typename T , std::enable_if_t&lt; IsTreeIterator&lt; T &gt;::value &
 
 </div>
 </div>
-<a id="ab4765173654387cb622c52c0ca23438c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab4765173654387cb622c52c0ca23438c">&#9670;&nbsp;</a></span>operator--() <span class="overload">[1/2]</span></h2>
+<a id="a9e06683edf5054c81bda1b262053a048"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e06683edf5054c81bda1b262053a048">&#9670;&nbsp;</a></span>operator--() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, bool reverse&gt; </div>
+template&lt;typename Value , typename Tree , typename LeafNode , bool is_const, bool reverse&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">auto&amp; <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, isConst, reverse &gt;::operator-- </td>
+          <td class="memname">auto&amp; <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, is_const, reverse &gt;::operator-- </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -670,19 +670,19 @@ template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, b
 
 </div>
 </div>
-<a id="a874739e94c2c4cd44c57c01014028d91"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a874739e94c2c4cd44c57c01014028d91">&#9670;&nbsp;</a></span>operator--() <span class="overload">[2/2]</span></h2>
+<a id="ae6a636e1127d1e260d6b6ad29e53e796"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6a636e1127d1e260d6b6ad29e53e796">&#9670;&nbsp;</a></span>operator--() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, bool reverse&gt; </div>
+template&lt;typename Value , typename Tree , typename LeafNode , bool is_const, bool reverse&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">auto <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, isConst, reverse &gt;::operator-- </td>
+          <td class="memname">auto <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, is_const, reverse &gt;::operator-- </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -698,19 +698,19 @@ template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, b
 
 </div>
 </div>
-<a id="a6503e8d4ba100d9d03b358ec2d6028c7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6503e8d4ba100d9d03b358ec2d6028c7">&#9670;&nbsp;</a></span>operator-=()</h2>
+<a id="a3d9345c01aa241100d6e0ed3ec6f2e28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d9345c01aa241100d6e0ed3ec6f2e28">&#9670;&nbsp;</a></span>operator-=()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, bool reverse&gt; </div>
+template&lt;typename Value , typename Tree , typename LeafNode , bool is_const, bool reverse&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">auto&amp; <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, isConst, reverse &gt;::operator-= </td>
+          <td class="memname">auto&amp; <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, is_const, reverse &gt;::operator-= </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="namespacebpptree_1_1detail.html#a09d4ddfe5112e73c4d2e3332783d3b00">ssize</a>&#160;</td>
           <td class="paramname"><em>n</em></td><td>)</td>
@@ -726,19 +726,19 @@ template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, b
 
 </div>
 </div>
-<a id="ab6795b82000801ca24305a3a7a8639f2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab6795b82000801ca24305a3a7a8639f2">&#9670;&nbsp;</a></span>operator-&gt;()</h2>
+<a id="a7cb6ef2d8728f27106d5588b5b00dce1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7cb6ef2d8728f27106d5588b5b00dce1">&#9670;&nbsp;</a></span>operator-&gt;()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, bool reverse&gt; </div>
+template&lt;typename Value , typename Tree , typename LeafNode , bool is_const, bool reverse&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Value <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a>* <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, isConst, reverse &gt;::operator-&gt; </td>
+          <td class="memname">Value <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a>* <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, is_const, reverse &gt;::operator-&gt; </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -753,13 +753,13 @@ template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, b
 
 </div>
 </div>
-<a id="a3e3541ccb574d6a6824287fcfedceee4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3e3541ccb574d6a6824287fcfedceee4">&#9670;&nbsp;</a></span>operator&lt;()</h2>
+<a id="a1279489db4534c2b37389e7de2348a45"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1279489db4534c2b37389e7de2348a45">&#9670;&nbsp;</a></span>operator&lt;()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, bool reverse&gt; </div>
+template&lt;typename Value , typename Tree , typename LeafNode , bool is_const, bool reverse&gt; </div>
 <div class="memtemplate">
 template&lt;typename RHS &gt; </div>
 <table class="mlabels">
@@ -767,7 +767,7 @@ template&lt;typename RHS &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, isConst, reverse &gt;::operator&lt; </td>
+          <td class="memname">bool <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, is_const, reverse &gt;::operator&lt; </td>
           <td>(</td>
           <td class="paramtype">RHS <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a> &amp;&#160;</td>
           <td class="paramname"><em>rhs</em></td><td>)</td>
@@ -783,13 +783,13 @@ template&lt;typename RHS &gt; </div>
 
 </div>
 </div>
-<a id="ae2ebf92c1aff857dca69795da5c5e0dc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae2ebf92c1aff857dca69795da5c5e0dc">&#9670;&nbsp;</a></span>operator&lt;=()</h2>
+<a id="a36573bb51c14d985480ff4b286dc4d4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36573bb51c14d985480ff4b286dc4d4d">&#9670;&nbsp;</a></span>operator&lt;=()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, bool reverse&gt; </div>
+template&lt;typename Value , typename Tree , typename LeafNode , bool is_const, bool reverse&gt; </div>
 <div class="memtemplate">
 template&lt;typename RHS &gt; </div>
 <table class="mlabels">
@@ -797,7 +797,7 @@ template&lt;typename RHS &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, isConst, reverse &gt;::operator&lt;= </td>
+          <td class="memname">bool <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, is_const, reverse &gt;::operator&lt;= </td>
           <td>(</td>
           <td class="paramtype">RHS <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a> &amp;&#160;</td>
           <td class="paramname"><em>rhs</em></td><td>)</td>
@@ -813,13 +813,13 @@ template&lt;typename RHS &gt; </div>
 
 </div>
 </div>
-<a id="ac578fe95aca41788d9e259c8b21d4afd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac578fe95aca41788d9e259c8b21d4afd">&#9670;&nbsp;</a></span>operator==()</h2>
+<a id="adfdfd89c4f40c6c4768931934925097a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adfdfd89c4f40c6c4768931934925097a">&#9670;&nbsp;</a></span>operator==()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, bool reverse&gt; </div>
+template&lt;typename Value , typename Tree , typename LeafNode , bool is_const, bool reverse&gt; </div>
 <div class="memtemplate">
 template&lt;typename RHS &gt; </div>
 <table class="mlabels">
@@ -827,7 +827,7 @@ template&lt;typename RHS &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, isConst, reverse &gt;::operator== </td>
+          <td class="memname">bool <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, is_const, reverse &gt;::operator== </td>
           <td>(</td>
           <td class="paramtype">RHS <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a> &amp;&#160;</td>
           <td class="paramname"><em>rhs</em></td><td>)</td>
@@ -843,13 +843,13 @@ template&lt;typename RHS &gt; </div>
 
 </div>
 </div>
-<a id="a3f4bad10b38a4d57b3be73ccf137d5d3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3f4bad10b38a4d57b3be73ccf137d5d3">&#9670;&nbsp;</a></span>operator&gt;()</h2>
+<a id="af5c70231e74bdb9df959c40e6c185446"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5c70231e74bdb9df959c40e6c185446">&#9670;&nbsp;</a></span>operator&gt;()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, bool reverse&gt; </div>
+template&lt;typename Value , typename Tree , typename LeafNode , bool is_const, bool reverse&gt; </div>
 <div class="memtemplate">
 template&lt;typename RHS &gt; </div>
 <table class="mlabels">
@@ -857,7 +857,7 @@ template&lt;typename RHS &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, isConst, reverse &gt;::operator&gt; </td>
+          <td class="memname">bool <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, is_const, reverse &gt;::operator&gt; </td>
           <td>(</td>
           <td class="paramtype">RHS <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a> &amp;&#160;</td>
           <td class="paramname"><em>rhs</em></td><td>)</td>
@@ -873,13 +873,13 @@ template&lt;typename RHS &gt; </div>
 
 </div>
 </div>
-<a id="a9d4b94b7e84a1109419d6dd4507bf01f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9d4b94b7e84a1109419d6dd4507bf01f">&#9670;&nbsp;</a></span>operator&gt;=()</h2>
+<a id="aac3b0c871a2682ea322268162d837f05"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac3b0c871a2682ea322268162d837f05">&#9670;&nbsp;</a></span>operator&gt;=()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, bool reverse&gt; </div>
+template&lt;typename Value , typename Tree , typename LeafNode , bool is_const, bool reverse&gt; </div>
 <div class="memtemplate">
 template&lt;typename RHS &gt; </div>
 <table class="mlabels">
@@ -887,7 +887,7 @@ template&lt;typename RHS &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, isConst, reverse &gt;::operator&gt;= </td>
+          <td class="memname">bool <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, is_const, reverse &gt;::operator&gt;= </td>
           <td>(</td>
           <td class="paramtype">RHS <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a> &amp;&#160;</td>
           <td class="paramname"><em>rhs</em></td><td>)</td>
@@ -903,19 +903,19 @@ template&lt;typename RHS &gt; </div>
 
 </div>
 </div>
-<a id="a19243dfc0047d3c395aeed2fbdfc7671"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a19243dfc0047d3c395aeed2fbdfc7671">&#9670;&nbsp;</a></span>operator[]()</h2>
+<a id="a3f8c462c561a0a22ae347e24982b2794"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f8c462c561a0a22ae347e24982b2794">&#9670;&nbsp;</a></span>operator[]()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, bool reverse&gt; </div>
+template&lt;typename Value , typename Tree , typename LeafNode , bool is_const, bool reverse&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Value <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a>&amp; <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, isConst, reverse &gt;::operator[] </td>
+          <td class="memname">Value <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a>&amp; <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, is_const, reverse &gt;::operator[] </td>
           <td>(</td>
           <td class="paramtype">int64_t&#160;</td>
           <td class="paramname"><em>n</em></td><td>)</td>
@@ -932,19 +932,19 @@ template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, b
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="ab958e4d7d48bee195ce71012ce1eb526"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab958e4d7d48bee195ce71012ce1eb526">&#9670;&nbsp;</a></span>direction</h2>
+<a id="ab7424a1361cde5e7a279b39d41bbccec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7424a1361cde5e7a279b39d41bbccec">&#9670;&nbsp;</a></span>direction</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, bool reverse&gt; </div>
+template&lt;typename Value , typename Tree , typename LeafNode , bool is_const, bool reverse&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr int <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, isConst, reverse &gt;::direction = reverse ? -1 : 1</td>
+          <td class="memname">constexpr int <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, is_const, reverse &gt;::direction = reverse ? -1 : 1</td>
         </tr>
       </table>
   </td>
@@ -956,19 +956,19 @@ template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, b
 
 </div>
 </div>
-<a id="a5f9c27ef99cfd9d52b77aab6814cf0b0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5f9c27ef99cfd9d52b77aab6814cf0b0">&#9670;&nbsp;</a></span>is_reversed</h2>
+<a id="a8086a4a8abd7663a9dec396ccaffd0c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8086a4a8abd7663a9dec396ccaffd0c9">&#9670;&nbsp;</a></span>is_reversed</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, bool reverse&gt; </div>
+template&lt;typename Value , typename Tree , typename LeafNode , bool is_const, bool reverse&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr bool <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, isConst, reverse &gt;::is_reversed = reverse</td>
+          <td class="memname">constexpr bool <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, is_const, reverse &gt;::is_reversed = reverse</td>
         </tr>
       </table>
   </td>
@@ -980,35 +980,35 @@ template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, b
 
 </div>
 </div>
-<a id="aa1e49a83de3b06ee99932a8e3a7b43ea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa1e49a83de3b06ee99932a8e3a7b43ea">&#9670;&nbsp;</a></span>iter</h2>
+<a id="ad405991e0f5a9492b6e6757008ccf0f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad405991e0f5a9492b6e6757008ccf0f5">&#9670;&nbsp;</a></span>iter</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, bool reverse&gt; </div>
+template&lt;typename Value , typename Tree , typename LeafNode , bool is_const, bool reverse&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">uint64_t <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, isConst, reverse &gt;::iter = 0</td>
+          <td class="memname">uint64_t <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, is_const, reverse &gt;::iter = 0</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="ae00c0160109acc6a7cc4ddcf6d4d0614"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae00c0160109acc6a7cc4ddcf6d4d0614">&#9670;&nbsp;</a></span>leaf</h2>
+<a id="a558e038d9b16cad3b3f3c765609a2466"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a558e038d9b16cad3b3f3c765609a2466">&#9670;&nbsp;</a></span>leaf</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, bool reverse&gt; </div>
+template&lt;typename Value , typename Tree , typename LeafNode , bool is_const, bool reverse&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">LeafNode <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a>* <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, isConst, reverse &gt;::leaf</td>
+          <td class="memname">LeafNode <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a>* <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, is_const, reverse &gt;::leaf</td>
         </tr>
       </table>
   </td>
@@ -1020,19 +1020,19 @@ template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, b
 
 </div>
 </div>
-<a id="a74b1a19fd2f1f9c45e7508d408d135b0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a74b1a19fd2f1f9c45e7508d408d135b0">&#9670;&nbsp;</a></span>mod_count</h2>
+<a id="a2f4f66b0124ac1d20486ba7455cd11b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f4f66b0124ac1d20486ba7455cd11b9">&#9670;&nbsp;</a></span>mod_count</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, bool reverse&gt; </div>
+template&lt;typename Value , typename Tree , typename LeafNode , bool is_const, bool reverse&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">uint64_t <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, isConst, reverse &gt;::mod_count</td>
+          <td class="memname">uint64_t <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, is_const, reverse &gt;::mod_count</td>
         </tr>
       </table>
   </td>
@@ -1044,19 +1044,19 @@ template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, b
 
 </div>
 </div>
-<a id="a6a5d315f3d2d093242283eec68b6a264"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6a5d315f3d2d093242283eec68b6a264">&#9670;&nbsp;</a></span>rend</h2>
+<a id="ae453c844195271ada7e26921c7dc600c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae453c844195271ada7e26921c7dc600c">&#9670;&nbsp;</a></span>rend</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, bool reverse&gt; </div>
+template&lt;typename Value , typename Tree , typename LeafNode , bool is_const, bool reverse&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr uint64_t <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, isConst, reverse &gt;::rend = std::numeric_limits&lt;uint64_t&gt;::max()</td>
+          <td class="memname">constexpr uint64_t <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, is_const, reverse &gt;::rend = std::numeric_limits&lt;uint64_t&gt;::max()</td>
         </tr>
       </table>
   </td>
@@ -1068,16 +1068,16 @@ template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, b
 
 </div>
 </div>
-<a id="a4e34dde917ca7fa0443776635154f354"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4e34dde917ca7fa0443776635154f354">&#9670;&nbsp;</a></span>tree</h2>
+<a id="abbc43aaf2ee04c6dd4e15175c007bcd1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbc43aaf2ee04c6dd4e15175c007bcd1">&#9670;&nbsp;</a></span>tree</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Value , typename Tree , typename LeafNode , bool isConst, bool reverse&gt; </div>
+template&lt;typename Value , typename Tree , typename LeafNode , bool is_const, bool reverse&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a0be6b5015c9b17943e21eca5aaa41f53">TreeType</a>* <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, isConst, reverse &gt;::tree</td>
+          <td class="memname"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#aba96b0e8549dffcaa0d7cadd2c99ff4b">TreeType</a>* <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, is_const, reverse &gt;::tree</td>
         </tr>
       </table>
 </div><div class="memdoc">

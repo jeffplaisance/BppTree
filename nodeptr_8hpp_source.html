@@ -107,7 +107,7 @@ $(function() {
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    PtrType* ptr = <span class="keyword">nullptr</span>;</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordtype">void</span> decRef() noexcept {</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordtype">void</span> dec_ref() noexcept {</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keywordflow">if</span> (ptr != <span class="keyword">nullptr</span>) {</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            <span class="keywordflow">if</span> (--ptr-&gt;ref_count == 0) {</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                <span class="keyword">delete</span> ptr;</div>
@@ -117,7 +117,7 @@ $(function() {
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        }</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    }</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">void</span> incRef() <span class="keyword">const</span> noexcept {</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">void</span> inc_ref() <span class="keyword">const</span> noexcept {</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="keywordflow">if</span> (ptr != <span class="keyword">nullptr</span>) {</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            ++ptr-&gt;ref_count;</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            <span class="keywordflow">if</span> constexpr (count_allocations) ++<a class="code" href="namespacebpptree_1_1detail.html#a30a0e98b7bb5ceef1f9eb9ae1398cee2">increments</a>;</div>
@@ -132,7 +132,7 @@ $(function() {
 <div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="classbpptree_1_1detail_1_1NodePtr.html#ac2f8754a693d3111a32566783c79e08a">   61</a></span>&#160;    <a class="code" href="classbpptree_1_1detail_1_1NodePtr.html">NodePtr</a>(PtrType* p) noexcept : ptr(p) {} <span class="comment">//NOLINT</span></div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
 <div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="classbpptree_1_1detail_1_1NodePtr.html#a458398dccfcbea91389867860cf0104b">   63</a></span>&#160;    <a class="code" href="classbpptree_1_1detail_1_1NodePtr.html#a458398dccfcbea91389867860cf0104b">NodePtr</a>(<a class="code" href="classbpptree_1_1detail_1_1NodePtr.html">NodePtr</a> <span class="keyword">const</span>&amp; other) noexcept : ptr(other.ptr) {</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        incRef();</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        inc_ref();</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    }</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
 <div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="classbpptree_1_1detail_1_1NodePtr.html#a4c011eb1a29802188db3e393e9df1e71">   67</a></span>&#160;    <a class="code" href="classbpptree_1_1detail_1_1NodePtr.html#a4c011eb1a29802188db3e393e9df1e71">NodePtr</a>(<a class="code" href="classbpptree_1_1detail_1_1NodePtr.html">NodePtr</a>&amp;&amp; other) noexcept : ptr(other.ptr) {</div>
@@ -141,15 +141,15 @@ $(function() {
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="comment">// NOLINTNEXTLINE(bugprone-unhandled-self-assignment)</span></div>
 <div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="classbpptree_1_1detail_1_1NodePtr.html#a4532163312e9ea90b420b7b0083ad5fd">   72</a></span>&#160;    <a class="code" href="classbpptree_1_1detail_1_1NodePtr.html">NodePtr</a>&amp; <a class="code" href="classbpptree_1_1detail_1_1NodePtr.html#a4532163312e9ea90b420b7b0083ad5fd">operator=</a>(<a class="code" href="classbpptree_1_1detail_1_1NodePtr.html">NodePtr</a> <span class="keyword">const</span>&amp; rhs) noexcept {</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="comment">// call incRef on rhs before calling decRef on this to ensure safe self-assignment</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        rhs.incRef();</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        decRef();</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="comment">// call inc_ref on rhs before calling dec_ref on this to ensure safe self-assignment</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        rhs.inc_ref();</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        dec_ref();</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        ptr = rhs.ptr;</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    }</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
 <div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="classbpptree_1_1detail_1_1NodePtr.html#a592ae3169b8b3d41aa638e011d8d7ccd">   80</a></span>&#160;    <a class="code" href="classbpptree_1_1detail_1_1NodePtr.html">NodePtr</a>&amp; <a class="code" href="classbpptree_1_1detail_1_1NodePtr.html#a592ae3169b8b3d41aa638e011d8d7ccd">operator=</a>(<a class="code" href="classbpptree_1_1detail_1_1NodePtr.html">NodePtr</a>&amp;&amp; rhs) noexcept {</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        decRef();</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        dec_ref();</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        ptr = rhs.ptr;</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        rhs.ptr = <span class="keyword">nullptr</span>;</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
@@ -173,12 +173,12 @@ $(function() {
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00104"></a><span class="lineno"><a class="line" href="classbpptree_1_1detail_1_1NodePtr.html#a2c20e0b73e5640f1b68d4dba94d9b861">  104</a></span>&#160;    <a class="code" href="classbpptree_1_1detail_1_1NodePtr.html#a2c20e0b73e5640f1b68d4dba94d9b861">~NodePtr</a>() noexcept {</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        decRef();</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        dec_ref();</div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    }</div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;};</div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> PtrType, <span class="keyword">typename</span>... Ts&gt;</div>
-<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="namespacebpptree_1_1detail.html#ac957add723ee71e7a6723d6cd8eb2321">  110</a></span>&#160;<a class="code" href="classbpptree_1_1detail_1_1NodePtr.html">NodePtr&lt;PtrType&gt;</a> <a class="code" href="namespacebpptree_1_1detail.html#ac957add723ee71e7a6723d6cd8eb2321">makePtr</a>(Ts&amp;&amp;... ts) noexcept {</div>
+<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="namespacebpptree_1_1detail.html#aca3b277c9a86c20fa87c8b2df9734cfc">  110</a></span>&#160;<a class="code" href="classbpptree_1_1detail_1_1NodePtr.html">NodePtr&lt;PtrType&gt;</a> <a class="code" href="namespacebpptree_1_1detail.html#aca3b277c9a86c20fa87c8b2df9734cfc">make_ptr</a>(Ts&amp;&amp;... ts) noexcept {</div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="keywordflow">if</span> constexpr (count_allocations) {</div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        ++<a class="code" href="namespacebpptree_1_1detail.html#abe34902dbdf736bd6f58a871e2db5b64">allocations</a>;</div>
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        ++<a class="code" href="namespacebpptree_1_1detail.html#a30a0e98b7bb5ceef1f9eb9ae1398cee2">increments</a>;</div>
@@ -204,7 +204,7 @@ $(function() {
 <div class="ttc" id="anamespacebpptree_1_1detail_html_a4a112c6e2b5985b14449744c2ac99abb"><div class="ttname"><a href="namespacebpptree_1_1detail.html#a4a112c6e2b5985b14449744c2ac99abb">bpptree::detail::reset_counters</a></div><div class="ttdeci">void reset_counters()</div><div class="ttdef"><b>Definition:</b> nodeptr.hpp:20</div></div>
 <div class="ttc" id="anamespacebpptree_1_1detail_html_a511ac59ab5eb422609160d8fe9bcb6e7"><div class="ttname"><a href="namespacebpptree_1_1detail.html#a511ac59ab5eb422609160d8fe9bcb6e7">bpptree::detail::decrements</a></div><div class="ttdeci">int decrements</div><div class="ttdef"><b>Definition:</b> nodeptr.hpp:18</div></div>
 <div class="ttc" id="anamespacebpptree_1_1detail_html_abe34902dbdf736bd6f58a871e2db5b64"><div class="ttname"><a href="namespacebpptree_1_1detail.html#abe34902dbdf736bd6f58a871e2db5b64">bpptree::detail::allocations</a></div><div class="ttdeci">int allocations</div><div class="ttdef"><b>Definition:</b> nodeptr.hpp:15</div></div>
-<div class="ttc" id="anamespacebpptree_1_1detail_html_ac957add723ee71e7a6723d6cd8eb2321"><div class="ttname"><a href="namespacebpptree_1_1detail.html#ac957add723ee71e7a6723d6cd8eb2321">bpptree::detail::makePtr</a></div><div class="ttdeci">NodePtr&lt; PtrType &gt; makePtr(Ts &amp;&amp;... ts) noexcept</div><div class="ttdef"><b>Definition:</b> nodeptr.hpp:110</div></div>
+<div class="ttc" id="anamespacebpptree_1_1detail_html_aca3b277c9a86c20fa87c8b2df9734cfc"><div class="ttname"><a href="namespacebpptree_1_1detail.html#aca3b277c9a86c20fa87c8b2df9734cfc">bpptree::detail::make_ptr</a></div><div class="ttdeci">NodePtr&lt; PtrType &gt; make_ptr(Ts &amp;&amp;... ts) noexcept</div><div class="ttdef"><b>Definition:</b> nodeptr.hpp:110</div></div>
 <div class="ttc" id="anamespacebpptree_1_1detail_html_aea6e3c9bf0a2379aef84322c0aecea4b"><div class="ttname"><a href="namespacebpptree_1_1detail.html#aea6e3c9bf0a2379aef84322c0aecea4b">bpptree::detail::deallocations</a></div><div class="ttdeci">int deallocations</div><div class="ttdef"><b>Definition:</b> nodeptr.hpp:16</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
