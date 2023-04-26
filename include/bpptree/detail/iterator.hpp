@@ -114,15 +114,15 @@ struct IteratorDetail {
         }
     };
 
-    template <bool C = is_const, std::enable_if_t<!C, bool> = true>
+    template <bool c = is_const, std::enable_if_t<!c, bool> = true>
     [[nodiscard]] ProxyRef operator*() {
-        static_assert(C == is_const);
+        static_assert(c == is_const);
         return ProxyRef(*this);
     }
 
-    template <bool C = is_const, std::enable_if_t<C, bool> = true>
+    template <bool c = is_const, std::enable_if_t<c, bool> = true>
     [[nodiscard]] Value const& operator*() const {
-        static_assert(C == is_const);
+        static_assert(c == is_const);
         return get();
     }
 

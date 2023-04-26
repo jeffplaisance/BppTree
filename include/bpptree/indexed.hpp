@@ -31,8 +31,8 @@ struct Indexed {
     template <typename Parent>
     using LeafNode = IndexedLeafNode<Parent, Value, SizeType>;
 
-    template <typename Parent, auto InternalSize>
-    using InternalNode = IndexedInternalNode<Parent, Value, SizeType, InternalSize>;
+    template <typename Parent, auto internal_size>
+    using InternalNode = IndexedInternalNode<Parent, Value, SizeType, internal_size>;
 
     template <typename Parent>
     using NodeInfo = IndexedNodeInfo<Parent, SizeType>;

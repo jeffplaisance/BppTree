@@ -12,7 +12,7 @@
 
 namespace bpptree::detail {
 
-template <typename Parent, typename Value, auto LeafSize>
+template <typename Parent, typename Value, auto leaf_size>
 struct LeafNodeBase : public Parent {
 
     using NodeType = typename Parent::SelfType;
@@ -27,7 +27,7 @@ struct LeafNodeBase : public Parent {
 
     static constexpr int it_shift = 0;
 
-    static constexpr int it_bits = bits_required<LeafSize>();
+    static constexpr int it_bits = bits_required<leaf_size>();
 
     static constexpr uint64_t it_mask = (1ULL << it_bits) - 1;
 
@@ -35,7 +35,7 @@ struct LeafNodeBase : public Parent {
 
     uint16_t length = 0;
     bool persistent = false;
-    UninitializedArray<Value, LeafSize> values;
+    UninitializedArray<Value, leaf_size> values;
 
     LeafNodeBase() noexcept = default;
 
@@ -118,7 +118,7 @@ struct LeafNodeBase : public Parent {
 
     template <typename... Args>
     bool insert_split(LeafNodeBase& left, LeafNodeBase& right, IndexType index, uint64_t& iter, bool right_most, Args&&... args) {
-        IndexType split_point = right_most && index == LeafSize ? index : (LeafSize + 1) / 2;
+        IndexType split_point = right_most && index == leaf_size ? index : (leaf_size + 1) / 2;
         for (IndexType i = length - 1; i >= index; --i) {
             if (persistent) {
                 set_element(left, right, i + 1, split_point, values[i]);
@@ -144,7 +144,7 @@ struct LeafNodeBase : public Parent {
             }
         }
         left.length = static_cast<uint16_t>(split_point);
-        right.length = static_cast<uint16_t>(LeafSize + 1 - split_point);
+        right.length = static_cast<uint16_t>(leaf_size + 1 - split_point);
         if (index >= split_point) {
             set_index(iter, index - split_point);
             return false;
@@ -156,7 +156,7 @@ struct LeafNodeBase : public Parent {
     template <typename R, typename S, typename... Args>
     void insert_index(IndexType index, R&& do_replace, S&& do_split, size_t& size, uint64_t& iter, bool right_most, Args&&... args) {
         ++size;
-        if (length != LeafSize) {
+        if (length != leaf_size) {
             set_index(iter, index);
             ReplaceType replace{};
             compute_delta_insert(index, replace.delta, args...);

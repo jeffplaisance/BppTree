@@ -24,16 +24,16 @@ static constexpr size_t hardware_constructive_interference_size = 64;
 using IndexType = std::int_fast32_t;
 
 //a std::array that doesn't cause warnings when you index into it with signed integers when -Wsign-conversion is enabled
-template <typename T, size_t N>
-struct Array : std::array<T, N> {
+template <typename T, size_t n>
+struct Array : std::array<T, n> {
     template <typename I, std::enable_if_t<std::is_integral_v<I>, bool> = true>
     decltype(auto) operator[](I const index) noexcept {
-        return std::array<T, N>::operator[](static_cast<size_t const>(index));
+        return std::array<T, n>::operator[](static_cast<size_t const>(index));
     }
 
     template <typename I, std::enable_if_t<std::is_integral_v<I>, bool> = true>
     decltype(auto) operator[](I const index) const noexcept {
-        return std::array<T, N>::operator[](static_cast<size_t const>(index));
+        return std::array<T, n>::operator[](static_cast<size_t const>(index));
     }
 };
 

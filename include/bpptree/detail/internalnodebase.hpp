@@ -12,14 +12,16 @@
 
 namespace bpptree::detail {
 
-template <typename Parent, typename Value, auto LeafSize, auto InternalSize, auto Depth>
+template <typename Parent, typename Value, auto leaf_size, auto internal_size, auto depth_v>
 struct InternalNodeBase : public Parent {
+
+    static constexpr int depth = depth_v;
 
     using NodeType = typename Parent::SelfType;
 
-    using ChildType = std::conditional_t<(Depth > 2),
-            typename Parent::template InternalNodeType<LeafSize, InternalSize, Depth - 1>,
-            typename Parent::template LeafNodeType<LeafSize>>;
+    using ChildType = std::conditional_t<(depth > 2),
+            typename Parent::template InternalNodeType<leaf_size, internal_size, depth - 1>,
+            typename Parent::template LeafNodeType<leaf_size>>;
 
     template <typename PtrType>
     using InfoType = typename Parent::template NodeInfoType<PtrType>;
@@ -30,11 +32,9 @@ struct InternalNodeBase : public Parent {
     template <typename PtrType>
     using SplitType = Split<InfoType<PtrType>>;
 
-    static constexpr int depth = Depth;
-
     static constexpr int it_shift = ChildType::it_shift + ChildType::it_bits;
 
-    static constexpr int it_bits = bits_required<InternalSize>();
+    static constexpr int it_bits = bits_required<internal_size>();
 
     static constexpr uint64_t it_mask = (1ULL << it_bits) - 1;
 
@@ -42,7 +42,7 @@ struct InternalNodeBase : public Parent {
 
     uint16_t length = 0;
     bool persistent = false;
-    Array<NodePtr<ChildType>, InternalSize> pointers{};
+    Array<NodePtr<ChildType>, internal_size> pointers{};
 
     static IndexType get_index(uint64_t it) noexcept {
         return (it >> it_shift) & it_mask;
@@ -198,7 +198,7 @@ struct InternalNodeBase : public Parent {
     }
 
     bool insert_split_split(InternalNodeBase& left, InternalNodeBase& right, IndexType index, SplitType<ChildType>& split, uint64_t& iter, bool right_most) {
-        IndexType split_point = right_most && index + 1 == InternalSize ? index + 1 : (InternalSize + 1) / 2;
+        IndexType split_point = right_most && index + 1 == internal_size ? index + 1 : (internal_size + 1) / 2;
         for (IndexType i = length - 1; i > index; --i) {
             if (persistent) {
                 copy_element(left, right, i + 1, this->self(), i, split_point);
@@ -223,7 +223,7 @@ struct InternalNodeBase : public Parent {
             left.erase_element(i);
         }
         left.length = static_cast<uint16_t>(split_point);
-        right.length = static_cast<uint16_t>(InternalSize + 1 - split_point);
+        right.length = static_cast<uint16_t>(internal_size + 1 - split_point);
         IndexType insertion_index = split.new_element_left ? index : index + 1;
         if (insertion_index >= split_point) {
             set_index(iter, insertion_index - split_point);
@@ -242,7 +242,7 @@ struct InternalNodeBase : public Parent {
             uint64_t& iter,
             bool right_most
     ) {
-        if (length != InternalSize) {
+        if (length != internal_size) {
             set_index(iter, split.new_element_left ? index : index + 1);
             ReplaceType<NodeType> replace{};
             compute_delta_split(split, replace.delta, index);
@@ -407,12 +407,12 @@ struct InternalNodeBase : public Parent {
         pointers[length - 1]->seek_end(it);
     }
 
-    void seek_begin(typename InternalNodeBase::template LeafNodeType<LeafSize> const*& leaf, uint64_t& it) const {
+    void seek_begin(typename InternalNodeBase::template LeafNodeType<leaf_size> const*& leaf, uint64_t& it) const {
         clear_index(it);
         pointers[0]->seek_begin(leaf, it);
     }
 
-    void seek_end(typename InternalNodeBase::template LeafNodeType<LeafSize> const*& leaf, uint64_t& it) const {
+    void seek_end(typename InternalNodeBase::template LeafNodeType<leaf_size> const*& leaf, uint64_t& it) const {
         set_index(it, length - 1);
         pointers[length - 1]->seek_end(leaf, it);
     }
@@ -425,7 +425,7 @@ struct InternalNodeBase : public Parent {
         return pointers[length - 1]->back();
     }
 
-    ssize advance(typename InternalNodeBase::template LeafNodeType<LeafSize> const*& leaf, uint64_t& it, ssize n) const {
+    ssize advance(typename InternalNodeBase::template LeafNodeType<leaf_size> const*& leaf, uint64_t& it, ssize n) const {
         while (true) {
             n = pointers[get_index(it)]->advance(leaf, it, n);
             if (n > 0) {

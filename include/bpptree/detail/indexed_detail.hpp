@@ -69,7 +69,7 @@ struct IndexedLeafNode : public Parent {
     }
 };
 
-template <typename Parent, typename Value, typename SizeType, auto InternalSize>
+template <typename Parent, typename Value, typename SizeType, auto internal_size>
 struct IndexedInternalNode : public Parent {
 
     using NodeType = typename Parent::NodeType;
@@ -82,7 +82,7 @@ struct IndexedInternalNode : public Parent {
     template <typename PtrType>
     using SplitType = typename Parent::template SplitType<PtrType>;
 
-    Array<SizeType, InternalSize> child_counts{};
+    Array<SizeType, internal_size> child_counts{};
 
     void move_element2(IndexType dest_index, NodeType& source, IndexType source_index) {
         child_counts[dest_index] = std::move(source.child_counts[source_index]);

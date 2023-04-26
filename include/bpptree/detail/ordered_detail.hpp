@@ -153,7 +153,7 @@ public:
         }
     };
 
-    template <typename Parent, auto InternalSize>
+    template <typename Parent, auto internal_size>
     struct InternalNode : public Parent {
 
         using NodeType = typename Parent::NodeType;
@@ -166,7 +166,7 @@ public:
         template <typename PtrType>
         using SplitType = typename Parent::template SplitType<PtrType>;
 
-        UninitializedArray<Key, InternalSize> keys;
+        UninitializedArray<Key, internal_size> keys;
 
         InternalNode() noexcept = default;
 
