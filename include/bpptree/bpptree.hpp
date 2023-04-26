@@ -33,29 +33,29 @@ namespace detail {
 /**
  * A B++ tree is a B+ tree with a pluggable set of mixins
  * @tparam Value The value type of the B++ Tree
- * @tparam LeafNodeBytes The maximum number of bytes in a leaf node
- * @tparam InternalNodeBytes The maximum number of bytes in an internal node
- * @tparam depthLimit The maximum depth of the tree. Setting this lower reduces code size and compile times
+ * @tparam leaf_node_bytes The maximum number of bytes in a leaf node
+ * @tparam internal_node_bytes The maximum number of bytes in an internal node
+ * @tparam depth_limit The maximum depth of the tree. Setting this lower reduces code size and compile times
  * @tparam Ts The mixins to use with this B++ tree
  */
 template <
     typename Value,
-    int LeafNodeBytes = 512,
-    int InternalNodeBytes = 512,
-    int depthLimit = 16,
+    int leaf_node_bytes = 512,
+    int internal_node_bytes = 512,
+    int depth_limit = 16,
     typename... Ts>
 class BppTreeDetail {
 private:
 
-    using NodeTypes = NodeTypesDetail<Value, LeafNodeBytes, InternalNodeBytes, depthLimit, Ts...>;
+    using NodeTypes = NodeTypesDetail<Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts...>;
 
     static constexpr int leaf_node_size = NodeTypes::leaf_node_size;
 
     static constexpr int internal_node_size = NodeTypes::internal_node_size;
 
-    static constexpr int maxDepth = NodeTypes::maxDepth;
+    static constexpr int max_depth = NodeTypes::max_depth;
 
-    static constexpr size_t maxSize = NodeTypes::maxSize;
+    static constexpr size_t max_size = NodeTypes::max_size;
 
     using LeafNode = typename NodeTypes::template LeafNode<leaf_node_size>;
 
@@ -68,17 +68,17 @@ public:
     template <typename Parent>
     struct Shared : public Parent {
     protected:
-        RootType rootVariant;
-        size_t treeSize;
+        RootType root_variant;
+        size_t tree_size;
         uint64_t mod_count = 0;
 
-        Shared() noexcept : Parent(), rootVariant(makePtr<LeafNode>()), treeSize(0) {}
+        Shared() noexcept : Parent(), root_variant(makePtr<LeafNode>()), tree_size(0) {}
 
-        Shared(RootType const& rootVariant, size_t size) noexcept : Parent(), rootVariant(rootVariant), treeSize(size) {}
+        Shared(RootType const& root_variant, size_t size) noexcept : Parent(), root_variant(root_variant), tree_size(size) {}
 
-        Shared(RootType&& rootVariant, size_t size) noexcept : Parent(), rootVariant(std::move(rootVariant)), treeSize(size) {}
+        Shared(RootType&& root_variant, size_t size) noexcept : Parent(), root_variant(std::move(root_variant)), tree_size(size) {}
 
-        using Modifiers = ModifyTypes<LeafNode, InternalNode, maxDepth>;
+        using Modifiers = ModifyTypes<LeafNode, InternalNode, max_depth>;
 
         friend Modifiers;
 
@@ -87,24 +87,24 @@ public:
 
         template <typename Operation, typename... Us>
         decltype(auto) dispatch(Operation&& op, Us&&... us) {
-            return std::visit([this, &op, &us...](auto& root) -> decltype(auto) { return op(this->self(), root, std::forward<Us>(us)...); }, rootVariant);
+            return std::visit([this, &op, &us...](auto& root) -> decltype(auto) { return op(this->self(), root, std::forward<Us>(us)...); }, root_variant);
         }
 
         template <typename Operation, typename... Us>
         [[nodiscard]] decltype(auto) dispatch(Operation const& op, Us const&... us) const {
-            return std::visit([&op, &us...](auto const& root) -> decltype(auto) { return op(root, us...); }, rootVariant);
+            return std::visit([&op, &us...](auto const& root) -> decltype(auto) { return op(root, us...); }, root_variant);
         }
 
-        template <bool isConst, bool reverse>
-        using IteratorType = IteratorDetail<Value, typename Parent::SelfType, LeafNode, isConst, reverse>;
+        template <bool is_const, bool reverse>
+        using IteratorType = IteratorDetail<Value, typename Parent::SelfType, LeafNode, is_const, reverse>;
 
     public:
         [[nodiscard]] size_t size() {
-            return treeSize;
+            return tree_size;
         }
 
         [[nodiscard]] constexpr size_t max_size() {
-            return maxSize;
+            return max_size;
         }
 
         [[nodiscard]] size_t depth() {
@@ -112,7 +112,7 @@ public:
         }
 
         [[nodiscard]] constexpr size_t max_depth() {
-            return maxDepth;
+            return max_depth;
         }
 
         using iterator = IteratorType<false, false>;
@@ -205,7 +205,7 @@ public:
         }
 
         [[nodiscard]] bool empty() const {
-            return treeSize == 0;
+            return tree_size == 0;
         }
     };
 private:
@@ -235,11 +235,11 @@ public:
         explicit Transient(Us&&... us) noexcept : Parent(std::forward<Us>(us)...) {}
 
         [[nodiscard]] Persistent persistent() & {
-            return Persistent(this->rootVariant, this->treeSize);
+            return Persistent(this->root_variant, this->tree_size);
         }
 
         [[nodiscard]] Persistent persistent() && {
-            return Persistent(std::move(this->rootVariant), this->treeSize);
+            return Persistent(std::move(this->root_variant), this->tree_size);
         }
 
     private:
@@ -318,8 +318,8 @@ public:
         }
 
         void clear() {
-            this->self().rootVariant = makePtr<LeafNode>();
-            this->treeSize = 0;
+            this->self().root_variant = makePtr<LeafNode>();
+            this->tree_size = 0;
             this->mod_count++;
         }
     };
@@ -336,11 +336,11 @@ public:
         }
 
         [[nodiscard]] Transient transient() const& {
-            return Transient(this->rootVariant, this->treeSize);
+            return Transient(this->root_variant, this->tree_size);
         }
 
         [[nodiscard]] Transient transient() && {
-            return Transient(std::move(this->rootVariant), this->treeSize);
+            return Transient(std::move(this->root_variant), this->tree_size);
         }
 
         template <typename It, typename... Args>
@@ -409,18 +409,18 @@ public:
     };
 };
 
-template <typename Value, int LeafNodeBytes = 512, int InternalNodeBytes = 512, int depthLimit = 16>
+template <typename Value, int leaf_node_bytes = 512, int internal_node_bytes = 512, int depth_limit = 16>
 struct BppTree {
     template <typename... Args>
-    using mixins = BppTreeDetail<Value, LeafNodeBytes, InternalNodeBytes, depthLimit, typename Args::template build<Value>...>;
+    using mixins = BppTreeDetail<Value, leaf_node_bytes, internal_node_bytes, depth_limit, typename Args::template build<Value>...>;
 
     template <template<typename...> typename... Ts>
-    using mixins2 = BppTreeDetail<Value, LeafNodeBytes, InternalNodeBytes, depthLimit, Ts<Value>...>;
+    using mixins2 = BppTreeDetail<Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts<Value>...>;
 
     template <typename... Ts>
     struct mixins3 {
         template <template<typename...> typename... Us>
-        using mixins = BppTreeDetail<Value, LeafNodeBytes, InternalNodeBytes, depthLimit, Ts..., Us<Value>...>;
+        using mixins = BppTreeDetail<Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts..., Us<Value>...>;
     };
 };
 } //end namespace detail

@@ -14,7 +14,7 @@
 
 namespace bpptree::detail {
 
-template <typename LeafNode, template<int> typename InternalNode, int maxDepth>
+template <typename LeafNode, template<int> typename InternalNode, int max_depth>
 struct ModifyTypes {
     template <typename TreeType>
     static void collapse(TreeType& tree) {
@@ -23,7 +23,7 @@ struct ModifyTypes {
                 if (root->length == 1) {
                     // have to call copy constructor here on pointer or else assignment to variant destroys root
                     // (and therefore destroys root->pointers[0]) before copy can happen
-                    tree.rootVariant = NodePtr(root->pointers[0]);
+                    tree.root_variant = NodePtr(root->pointers[0]);
                     return true;
                 }
             }
@@ -47,7 +47,7 @@ struct ModifyTypes {
                         do_collapse = true;
                     }
                 }
-                tree.rootVariant = std::move(replace.delta.ptr);
+                tree.root_variant = std::move(replace.delta.ptr);
             } else if constexpr (NodeType::depth > 1) {
                 if (root->length == 1) {
                     do_collapse = true;
@@ -69,7 +69,7 @@ struct ModifyTypes {
 
         template <typename SplitType>
         void operator()([[maybe_unused]] SplitType&& split) {
-            if constexpr (NodeType::depth < maxDepth) {
+            if constexpr (NodeType::depth < max_depth) {
                 using NewRootType = InternalNode<NodeType::depth + 1>;
                 auto rootNode = makePtr<NewRootType>();
                 if (!split.left.ptrChanged) {
@@ -80,7 +80,7 @@ struct ModifyTypes {
                 rootNode->setElement(1, split.right);
                 rootNode->length = 2;
                 rootNode->setIndex(iter, split.new_element_left ? 0 : 1);
-                tree.rootVariant = std::move(rootNode);
+                tree.root_variant = std::move(rootNode);
             } else {
                 throw std::logic_error("maximum depth exceeded");
             }
@@ -94,7 +94,7 @@ struct ModifyTypes {
         explicit DoErase(TreeType& tree) noexcept : tree(tree) {}
 
         void operator()() {
-            tree.rootVariant = makePtr<LeafNode>();
+            tree.root_variant = makePtr<LeafNode>();
         }
     };
 
@@ -107,7 +107,7 @@ struct ModifyTypes {
                 DoReplace<TreeType, NodeType>(tree, root),
                 DoSplit<TreeType, NodeType>(tree, root, ret),
                 DoErase<TreeType>(tree),
-                tree.treeSize,
+                tree.tree_size,
                 ret,
                 true,
                 std::forward<Us>(params)...

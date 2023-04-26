@@ -12,9 +12,9 @@ namespace bpptree::detail {
 
 template <
         typename Value,
-        int LeafNodeBytes = 512,
-        int InternalNodeBytes = 512,
-        int depthLimit = 16,
+        ssize leaf_node_bytes = 512,
+        ssize internal_node_bytes = 512,
+        ssize depth_limit = 16,
         typename... Ts>
 struct NodeTypesDetail {
     template <typename Parent>
@@ -25,22 +25,22 @@ struct NodeTypesDetail {
         MixinT<Ts::template NodeInfo...,
                curry<NodeInfoBase, PtrType>::template mixin>;
 
-    template <typename Parent, auto LeafSize>
+    template <typename Parent, auto leaf_size>
     struct LeafNodeMixin {
         template <typename P>
-        using LeafNodeBaseCurried = LeafNodeBase<P, Value, LeafSize>;
+        using LeafNodeBaseCurried = LeafNodeBase<P, Value, leaf_size>;
         using Type = chain_t<Parent,
                 Ts::template LeafNode...,
                 LeafNodeBaseCurried,
                 Params>;
     };
 
-    template<typename Parent, auto LeafSize, auto InternalSize, auto Depth>
+    template<typename Parent, auto leaf_size, auto internal_size, auto depth>
     struct InternalNodeMixin {
         template <typename P>
-        using InternalNodeBaseCurried = InternalNodeBase<P, Value, LeafSize, InternalSize, Depth>;
+        using InternalNodeBaseCurried = InternalNodeBase<P, Value, leaf_size, internal_size, depth>;
         using Type = chain_t<Parent,
-                curry2<Ts::template InternalNode, InternalSize>::template mixin...,
+                curry2<Ts::template InternalNode, internal_size>::template mixin...,
                 InternalNodeBaseCurried,
                 Params>;
     };
@@ -51,12 +51,12 @@ struct NodeTypesDetail {
     #pragma warning(disable : 4324)
     #endif
 
-    template <auto LeafSize>
-    struct alignas(hardware_constructive_interference_size) LeafNode : public LeafNodeMixin<LeafNode<LeafSize>, LeafSize>::Type {
+    template <auto leaf_size>
+    struct alignas(hardware_constructive_interference_size) LeafNode : public LeafNodeMixin<LeafNode<leaf_size>, leaf_size>::Type {
 
-        using Parent = typename LeafNodeMixin<LeafNode<LeafSize>, LeafSize>::Type;
+        using Parent = typename LeafNodeMixin<LeafNode<leaf_size>, leaf_size>::Type;
 
-        std::atomic<uint32_t> refCount = 1;
+        std::atomic<uint32_t> ref_count = 1;
 
         LeafNode() noexcept : Parent() {};
 
@@ -66,12 +66,12 @@ struct NodeTypesDetail {
         }
     };
 
-    template<auto LeafSize, auto InternalSize, auto Depth>
-    struct alignas(hardware_constructive_interference_size) InternalNode : public InternalNodeMixin<InternalNode<LeafSize, InternalSize, Depth>, LeafSize, InternalSize, Depth>::Type {
+    template<auto leaf_size, auto internal_size, auto depth>
+    struct alignas(hardware_constructive_interference_size) InternalNode : public InternalNodeMixin<InternalNode<leaf_size, internal_size, depth>, leaf_size, internal_size, depth>::Type {
 
-        using Parent = typename InternalNodeMixin<InternalNode<LeafSize, InternalSize, Depth>, LeafSize, InternalSize, Depth>::Type;
+        using Parent = typename InternalNodeMixin<InternalNode<leaf_size, internal_size, depth>, leaf_size, internal_size, depth>::Type;
 
-        std::atomic<uint32_t> refCount = 1;
+        std::atomic<uint32_t> ref_count = 1;
 
         InternalNode() noexcept : Parent() {};
 
@@ -90,33 +90,33 @@ struct NodeTypesDetail {
         template <typename PtrType>
         using NodeInfoType = NodeInfo<PtrType>;
 
-        template <auto LeafSize>
-        using LeafNodeType = LeafNode<LeafSize>;
+        template <auto leaf_size>
+        using LeafNodeType = LeafNode<leaf_size>;
 
-        template <auto LeafSize, auto InternalSize, auto Depth>
-        using InternalNodeType = InternalNode<LeafSize, InternalSize, Depth>;
+        template <auto leaf_size, auto internal_size, auto depth>
+        using InternalNodeType = InternalNode<leaf_size, internal_size, depth>;
     };
 
-    template<int LeafSize>
+    template<int leaf_size>
     static constexpr int getLeafNodeSize3() {
-        if constexpr (sizeof(LeafNode<LeafSize>) <= LeafNodeBytes) {
-            return LeafSize;
+        if constexpr (sizeof(LeafNode<leaf_size>) <= leaf_node_bytes) {
+            return leaf_size;
         } else {
-            return getLeafNodeSize3<LeafSize - 1>();
+            return getLeafNodeSize3<leaf_size - 1>();
         }
     }
 
-    template<int LeafSize>
+    template<int leaf_size>
     static constexpr int getLeafNodeSize2() {
-        if constexpr (sizeof(LeafNode<LeafSize>) > LeafNodeBytes) {
-            return getLeafNodeSize3<LeafSize - 1>();
+        if constexpr (sizeof(LeafNode<leaf_size>) > leaf_node_bytes) {
+            return getLeafNodeSize3<leaf_size - 1>();
         } else {
-            return getLeafNodeSize2<LeafSize + 1>();
+            return getLeafNodeSize2<leaf_size + 1>();
         }
     }
 
     static constexpr int getLeafNodeSize() {
-        constexpr int initial = (LeafNodeBytes-8)/sizeof(Value);
+        constexpr int initial = (leaf_node_bytes-8)/sizeof(Value);
         return getLeafNodeSize2<initial>();
     }
 
@@ -124,21 +124,21 @@ struct NodeTypesDetail {
     static_assert(leaf_node_size > 0);
     static_assert(leaf_node_size < 65536);
 
-    template<int InternalSize>
+    template<int internal_size>
     static constexpr int getInternalNodeSize3() {
-        if constexpr (sizeof(InternalNode<leaf_node_size, InternalSize, 3>) <= InternalNodeBytes) {
-            return InternalSize;
+        if constexpr (sizeof(InternalNode<leaf_node_size, internal_size, 3>) <= internal_node_bytes) {
+            return internal_size;
         } else {
-            return getInternalNodeSize3<InternalSize - 1>();
+            return getInternalNodeSize3<internal_size - 1>();
         }
     }
 
-    template<int InternalSize>
+    template<int internal_size>
     static constexpr int getInternalNodeSize2() {
-        if constexpr (sizeof(InternalNode<leaf_node_size, InternalSize, 3>) > InternalNodeBytes) {
-            return getInternalNodeSize3<InternalSize - 1>();
+        if constexpr (sizeof(InternalNode<leaf_node_size, internal_size, 3>) > internal_node_bytes) {
+            return getInternalNodeSize3<internal_size - 1>();
         } else {
-            return getInternalNodeSize2<InternalSize + 8>();
+            return getInternalNodeSize2<internal_size + 8>();
         }
     }
 
@@ -150,14 +150,14 @@ struct NodeTypesDetail {
     static_assert(internal_node_size >= 4);
     static_assert(internal_node_size < 65536);
 
-    template <size_t Size, int Depth>
+    template <size_t size, int depth>
     static constexpr int findMaxDepth() {
-        if constexpr (Size > 64) {
-            return Depth - 1;
-        } else if constexpr (Depth == depthLimit) {
-            return Depth;
+        if constexpr (size > 64) {
+            return depth - 1;
+        } else if constexpr (depth == depth_limit) {
+            return depth;
         } else {
-            return findMaxDepth<Size + bits_required<internal_node_size>(), Depth + 1>();
+            return findMaxDepth<size + bits_required<internal_node_size>(), depth + 1>();
         }
     }
 
@@ -170,9 +170,9 @@ struct NodeTypesDetail {
         }
     }
 
-    static constexpr int maxDepth = findMaxDepth<bits_required<leaf_node_size>(), 1>();
+    static constexpr int max_depth = findMaxDepth<bits_required<leaf_node_size>(), 1>();
 
-    static constexpr size_t maxSize = leaf_node_size * pow<internal_node_size, maxDepth - 1>();
+    static constexpr size_t max_size = leaf_node_size * pow<internal_node_size, max_depth - 1>();
 
     template <int U, int... Us>
     struct RootVariant {
@@ -184,6 +184,6 @@ struct NodeTypesDetail {
         using type = std::variant<NodePtr<LeafNode<leaf_node_size>>, NodePtr<InternalNode<leaf_node_size, internal_node_size, Us>>...>;
     };
 
-    using RootType = typename RootVariant<maxDepth>::type;
+    using RootType = typename RootVariant<max_depth>::type;
 };
 } //end namespace bpptree::detail

@@ -38,7 +38,7 @@ class NodePtr {
 
     void decRef() noexcept {
         if (ptr != nullptr) {
-            if (--ptr->refCount == 0) {
+            if (--ptr->ref_count == 0) {
                 delete ptr;
                 if constexpr (count_allocations) ++deallocations;
             }
@@ -48,7 +48,7 @@ class NodePtr {
 
     void incRef() const noexcept {
         if (ptr != nullptr) {
-            ++ptr->refCount;
+            ++ptr->ref_count;
             if constexpr (count_allocations) ++increments;
         }
     }
