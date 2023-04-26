@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>B++ Tree: bpptree::detail::InsertOrAssign Struct Reference</title>
+<title>B++ Tree: bpptree::detail::InsertOrAssign&lt; duplicate_policy &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -69,7 +69,7 @@ $(function() {
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="structbpptree_1_1detail_1_1InsertOrAssign-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">bpptree::detail::InsertOrAssign Struct Reference</div>  </div>
+<div class="title">bpptree::detail::InsertOrAssign&lt; duplicate_policy &gt; Struct Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -77,24 +77,26 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a2a8d924d686289b088bfa11b5062d5f3"><td class="memTemplParams" colspan="2">template&lt;typename N , typename T , typename F , typename R , typename S , typename E , typename P , typename... Args&gt; </td></tr>
-<tr class="memitem:a2a8d924d686289b088bfa11b5062d5f3"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1InsertOrAssign.html#a2a8d924d686289b088bfa11b5062d5f3">operator()</a> (N &amp;node, T <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a> &amp;searchVal, F &amp;&amp;finder, R &amp;&amp;doReplace, S &amp;&amp;doSplit, E &amp;&amp;, size_t &amp;size, uint64_t &amp;iter, bool rightMost, P <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a> &amp;duplicate_policy, Args &amp;&amp;... args)</td></tr>
-<tr class="separator:a2a8d924d686289b088bfa11b5062d5f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac838d7d6e50a007bf1bb31eeef5d5774"><td class="memTemplParams" colspan="2">template&lt;typename N , typename T , typename F , typename R , typename S , typename E , typename... Args&gt; </td></tr>
+<tr class="memitem:ac838d7d6e50a007bf1bb31eeef5d5774"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1InsertOrAssign.html#ac838d7d6e50a007bf1bb31eeef5d5774">operator()</a> (N &amp;node, T <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a> &amp;searchVal, F &amp;&amp;finder, R &amp;&amp;doReplace, S &amp;&amp;doSplit, E &amp;&amp;, size_t &amp;size, uint64_t &amp;iter, bool rightMost, Args &amp;&amp;... args)</td></tr>
+<tr class="separator:ac838d7d6e50a007bf1bb31eeef5d5774"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a2a8d924d686289b088bfa11b5062d5f3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2a8d924d686289b088bfa11b5062d5f3">&#9670;&nbsp;</a></span>operator()()</h2>
+<a id="ac838d7d6e50a007bf1bb31eeef5d5774"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac838d7d6e50a007bf1bb31eeef5d5774">&#9670;&nbsp;</a></span>operator()()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename N , typename T , typename F , typename R , typename S , typename E , typename P , typename... Args&gt; </div>
+template&lt;DuplicatePolicy duplicate_policy&gt; </div>
+<div class="memtemplate">
+template&lt;typename N , typename T , typename F , typename R , typename S , typename E , typename... Args&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void bpptree::detail::InsertOrAssign::operator() </td>
+          <td class="memname">void <a class="el" href="structbpptree_1_1detail_1_1InsertOrAssign.html">bpptree::detail::InsertOrAssign</a>&lt; duplicate_policy &gt;::operator() </td>
           <td>(</td>
           <td class="paramtype">N &amp;&#160;</td>
           <td class="paramname"><em>node</em>, </td>
@@ -146,12 +148,6 @@ template&lt;typename N , typename T , typename F , typename R , typename S , typ
           <td></td>
           <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>rightMost</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">P <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a> &amp;&#160;</td>
-          <td class="paramname"><em>duplicate_policy</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>

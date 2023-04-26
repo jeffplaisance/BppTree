@@ -13,6 +13,5 @@ var searchData=
   ['doerase_81',['DoErase',['../structbpptree_1_1detail_1_1ModifyTypes_1_1DoErase.html',1,'bpptree::detail::ModifyTypes&lt; LeafNode, InternalNode, maxDepth &gt;::DoErase&lt; TreeType &gt;'],['../structbpptree_1_1detail_1_1ModifyTypes_1_1DoErase.html#aab0383d772fdb96b8f2d47db3b3595d3',1,'bpptree::detail::ModifyTypes::DoErase::DoErase()']]],
   ['doreplace_82',['DoReplace',['../structbpptree_1_1detail_1_1ModifyTypes_1_1DoReplace.html',1,'bpptree::detail::ModifyTypes&lt; LeafNode, InternalNode, maxDepth &gt;::DoReplace&lt; TreeType, NodeType &gt;'],['../structbpptree_1_1detail_1_1ModifyTypes_1_1DoReplace.html#a2c595a40d2190db4b46da110a43713db',1,'bpptree::detail::ModifyTypes::DoReplace::DoReplace()']]],
   ['dosplit_83',['DoSplit',['../structbpptree_1_1detail_1_1ModifyTypes_1_1DoSplit.html',1,'bpptree::detail::ModifyTypes&lt; LeafNode, InternalNode, maxDepth &gt;::DoSplit&lt; TreeType, NodeType &gt;'],['../structbpptree_1_1detail_1_1ModifyTypes_1_1DoSplit.html#a5918944e781f6b25eab4e8289f439e2a',1,'bpptree::detail::ModifyTypes::DoSplit::DoSplit()']]],
-  ['duplicatepolicy_84',['DuplicatePolicy',['../namespacebpptree_1_1detail.html#a57789808e17b02fb1c940b7be698f319',1,'bpptree::detail']]],
-  ['duplicatepolicytag_85',['DuplicatePolicyTag',['../structbpptree_1_1detail_1_1DuplicatePolicyTag.html',1,'bpptree::detail']]]
+  ['duplicatepolicy_84',['DuplicatePolicy',['../namespacebpptree_1_1detail.html#a57789808e17b02fb1c940b7be698f319',1,'bpptree::detail']]]
 ];
