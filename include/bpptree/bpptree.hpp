@@ -53,9 +53,9 @@ private:
 
     static constexpr int internal_node_size = NodeTypes::internal_node_size;
 
-    static constexpr int max_depth = NodeTypes::max_depth;
+    static constexpr int max_depth_v = NodeTypes::max_depth;
 
-    static constexpr size_t max_size = NodeTypes::max_size;
+    static constexpr size_t max_size_v = NodeTypes::max_size;
 
     using LeafNode = typename NodeTypes::template LeafNode<leaf_node_size>;
 
@@ -78,7 +78,7 @@ public:
 
         Shared(RootType&& root_variant, size_t size) noexcept : Parent(), root_variant(std::move(root_variant)), tree_size(size) {}
 
-        using Modifiers = ModifyTypes<LeafNode, InternalNode, max_depth>;
+        using Modifiers = ModifyTypes<LeafNode, InternalNode, max_depth_v>;
 
         friend Modifiers;
 
@@ -104,7 +104,7 @@ public:
         }
 
         [[nodiscard]] constexpr size_t max_size() {
-            return max_size;
+            return max_size_v;
         }
 
         [[nodiscard]] size_t depth() {
@@ -112,7 +112,7 @@ public:
         }
 
         [[nodiscard]] constexpr size_t max_depth() {
-            return max_depth;
+            return max_depth_v;
         }
 
         using iterator = IteratorType<false, false>;
