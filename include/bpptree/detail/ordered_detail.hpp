@@ -94,16 +94,16 @@ public:
             Parent::computeDeltaErase2(index, nodeInfo);
         }
 
-        template <typename F, typename R, typename S, typename Policy, typename... Args>
+        template <DuplicatePolicy duplicate_policy, typename F, typename R, typename S, typename... Args>
         void insertOrAssign(Key const& searchVal, F&& finder, R&& doReplace, S&& doSplit,
-                            size_t& size, uint64_t& iter, bool rightMost, Policy const&, Args&& ... args) {
+                            size_t& size, uint64_t& iter, bool rightMost, Args&& ... args) {
             auto [index, remainder] = finder(this->self(), searchVal);
 
-            if constexpr (Policy::value != DuplicatePolicy::insert) {
+            if constexpr (duplicate_policy != DuplicatePolicy::insert) {
                 if (index < this->length) {
                     decltype(auto) extracted = extractor.get_key(std::as_const(this->values[index]));
                     if (!less_than(extracted, searchVal) && !less_than(searchVal, extracted)) {
-                        if constexpr (Policy::value == DuplicatePolicy::replace) {
+                        if constexpr (duplicate_policy == DuplicatePolicy::replace) {
                             this->self().assign2(index, doReplace, iter, std::forward<Args>(args)...);
                         }
                         return;
@@ -263,11 +263,11 @@ public:
             return lowerBoundIndex(searchVal);
         }
 
-        template <typename F, typename R, typename S, typename P, typename... Args>
+        template <DuplicatePolicy duplicate_policy, typename F, typename R, typename S, typename... Args>
         void insertOrAssign(Key const& searchVal, F&& finder, R&& doReplace, S&& doSplit,
-                            size_t& size, uint64_t& iter, bool rightMost, P const& duplicate_policy, Args&& ... args) {
+                            size_t& size, uint64_t& iter, bool rightMost, Args&& ... args) {
             auto [index, remainder] = finder(this->self(), searchVal);
-            this->pointers[index]->insertOrAssign(remainder,
+            this->pointers[index]->template insertOrAssign<duplicate_policy>(remainder,
                                                   finder,
                                                   [this, index = index, &doReplace, &iter](auto&& replace) {
                                                       this->insertReplace(index, replace, doReplace, iter);
@@ -278,7 +278,6 @@ public:
                                                   size,
                                                   iter,
                                                   rightMost && index == this->length - 1,
-                                                  duplicate_policy,
                                                   std::forward<Args>(args)...);
         }
 

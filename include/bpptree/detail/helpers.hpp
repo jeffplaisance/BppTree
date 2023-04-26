@@ -568,17 +568,6 @@ enum struct DuplicatePolicy {
     insert
 };
 
-template <DuplicatePolicy duplicate_policy>
-struct DuplicatePolicyTag {
-    static constexpr DuplicatePolicy value = duplicate_policy;
-};
-
-static constexpr DuplicatePolicyTag<DuplicatePolicy::replace> replace_tag;
-
-static constexpr DuplicatePolicyTag<DuplicatePolicy::ignore> ignore_tag;
-
-static constexpr DuplicatePolicyTag<DuplicatePolicy::insert> insert_tag;
-
 } //end namespace detail
 using detail::TupleExtractor;
 using detail::PairExtractor;

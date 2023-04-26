@@ -181,12 +181,11 @@ public:
         template <typename... Args>
         void insert_v(Args&&... args) {
             this->self().dispatch(
-                Modify<InsertOrAssign>(),
+                Modify<InsertOrAssign<DuplicatePolicy::ignore>>(),
                 [](auto const& node, Key const& key) {
                     return std::tuple<IndexType, Key const&>(node.lowerBoundIndex(key), key);
                 },
                 extractor.get_key(std::as_const(args)...),
-                ignore_tag,
                 std::forward<Args>(args)...
             );
         }
@@ -235,12 +234,11 @@ public:
         template <typename... Args>
         void insert_or_assign(Args&&... args) {
             this->self().dispatch(
-                Modify<InsertOrAssign>(),
+                Modify<InsertOrAssign<DuplicatePolicy::replace>>(),
                 [](auto const& node, Key const& key) {
                     return std::tuple<IndexType, Key const&>(node.lowerBoundIndex(key), key);
                 },
                 extractor.get_key(std::as_const(args)...),
-                replace_tag,
                 std::forward<Args>(args)...
             );
         }
