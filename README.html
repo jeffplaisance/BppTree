@@ -87,7 +87,8 @@ like.</p>
 <section id="mutability">
 <h2>Mutability<a class="headerlink" href="#mutability" title="Permalink to this headline"></a></h2>
 <p>All B++ Trees are easily convertible between their mutable and immutable representations. In this library, the mutable
-form of a B++ Tree is called Transient and the immutable form of a B++ Tree is called Persistent. Every Transient tree
+form of a B++ Tree is called Transient and the immutable form of a B++ Tree is called
+<a class="reference external" href="https://en.wikipedia.org/wiki/Persistent_data_structure">Persistent</a>. Every Transient tree
 has a .persistent() method which returns a Persistent version of the tree, and every Persistent tree has a .transient()
 method that returns a Transient version of the tree. Persistent trees are always copy on write. Any time the
 .persistent() method is called on a Transient tree, the entire Transient tree will be marked copy on write, and future
