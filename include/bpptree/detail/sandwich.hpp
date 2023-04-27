@@ -30,31 +30,27 @@ struct Curry {
     using Mixin = M<Base, Args...>;
 };
 
-template <typename>
-using Nothing = void;
-
-template <typename Parent, template<typename> typename Head = Nothing, template<typename> typename... Tail>
-struct Chain2 {
-    using Result = typename Chain2<Parent, Tail...>::Type;
+template <typename Parent, template<typename> typename Head, template<typename> typename... Tail>
+struct Chain3 {
+    using Result = typename Chain3<Parent, Tail...>::Type;
     using Type = Head<Result>;
 };
 
 template <typename Parent, template<typename> typename Head>
-struct Chain2<Parent, Head> {
+struct Chain3<Parent, Head> {
     using Type = Head<Parent>;
 };
 
+template <typename Parent, template <typename> typename... Mixins>
+struct Chain2 {
+    using Type = typename Chain3<Parent, Mixins...>::Type;
+};
+
 template <typename Parent>
-struct Chain2<Parent, Nothing> {
+struct Chain2<Parent> {
     using Type = Parent;
 };
 
-template <template <typename> typename... Mixins>
-struct Mix {
-    template <typename Derived>
-    using Chain = typename Chain2<Top<Derived>, Mixins...>::Type;
-};
-
 template <typename Derived, template <typename> typename... Mixins>
-using Chain = typename Mix<Mixins...>::template Chain<Derived>;
+using Chain = typename Chain2<Top<Derived>, Mixins...>::Type;
 } //end namespace bpptree::detail
