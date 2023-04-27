@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>B++ Tree: bpptree::detail::curry2&lt; Mixin, Args &gt; Struct Template Reference</title>
+<title>B++ Tree: bpptree::detail::Chain2&lt; Parent, Head, Tail &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -61,15 +61,15 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="namespacebpptree.html">bpptree</a></li><li class="navelem"><a class="el" href="namespacebpptree_1_1detail.html">detail</a></li><li class="navelem"><a class="el" href="structbpptree_1_1detail_1_1curry2.html">curry2</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespacebpptree.html">bpptree</a></li><li class="navelem"><a class="el" href="namespacebpptree_1_1detail.html">detail</a></li><li class="navelem"><a class="el" href="structbpptree_1_1detail_1_1Chain2.html">Chain2</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
-<a href="structbpptree_1_1detail_1_1curry2-members.html">List of all members</a>  </div>
+<a href="structbpptree_1_1detail_1_1Chain2-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">bpptree::detail::curry2&lt; Mixin, Args &gt; Struct Template Reference</div>  </div>
+<div class="title">bpptree::detail::Chain2&lt; Parent, Head, Tail &gt; Struct Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -77,23 +77,38 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:aa557151815a367dd5f682f26a000fbc2"><td class="memTemplParams" colspan="2">template&lt;typename Base &gt; </td></tr>
-<tr class="memitem:aa557151815a367dd5f682f26a000fbc2"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1curry2.html#aa557151815a367dd5f682f26a000fbc2">mixin</a> = <a class="el" href="structbpptree_1_1detail_1_1Mixin.html">Mixin</a>&lt; Base, Args... &gt;</td></tr>
-<tr class="separator:aa557151815a367dd5f682f26a000fbc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae52aa7f734a6a8abaeddd58afaf0b34"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1Chain2.html#aae52aa7f734a6a8abaeddd58afaf0b34">Result</a> = typename <a class="el" href="structbpptree_1_1detail_1_1Chain2.html">Chain2</a>&lt; Parent, Tail... &gt;::<a class="el" href="structbpptree_1_1detail_1_1Chain2.html#a312af6b620f7884a170fb5fe7ce7f1f4">Type</a></td></tr>
+<tr class="separator:aae52aa7f734a6a8abaeddd58afaf0b34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a312af6b620f7884a170fb5fe7ce7f1f4"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1Chain2.html#a312af6b620f7884a170fb5fe7ce7f1f4">Type</a> = Head&lt; <a class="el" href="structbpptree_1_1detail_1_1Chain2.html#aae52aa7f734a6a8abaeddd58afaf0b34">Result</a> &gt;</td></tr>
+<tr class="separator:a312af6b620f7884a170fb5fe7ce7f1f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="aa557151815a367dd5f682f26a000fbc2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa557151815a367dd5f682f26a000fbc2">&#9670;&nbsp;</a></span>mixin</h2>
+<a id="aae52aa7f734a6a8abaeddd58afaf0b34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae52aa7f734a6a8abaeddd58afaf0b34">&#9670;&nbsp;</a></span>Result</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;template&lt; typename, auto... &gt; typename Mixin, auto... Args&gt; </div>
-<div class="memtemplate">
-template&lt;typename Base &gt; </div>
+template&lt;typename Parent , template&lt; typename &gt; typename Head = Nothing, template&lt; typename &gt; typename... Tail&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1curry2.html">bpptree::detail::curry2</a>&lt; <a class="el" href="structbpptree_1_1detail_1_1Mixin.html">Mixin</a>, Args &gt;::<a class="el" href="structbpptree_1_1detail_1_1curry2.html#aa557151815a367dd5f682f26a000fbc2">mixin</a> =  <a class="el" href="structbpptree_1_1detail_1_1Mixin.html">Mixin</a>&lt;Base, Args...&gt;</td>
+          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1Chain2.html">bpptree::detail::Chain2</a>&lt; Parent, Head, Tail &gt;::<a class="el" href="structbpptree_1_1detail_1_1Chain2.html#aae52aa7f734a6a8abaeddd58afaf0b34">Result</a> =  typename <a class="el" href="structbpptree_1_1detail_1_1Chain2.html">Chain2</a>&lt;Parent, Tail...&gt;::<a class="el" href="structbpptree_1_1detail_1_1Chain2.html#a312af6b620f7884a170fb5fe7ce7f1f4">Type</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a312af6b620f7884a170fb5fe7ce7f1f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a312af6b620f7884a170fb5fe7ce7f1f4">&#9670;&nbsp;</a></span>Type</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Parent , template&lt; typename &gt; typename Head = Nothing, template&lt; typename &gt; typename... Tail&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1Chain2.html">bpptree::detail::Chain2</a>&lt; Parent, Head, Tail &gt;::<a class="el" href="structbpptree_1_1detail_1_1Chain2.html#a312af6b620f7884a170fb5fe7ce7f1f4">Type</a> =  Head&lt;<a class="el" href="structbpptree_1_1detail_1_1Chain2.html#aae52aa7f734a6a8abaeddd58afaf0b34">Result</a>&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">

@@ -78,8 +78,8 @@ $(function() {
 
 
 <h3><a id="index_c"></a>- c -</h3><ul>
-<li>chain_t
-: <a class="el" href="structbpptree_1_1detail_1_1Mixin.html#a90902a4f8a50ac8a70afd462ffe1da04">bpptree::detail::Mixin&lt; Mixins &gt;</a>
+<li>Chain
+: <a class="el" href="structbpptree_1_1detail_1_1Mix.html#ab46e679e250a9c7fa296af6c228dbb9e">bpptree::detail::Mix&lt; Mixins &gt;</a>
 </li>
 <li>ChildType
 : <a class="el" href="structbpptree_1_1detail_1_1BPPTREE__MINMAX__UPPERDetail_1_1InternalNode.html#ae8d795c4db57c68c7b26f21a112c4045">bpptree::detail::BPPTREE_MINMAX_UPPERDetail&lt; Value, KeyExtractor, Comp &gt;::InternalNode&lt; Parent, internal_size &gt;</a>
@@ -141,7 +141,7 @@ $(function() {
 , <a class="el" href="structbpptree_1_1detail_1_1Summed.html#a6183e7fd9bad25278e202126742a9272">bpptree::detail::Summed&lt; Value, Extractor &gt;</a>
 </li>
 <li>InternalNodeBaseCurried
-: <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1InternalNodeMixin.html#a5371f58d151d2fbfcdd6a1236585cc99">bpptree::detail::NodeTypesDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts &gt;::InternalNodeMixin&lt; Parent, leaf_size, internal_size, depth &gt;</a>
+: <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1InternalNodeMixin.html#afbc4288656f7b553bbdd0d47456acde1">bpptree::detail::NodeTypesDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts &gt;::InternalNodeMixin&lt; Derived, leaf_size, internal_size, depth &gt;</a>
 </li>
 <li>InternalNodeType
 : <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1Params.html#aecb7b25e77a5a41b049f6dd2cded246c">bpptree::detail::NodeTypesDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts &gt;::Params&lt; Parent &gt;</a>
@@ -179,7 +179,7 @@ $(function() {
 , <a class="el" href="structbpptree_1_1detail_1_1Summed.html#a02cf354a052a0ce8dd39e385da2b402c">bpptree::detail::Summed&lt; Value, Extractor &gt;</a>
 </li>
 <li>LeafNodeBaseCurried
-: <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1LeafNodeMixin.html#a5bf525403591873961aaa3603c2dff2c">bpptree::detail::NodeTypesDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts &gt;::LeafNodeMixin&lt; Parent, leaf_size &gt;</a>
+: <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1LeafNodeMixin.html#a8398aaf41e12e317483c6361fa162dd8">bpptree::detail::NodeTypesDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts &gt;::LeafNodeMixin&lt; Derived, leaf_size &gt;</a>
 </li>
 <li>LeafNodeType
 : <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1Params.html#a28ca2f5cd38961ca8de203fb4bbe42e6">bpptree::detail::NodeTypesDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts &gt;::Params&lt; Parent &gt;</a>
@@ -188,9 +188,8 @@ $(function() {
 
 
 <h3><a id="index_m"></a>- m -</h3><ul>
-<li>mixin
-: <a class="el" href="structbpptree_1_1detail_1_1curry2.html#aa557151815a367dd5f682f26a000fbc2">bpptree::detail::curry2&lt; Mixin, Args &gt;</a>
-, <a class="el" href="structbpptree_1_1detail_1_1curry.html#ad9b6366c50a59260d8ed34253e0fffe1">bpptree::detail::curry&lt; Mixin, Args &gt;</a>
+<li>Mixin
+: <a class="el" href="structbpptree_1_1detail_1_1Curry.html#a7fec47deef0b9cf3fdf740eb79fbd4b0">bpptree::detail::Curry&lt; M, Args &gt;</a>
 </li>
 <li>mixins
 : <a class="el" href="structbpptree_1_1detail_1_1BppTree.html#a0259aad0480084c92380f2236447b022">bpptree::detail::BppTree&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit &gt;</a>
@@ -216,9 +215,11 @@ $(function() {
 : <a class="el" href="structbpptree_1_1detail_1_1Indexed.html#a590b795dfbd83900255a206da47ca4d3">bpptree::detail::Indexed&lt; Value, SizeType &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1Max.html#a8baacd530943d3693a417de674568472">bpptree::detail::Max&lt; Value, KeyExtractor, Comp &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1Min.html#afe7f8d46c6ac5804190400e4a7de5c47">bpptree::detail::Min&lt; Value, KeyExtractor, Comp &gt;</a>
-, <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html#a79a625c404accf348e1e7f33eab12eb7">bpptree::detail::NodeTypesDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1Ordered.html#ac20fdd3c4a763f51263cc1024c2a783f">bpptree::detail::Ordered&lt; KeyValue, KeyValueExtractor, LessThan, BinarySearch &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1Summed.html#a76caa051812149bac086ca80e1302cd4">bpptree::detail::Summed&lt; Value, Extractor &gt;</a>
+</li>
+<li>NodeInfoMixin
+: <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html#aca2e34d5257d85fdd924e7bab014eb65">bpptree::detail::NodeTypesDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts &gt;</a>
 </li>
 <li>NodeInfoType
 : <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1Params.html#a74f4535dfa12de633c25da3ab43c9253">bpptree::detail::NodeTypesDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts &gt;::Params&lt; Parent &gt;</a>
@@ -240,6 +241,7 @@ $(function() {
 , <a class="el" href="structbpptree_1_1detail_1_1BppTreeDetail_1_1Transient.html#aed68e93b6fdf17d3d2f56e03bdd0b669">bpptree::detail::BppTreeDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts &gt;::Transient</a>
 , <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1InternalNode.html#a90eb430b30c3fc8b192fa21d68e36b22">bpptree::detail::NodeTypesDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts &gt;::InternalNode&lt; leaf_size, internal_size, depth &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1LeafNode.html#a4d48c620eaf3b82d69c614a5149919b3">bpptree::detail::NodeTypesDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts &gt;::LeafNode&lt; leaf_size &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1NodeInfo.html#a0f1afee36ab81c7c5d1d72febaf38229">bpptree::detail::NodeTypesDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts &gt;::NodeInfo&lt; PtrType &gt;</a>
 </li>
 <li>Persistent
 : <a class="el" href="structbpptree_1_1detail_1_1Max.html#a49feb419b581ca247960c23dfc883e1e">bpptree::detail::Max&lt; Value, KeyExtractor, Comp &gt;</a>
@@ -259,8 +261,8 @@ $(function() {
 : <a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase.html#a62447330c8c41779a82a2a086c6cd246">bpptree::detail::InternalNodeBase&lt; Parent, Value, leaf_size, internal_size, depth_v &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1LeafNodeBase.html#a0f2acd908fe109839cb9e3069f72596a">bpptree::detail::LeafNodeBase&lt; Parent, Value, leaf_size &gt;</a>
 </li>
-<li>result
-: <a class="el" href="structbpptree_1_1detail_1_1chain.html#afcc51012df6ce014edb943b3e18d45e2">bpptree::detail::chain&lt; Parent, Head, Tail &gt;</a>
+<li>Result
+: <a class="el" href="structbpptree_1_1detail_1_1Chain2.html#aae52aa7f734a6a8abaeddd58afaf0b34">bpptree::detail::Chain2&lt; Parent, Head, Tail &gt;</a>
 </li>
 <li>reverse_iterator
 : <a class="el" href="structbpptree_1_1detail_1_1BppTreeDetail_1_1Shared.html#a2142583981faf5bc146fee5130b97c99">bpptree::detail::BppTreeDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts &gt;::Shared&lt; Parent &gt;</a>
@@ -274,7 +276,7 @@ $(function() {
 <h3><a id="index_s"></a>- s -</h3><ul>
 <li>SelfType
 : <a class="el" href="structbpptree_1_1detail_1_1Ordered_1_1Persistent.html#a772492c9351d6dd471b2c7c924c5b402">bpptree::detail::Ordered&lt; KeyValue, KeyValueExtractor, LessThan, BinarySearch &gt;::Persistent&lt; Parent &gt;</a>
-, <a class="el" href="structbpptree_1_1detail_1_1top.html#a99ac82b2334e423aeb807ca869abeac9">bpptree::detail::top&lt; Derived &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1Top.html#a167e21a67b35d1f9dd37e96ab856c0ca">bpptree::detail::Top&lt; Derived &gt;</a>
 </li>
 <li>SplitType
 : <a class="el" href="structbpptree_1_1detail_1_1BPPTREE__MINMAX__UPPERDetail_1_1InternalNode.html#a5d45525cf6f1aac98e94ee17f9bcefe8">bpptree::detail::BPPTREE_MINMAX_UPPERDetail&lt; Value, KeyExtractor, Comp &gt;::InternalNode&lt; Parent, internal_size &gt;</a>
@@ -295,16 +297,19 @@ $(function() {
 <li>TreeType
 : <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#aba96b0e8549dffcaa0d7cadd2c99ff4b">bpptree::detail::IteratorDetail&lt; Value, Tree, LeafNode, is_const, reverse &gt;</a>
 </li>
+<li>Type
+: <a class="el" href="structbpptree_1_1detail_1_1Chain2.html#a312af6b620f7884a170fb5fe7ce7f1f4">bpptree::detail::Chain2&lt; Parent, Head, Tail &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1Chain2_3_01Parent_00_01Head_01_4.html#ab239e98ecc56ea52498d536208b7c398">bpptree::detail::Chain2&lt; Parent, Head &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1Chain2_3_01Parent_00_01Nothing_01_4.html#a46d5ee0ca9ef8e9851b134211ba09aae">bpptree::detail::Chain2&lt; Parent, Nothing &gt;</a>
+</li>
 <li>type
-: <a class="el" href="structbpptree_1_1detail_1_1chain.html#a5b383d33b7f732f305d8d79b1d02a47c">bpptree::detail::chain&lt; Parent, Head, Tail &gt;</a>
-, <a class="el" href="structbpptree_1_1detail_1_1chain_3_01Parent_00_01Head_01_4.html#a299bc1d121d184ec0804bd80f149b271">bpptree::detail::chain&lt; Parent, Head &gt;</a>
-, <a class="el" href="structbpptree_1_1detail_1_1FirstElement_3_01First_00_01Rest_8_8_8_01_4.html#a3923f93589ed251a865debfb19b28299">bpptree::detail::FirstElement&lt; First, Rest... &gt;</a>
+: <a class="el" href="structbpptree_1_1detail_1_1FirstElement_3_01First_00_01Rest_8_8_8_01_4.html#a3923f93589ed251a865debfb19b28299">bpptree::detail::FirstElement&lt; First, Rest... &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1FirstElement_3_4.html#a2aecdf4ac89ebacd816f8a98a1d5dc17">bpptree::detail::FirstElement&lt;&gt;</a>
 </li>
 <li>Type
 : <a class="el" href="classbpptree_1_1detail_1_1NodePtr.html#a01080772e6564d1805dfcc566ab6de21">bpptree::detail::NodePtr&lt; PtrType &gt;</a>
-, <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1InternalNodeMixin.html#a069a773be572a65657d9431e59c1821e">bpptree::detail::NodeTypesDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts &gt;::InternalNodeMixin&lt; Parent, leaf_size, internal_size, depth &gt;</a>
-, <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1LeafNodeMixin.html#a64c3240889c416cf0cfcd8bd6c8997c8">bpptree::detail::NodeTypesDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts &gt;::LeafNodeMixin&lt; Parent, leaf_size &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1InternalNodeMixin.html#a0c0183f14f325c971c91ff0e71eedf41">bpptree::detail::NodeTypesDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts &gt;::InternalNodeMixin&lt; Derived, leaf_size, internal_size, depth &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1LeafNodeMixin.html#a5a14ae2afc464b848d45ee34b39863cd">bpptree::detail::NodeTypesDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts &gt;::LeafNodeMixin&lt; Derived, leaf_size &gt;</a>
 </li>
 <li>type
 : <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1RootVariant.html#a4ea008ca339982ad563499545007fbc2">bpptree::detail::NodeTypesDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts &gt;::RootVariant&lt; U, Us &gt;</a>
