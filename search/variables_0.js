@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['allocations_748',['allocations',['../namespacebpptree_1_1detail.html#abe34902dbdf736bd6f58a871e2db5b64',1,'bpptree::detail']]]
+  ['allocations_749',['allocations',['../namespacebpptree_1_1detail.html#abe34902dbdf736bd6f58a871e2db5b64',1,'bpptree::detail']]]
 ];
