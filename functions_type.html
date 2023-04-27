@@ -109,6 +109,7 @@ $(function() {
 <li>depth_limit
 : <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#a415a7d44f49f0ecc24b9f2a33167f8fb">bpptree::detail::BppTreeMap&lt; Key, Value, Compare, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1BppTreeSet.html#a36232625d2349a3356a0652cb0e38f8b">bpptree::detail::BppTreeSet&lt; Key, Compare, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1BppTreeVector.html#ad852505acf169d8cafc66945208a24b8">bpptree::detail::BppTreeVector&lt; Value, SizeType, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v &gt;</a>
 </li>
 <li>difference_type
 : <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a668998e284ca7e1bcd3c4c9d78121dc5">bpptree::detail::IteratorDetail&lt; Value, Tree, LeafNode, is_const, reverse &gt;</a>
@@ -141,6 +142,7 @@ $(function() {
 <li>internal_node_bytes
 : <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#a714acbfe7de14e29a0015f7771e1b686">bpptree::detail::BppTreeMap&lt; Key, Value, Compare, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1BppTreeSet.html#ab4f92b380679c532ebfaf1e34716ba03">bpptree::detail::BppTreeSet&lt; Key, Compare, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1BppTreeVector.html#a8fe8d1decc08809b401a4b78ca083968">bpptree::detail::BppTreeVector&lt; Value, SizeType, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v &gt;</a>
 </li>
 <li>InternalNode
 : <a class="el" href="structbpptree_1_1detail_1_1Indexed.html#a3be194a353605039693c6cb7e849e10e">bpptree::detail::Indexed&lt; Value, SizeType &gt;</a>
@@ -183,6 +185,7 @@ $(function() {
 <li>leaf_node_bytes
 : <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#a24817516273814af6f944248aecf23c4">bpptree::detail::BppTreeMap&lt; Key, Value, Compare, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1BppTreeSet.html#ac7a6db518bb22cc9a420489197296ecb">bpptree::detail::BppTreeSet&lt; Key, Compare, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1BppTreeVector.html#a1384fd1a75aec3c3dc632c6e939ae3a1">bpptree::detail::BppTreeVector&lt; Value, SizeType, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v &gt;</a>
 </li>
 <li>LeafNode
 : <a class="el" href="structbpptree_1_1detail_1_1Indexed.html#a3bbcb87c0bda2e4a34113430f521a8bc">bpptree::detail::Indexed&lt; Value, SizeType &gt;</a>
@@ -208,6 +211,7 @@ $(function() {
 : <a class="el" href="structbpptree_1_1detail_1_1BppTree.html#a0259aad0480084c92380f2236447b022">bpptree::detail::BppTree&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#aabd78f445b6101076f4e7c2945c2fdfc">bpptree::detail::BppTreeMap&lt; Key, Value, Compare, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1BppTreeSet.html#a52832763701c9b4455a5f3ee710b9aa4">bpptree::detail::BppTreeSet&lt; Key, Compare, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1BppTreeVector.html#a8e2bba65a443206cc8e81c21a2012894">bpptree::detail::BppTreeVector&lt; Value, SizeType, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v &gt;</a>
 </li>
 <li>Modifiers
 : <a class="el" href="structbpptree_1_1detail_1_1BppTreeDetail_1_1Shared.html#a4ac3a8912a23fec816d0a9ce2b2bdada">bpptree::detail::BppTreeDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts &gt;::Shared&lt; Parent &gt;</a>
@@ -230,7 +234,7 @@ $(function() {
 , <a class="el" href="structbpptree_1_1detail_1_1Summed.html#a76caa051812149bac086ca80e1302cd4">bpptree::detail::Summed&lt; Value, Extractor &gt;</a>
 </li>
 <li>NodeInfoMixin
-: <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html#aca2e34d5257d85fdd924e7bab014eb65">bpptree::detail::NodeTypesDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts &gt;</a>
+: <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html#a06e95095a86908225002d4543b446dee">bpptree::detail::NodeTypesDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts &gt;</a>
 </li>
 <li>NodeInfoType
 : <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1Params.html#a74f4535dfa12de633c25da3ab43c9253">bpptree::detail::NodeTypesDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts &gt;::Params&lt; Parent &gt;</a>
@@ -258,6 +262,7 @@ $(function() {
 : <a class="el" href="structbpptree_1_1detail_1_1BppTree.html#a6f63eff0b2aa53ced6bdc9a36dba4f19">bpptree::detail::BppTree&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#afc74e21bf7e828e47c6e385d13de03db">bpptree::detail::BppTreeMap&lt; Key, Value, Compare, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1BppTreeSet.html#ab1a1cc7874499f73d3f9d287afbc81a0">bpptree::detail::BppTreeSet&lt; Key, Compare, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1BppTreeVector.html#ab7d90474bfeee22cab833b4aec372b4a">bpptree::detail::BppTreeVector&lt; Value, SizeType, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1Max.html#a49feb419b581ca247960c23dfc883e1e">bpptree::detail::Max&lt; Value, KeyExtractor, Comp &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1Min.html#a8eb0ac54b662786d34a1b93006402ca1">bpptree::detail::Min&lt; Value, KeyExtractor, Comp &gt;</a>
 </li>
@@ -292,6 +297,9 @@ $(function() {
 : <a class="el" href="structbpptree_1_1detail_1_1Ordered_1_1Persistent.html#a772492c9351d6dd471b2c7c924c5b402">bpptree::detail::Ordered&lt; KeyValue, KeyValueExtractor, LessThan, BinarySearch &gt;::Persistent&lt; Parent &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1Top.html#a167e21a67b35d1f9dd37e96ab856c0ca">bpptree::detail::Top&lt; Derived &gt;</a>
 </li>
+<li>size_type
+: <a class="el" href="structbpptree_1_1detail_1_1BppTreeVector.html#a6d6d18eaa118f80ccd580542b3a92481">bpptree::detail::BppTreeVector&lt; Value, SizeType, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v &gt;</a>
+</li>
 <li>SplitType
 : <a class="el" href="structbpptree_1_1detail_1_1BPPTREE__MINMAX__UPPERDetail_1_1InternalNode.html#a5d45525cf6f1aac98e94ee17f9bcefe8">bpptree::detail::BPPTREE_MINMAX_UPPERDetail&lt; Value, KeyExtractor, Comp &gt;::InternalNode&lt; Parent, internal_size &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1IndexedInternalNode.html#a8d8878457f3b5e113e8370326704cc3b">bpptree::detail::IndexedInternalNode&lt; Parent, Value, SizeType, internal_size &gt;</a>
@@ -308,6 +316,7 @@ $(function() {
 : <a class="el" href="structbpptree_1_1detail_1_1BppTree.html#a20aa35c9213715c1b2c69e9d456ca6c7">bpptree::detail::BppTree&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#a73f8a0f2ca8332a96fae398b4a6058fb">bpptree::detail::BppTreeMap&lt; Key, Value, Compare, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1BppTreeSet.html#a2f8b0ae94bbab01bbdb1299ae381790a">bpptree::detail::BppTreeSet&lt; Key, Compare, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1BppTreeVector.html#acb0e9f2fa2ccde018cd7068f40821bcd">bpptree::detail::BppTreeVector&lt; Value, SizeType, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1Max.html#a99d602ca4864364166f7356bd88d836b">bpptree::detail::Max&lt; Value, KeyExtractor, Comp &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1Min.html#a5d543a2b59b3a677708b1665c7c0430d">bpptree::detail::Min&lt; Value, KeyExtractor, Comp &gt;</a>
 </li>

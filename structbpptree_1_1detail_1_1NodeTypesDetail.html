@@ -90,6 +90,8 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1NodeInfo.html">NodeInfo</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1NodeInfoBase.html">NodeInfoBase</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1Params.html">Params</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1RootVariant.html">RootVariant</a></td></tr>
@@ -99,9 +101,9 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:aca2e34d5257d85fdd924e7bab014eb65"><td class="memTemplParams" colspan="2">template&lt;typename Derived &gt; </td></tr>
-<tr class="memitem:aca2e34d5257d85fdd924e7bab014eb65"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html#aca2e34d5257d85fdd924e7bab014eb65">NodeInfoMixin</a> = <a class="el" href="namespacebpptree_1_1detail.html#a201cdb537d848ea294dbb78d097fd143">Chain</a>&lt; Derived, Ts::template NodeInfo... &gt;</td></tr>
-<tr class="separator:aca2e34d5257d85fdd924e7bab014eb65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06e95095a86908225002d4543b446dee"><td class="memTemplParams" colspan="2">template&lt;typename Derived &gt; </td></tr>
+<tr class="memitem:a06e95095a86908225002d4543b446dee"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html#a06e95095a86908225002d4543b446dee">NodeInfoMixin</a> = <a class="el" href="namespacebpptree_1_1detail.html#a201cdb537d848ea294dbb78d097fd143">Chain</a>&lt; Derived, Ts::template NodeInfo..., <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1NodeInfoBase.html">NodeInfoBase</a> &gt;</td></tr>
+<tr class="separator:a06e95095a86908225002d4543b446dee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5f5d5955cf9c92e4719b62ca978c2d18"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html#a5f5d5955cf9c92e4719b62ca978c2d18">RootType</a> = typename <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1RootVariant.html">RootVariant</a>&lt; <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html#af60aaf639f12f058047e271b58aa5bcd">max_depth</a> &gt;::type</td></tr>
 <tr class="separator:a5f5d5955cf9c92e4719b62ca978c2d18"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -142,8 +144,8 @@ Static Public Attributes</h2></td></tr>
 <tr class="separator:a72357a0d22aede788efacfe541b556cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="aca2e34d5257d85fdd924e7bab014eb65"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aca2e34d5257d85fdd924e7bab014eb65">&#9670;&nbsp;</a></span>NodeInfoMixin</h2>
+<a id="a06e95095a86908225002d4543b446dee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06e95095a86908225002d4543b446dee">&#9670;&nbsp;</a></span>NodeInfoMixin</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -153,7 +155,7 @@ template&lt;typename Value , ssize leaf_node_bytes = 512, ssize internal_node_by
 template&lt;typename Derived &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html">bpptree::detail::NodeTypesDetail</a>&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts &gt;::<a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html#aca2e34d5257d85fdd924e7bab014eb65">NodeInfoMixin</a> =  <a class="el" href="namespacebpptree_1_1detail.html#a201cdb537d848ea294dbb78d097fd143">Chain</a>&lt;Derived, Ts::template NodeInfo...&gt;</td>
+          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html">bpptree::detail::NodeTypesDetail</a>&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts &gt;::<a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html#a06e95095a86908225002d4543b446dee">NodeInfoMixin</a> =  <a class="el" href="namespacebpptree_1_1detail.html#a201cdb537d848ea294dbb78d097fd143">Chain</a>&lt;Derived, Ts::template NodeInfo..., <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1NodeInfoBase.html">NodeInfoBase</a>&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
