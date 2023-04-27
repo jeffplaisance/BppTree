@@ -10,11 +10,11 @@
 template <typename Term, size_t leaf_node_size = 512, size_t internal_node_size = 512, size_t max_depth = 16>
 struct InvertedIndex {
 
-    using Value = std::pair<Term, uint32_t>;
-    
-    using TermList = typename bpptree::BppTree<Value, leaf_node_size, internal_node_size, max_depth>::template mixins<
-        bpptree::OrderedBuilder<>,
-        bpptree::SummedBuilder<bpptree::detail::PairExtractor<1>>>;
+    using TermList = typename bpptree::BppTreeMap<Term, uint32_t>
+            ::template leaf_node_bytes<leaf_node_size>
+            ::template internal_node_bytes<internal_node_size>
+            ::template depth_limit<max_depth>
+            ::template mixins<bpptree::SummedBuilder<bpptree::PairExtractor<1>>>;
 
     using DocList = typename bpptree::BppTree<uint32_t, leaf_node_size, internal_node_size, max_depth>::template mixins<bpptree::IndexedBuilder<uint32_t>>;
 

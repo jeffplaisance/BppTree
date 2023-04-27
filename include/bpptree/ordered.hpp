@@ -399,7 +399,93 @@ struct OrderedBuilder {
     template <typename KeyValue>
     using build = Ordered<KeyValue, Extractor, Compare, BinarySearch>;
 };
+
+template <
+        typename Key,
+        typename Value,
+        typename Compare = MinComparator,
+        bool binary_search_v = false,
+        int leaf_node_bytes_v = 512,
+        int internal_node_bytes_v = 512,
+        int depth_limit_v = 16>
+struct BppTreeMap {
+
+    template <typename T>
+    using compare = BppTreeMap<Key, Value, T, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v>;
+
+    template <bool b>
+    using binary_search = BppTreeMap<Key, Value, Compare, b, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v>;
+
+    template <int l>
+    using leaf_node_bytes = BppTreeMap<Key, Value, Compare, binary_search_v, l, internal_node_bytes_v, depth_limit_v>;
+
+    template <int i>
+    using internal_node_bytes = BppTreeMap<Key, Value, Compare, binary_search_v, leaf_node_bytes_v, i, depth_limit_v>;
+
+    template <int d>
+    using depth_limit = BppTreeMap<Key, Value, Compare, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, d>;
+
+    template <typename... Args>
+    using mixins = typename BppTree<
+            std::pair<Key, Value>,
+            leaf_node_bytes_v,
+            internal_node_bytes_v,
+            depth_limit_v>
+        ::template mixins<
+                typename OrderedBuilder<>
+                    ::compare<Compare>
+                    ::template binary_search<binary_search_v>,
+                Args...>;
+
+    using Transient = typename mixins<>::Transient;
+
+    using Persistent = typename mixins<>::Persistent;
+};
+
+template <
+        typename Key,
+        typename Compare = MinComparator,
+        bool binary_search_v = false,
+        int leaf_node_bytes_v = 512,
+        int internal_node_bytes_v = 512,
+        int depth_limit_v = 16>
+struct BppTreeSet {
+
+    template <typename T>
+    using compare = BppTreeSet<Key, T, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v>;
+
+    template <bool b>
+    using binary_search = BppTreeSet<Key, Compare, b, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v>;
+
+    template <int l>
+    using leaf_node_bytes = BppTreeSet<Key, Compare, binary_search_v, l, internal_node_bytes_v, depth_limit_v>;
+
+    template <int i>
+    using internal_node_bytes = BppTreeSet<Key, Compare, binary_search_v, leaf_node_bytes_v, i, depth_limit_v>;
+
+    template <int d>
+    using depth_limit = BppTreeSet<Key, Compare, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, d>;
+
+    template <typename... Args>
+    using mixins = typename BppTree<
+            Key,
+            leaf_node_bytes_v,
+            internal_node_bytes_v,
+            depth_limit_v>
+    ::template mixins<
+            typename OrderedBuilder<>
+                ::extractor<ValueExtractor>
+                ::compare<Compare>
+                ::template binary_search<binary_search_v>,
+            Args...>;
+
+    using Transient = typename mixins<>::Transient;
+
+    using Persistent = typename mixins<>::Persistent;
+};
 } //end namespace detail
 using detail::Ordered;
 using detail::OrderedBuilder;
+using detail::BppTreeMap;
+using detail::BppTreeSet;
 } //end namespace bpptree

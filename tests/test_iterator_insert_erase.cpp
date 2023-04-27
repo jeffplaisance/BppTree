@@ -78,13 +78,13 @@ static void run_test(T& tree, B&& begin_f, E&& end_f) {
 }
 
 TEST(BppTreeTest, TestIteratorInsertErase) {
-    using TreeType = BppTree<int32_t, 512, 512, 6>::mixins2<Indexed>;
+    using TreeType = BppTree<int32_t, 512, 512, 6>::mixins<IndexedBuilder<>>;
     TreeType::Transient tree{};
     run_test<false>(tree, [&tree]() { return tree.begin(); }, [&tree]() { return tree.end(); });
 }
 
 TEST(BppTreeTest, TestIteratorInsertEraseReverse) {
-    using TreeType = BppTree<int32_t, 512, 512, 6>::mixins2<Indexed>;
+    using TreeType = BppTree<int32_t, 512, 512, 6>::mixins<IndexedBuilder<>>;
     TreeType::Transient tree{};
     run_test<true>(tree, [&tree]() { return tree.rbegin(); }, [&tree]() { return tree.rend(); });
 }

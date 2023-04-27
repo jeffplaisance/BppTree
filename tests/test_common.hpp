@@ -55,8 +55,9 @@ struct RandInts {
 template <
         typename Value,
         typename SumType = Value,
-        typename Extractor = typename CastingExtractor<SumType>::template type<Value>>
-using SummedIndexedTree = typename BppTree<Value, 512, 128, 8>::template mixins3<Summed<Value, Extractor>>::template mixins<Indexed>;
+        typename Extractor = CastingExtractor<SumType>>
+using SummedIndexedTree = typename BppTree<Value, 512, 128, 8>
+        ::template mixins<SummedBuilder<Extractor>, IndexedBuilder<>>;
 
 template <
         typename Value,

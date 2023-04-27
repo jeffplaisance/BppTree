@@ -183,11 +183,9 @@ struct ValueExtractor {
 template <typename T>
 struct CastingExtractor {
     template <typename Value>
-    struct type {
-        T operator()(Value const& value) const {
-            return static_cast<T>(value);
-        }
-    };
+    T operator()(Value const& value) const {
+        return static_cast<T>(value);
+    }
 };
 
 template <typename Extractor, typename T>

@@ -6,7 +6,7 @@
 
 TEST(BppTreeTest, TestPersistentRandomModificationsIndexedIterator) {
     size_t n = 1000*1000;
-    using TreeType = BppTree<size_t, 512, 512, 5>::mixins2<Indexed>::Persistent;
+    using TreeType = BppTree<size_t, 512, 512, 5>::mixins<IndexedBuilder<>>::Persistent;
     TreeType tree{};
     std::vector<size_t> vec{};
     for (size_t i = 0; i < n; ++i) {
@@ -36,7 +36,7 @@ TEST(BppTreeTest, TestPersistentRandomModificationsIndexedIterator) {
 
 TEST(BppTreeTest, TestPersistentRandomModificationsIndexed) {
     size_t n = 1000*1000;
-    using TreeType = BppTree<size_t, 512, 512, 5>::mixins2<Indexed>::Persistent;
+    using TreeType = BppTree<size_t, 512, 512, 5>::mixins<IndexedBuilder<>>::Persistent;
     TreeType tree{};
     std::vector<size_t> vec{};
     for (size_t i = 0; i < n; ++i) {

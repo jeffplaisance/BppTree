@@ -414,14 +414,9 @@ struct BppTree {
     template <typename... Args>
     using mixins = BppTreeDetail<Value, leaf_node_bytes, internal_node_bytes, depth_limit, typename Args::template build<Value>...>;
 
-    template <template<typename...> typename... Ts>
-    using mixins2 = BppTreeDetail<Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts<Value>...>;
+    using Transient = typename mixins<>::Transient;
 
-    template <typename... Ts>
-    struct mixins3 {
-        template <template<typename...> typename... Us>
-        using mixins = BppTreeDetail<Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts..., Us<Value>...>;
-    };
+    using Persistent = typename mixins<>::Persistent;
 };
 } //end namespace detail
 using detail::BppTree;
