@@ -216,6 +216,13 @@ Here is how to make a B++ Tree that can be used like a ``std::set``
 Take a look at examples/inverted_index.hpp for a neat implementation of an inverted index, complete with Transient and
 Persistent variations, implemented using B++ Trees.
 
+Interface Stability
+-------------------
+
+Long term, I would like to maintain a stable API for B++ Trees, but as this project is quite new, I reserve the
+right to change the API in order to make the B++ Tree library better. That said, I am fairly happy with the API as it
+stands today and have no current plans to change it.
+
 Table of Contents
 ==================
 .. toctree::
