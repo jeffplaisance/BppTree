@@ -128,7 +128,7 @@ Here is how to make a B++ Tree with no mixins:
 
 .. code-block:: cpp
 
-   using NoMixins = BppTree<int32_t>::mixins<>::Transient;
+   using NoMixins = BppTree<int32_t>::Transient;
    NoMixins no_mixins{};
    no_mixins.emplace_back(5);
    no_mixins.emplace_front(2);
@@ -147,6 +147,13 @@ Here is how to make a B++ Tree that can be used like a ``std::map``:
    }
    assert(bpptree_map[5] == 9);
 
+Because Ordered B++ trees where the value is a key value pair are incredibly common, there is a convenience helper
+which makes the above a little bit simpler:
+
+.. code-block:: cpp
+
+   using Map = BppTreeMap<int32_t, int32_t>::Transient;
+
 Here is how to make a B++ Tree that can be used like a ``std::vector``:
 
 .. code-block:: cpp
@@ -159,11 +166,17 @@ Here is how to make a B++ Tree that can be used like a ``std::vector``:
    }
    assert(bpptree_vec[0] == 6);
 
+As with the Ordered example above, there is also a convenience helper for making Indexed B++ trees:
+
+.. code-block:: cpp
+
+   using Vector = BppTreeVector<int32_t>::Transient;
+
 Here is how to make a B++ Tree that can be used like a ``std::vector`` and that can calculate prefix sums in O(log N) time:
 
 .. code-block:: cpp
 
-   using SummingVector = BppTree<int32_t>::mixins<IndexedBuilder<>, SummedBuilder<>>::Transient;
+   using SummingVector = BppTreeVector<int32_t>::mixins<SummedBuilder<>>::Transient;
    SummingVector bpptree_vec2{};
    bpptree_vec2.emplace_back(5);
    bpptree_vec2.emplace_back(2);
@@ -189,7 +202,7 @@ Here is how to make a B++ Tree that can be used like a ``std::map`` and also cal
 
 .. code-block:: cpp
 
-   using SummingMap = BppTree<pair<int32_t, int32_t>>::mixins<OrderedBuilder<>, SummedBuilder<>::extractor<PairExtractor<1>>>::Transient;
+   using SummingMap = BppTreeMap<int32_t, int32_t>::mixins<SummedBuilder<PairExtractor<1>>>::Transient;
    SummingMap bpptree_map{};
    bpptree_map[5] = 8;
    if (bpptree_map[5] == 8) {
@@ -212,6 +225,12 @@ Here is how to make a B++ Tree that can be used like a ``std::set``
    assert(tree_set.contains(5));
    assert(tree_set.contains(8));
    assert(tree_set.size == 2);
+
+Like BppTreeMap and BppTreeVector, there is also a convenience helper for making set-like B++ trees:
+
+.. code-block:: cpp
+
+   using TreeSet = BppTreeSet<int32_t>::Transient;
 
 Take a look at examples/inverted_index.hpp for a neat implementation of an inverted index, complete with Transient and
 Persistent variations, implemented using B++ Trees.
