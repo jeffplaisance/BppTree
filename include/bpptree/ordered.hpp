@@ -16,6 +16,7 @@
 #include "bpptree/detail/helpers.hpp"
 #include "bpptree/detail/uninitialized_array.hpp"
 #include "bpptree/detail/ordered_detail.hpp"
+#include "bpptree/detail/proxy_operators.hpp"
 
 namespace bpptree {
 namespace detail {
@@ -343,7 +344,6 @@ public:
 
         using SelfType = typename Parent::SelfType;
 
-        //TODO test these
         template <typename... Args>
         [[nodiscard]] SelfType insert_v(Args&&... args) const {
             auto transient = this->self().transient();

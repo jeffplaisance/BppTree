@@ -13,6 +13,7 @@
 #include <cstdint>
 
 #include "bpptree/detail/indexed_detail.hpp"
+#include "bpptree/detail/proxy_operators.hpp"
 
 namespace bpptree {
 namespace detail {

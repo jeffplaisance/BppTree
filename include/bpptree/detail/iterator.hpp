@@ -15,7 +15,7 @@
 #include <limits>
 #include "common.hpp"
 #include "helpers.hpp"
-#include "bpptree/bpptree.hpp"
+#include "proxy_operators.hpp"
 
 namespace bpptree::detail {
 
