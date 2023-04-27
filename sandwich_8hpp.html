@@ -82,13 +82,13 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1Curry.html">bpptree::detail::Curry&lt; M, Args &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1Chain2.html">bpptree::detail::Chain2&lt; Parent, Head, Tail &gt;</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1Chain3.html">bpptree::detail::Chain3&lt; Parent, Head, Tail &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1Chain2_3_01Parent_00_01Head_01_4.html">bpptree::detail::Chain2&lt; Parent, Head &gt;</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1Chain3_3_01Parent_00_01Head_01_4.html">bpptree::detail::Chain3&lt; Parent, Head &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1Chain2_3_01Parent_00_01Nothing_01_4.html">bpptree::detail::Chain2&lt; Parent, Nothing &gt;</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1Chain2.html">bpptree::detail::Chain2&lt; Parent, Mixins &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1Mix.html">bpptree::detail::Mix&lt; Mixins &gt;</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1Chain2_3_01Parent_01_4.html">bpptree::detail::Chain2&lt; Parent &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
@@ -100,12 +100,9 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a85f5441e7102d8dcafbcacfe9bd7d6c4"><td class="memTemplParams" colspan="2">template&lt;typename &gt; </td></tr>
-<tr class="memitem:a85f5441e7102d8dcafbcacfe9bd7d6c4"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacebpptree_1_1detail.html#a85f5441e7102d8dcafbcacfe9bd7d6c4">bpptree::detail::Nothing</a> = void</td></tr>
-<tr class="separator:a85f5441e7102d8dcafbcacfe9bd7d6c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af1b14f7b560417c96135390fb8b581e2"><td class="memTemplParams" colspan="2">template&lt;typename Derived , template&lt; typename &gt; typename... Mixins&gt; </td></tr>
-<tr class="memitem:af1b14f7b560417c96135390fb8b581e2"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacebpptree_1_1detail.html#af1b14f7b560417c96135390fb8b581e2">bpptree::detail::Chain</a> = typename Mix&lt; Mixins... &gt;::template Chain&lt; Derived &gt;</td></tr>
-<tr class="separator:af1b14f7b560417c96135390fb8b581e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a201cdb537d848ea294dbb78d097fd143"><td class="memTemplParams" colspan="2">template&lt;typename Derived , template&lt; typename &gt; typename... Mixins&gt; </td></tr>
+<tr class="memitem:a201cdb537d848ea294dbb78d097fd143"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacebpptree_1_1detail.html#a201cdb537d848ea294dbb78d097fd143">bpptree::detail::Chain</a> = typename Chain2&lt; Top&lt; Derived &gt;, Mixins... &gt;::Type</td></tr>
+<tr class="separator:a201cdb537d848ea294dbb78d097fd143"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->

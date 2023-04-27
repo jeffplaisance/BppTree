@@ -9,6 +9,5 @@ var searchData=
   ['nodeptr_3c_20nodetype_20_3e_264',['NodePtr&lt; NodeType &gt;',['../classbpptree_1_1detail_1_1NodePtr.html',1,'bpptree::detail']]],
   ['nodetype_265',['NodeType',['../structbpptree_1_1detail_1_1IndexedInternalNode.html#a92ee24f09bd65ce5d5b6fc1a5417626b',1,'bpptree::detail::IndexedInternalNode::NodeType()'],['../structbpptree_1_1detail_1_1InternalNodeBase.html#a9ebcf38b9701f271b13f9fc5b96e1169',1,'bpptree::detail::InternalNodeBase::NodeType()'],['../structbpptree_1_1detail_1_1LeafNodeBase.html#aeae6249e46956a69272e1dda59117846',1,'bpptree::detail::LeafNodeBase::NodeType()'],['../structbpptree_1_1detail_1_1BPPTREE__MINMAX__UPPERDetail_1_1InternalNode.html#a5d8dd8a1d784e7f502d26d71c92f575c',1,'bpptree::detail::BPPTREE_MINMAX_UPPERDetail::InternalNode::NodeType()'],['../structbpptree_1_1detail_1_1OrderedDetail_1_1InternalNode.html#a604baa08ec30c07b76ec9292470f541a',1,'bpptree::detail::OrderedDetail::InternalNode::NodeType()'],['../structbpptree_1_1detail_1_1SummedInternalNode.html#a58c2f8c85bf0112cbb9de1ef99a086c4',1,'bpptree::detail::SummedInternalNode::NodeType()']]],
   ['nodetypes_2ehpp_266',['nodetypes.hpp',['../nodetypes_8hpp.html',1,'']]],
-  ['nodetypesdetail_267',['NodeTypesDetail',['../structbpptree_1_1detail_1_1NodeTypesDetail.html',1,'bpptree::detail']]],
-  ['nothing_268',['Nothing',['../namespacebpptree_1_1detail.html#a85f5441e7102d8dcafbcacfe9bd7d6c4',1,'bpptree::detail']]]
+  ['nodetypesdetail_267',['NodeTypesDetail',['../structbpptree_1_1detail_1_1NodeTypesDetail.html',1,'bpptree::detail']]]
 ];
