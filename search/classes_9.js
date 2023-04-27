@@ -1,12 +1,11 @@
 var searchData=
 [
-  ['max_480',['Max',['../structbpptree_1_1detail_1_1Max.html',1,'bpptree::detail']]],
-  ['maxbuilder_481',['MaxBuilder',['../structbpptree_1_1detail_1_1MaxBuilder.html',1,'bpptree::detail']]],
-  ['maxcomparator_482',['MaxComparator',['../structbpptree_1_1detail_1_1MaxComparator.html',1,'bpptree::detail']]],
-  ['min_483',['Min',['../structbpptree_1_1detail_1_1Min.html',1,'bpptree::detail']]],
-  ['minbuilder_484',['MinBuilder',['../structbpptree_1_1detail_1_1MinBuilder.html',1,'bpptree::detail']]],
-  ['mincomparator_485',['MinComparator',['../structbpptree_1_1detail_1_1MinComparator.html',1,'bpptree::detail']]],
-  ['mixins3_486',['mixins3',['../structbpptree_1_1detail_1_1BppTree_1_1mixins3.html',1,'bpptree::detail::BppTree']]],
-  ['modify_487',['Modify',['../structbpptree_1_1detail_1_1ModifyTypes_1_1Modify.html',1,'bpptree::detail::ModifyTypes']]],
-  ['modifytypes_488',['ModifyTypes',['../structbpptree_1_1detail_1_1ModifyTypes.html',1,'bpptree::detail']]]
+  ['max_484',['Max',['../structbpptree_1_1detail_1_1Max.html',1,'bpptree::detail']]],
+  ['maxbuilder_485',['MaxBuilder',['../structbpptree_1_1detail_1_1MaxBuilder.html',1,'bpptree::detail']]],
+  ['maxcomparator_486',['MaxComparator',['../structbpptree_1_1detail_1_1MaxComparator.html',1,'bpptree::detail']]],
+  ['min_487',['Min',['../structbpptree_1_1detail_1_1Min.html',1,'bpptree::detail']]],
+  ['minbuilder_488',['MinBuilder',['../structbpptree_1_1detail_1_1MinBuilder.html',1,'bpptree::detail']]],
+  ['mincomparator_489',['MinComparator',['../structbpptree_1_1detail_1_1MinComparator.html',1,'bpptree::detail']]],
+  ['modify_490',['Modify',['../structbpptree_1_1detail_1_1ModifyTypes_1_1Modify.html',1,'bpptree::detail::ModifyTypes']]],
+  ['modifytypes_491',['ModifyTypes',['../structbpptree_1_1detail_1_1ModifyTypes.html',1,'bpptree::detail']]]
 ];
