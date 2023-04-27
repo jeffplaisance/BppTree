@@ -20,8 +20,16 @@ struct NodeTypesDetail {
     template <typename Parent>
     struct Params;
 
+    template <typename Parent>
+    struct NodeInfoBase : public Parent {
+        NodeInfoBase() noexcept = default;
+
+        template <typename P>
+        explicit constexpr NodeInfoBase(P const&, bool const) noexcept {}
+    };
+
     template <typename Derived>
-    using NodeInfoMixin = Chain<Derived, Ts::template NodeInfo...>;
+    using NodeInfoMixin = Chain<Derived, Ts::template NodeInfo..., NodeInfoBase>;
 
     template <typename PtrType>
     struct NodeInfo : public NodeInfoMixin<NodeInfo<PtrType>> {

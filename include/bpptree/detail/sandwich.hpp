@@ -17,11 +17,6 @@ struct Top {
     SelfType&& self() && { return static_cast<SelfType&&>(*this); }
     SelfType const& self() const& { return static_cast<SelfType const&>(*this); }
     SelfType const&& self() const&& { return static_cast<SelfType const&&>(*this); }
-
-    template <typename... Rest>
-    explicit constexpr Top(Rest&&...) noexcept {}
-
-    Top() noexcept = default;
 };
 
 template <template <typename, auto...> typename M, auto... Args>

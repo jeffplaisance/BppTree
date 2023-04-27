@@ -16,7 +16,11 @@ struct InvertedIndex {
             ::template depth_limit<max_depth>
             ::template mixins<bpptree::SummedBuilder<bpptree::PairExtractor<1>>>;
 
-    using DocList = typename bpptree::BppTree<uint32_t, leaf_node_size, internal_node_size, max_depth>::template mixins<bpptree::IndexedBuilder<uint32_t>>;
+    using DocList = typename bpptree::BppTreeVector<uint32_t>
+            ::size_type<uint32_t>
+            ::leaf_node_bytes<leaf_node_size>
+            ::template internal_node_bytes<internal_node_size>
+            ::template depth_limit<max_depth>;
 
     template <typename Derived>
     struct Shared {

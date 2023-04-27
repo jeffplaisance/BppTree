@@ -304,12 +304,47 @@ struct Indexed {
         }
     };
 };
+
 template <typename SizeType = size_t>
 struct IndexedBuilder {
     template <typename Value>
     using build = Indexed<Value, SizeType>;
 };
+
+template <
+        typename Value,
+        typename SizeType = size_t,
+        int leaf_node_bytes_v = 512,
+        int internal_node_bytes_v = 512,
+        int depth_limit_v = 16>
+struct BppTreeVector {
+
+    template <typename T>
+    using size_type = BppTreeVector<Value, T, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v>;
+
+    template <int l>
+    using leaf_node_bytes = BppTreeVector<Value, SizeType, l, internal_node_bytes_v, depth_limit_v>;
+
+    template <int i>
+    using internal_node_bytes = BppTreeVector<Value, SizeType, leaf_node_bytes_v, i, depth_limit_v>;
+
+    template <int d>
+    using depth_limit = BppTreeVector<Value, SizeType, leaf_node_bytes_v, internal_node_bytes_v, d>;
+
+    template <typename... Args>
+    using mixins = typename BppTree<
+            Value,
+            leaf_node_bytes_v,
+            internal_node_bytes_v,
+            depth_limit_v>
+    ::template mixins<IndexedBuilder<SizeType>, Args...>;
+
+    using Transient = typename mixins<>::Transient;
+
+    using Persistent = typename mixins<>::Persistent;
+};
 } //end namespace detail
 using detail::Indexed;
 using detail::IndexedBuilder;
+using detail::BppTreeVector;
 } //end namespace bpptree
