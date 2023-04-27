@@ -11,66 +11,50 @@
 namespace bpptree::detail {
 
 template <typename Derived>
-struct top {
+struct Top {
     using SelfType = Derived;
     SelfType& self() & { return static_cast<SelfType&>(*this); }
     SelfType&& self() && { return static_cast<SelfType&&>(*this); }
     SelfType const& self() const& { return static_cast<SelfType const&>(*this); }
     SelfType const&& self() const&& { return static_cast<SelfType const&&>(*this); }
+
+    template <typename... Rest>
+    explicit constexpr Top(Rest&&...) noexcept {}
+
+    Top() noexcept = default;
 };
 
-template <template <typename...> typename Mixin, typename... Args>
-struct curry {
+template <template <typename, auto...> typename M, auto... Args>
+struct Curry {
     template <typename Base>
-    using mixin = Mixin<Base, Args...>;
+    using Mixin = M<Base, Args...>;
 };
 
-template <template <typename, auto...> typename Mixin, auto... Args>
-struct curry2 {
-    template <typename Base>
-    using mixin = Mixin<Base, Args...>;
-};
+template <typename>
+using Nothing = void;
 
-template <typename Parent, template<typename> typename Head, template<typename> typename... Tail>
-struct chain {
-    using result = typename chain<Parent, Tail...>::type;
-    using type = Head<result>;
+template <typename Parent, template<typename> typename Head = Nothing, template<typename> typename... Tail>
+struct Chain2 {
+    using Result = typename Chain2<Parent, Tail...>::Type;
+    using Type = Head<Result>;
 };
 
 template <typename Parent, template<typename> typename Head>
-struct chain<Parent, Head> {
-    using type = Head<Parent>;
+struct Chain2<Parent, Head> {
+    using Type = Head<Parent>;
+};
+
+template <typename Parent>
+struct Chain2<Parent, Nothing> {
+    using Type = Parent;
 };
 
 template <template <typename> typename... Mixins>
-struct Mixin {
-
-    template <typename T>
-    using chain_t = typename chain<top<T>, Mixins...>::type;
-
-    struct type : public chain_t<type> {
-
-        template <typename... Rest>
-        explicit constexpr type(Rest&&... rest) noexcept : chain_t<type>(std::forward<Rest>(rest)...) {}
-
-        template <typename Other>
-        type& operator=(Other&& other) noexcept {
-            chain_t<type>::operator=(std::forward<Other>(other));
-            return *this;
-        }
-
-        type() noexcept = default;
-        type(type const&) noexcept = default;
-        type(type&&) noexcept = default;
-        type& operator=(type const&) noexcept = default;
-        type& operator=(type&&) noexcept = default;
-        ~type() noexcept = default;
-    };
+struct Mix {
+    template <typename Derived>
+    using Chain = typename Chain2<Top<Derived>, Mixins...>::Type;
 };
 
-template <template <typename> typename... Mixins>
-using MixinT = typename Mixin<Mixins...>::type;
-
-template <typename Parent, template <typename> typename... Mixins>
-using chain_t = typename Mixin<Mixins...>::template chain_t<Parent>;
+template <typename Derived, template <typename> typename... Mixins>
+using Chain = typename Mix<Mixins...>::template Chain<Derived>;
 } //end namespace bpptree::detail

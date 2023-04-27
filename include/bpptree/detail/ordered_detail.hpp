@@ -317,8 +317,7 @@ public:
         NodeInfo() noexcept = default;
 
         template <typename P>
-        NodeInfo(P&& p, const bool changed) noexcept : Parent(std::forward<P>(p), changed),
-                                                              key(changed ? this->ptr->last_key() : p->last_key()) {}
+        NodeInfo(P const& p, const bool changed) noexcept : Parent(p, changed), key(p->last_key()) {}
     };
 };
 } //end namespace bpptree::detail

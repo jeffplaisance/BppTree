@@ -210,19 +210,19 @@ public:
     };
 private:
 
-    template <typename Parent>
-    using TransientMixin = typename Mixin<
+    template <typename Derived>
+    using TransientMixin = Chain<
+        Derived,
         Ts::template Transient...,
         Ts::template Shared...,
-        Shared
-    >::template chain_t<Parent>;
+        Shared>;
 
-    template <typename Parent>
-    using PersistentMixin = typename Mixin<
+    template <typename Derived>
+    using PersistentMixin = Chain<
+        Derived,
         Ts::template Persistent...,
         Ts::template Shared...,
-        Shared
-    >::template chain_t<Parent>;
+        Shared>;
 
 public:
     struct Persistent;

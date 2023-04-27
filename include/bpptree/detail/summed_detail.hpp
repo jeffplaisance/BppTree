@@ -200,6 +200,6 @@ struct SummedNodeInfo : public Parent {
     SummedNodeInfo() noexcept = default;
 
     template <typename P>
-    SummedNodeInfo(P&& p, const bool changed) noexcept : Parent(std::forward<P>(p), changed), sum(changed ? this->ptr->sum() : p->sum()) {}
+    SummedNodeInfo(P const& p, const bool changed) noexcept : Parent(p, changed), sum(p->sum()) {}
 };
 } //end namespace bpptree::detail

@@ -20,27 +20,42 @@ struct NodeTypesDetail {
     template <typename Parent>
     struct Params;
 
-    template <typename PtrType>
-    using NodeInfo =
-        MixinT<Ts::template NodeInfo...,
-               curry<NodeInfoBase, PtrType>::template mixin>;
+    template <typename Derived>
+    using NodeInfoMixin = Chain<Derived, Ts::template NodeInfo...>;
 
-    template <typename Parent, auto leaf_size>
-    struct LeafNodeMixin {
+    template <typename PtrType>
+    struct NodeInfo : public NodeInfoMixin<NodeInfo<PtrType>> {
+        using Parent = NodeInfoMixin<NodeInfo<PtrType>>;
+
+        NodePtr<PtrType> ptr{};
+        bool ptr_changed = false;
+
+        NodeInfo() = default;
+
         template <typename P>
-        using LeafNodeBaseCurried = LeafNodeBase<P, Value, leaf_size>;
-        using Type = chain_t<Parent,
+        NodeInfo(P&& p, const bool changed) : Parent(p, changed), ptr(), ptr_changed(changed) {
+            if (changed) {
+                this->ptr = std::forward<P>(p);
+            }
+        }
+    };
+
+    template <typename Derived, auto leaf_size>
+    struct LeafNodeMixin {
+        template <typename Parent>
+        using LeafNodeBaseCurried = LeafNodeBase<Parent, Value, leaf_size>;
+        using Type = Chain<Derived,
                 Ts::template LeafNode...,
                 LeafNodeBaseCurried,
                 Params>;
     };
 
-    template<typename Parent, auto leaf_size, auto internal_size, auto depth>
+    template<typename Derived, auto leaf_size, auto internal_size, auto depth>
     struct InternalNodeMixin {
-        template <typename P>
-        using InternalNodeBaseCurried = InternalNodeBase<P, Value, leaf_size, internal_size, depth>;
-        using Type = chain_t<Parent,
-                curry2<Ts::template InternalNode, internal_size>::template mixin...,
+        template <typename Parent>
+        using InternalNodeBaseCurried = InternalNodeBase<Parent, Value, leaf_size, internal_size, depth>;
+        using Type = Chain<Derived,
+                Curry<Ts::template InternalNode, internal_size>::template Mixin...,
                 InternalNodeBaseCurried,
                 Params>;
     };

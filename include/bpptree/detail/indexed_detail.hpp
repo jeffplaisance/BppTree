@@ -60,7 +60,7 @@ struct IndexedLeafNode : public Parent {
         Parent::compute_delta_erase2(index, node_info);
     }
 
-    SizeType children() {
+    SizeType children() const {
         return this->length;
     }
 
@@ -156,7 +156,7 @@ struct IndexedInternalNode : public Parent {
         this->pointers[this->get_index(it.iter)]->seek_index(it, remainder);
     }
 
-    SizeType children() {
+    SizeType children() const {
         SizeType ret = 0;
         for (IndexType i = 0; i < this->length; ++i) {
             ret += child_counts[i];
@@ -213,6 +213,6 @@ struct IndexedNodeInfo : public Parent {
     IndexedNodeInfo() noexcept = default;
 
     template <typename P>
-    IndexedNodeInfo(P&& p, const bool changed) noexcept : Parent(std::forward<P>(p), changed), children(changed ? this->ptr->children() : p->children()) {}
+    IndexedNodeInfo(P const& p, const bool changed) noexcept : Parent(p, changed), children(p->children()) {}
 };
 }

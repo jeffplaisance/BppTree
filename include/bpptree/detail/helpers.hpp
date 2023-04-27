@@ -200,21 +200,6 @@ struct WrappedCastingExtractor {
     }
 };
 
-template <typename Parent, typename PtrType>
-struct NodeInfoBase : public Parent {
-    NodePtr<PtrType> ptr{};
-    bool ptr_changed = false;
-
-    NodeInfoBase() = default;
-
-    template <typename P>
-    NodeInfoBase(P&& p, const bool changed) : ptr(), ptr_changed(changed) {
-        if (changed) {
-            this->ptr = std::forward<P>(p);
-        }
-    }
-};
-
 template <typename NodeInfoType>
 struct Replace {
     NodeInfoType delta{};

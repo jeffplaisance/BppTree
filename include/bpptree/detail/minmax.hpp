@@ -380,7 +380,7 @@ struct BPPTREE_CONCAT(BPPTREE_MINMAX_UPPER, Detail) {
         NodeInfo() noexcept = default;
 
         template <typename P>
-        NodeInfo(P&& p, const bool changed) noexcept : Parent(std::forward<P>(p), changed), BPPTREE_MINMAX(changed ? this->ptr->BPPTREE_MINMAX() : p->BPPTREE_MINMAX()) {}
+        NodeInfo(P const& p, const bool changed) noexcept : Parent(p, changed), BPPTREE_MINMAX(p->BPPTREE_MINMAX()) {}
     };
 
     template <typename Parent>
