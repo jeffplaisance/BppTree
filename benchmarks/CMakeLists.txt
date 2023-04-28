@@ -1,0 +1,7 @@
+set(CMAKE_CXX_STANDARD 17)
+
+add_executable(benchmarks benchmark.cpp)
+
+target_include_directories(benchmarks PRIVATE ../include)
+target_include_directories(benchmarks PRIVATE ../tests)
+target_include_directories(benchmarks PRIVATE immer)

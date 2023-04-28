@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.23)
-project(btree_clion)
+project(BppTree)
+
+add_subdirectory(benchmarks)
 
 set(CMAKE_CXX_STANDARD 17)
 
@@ -41,7 +43,7 @@ target_link_libraries(btree_test GTest::gtest_main)
 include(GoogleTest)
 gtest_discover_tests(btree_test)
 
-target_compile_options(btree_test PRIVATE -Og)
+target_compile_options(btree_test PRIVATE "$<$<CONFIG:DEBUG>:-Og>")
 target_compile_options(btree_test PRIVATE -Wall)
 target_compile_options(btree_test PRIVATE -Wextra)
 target_compile_options(btree_test PRIVATE -Wconversion)
