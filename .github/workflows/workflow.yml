@@ -28,7 +28,7 @@ jobs:
         run: cmake -S . -Bbuild -DENABLE_TEST_COVERAGE=1 -DCMAKE_BUILD_TYPE=Debug
 
       - name: build
-        run: cmake --build build -j2
+        run: cmake --build build --target btree_test -j2
 
       - name: test
         run: |
