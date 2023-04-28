@@ -20,7 +20,7 @@ var searchData=
   ['mincomparator_249',['MinComparator',['../structbpptree_1_1detail_1_1MinComparator.html',1,'bpptree::detail']]],
   ['minmax_2ehpp_250',['minmax.hpp',['../minmax_8hpp.html',1,'']]],
   ['minmax2_2eipp_251',['minmax2.ipp',['../minmax2_8ipp.html',1,'']]],
-  ['mixin_252',['Mixin',['../structbpptree_1_1detail_1_1Curry.html#a7fec47deef0b9cf3fdf740eb79fbd4b0',1,'bpptree::detail::Curry']]],
+  ['mixin_252',['Mixin',['../structbpptree_1_1detail_1_1Curry.html#a0a63528836a065b4d9160ef0ba69fc4e',1,'bpptree::detail::Curry']]],
   ['mixins_253',['mixins',['../structbpptree_1_1detail_1_1BppTreeSet.html#a52832763701c9b4455a5f3ee710b9aa4',1,'bpptree::detail::BppTreeSet::mixins()'],['../structbpptree_1_1detail_1_1BppTreeMap.html#aabd78f445b6101076f4e7c2945c2fdfc',1,'bpptree::detail::BppTreeMap::mixins()'],['../structbpptree_1_1detail_1_1BppTreeVector.html#a8e2bba65a443206cc8e81c21a2012894',1,'bpptree::detail::BppTreeVector::mixins()'],['../structbpptree_1_1detail_1_1BppTree.html#a0259aad0480084c92380f2236447b022',1,'bpptree::detail::BppTree::mixins()']]],
   ['mod_5fcount_254',['mod_count',['../structbpptree_1_1detail_1_1BppTreeDetail_1_1Shared.html#ae6bed1671b00cfc1443df4923ed2d866',1,'bpptree::detail::BppTreeDetail::Shared::mod_count()'],['../structbpptree_1_1detail_1_1IteratorDetail.html#a2f4f66b0124ac1d20486ba7455cd11b9',1,'bpptree::detail::IteratorDetail::mod_count()']]],
   ['modifiers_255',['Modifiers',['../structbpptree_1_1detail_1_1BppTreeDetail_1_1Shared.html#a4ac3a8912a23fec816d0a9ce2b2bdada',1,'bpptree::detail::BppTreeDetail::Shared::Modifiers()'],['../structbpptree_1_1detail_1_1BppTreeDetail_1_1Shared.html#a702633fd8c34c8440ad4d6e4ffaa3e09',1,'bpptree::detail::BppTreeDetail::Shared::Modifiers()']]],

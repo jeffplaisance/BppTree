@@ -18,5 +18,5 @@ var searchData=
   ['root_5fvariant_349',['root_variant',['../structbpptree_1_1detail_1_1BppTreeDetail_1_1Shared.html#a0c32fb9ceae0ddce0e310828e8de3d34',1,'bpptree::detail::BppTreeDetail::Shared']]],
   ['roottype_350',['RootType',['../structbpptree_1_1detail_1_1NodeTypesDetail.html#a5f5d5955cf9c92e4719b62ca978c2d18',1,'bpptree::detail::NodeTypesDetail']]],
   ['rootvariant_351',['RootVariant',['../structbpptree_1_1detail_1_1NodeTypesDetail_1_1RootVariant.html',1,'bpptree::detail::NodeTypesDetail']]],
-  ['rootvariant_3c_201_2c_20us_2e_2e_2e_20_3e_352',['RootVariant&lt; 1, Us... &gt;',['../structbpptree_1_1detail_1_1NodeTypesDetail_1_1RootVariant_3_011_00_01Us_8_8_8_01_4.html',1,'bpptree::detail::NodeTypesDetail']]]
+  ['rootvariant_3c_201_2c_20args_2e_2e_2e_20_3e_352',['RootVariant&lt; 1, args... &gt;',['../structbpptree_1_1detail_1_1NodeTypesDetail_1_1RootVariant_3_011_00_01args_8_8_8_01_4.html',1,'bpptree::detail::NodeTypesDetail']]]
 ];
