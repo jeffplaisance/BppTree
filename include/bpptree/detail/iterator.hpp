@@ -19,10 +19,25 @@
 
 namespace bpptree::detail {
 
+template <typename Tree, bool is_const, typename = void>
+struct IteratorBase {
+    explicit IteratorBase(std::conditional_t<is_const, Tree const, Tree>&) noexcept {}
+};
+
+template <typename Tree, bool is_const>
+struct IteratorBase<Tree, is_const, std::enable_if_t<IsTransientTree<Tree>::value>> {
+    mutable uint64_t mod_count;
+
+    explicit IteratorBase(std::conditional_t<is_const, Tree const, Tree>& tree) noexcept : mod_count(tree.mod_count) {}
+};
+
 template <typename Value, typename Tree, typename LeafNode, bool is_const, bool reverse>
-struct IteratorDetail {
+struct IteratorDetail : public IteratorBase<Tree, is_const> {
+    using Parent = IteratorBase<Tree, is_const>;
 
     using TreeType = std::conditional_t<is_const, Tree const, Tree>;
+
+    static constexpr bool is_transient_tree = IsTransientTree<TreeType>::value;
 
     static constexpr int direction = reverse ? -1 : 1;
 
@@ -31,21 +46,22 @@ struct IteratorDetail {
     static constexpr uint64_t rend = std::numeric_limits<uint64_t>::max();
 
     uint64_t iter = 0;
-    mutable uint64_t mod_count;
     TreeType* tree;
     mutable LeafNode const* leaf;
 
-    explicit IteratorDetail(TreeType& tree) noexcept : mod_count(tree.mod_count), tree(&tree) {}
+    explicit IteratorDetail(TreeType& tree) noexcept : Parent(tree), tree(&tree) {}
 
     [[nodiscard]] Value const& get() const {
-        if (mod_count != tree->mod_count) {
-            std::as_const(*tree).dispatch([this](auto const& root){
-                // make copy of iter since this is const and iter is not mutable.
-                // advancing by 0 won't actually change tmp_iter.
-                uint64_t tmp_iter = iter;
-                root->advance(leaf, tmp_iter, 0);
-            });
-            mod_count = tree->mod_count;
+        if constexpr (is_transient_tree) {
+            if (this->mod_count != tree->mod_count) {
+                std::as_const(*tree).dispatch([this](auto const& root) {
+                    // make copy of iter since this is const and iter is not mutable.
+                    // advancing by 0 won't actually change tmp_iter.
+                    uint64_t tmp_iter = iter;
+                    root->advance(leaf, tmp_iter, 0);
+                });
+                this->mod_count = tree->mod_count;
+            }
         }
         return leaf->get_iter(iter);
     }
@@ -140,11 +156,15 @@ struct IteratorDetail {
             iter = 0;
             if (n == 1) {
                 std::as_const(*tree).dispatch([this](auto const& root) { root->seek_begin(leaf, iter); });
-                mod_count = tree->mod_count;
+                if constexpr (is_transient_tree) {
+                    this->mod_count = tree->mod_count;
+                }
                 return;
             }
             remainder = n - 1;
-        } else if (mod_count == tree->mod_count) {
+        } else if constexpr (!is_transient_tree) { //NOLINT
+            remainder = leaf->advance(leaf, iter, n);
+        } else if (this->mod_count == tree->mod_count) {
             remainder = leaf->advance(leaf, iter, n);
         } else {
             remainder = n;
@@ -160,7 +180,9 @@ struct IteratorDetail {
                     iter = rend;
                 }
             });
-            mod_count = tree->mod_count;
+            if constexpr (is_transient_tree) {
+                this->mod_count = tree->mod_count;
+            }
         }
     }
 
@@ -212,7 +234,7 @@ struct IteratorDetail {
         return *(*this + n);
     }
 
-    template <typename T, std::enable_if_t<IsTreeIterator<T>::value && IsIndexedTree<TreeType, T>::value, bool> = true>
+    template <typename T, std::enable_if_t<IsTreeIterator<T>::value && IsIndexedTree<TreeType, T const&>::value, bool> = true>
     [[nodiscard]] auto operator-(T const& it) const {
         if constexpr (T::is_reversed) {
             ssize ret = iter == rend ? 1 : -static_cast<ssize>(tree->order(*this));

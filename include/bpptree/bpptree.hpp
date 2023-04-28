@@ -70,7 +70,6 @@ public:
     protected:
         RootType root_variant;
         size_t tree_size;
-        uint64_t mod_count = 0;
 
         Shared() noexcept : Parent(), root_variant(make_ptr<LeafNode>()), tree_size(0) {}
 
@@ -228,13 +227,26 @@ public:
     struct Persistent;
 
     struct Transient : public TransientMixin<Transient> {
-
+    private:
         using Parent = TransientMixin<Transient>;
 
+        friend typename Parent::iterator;
+        friend typename Parent::const_iterator;
+        friend typename Parent::reverse_iterator;
+        friend typename Parent::const_reverse_iterator;
+        friend typename Parent::iterator::Parent;
+        friend typename Parent::const_iterator::Parent;
+        friend typename Parent::reverse_iterator::Parent;
+        friend typename Parent::const_reverse_iterator::Parent;
+        friend typename Parent::Modifiers;
+
+        uint64_t mod_count = 0;
+
+    public:
         template <typename... Us>
         explicit Transient(Us&&... us) noexcept : Parent(std::forward<Us>(us)...) {}
 
-        [[nodiscard]] Persistent persistent() & {
+        [[nodiscard]] Persistent persistent() const& {
             return Persistent(this->root_variant, this->tree_size);
         }
 
@@ -325,9 +337,9 @@ public:
     };
 
     struct Persistent : public PersistentMixin<Persistent> {
-
+    private:
         using Parent = PersistentMixin<Persistent>;
-
+    public:
         template <typename... Us>
         explicit Persistent(Us&&... us) noexcept : Parent(std::forward<Us>(us)...) {
             this->self().dispatch([](auto&, auto& root) {

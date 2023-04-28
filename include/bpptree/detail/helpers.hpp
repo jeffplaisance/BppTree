@@ -15,12 +15,6 @@
 namespace bpptree {
 namespace detail {
 
-#if defined(__cpp_lib_hardware_interference_size)
-using std::hardware_constructive_interference_size;
-#else
-static constexpr size_t hardware_constructive_interference_size = 64;
-#endif
-
 using IndexType = std::int_fast32_t;
 
 //a std::array that doesn't cause warnings when you index into it with signed integers when -Wsign-conversion is enabled
@@ -247,6 +241,12 @@ struct IsIndexedTree : std::false_type {};
 
 template<typename T, typename It>
 struct IsIndexedTree<T, It, std::void_t<decltype(std::declval<T>().order(std::declval<It>()))>> : std::true_type {};
+
+template<typename, typename = void>
+struct IsTransientTree : std::true_type {};
+
+template<typename T>
+struct IsTransientTree<T, std::void_t<decltype(std::declval<T>().transient())>> : std::false_type {};
 
 enum struct DuplicatePolicy {
     replace,

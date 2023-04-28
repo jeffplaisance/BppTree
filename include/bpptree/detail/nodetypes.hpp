@@ -68,14 +68,8 @@ struct NodeTypesDetail {
                 Params>;
     };
 
-    #if defined(_MSC_VER) \
-    // Disables "structure was padded due to alignment specifier" warnings
-    #pragma warning(push)
-    #pragma warning(disable : 4324)
-    #endif
-
     template <auto leaf_size>
-    struct alignas(hardware_constructive_interference_size) LeafNode : public LeafNodeMixin<LeafNode<leaf_size>, leaf_size>::Type {
+    struct LeafNode : public LeafNodeMixin<LeafNode<leaf_size>, leaf_size>::Type {
 
         using Parent = typename LeafNodeMixin<LeafNode<leaf_size>, leaf_size>::Type;
 
@@ -90,7 +84,7 @@ struct NodeTypesDetail {
     };
 
     template<auto leaf_size, auto internal_size, auto depth>
-    struct alignas(hardware_constructive_interference_size) InternalNode : public InternalNodeMixin<InternalNode<leaf_size, internal_size, depth>, leaf_size, internal_size, depth>::Type {
+    struct InternalNode : public InternalNodeMixin<InternalNode<leaf_size, internal_size, depth>, leaf_size, internal_size, depth>::Type {
 
         using Parent = typename InternalNodeMixin<InternalNode<leaf_size, internal_size, depth>, leaf_size, internal_size, depth>::Type;
 
@@ -103,10 +97,6 @@ struct NodeTypesDetail {
             this->persistent = persistent;
         }
     };
-
-    #if defined(_MSC_VER)
-    #pragma warning(pop)
-    #endif
 
     template <typename Parent>
     struct Params : public Parent {
