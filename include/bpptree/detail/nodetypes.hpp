@@ -197,14 +197,14 @@ struct NodeTypesDetail {
 
     static constexpr size_t max_size = leaf_node_size * pow<internal_node_size, max_depth - 1>();
 
-    template <int U, int... Us>
+    template <int head, int... tail>
     struct RootVariant {
-        using type = typename RootVariant<U - 1, U, Us...>::type;
+        using type = typename RootVariant<head - 1, head, tail...>::type;
     };
 
-    template <int... Us>
-    struct RootVariant<1, Us...> {
-        using type = std::variant<NodePtr<LeafNode<leaf_node_size>>, NodePtr<InternalNode<leaf_node_size, internal_node_size, Us>>...>;
+    template <int... args>
+    struct RootVariant<1, args...> {
+        using type = std::variant<NodePtr<LeafNode<leaf_node_size>>, NodePtr<InternalNode<leaf_node_size, internal_node_size, args>>...>;
     };
 
     using RootType = typename RootVariant<max_depth>::type;

@@ -19,10 +19,10 @@ struct Top {
     SelfType const&& self() const&& { return static_cast<SelfType const&&>(*this); }
 };
 
-template <template <typename, auto...> typename M, auto... Args>
+template <template <typename, auto...> typename M, auto... args>
 struct Curry {
     template <typename Base>
-    using Mixin = M<Base, Args...>;
+    using Mixin = M<Base, args...>;
 };
 
 template <typename Parent, template<typename> typename Head, template<typename> typename... Tail>
