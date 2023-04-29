@@ -1,3 +1,9 @@
 [submodule "benchmarks/immer"]
 	path = benchmarks/immer
 	url = https://github.com/arximboldi/immer.git
+[submodule "benchmarks/abseil-cpp"]
+	path = benchmarks/abseil-cpp
+	url = https://github.com/abseil/abseil-cpp.git
+[submodule "benchmarks/tlx"]
+	path = benchmarks/tlx
+	url = https://github.com/tlx/tlx.git
