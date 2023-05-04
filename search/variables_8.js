@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['max_5fdepth_799',['max_depth',['../structbpptree_1_1detail_1_1NodeTypesDetail.html#af60aaf639f12f058047e271b58aa5bcd',1,'bpptree::detail::NodeTypesDetail']]],
-  ['max_5fsize_800',['max_size',['../structbpptree_1_1detail_1_1NodeTypesDetail.html#a72357a0d22aede788efacfe541b556cf',1,'bpptree::detail::NodeTypesDetail']]],
-  ['mod_5fcount_801',['mod_count',['../structbpptree_1_1detail_1_1IteratorBase_3_01Tree_00_01is__const_00_01std_1_1enable__if__t_3_01Is894f4c120f57ac53184845689e7c5337.html#a0f488dc906e1658e8bebe91d50cf88ca',1,'bpptree::detail::IteratorBase&lt; Tree, is_const, std::enable_if_t&lt; IsTransientTree&lt; Tree &gt;::value &gt; &gt;']]],
-  ['modifiers_802',['Modifiers',['../structbpptree_1_1detail_1_1BppTreeDetail_1_1Shared.html#a702633fd8c34c8440ad4d6e4ffaa3e09',1,'bpptree::detail::BppTreeDetail::Shared']]]
+  ['leaf_807',['leaf',['../structbpptree_1_1detail_1_1IteratorDetail.html#a558e038d9b16cad3b3f3c765609a2466',1,'bpptree::detail::IteratorDetail']]],
+  ['leaf_5fnode_5fsize_808',['leaf_node_size',['../structbpptree_1_1detail_1_1NodeTypesDetail.html#abeb1e9f093afa5081d4c9b542a37e8fb',1,'bpptree::detail::NodeTypesDetail']]],
+  ['left_809',['left',['../structbpptree_1_1detail_1_1Split.html#a3119db83dfcc1e01a2c2a2c801c9680e',1,'bpptree::detail::Split']]],
+  ['length_810',['length',['../structbpptree_1_1detail_1_1InternalNodeBase.html#a4df0e499b429149c053f0b69e328eee2',1,'bpptree::detail::InternalNodeBase::length()'],['../structbpptree_1_1detail_1_1LeafNodeBase.html#abfa028284e93fe164be330fcff14e450',1,'bpptree::detail::LeafNodeBase::length()']]]
 ];

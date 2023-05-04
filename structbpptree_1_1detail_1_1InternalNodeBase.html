@@ -228,7 +228,7 @@ Static Public Attributes</h2></td></tr>
 <tr class="separator:a2a6344eb869080d0e9dce12a8ef872eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afd5ca7028c6cdf317e08bdff47b20fad"><td class="memItemLeft" align="right" valign="top">static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase.html#afd5ca7028c6cdf317e08bdff47b20fad">it_shift</a> = ChildType::it_shift + ChildType::it_bits</td></tr>
 <tr class="separator:afd5ca7028c6cdf317e08bdff47b20fad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a46df6b6817604e3c6da79d99743c82cd"><td class="memItemLeft" align="right" valign="top">static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase.html#a46df6b6817604e3c6da79d99743c82cd">it_bits</a> = bits_required&lt;internal_size&gt;()</td></tr>
+<tr class="memitem:a46df6b6817604e3c6da79d99743c82cd"><td class="memItemLeft" align="right" valign="top">static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase.html#a46df6b6817604e3c6da79d99743c82cd">it_bits</a> = <a class="el" href="namespacebpptree_1_1detail.html#a3d636ad26554cfe8dd1a7f1ed22021f5">bits_required</a>&lt;internal_size&gt;()</td></tr>
 <tr class="separator:a46df6b6817604e3c6da79d99743c82cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8a9487c870f56e57011189e6532a5559"><td class="memItemLeft" align="right" valign="top">static constexpr uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase.html#a8a9487c870f56e57011189e6532a5559">it_mask</a> = (1ULL &lt;&lt; <a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase.html#a46df6b6817604e3c6da79d99743c82cd">it_bits</a>) - 1</td></tr>
 <tr class="separator:a8a9487c870f56e57011189e6532a5559"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -2425,7 +2425,7 @@ template&lt;typename Parent , typename Value , auto leaf_size, auto internal_siz
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr int <a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase.html">bpptree::detail::InternalNodeBase</a>&lt; Parent, Value, leaf_size, internal_size, depth_v &gt;::it_bits = bits_required&lt;internal_size&gt;()</td>
+          <td class="memname">constexpr int <a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase.html">bpptree::detail::InternalNodeBase</a>&lt; Parent, Value, leaf_size, internal_size, depth_v &gt;::it_bits = <a class="el" href="namespacebpptree_1_1detail.html#a3d636ad26554cfe8dd1a7f1ed22021f5">bits_required</a>&lt;internal_size&gt;()</td>
         </tr>
       </table>
   </td>
