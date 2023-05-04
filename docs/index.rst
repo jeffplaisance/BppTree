@@ -243,6 +243,21 @@ Long term, I would like to maintain a stable API for B++ Trees, but as this proj
 right to change the API in order to make the B++ Tree library better. That said, I am fairly happy with the API as it
 stands today and have no current plans to change it.
 
+Related Projects
+------------------
+
+`Immer <https://github.com/arximboldi/immer>`_ is an excellent library that provides many more persistent data
+structures such as:
+
+* Immutable arrays
+* Vectors and flex vectors implemented as Relaxed Radix Balanced Trees
+* Unordered sets, maps, and tables implemented as Hash Array Mapped Tries
+
+Immer and B++ Trees complement each other nicely. You might want to use B++ Trees if you need an ordered map or set, or
+if you need mixins for ordered statistics, prefix sums, or min/max. Indexed B++ Trees are faster than immer's
+flex_vector when inserting in the middle of a vector, but are slower for lookups. If you don't need ordering, mixins, or
+maximum performance for random inserts, the immer containers are probably a better choice.
+
 Table of Contents
 ==================
 .. toctree::
