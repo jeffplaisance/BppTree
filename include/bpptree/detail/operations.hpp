@@ -59,11 +59,11 @@ struct InsertOrAssign {
     }
 };
 
-static constexpr auto find_first = [](auto const&, Empty const&) {
+inline constexpr auto find_first = [](auto const&, Empty const&) {
     return std::tuple<int32_t, Empty>(0, Empty::empty);
 };
 
-static constexpr auto find_last = [](auto const& node, Empty const&) {
+inline constexpr auto find_last = [](auto const& node, Empty const&) {
     if constexpr (std::remove_reference_t<decltype(node)>::depth == 1) {
         return std::tuple<int32_t, Empty>(node.length, Empty::empty);
     } else {
@@ -71,7 +71,7 @@ static constexpr auto find_last = [](auto const& node, Empty const&) {
     }
 };
 
-static constexpr auto find_iterator = [](auto const& node, uint64_t const& it) {
+inline constexpr auto find_iterator = [](auto const& node, uint64_t const& it) {
     return std::tuple<int32_t, uint64_t>(node.get_index(it), it);
 };
 } //end namespace bpptree::detail

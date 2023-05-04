@@ -217,7 +217,7 @@ struct Split {
 };
 
 template <uint64_t i, uint64_t attempt>
-static constexpr int bits_required2() {
+inline constexpr int bits_required2() {
     if constexpr ((1ULL << attempt) - 1 >= i) {
         return attempt;
     } else {
@@ -226,7 +226,7 @@ static constexpr int bits_required2() {
 }
 
 template <uint64_t i>
-static constexpr int bits_required() {
+inline constexpr int bits_required() {
     return bits_required2<i, 0>();
 }
 

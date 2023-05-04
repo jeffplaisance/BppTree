@@ -28,6 +28,9 @@ namespace detail {
  */
 template <typename Value, typename SizeType = size_t>
 struct Indexed {
+    static constexpr size_t sizeof_hint() {
+        return sizeof(SizeType);
+    }
 
     template <typename Parent>
     using LeafNode = IndexedLeafNode<Parent, Value, SizeType>;

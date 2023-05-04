@@ -139,7 +139,7 @@ struct NodeTypesDetail {
 
     template<int internal_size>
     static constexpr int get_internal_node_size3() {
-        if constexpr (sizeof(InternalNode<leaf_node_size, internal_size, 3>) <= internal_node_bytes) {
+        if constexpr (sizeof(InternalNode<leaf_node_size, internal_size, 2>) <= internal_node_bytes) {
             return internal_size;
         } else {
             return get_internal_node_size3<internal_size - 1>();
@@ -148,15 +148,16 @@ struct NodeTypesDetail {
 
     template<int internal_size>
     static constexpr int get_internal_node_size2() {
-        if constexpr (sizeof(InternalNode<leaf_node_size, internal_size, 3>) > internal_node_bytes) {
+        if constexpr (sizeof(InternalNode<leaf_node_size, internal_size, 2>) > internal_node_bytes) {
             return get_internal_node_size3<internal_size - 1>();
         } else {
-            return get_internal_node_size2<internal_size + 8>();
+            return get_internal_node_size2<internal_size + 1>();
         }
     }
 
     static constexpr int get_internal_node_size() {
-        return get_internal_node_size2<1>();
+        constexpr int initial = (internal_node_bytes - 8) / (Ts::sizeof_hint() + ... + sizeof(void*));
+        return get_internal_node_size2<initial>();
     }
 
     static constexpr int internal_node_size = get_internal_node_size();

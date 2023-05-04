@@ -39,6 +39,10 @@ private:
 
     using Detail = MinDetail<Value, KeyExtractor, Comp>;
 public:
+    static constexpr size_t sizeof_hint() {
+        return sizeof(typename Detail::Key);
+    }
+
     template <typename Parent>
     using LeafNode = typename Detail::template LeafNode<Parent>;
 

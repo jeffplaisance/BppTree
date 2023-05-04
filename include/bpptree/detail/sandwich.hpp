@@ -25,20 +25,18 @@ struct Curry {
     using Mixin = M<Base, args...>;
 };
 
+template <typename Parent, template<typename> typename... Args>
+struct Chain2;
+
 template <typename Parent, template<typename> typename Head, template<typename> typename... Tail>
-struct Chain3 {
-    using Result = typename Chain3<Parent, Tail...>::Type;
+struct Chain2<Parent, Head, Tail...> {
+    using Result = typename Chain2<Parent, Tail...>::Type;
     using Type = Head<Result>;
 };
 
 template <typename Parent, template<typename> typename Head>
-struct Chain3<Parent, Head> {
+struct Chain2<Parent, Head> {
     using Type = Head<Parent>;
-};
-
-template <typename Parent, template <typename> typename... Mixins>
-struct Chain2 {
-    using Type = typename Chain3<Parent, Mixins...>::Type;
 };
 
 template <typename Parent>

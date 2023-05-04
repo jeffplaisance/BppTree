@@ -31,6 +31,10 @@ struct Summed {
 private:
     using SumType = std::remove_cv_t<std::remove_reference_t<decltype(std::declval<Extractor>()(std::declval<Value>()))>>;
 public:
+    static constexpr size_t sizeof_hint() {
+        return sizeof(SumType);
+    }
+
     template <typename Parent>
     using LeafNode = SummedLeafNode<Parent, SumType, Extractor>;
 

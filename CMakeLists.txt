@@ -58,8 +58,8 @@ if (ENABLE_UBSAN)
     target_link_options(btree_test PRIVATE -fsanitize=undefined)
 endif()
 
-#target_compile_options(btree_clion PRIVATE -ftime-trace)
-#target_link_options(btree_clion PRIVATE -ftime-trace)
+#target_compile_options(btree_test PRIVATE -ftime-trace)
+#target_link_options(btree_test PRIVATE -ftime-trace)
 
 if(ENABLE_TEST_COVERAGE)
     target_compile_options(btree_test PRIVATE -g -fprofile-arcs -ftest-coverage)

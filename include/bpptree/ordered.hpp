@@ -49,6 +49,10 @@ private:
 
     using Detail = OrderedDetail<KeyValue, KeyValueExtractor, LessThan, binary_search>;
 public:
+    static constexpr size_t sizeof_hint() {
+        return sizeof(Key);
+    }
+
     template <typename Parent>
     using LeafNode = typename Detail::template LeafNode<Parent>;
 
