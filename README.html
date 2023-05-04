@@ -267,6 +267,20 @@ Persistent variations, implemented using B++ Trees.</p>
 right to change the API in order to make the B++ Tree library better. That said, I am fairly happy with the API as it
 stands today and have no current plans to change it.</p>
 </section>
+<section id="related-projects">
+<h2>Related Projects<a class="headerlink" href="#related-projects" title="Permalink to this headline"></a></h2>
+<p><a class="reference external" href="https://github.com/arximboldi/immer">Immer</a> is an excellent library that provides many more persistent data
+structures such as:</p>
+<ul class="simple">
+<li><p>Immutable arrays</p></li>
+<li><p>Vectors and flex vectors implemented as Relaxed Radix Balanced Trees</p></li>
+<li><p>Unordered sets, maps, and tables implemented as Hash Array Mapped Tries</p></li>
+</ul>
+<p>Immer and B++ Trees complement each other nicely. You might want to use B++ Trees if you need an ordered map or set, or
+if you need mixins for ordered statistics, prefix sums, or min/max. Indexed B++ Trees are faster than immer’s
+flex_vector when inserting in the middle of a vector, but are slower for lookups. If you don’t need ordering, mixins, or
+maximum performance for random inserts, the immer containers are probably a better choice.</p>
+</section>
 </section>
 <section id="table-of-contents">
 <h1>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline"></a></h1>
