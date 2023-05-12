@@ -133,7 +133,7 @@ struct InternalNodeBase : public Parent {
     void compute_delta_erase2(IndexType, InfoType<NodeType>&) const {}
 
     template <typename R>
-    void insert_replace(IndexType index, ReplaceType<ChildType>& replace, R&& do_replace, uint64_t& iter) {
+    void insert_replace(IndexType index, ReplaceType<ChildType>& replace, R&& do_replace, uint64_t& iter) noexcept {
         ReplaceType<NodeType> result{};
         result.carry = replace.carry && index == length - 1;
         set_index(iter, !replace.carry ? index : result.carry ? 0 : index + 1);
@@ -149,7 +149,7 @@ struct InternalNodeBase : public Parent {
         }
     }
 
-    void insert_split_replace(InternalNodeBase& node, IndexType index, SplitType<ChildType>& split) {
+    void insert_split_replace(InternalNodeBase& node, IndexType index, SplitType<ChildType>& split) noexcept {
         for (IndexType i = length - 1; i > index; --i) {
             if (persistent) {
                 node.copy_element(i + 1, this->self(), i);
@@ -197,7 +197,7 @@ struct InternalNodeBase : public Parent {
         );
     }
 
-    bool insert_split_split(InternalNodeBase& left, InternalNodeBase& right, IndexType index, SplitType<ChildType>& split, uint64_t& iter, bool right_most) {
+    bool insert_split_split(InternalNodeBase& left, InternalNodeBase& right, IndexType index, SplitType<ChildType>& split, uint64_t& iter, bool right_most) noexcept {
         IndexType split_point = right_most && index + 1 == internal_size ? index + 1 : (internal_size + 1) / 2;
         for (IndexType i = length - 1; i > index; --i) {
             if (persistent) {
@@ -241,7 +241,7 @@ struct InternalNodeBase : public Parent {
             S&& do_split,
             uint64_t& iter,
             bool right_most
-    ) {
+    ) noexcept {
         if (length != internal_size) {
             set_index(iter, split.new_element_left ? index : index + 1);
             ReplaceType<NodeType> replace{};
@@ -295,7 +295,7 @@ struct InternalNodeBase : public Parent {
         );
     }
 
-    bool erase(InternalNodeBase& node, IndexType index, uint64_t& iter, bool right_most) {
+    bool erase(InternalNodeBase& node, IndexType index, uint64_t& iter, bool right_most) noexcept {
         if (persistent) {
             for (IndexType i = 0; i < index; ++i) {
                 node.copy_element(i, this->self(), i);
@@ -322,7 +322,7 @@ struct InternalNodeBase : public Parent {
     }
 
     template <typename R, typename E>
-    void erase(IndexType index, R&& do_replace, E&& do_erase, uint64_t& iter, bool right_most) {
+    void erase(IndexType index, R&& do_replace, E&& do_erase, uint64_t& iter, bool right_most) noexcept {
         if (length > 1) {
             ReplaceType<NodeType> replace{};
             compute_delta_erase(index, replace.delta);

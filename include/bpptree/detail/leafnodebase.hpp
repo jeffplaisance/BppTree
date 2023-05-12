@@ -117,7 +117,7 @@ struct LeafNodeBase : public Parent {
     }
 
     template <typename... Args>
-    bool insert_split(LeafNodeBase& left, LeafNodeBase& right, IndexType index, uint64_t& iter, bool right_most, Args&&... args) {
+    bool insert_split(LeafNodeBase& left, LeafNodeBase& right, IndexType index, uint64_t& iter, bool right_most, Args&&... args) noexcept {
         IndexType split_point = right_most && index == leaf_size ? index : (leaf_size + 1) / 2;
         for (IndexType i = length - 1; i >= index; --i) {
             if (persistent) {
@@ -154,7 +154,7 @@ struct LeafNodeBase : public Parent {
     }
 
     template <typename R, typename S, typename... Args>
-    void insert_index(IndexType index, R&& do_replace, S&& do_split, size_t& size, uint64_t& iter, bool right_most, Args&&... args) {
+    void insert_index(IndexType index, R&& do_replace, S&& do_split, size_t& size, uint64_t& iter, bool right_most, Args&&... args) noexcept {
         ++size;
         if (length != leaf_size) {
             set_index(iter, index);
