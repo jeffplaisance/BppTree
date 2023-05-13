@@ -55,6 +55,7 @@ public:
 
         IndexType find_key_index_checked(Key const& search_val) const {
             IndexType ret = lower_bound_index(search_val);
+#ifdef BPPTREE_SAFETY_CHECKS
             if (ret >= this->length) {
                 throw std::logic_error("key not found!");
             }
@@ -62,6 +63,7 @@ public:
             if (less_than(extracted, search_val) || less_than(search_val, extracted)) {
                 throw std::logic_error("key not found!");
             }
+#endif
             return ret;
         }
 

@@ -248,9 +248,11 @@ struct IteratorDetail : public IteratorBase<Tree, is_const> {
     template <typename RHS>
     [[nodiscard]] bool operator<(RHS const& rhs) const {
         static_assert(reverse == RHS::is_reversed);
+#ifdef BPPTREE_SAFETY_CHECKS
         if (&tree->self() != &rhs.tree->self()) {
             throw std::logic_error("cannot compare iterators from different trees");
         }
+#endif
         return reverse ^ (iter + 1 < rhs.iter + 1);
     }
 

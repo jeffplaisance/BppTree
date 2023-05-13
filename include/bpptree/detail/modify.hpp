@@ -82,7 +82,9 @@ struct ModifyTypes {
                 root_node->set_index(iter, split.new_element_left ? 0 : 1);
                 tree.root_variant = std::move(root_node);
             } else {
+#ifdef BPPTREE_SAFETY_CHECKS
                 throw std::logic_error("maximum depth exceeded");
+#endif
             }
         }
     };

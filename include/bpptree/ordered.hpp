@@ -227,10 +227,12 @@ public:
                     key,
                     [&key, &updater](auto&& callback, auto const& v) {
                         Value new_val = updater(extractor.get_value(v));
+#ifdef BPPTREE_SAFETY_CHECKS
                         decltype(auto) extracted = extractor.apply([](auto const&... args){ return extractor.get_key(args...); }, key, new_val);
                         if (less_than(extracted, key) || less_than(key, extracted)) { //NOLINT
                             throw std::logic_error("key from value does not match key passed to update_key!");
                         }
+#endif
                         extractor.apply(callback, key, new_val);
                     }
             );
@@ -298,11 +300,13 @@ public:
                 return *this;
             }
 
-            void check_key(KeyValue const& key_value) {
+            void check_key([[maybe_unused]] KeyValue const& key_value) {
+#ifdef BPPTREE_SAFETY_CHECKS
                 decltype(auto) extracted = extractor.get_key(key_value);
                 if (less_than(extracted, key) || less_than(key, extracted)) { //NOLINT
                     throw std::logic_error("key from value does not match key passed to operator[]!");
                 }
+#endif
             }
 
             ProxyRef& operator=(KeyValue& value) {

@@ -52,6 +52,7 @@ target_compile_options(btree_test PRIVATE -Wfloat-conversion)
 target_compile_options(btree_test PRIVATE -Wno-unknown-pragmas)
 target_compile_options(btree_test PRIVATE -Werror)
 target_compile_definitions(btree_test PRIVATE BPPTREE_TEST_COUNT_ALLOCATIONS)
+target_compile_definitions(btree_test PRIVATE BPPTREE_SAFETY_CHECKS)
 
 if (ENABLE_UBSAN)
     target_compile_options(btree_test PRIVATE -fsanitize=undefined)
