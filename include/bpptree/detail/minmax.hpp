@@ -398,13 +398,13 @@ struct BPPTREE_CONCAT(BPPTREE_MINMAX_UPPER, Detail) {
     template <typename Parent>
     struct Transient : public Parent {
         template <typename... Us>
-        explicit Transient(Us&&... us) noexcept : Parent(std::forward<Us>(us)...) {}
+        explicit Transient(Us&&... us) : Parent(std::forward<Us>(us)...) {}
     };
 
     template <typename Parent>
     struct Persistent : public Parent {
         template <typename... Us>
-        explicit Persistent(Us&&... us) noexcept : Parent(std::forward<Us>(us)...) {}
+        explicit Persistent(Us&&... us) : Parent(std::forward<Us>(us)...) {}
     };
 };
 }
