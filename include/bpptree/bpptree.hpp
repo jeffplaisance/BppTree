@@ -422,7 +422,7 @@ public:
     };
 };
 
-template <typename Value, int leaf_node_bytes = 512, int internal_node_bytes = 512, int depth_limit = 16, bool disable_exceptions = true>
+template <typename Value, int leaf_node_bytes = 512, int internal_node_bytes = 512, int depth_limit = 16, bool disable_exceptions = default_disable_exceptions>
 struct BppTree {
     template <typename... Args>
     using mixins = BppTreeDetail<Value, leaf_node_bytes, internal_node_bytes, depth_limit, disable_exceptions, typename Args::template build<Value>...>;

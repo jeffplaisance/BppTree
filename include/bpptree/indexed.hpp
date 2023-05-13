@@ -320,7 +320,7 @@ template <
         int leaf_node_bytes_v = 512,
         int internal_node_bytes_v = 512,
         int depth_limit_v = 16,
-        bool disable_exceptions_v = true>
+        bool disable_exceptions_v = default_disable_exceptions>
 struct BppTreeVector {
 
     template <typename T>
