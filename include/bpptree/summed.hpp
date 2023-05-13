@@ -47,7 +47,7 @@ public:
     template <typename Parent>
     struct Shared : public Parent {
         template <typename... Us>
-        explicit Shared(Us&&... us) noexcept : Parent(std::forward<Us>(us)...) {}
+        explicit Shared(Us&&... us) : Parent(std::forward<Us>(us)...) {}
 
         /**
          * @return an iterator pointing to the first element such that sum_inclusive(it) >= target
@@ -119,13 +119,13 @@ public:
     template <typename Parent>
     struct Transient : public Parent {
         template <typename... Us>
-        explicit Transient(Us&&... us) noexcept : Parent(std::forward<Us>(us)...) {}
+        explicit Transient(Us&&... us) : Parent(std::forward<Us>(us)...) {}
     };
 
     template <typename Parent>
     struct Persistent : public Parent {
         template <typename... Us>
-        explicit Persistent(Us&&... us) noexcept : Parent(std::forward<Us>(us)...) {}
+        explicit Persistent(Us&&... us) : Parent(std::forward<Us>(us)...) {}
     };
 };
 

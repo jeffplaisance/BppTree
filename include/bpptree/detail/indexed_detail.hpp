@@ -210,9 +210,9 @@ template <typename Parent, typename SizeType>
 struct IndexedNodeInfo : public Parent {
     SizeType children{};
 
-    IndexedNodeInfo() noexcept = default;
+    IndexedNodeInfo() = default;
 
     template <typename P>
-    IndexedNodeInfo(P const& p, const bool changed) noexcept : Parent(p, changed), children(p->children()) {}
+    IndexedNodeInfo(P const& p, const bool changed) : Parent(p, changed), children(p->children()) {}
 };
 }

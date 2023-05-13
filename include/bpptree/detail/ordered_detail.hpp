@@ -55,6 +55,7 @@ public:
 
         IndexType find_key_index_checked(Key const& search_val) const {
             IndexType ret = lower_bound_index(search_val);
+#ifdef BPPTREE_SAFETY_CHECKS
             if (ret >= this->length) {
                 throw std::logic_error("key not found!");
             }
@@ -62,6 +63,7 @@ public:
             if (less_than(extracted, search_val) || less_than(search_val, extracted)) {
                 throw std::logic_error("key not found!");
             }
+#endif
             return ret;
         }
 
@@ -168,9 +170,9 @@ public:
 
         UninitializedArray<Key, internal_size> keys;
 
-        InternalNode() noexcept = default;
+        InternalNode() = default;
 
-        InternalNode(InternalNode const& other) noexcept: Parent(other), keys(other.keys, other.length) {}
+        InternalNode(InternalNode const& other) noexcept(noexcept(Parent(other)) && std::is_nothrow_copy_constructible_v<Key>) : Parent(other), keys(other.keys, other.length) {}
 
         ~InternalNode() {
             if constexpr (!std::is_trivially_destructible_v<Key>) {
@@ -314,10 +316,10 @@ public:
     struct NodeInfo : public Parent {
         Key key{};
 
-        NodeInfo() noexcept = default;
+        NodeInfo() = default;
 
         template <typename P>
-        NodeInfo(P const& p, const bool changed) noexcept : Parent(p, changed), key(p->last_key()) {}
+        NodeInfo(P const& p, const bool changed) : Parent(p, changed), key(p->last_key()) {}
     };
 };
 } //end namespace bpptree::detail

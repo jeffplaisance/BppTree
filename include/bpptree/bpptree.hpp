@@ -43,11 +43,12 @@ template <
     int leaf_node_bytes = 512,
     int internal_node_bytes = 512,
     int depth_limit = 16,
+    bool disable_exceptions = true,
     typename... Ts>
 class BppTreeDetail {
 private:
 
-    using NodeTypes = NodeTypesDetail<Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts...>;
+    using NodeTypes = NodeTypesDetail<Value, leaf_node_bytes, internal_node_bytes, depth_limit, disable_exceptions, Ts...>;
 
     static constexpr int leaf_node_size = NodeTypes::leaf_node_size;
 
@@ -71,11 +72,11 @@ public:
         RootType root_variant;
         size_t tree_size;
 
-        Shared() noexcept : Parent(), root_variant(make_ptr<LeafNode>()), tree_size(0) {}
+        Shared() : Parent(), root_variant(make_ptr<LeafNode>()), tree_size(0) {}
 
-        Shared(RootType const& root_variant, size_t size) noexcept : Parent(), root_variant(root_variant), tree_size(size) {}
+        Shared(RootType const& root_variant, size_t size) : Parent(), root_variant(root_variant), tree_size(size) {}
 
-        Shared(RootType&& root_variant, size_t size) noexcept : Parent(), root_variant(std::move(root_variant)), tree_size(size) {}
+        Shared(RootType&& root_variant, size_t size) : Parent(), root_variant(std::move(root_variant)), tree_size(size) {}
 
         using Modifiers = ModifyTypes<LeafNode, InternalNode, max_depth_v>;
 
@@ -244,7 +245,7 @@ public:
 
     public:
         template <typename... Us>
-        explicit Transient(Us&&... us) noexcept : Parent(std::forward<Us>(us)...) {}
+        explicit Transient(Us&&... us) : Parent(std::forward<Us>(us)...) {}
 
         [[nodiscard]] Persistent persistent() const& {
             return Persistent(this->root_variant, this->tree_size);
@@ -341,7 +342,7 @@ public:
         using Parent = PersistentMixin<Persistent>;
     public:
         template <typename... Us>
-        explicit Persistent(Us&&... us) noexcept : Parent(std::forward<Us>(us)...) {
+        explicit Persistent(Us&&... us) : Parent(std::forward<Us>(us)...) {
             this->self().dispatch([](auto&, auto& root) {
                 root->make_persistent();
             });
@@ -421,10 +422,10 @@ public:
     };
 };
 
-template <typename Value, int leaf_node_bytes = 512, int internal_node_bytes = 512, int depth_limit = 16>
+template <typename Value, int leaf_node_bytes = 512, int internal_node_bytes = 512, int depth_limit = 16, bool disable_exceptions = true>
 struct BppTree {
     template <typename... Args>
-    using mixins = BppTreeDetail<Value, leaf_node_bytes, internal_node_bytes, depth_limit, typename Args::template build<Value>...>;
+    using mixins = BppTreeDetail<Value, leaf_node_bytes, internal_node_bytes, depth_limit, disable_exceptions, typename Args::template build<Value>...>;
 
     using Transient = typename mixins<>::Transient;
 

@@ -44,7 +44,7 @@ struct Indexed {
     template <typename Parent>
     struct Shared : public Parent {
         template <typename... Us>
-        explicit Shared(Us&&... us) noexcept : Parent(std::forward<Us>(us)...) {}
+        explicit Shared(Us&&... us) : Parent(std::forward<Us>(us)...) {}
 
         /**
          * @return a const reference to the value at index
@@ -109,7 +109,7 @@ struct Indexed {
     template <typename Parent>
     struct Transient : public Parent {
         template <typename... Us>
-        explicit Transient(Us&&... us) noexcept : Parent(std::forward<Us>(us)...) {}
+        explicit Transient(Us&&... us) : Parent(std::forward<Us>(us)...) {}
 
     protected:
         template<typename T>
@@ -183,9 +183,9 @@ struct Indexed {
             SizeType const& index;
 
             ProxyRef(const ProxyRef& other) = default;
-            ProxyRef(ProxyRef&& other) noexcept = default;
+            ProxyRef(ProxyRef&& other) = default; //NOLINT
             ProxyRef& operator=(const ProxyRef& other) = default;
-            ProxyRef& operator=(ProxyRef&& other) noexcept = default;
+            ProxyRef& operator=(ProxyRef&& other) = default; //NOLINT
 
             template <typename F>
             ProxyRef& invoke_compound_assignment(F&& f) {
@@ -214,8 +214,8 @@ struct Indexed {
                 return ret;
             }
         public:
-            ProxyRef(Transient& tree, SizeType const& index) noexcept : tree(tree), index(index) {}
-            ~ProxyRef() noexcept = default;
+            ProxyRef(Transient& tree, SizeType const& index) : tree(tree), index(index) {}
+            ~ProxyRef() = default;
 
             ProxyRef& operator=(Value const& value) {
                 tree.assign_index(index, value);
@@ -250,7 +250,7 @@ struct Indexed {
     template <typename Parent>
     struct Persistent : public Parent {
         template <typename... Us>
-        explicit Persistent(Us&&... us) noexcept : Parent(std::forward<Us>(us)...) {}
+        explicit Persistent(Us&&... us) : Parent(std::forward<Us>(us)...) {}
 
         /**
          * Makes a transient copy of tree, calls insert_index on it with index and args, makes a persistent copy of the
@@ -319,7 +319,8 @@ template <
         typename SizeType = size_t,
         int leaf_node_bytes_v = 512,
         int internal_node_bytes_v = 512,
-        int depth_limit_v = 16>
+        int depth_limit_v = 16,
+        bool disable_exceptions_v = true>
 struct BppTreeVector {
 
     template <typename T>
@@ -334,12 +335,16 @@ struct BppTreeVector {
     template <int d>
     using depth_limit = BppTreeVector<Value, SizeType, leaf_node_bytes_v, internal_node_bytes_v, d>;
 
+    template <bool b>
+    using disable_exceptions = BppTreeVector<Value, SizeType, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v, b>;
+
     template <typename... Args>
     using mixins = typename BppTree<
             Value,
             leaf_node_bytes_v,
             internal_node_bytes_v,
-            depth_limit_v>
+            depth_limit_v,
+            disable_exceptions_v>
     ::template mixins<IndexedBuilder<SizeType>, Args...>;
 
     using Transient = typename mixins<>::Transient;

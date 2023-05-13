@@ -21,14 +21,14 @@ namespace bpptree::detail {
 
 template <typename Tree, bool is_const, typename = void>
 struct IteratorBase {
-    explicit IteratorBase(std::conditional_t<is_const, Tree const, Tree>&) noexcept {}
+    explicit IteratorBase(std::conditional_t<is_const, Tree const, Tree>&) {}
 };
 
 template <typename Tree, bool is_const>
 struct IteratorBase<Tree, is_const, std::enable_if_t<IsTransientTree<Tree>::value>> {
     mutable uint64_t mod_count;
 
-    explicit IteratorBase(std::conditional_t<is_const, Tree const, Tree>& tree) noexcept : mod_count(tree.mod_count) {}
+    explicit IteratorBase(std::conditional_t<is_const, Tree const, Tree>& tree) : mod_count(tree.mod_count) {}
 };
 
 template <typename Value, typename Tree, typename LeafNode, bool is_const, bool reverse>
@@ -49,7 +49,7 @@ struct IteratorDetail : public IteratorBase<Tree, is_const> {
     TreeType* tree;
     mutable LeafNode const* leaf;
 
-    explicit IteratorDetail(TreeType& tree) noexcept : Parent(tree), tree(&tree) {}
+    explicit IteratorDetail(TreeType& tree) : Parent(tree), tree(&tree) {}
 
     [[nodiscard]] Value const& get() const {
         if constexpr (is_transient_tree) {
@@ -72,10 +72,10 @@ struct IteratorDetail : public IteratorBase<Tree, is_const> {
 
         IteratorDetail const& it;
 
-        ProxyRef(const ProxyRef& other) noexcept = default;
-        ProxyRef(ProxyRef&& other) noexcept = default;
-        ProxyRef& operator=(const ProxyRef& other) noexcept = default; //NOLINT
-        ProxyRef& operator=(ProxyRef&& other) noexcept = default; //NOLINT
+        ProxyRef(const ProxyRef& other) = default;
+        ProxyRef(ProxyRef&& other) = default; //NOLINT
+        ProxyRef& operator=(const ProxyRef& other) = default; //NOLINT
+        ProxyRef& operator=(ProxyRef&& other) = default; //NOLINT
 
         template <typename F>
         ProxyRef& invoke_compound_assignment(F&& f) {
@@ -104,8 +104,8 @@ struct IteratorDetail : public IteratorBase<Tree, is_const> {
             return ret;
         }
     public:
-        explicit ProxyRef(IteratorDetail const& it) noexcept : it(it) {}
-        ~ProxyRef() noexcept = default;
+        explicit ProxyRef(IteratorDetail const& it) : it(it) {}
+        ~ProxyRef() = default;
 
         template <typename T>
         ProxyRef& operator=(T&& t) {
@@ -248,9 +248,11 @@ struct IteratorDetail : public IteratorBase<Tree, is_const> {
     template <typename RHS>
     [[nodiscard]] bool operator<(RHS const& rhs) const {
         static_assert(reverse == RHS::is_reversed);
+#ifdef BPPTREE_SAFETY_CHECKS
         if (&tree->self() != &rhs.tree->self()) {
             throw std::logic_error("cannot compare iterators from different trees");
         }
+#endif
         return reverse ^ (iter + 1 < rhs.iter + 1);
     }
 

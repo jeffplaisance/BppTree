@@ -97,9 +97,11 @@ struct BPPTREE_CONCAT(BPPTREE_MINMAX_UPPER, Detail) {
         }
 
         [[nodiscard]] KeyRef BPPTREE_MINMAX() const {
+#ifdef BPPTREE_SAFETY_CHECKS
             if (this->length == 0) {
                 throw std::out_of_range("cannot call " BPPTREE_MINMAXSTR " on empty node");
             }
+#endif
             IndexType min_max_index = BPPTREE_CONCAT(BPPTREE_MINMAX, _excluding)();
             return extractor(this->values[min_max_index]);
         }
@@ -107,9 +109,11 @@ struct BPPTREE_CONCAT(BPPTREE_MINMAX_UPPER, Detail) {
         [[nodiscard]] KeyRef BPPTREE_MINMAX(uint64_t begin, uint64_t end) const {
             IndexType begin_index = this->get_index(begin);
             IndexType end_index = this->get_index(end);
+#ifdef BPPTREE_SAFETY_CHECKS
             if (begin_index > end_index) {
                 throw std::out_of_range("cannot call " BPPTREE_MINMAXSTR " on empty range");
             }
+#endif
             IndexType min_max_index = BPPTREE_CONCAT(BPPTREE_MINMAX, _excluding)(begin_index, end_index);
             return extractor(this->values[min_max_index]);
         }
@@ -124,9 +128,11 @@ struct BPPTREE_CONCAT(BPPTREE_MINMAX_UPPER, Detail) {
 
         template <typename It>
         void BPPTREE_MINMAX(It& it) const {
+#ifdef BPPTREE_SAFETY_CHECKS
             if (this->length == 0) {
                 throw std::out_of_range("cannot call " BPPTREE_MINMAXSTR " on empty node");
             }
+#endif
             IndexType min_max_index = BPPTREE_CONCAT(BPPTREE_MINMAX, _excluding)();
             this->set_index(it.iter, min_max_index);
             it.leaf = &this->self();
@@ -136,9 +142,11 @@ struct BPPTREE_CONCAT(BPPTREE_MINMAX_UPPER, Detail) {
         void BPPTREE_MINMAX(It& it, uint64_t begin, uint64_t end) const {
             IndexType begin_index = this->get_index(begin);
             IndexType end_index = this->get_index(end);
+#ifdef BPPTREE_SAFETY_CHECKS
             if (begin_index > end_index) {
                 throw std::out_of_range("cannot call " BPPTREE_MINMAXSTR " on empty range");
             }
+#endif
             IndexType min_max_index = BPPTREE_CONCAT(BPPTREE_MINMAX, _excluding)(begin_index, end_index);
             this->set_index(it.iter, min_max_index);
             it.leaf = &this->self();
@@ -170,9 +178,9 @@ struct BPPTREE_CONCAT(BPPTREE_MINMAX_UPPER, Detail) {
 
         UninitializedArray<Key, internal_size> BPPTREE_MINMAXS;
 
-        InternalNode() noexcept = default;
+        InternalNode() = default;
 
-        InternalNode(InternalNode const& other) noexcept : Parent(other), BPPTREE_MINMAXS(other.BPPTREE_MINMAXS, other.length) {}
+        InternalNode(InternalNode const& other) noexcept(noexcept(Parent(other)) && std::is_nothrow_copy_constructible_v<Key>) : Parent(other), BPPTREE_MINMAXS(other.BPPTREE_MINMAXS, other.length) {}
 
         ~InternalNode() {
             if constexpr (!std::is_trivially_destructible_v<Key>) {
@@ -278,9 +286,11 @@ struct BPPTREE_CONCAT(BPPTREE_MINMAX_UPPER, Detail) {
         }
 
         [[nodiscard]] KeyRef BPPTREE_MINMAX() const {
+#ifdef BPPTREE_SAFETY_CHECKS
             if (this->length == 0) {
                 throw std::out_of_range("cannot call " BPPTREE_MINMAXSTR " on empty node");
             }
+#endif
             auto [BPPTREE_MINMAX, min_max_index] = BPPTREE_CONCAT(BPPTREE_MINMAX, _excluding)();
             return *BPPTREE_MINMAX;
         }
@@ -316,9 +326,11 @@ struct BPPTREE_CONCAT(BPPTREE_MINMAX_UPPER, Detail) {
 
         template <typename It>
         void BPPTREE_MINMAX(It& it) const {
+#ifdef BPPTREE_SAFETY_CHECKS
             if (this->length == 0) {
                 throw std::out_of_range("cannot call " BPPTREE_MINMAXSTR " on empty node");
             }
+#endif
             auto [BPPTREE_MINMAX, min_max_index] = BPPTREE_CONCAT(BPPTREE_MINMAX, _excluding)();
             this->set_index(it.iter, min_max_index);
             this->pointers[min_max_index]->BPPTREE_MINMAX(it);
@@ -377,10 +389,10 @@ struct BPPTREE_CONCAT(BPPTREE_MINMAX_UPPER, Detail) {
     struct NodeInfo : public Parent {
         Key BPPTREE_MINMAX{};
 
-        NodeInfo() noexcept = default;
+        NodeInfo() = default;
 
         template <typename P>
-        NodeInfo(P const& p, const bool changed) noexcept : Parent(p, changed), BPPTREE_MINMAX(p->BPPTREE_MINMAX()) {}
+        NodeInfo(P const& p, const bool changed) : Parent(p, changed), BPPTREE_MINMAX(p->BPPTREE_MINMAX()) {}
     };
 
     template <typename Parent>

@@ -21,12 +21,12 @@ using IndexType = std::int_fast32_t;
 template <typename T, size_t n>
 struct Array : std::array<T, n> {
     template <typename I, std::enable_if_t<std::is_integral_v<I>, bool> = true>
-    decltype(auto) operator[](I const index) noexcept {
+    decltype(auto) operator[](I const index) {
         return std::array<T, n>::operator[](static_cast<size_t const>(index));
     }
 
     template <typename I, std::enable_if_t<std::is_integral_v<I>, bool> = true>
-    decltype(auto) operator[](I const index) const noexcept {
+    decltype(auto) operator[](I const index) const {
         return std::array<T, n>::operator[](static_cast<size_t const>(index));
     }
 };

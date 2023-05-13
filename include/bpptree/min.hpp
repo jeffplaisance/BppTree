@@ -61,7 +61,7 @@ public:
     template <typename Parent>
     struct Shared : public Parent {
         template <typename... Us>
-        explicit Shared(Us&&... us) noexcept : Parent(std::forward<Us>(us)...) {}
+        explicit Shared(Us&&... us) : Parent(std::forward<Us>(us)...) {}
 
         using iterator = typename Parent::iterator;
         using const_iterator = typename Parent::const_iterator;

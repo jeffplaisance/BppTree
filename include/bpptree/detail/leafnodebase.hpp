@@ -12,7 +12,7 @@
 
 namespace bpptree::detail {
 
-template <typename Parent, typename Value, auto leaf_size>
+template <typename Parent, typename Value, auto leaf_size, bool disable_exceptions>
 struct LeafNodeBase : public Parent {
 
     using NodeType = typename Parent::SelfType;
@@ -37,9 +37,9 @@ struct LeafNodeBase : public Parent {
     bool persistent = false;
     UninitializedArray<Value, leaf_size> values;
 
-    LeafNodeBase() noexcept = default;
+    LeafNodeBase() = default;
 
-    LeafNodeBase(LeafNodeBase const& other) noexcept : length(other.length), persistent(other.persistent), values(other.values, other.length) {}
+    LeafNodeBase(LeafNodeBase const& other) : length(other.length), persistent(other.persistent), values(other.values, other.length) {}
 
     ~LeafNodeBase() {
         if constexpr (!std::is_trivially_destructible_v<Value>) {
@@ -49,22 +49,18 @@ struct LeafNodeBase : public Parent {
         }
     }
 
-    static IndexType get_index(uint64_t it) noexcept {
+    static IndexType get_index(uint64_t it) {
         return (it >> it_shift) & it_mask;
     }
 
-    static void clear_index(uint64_t& it) noexcept {
+    static void clear_index(uint64_t& it) {
         it = it & it_clear;
     }
 
-    static void set_index(uint64_t& it, uint64_t index) noexcept {
-        clear_index(it);
-        it = it | (index << it_shift);
-    }
-
     template <typename T, std::enable_if_t<std::is_integral_v<T>, bool> = true>
-    static void set_index(uint64_t& it, T const t) noexcept {
-        set_index(it, static_cast<uint64_t const>(t));
+    static void set_index(uint64_t& it, T const index) noexcept {
+        clear_index(it);
+        it = it | (static_cast<uint64_t const>(index) << it_shift);
     }
 
     template <typename... Args>
@@ -90,7 +86,7 @@ struct LeafNodeBase : public Parent {
     void compute_delta_erase2(IndexType, InfoType&) const {}
 
     template <typename... Args>
-    void insert_no_split(LeafNodeBase& node, IndexType index, Args&&... args) {
+    void insert_no_split(LeafNodeBase& node, IndexType index, Args&&... args) noexcept(disable_exceptions) {
         for (IndexType i = length - 1; i >= index; --i) {
             if (persistent) {
                 node.values.set(i + 1, node.length, values[i]);
@@ -117,7 +113,7 @@ struct LeafNodeBase : public Parent {
     }
 
     template <typename... Args>
-    bool insert_split(LeafNodeBase& left, LeafNodeBase& right, IndexType index, uint64_t& iter, bool right_most, Args&&... args) {
+    bool insert_split(LeafNodeBase& left, LeafNodeBase& right, IndexType index, uint64_t& iter, bool right_most, Args&&... args) noexcept(disable_exceptions) {
         IndexType split_point = right_most && index == leaf_size ? index : (leaf_size + 1) / 2;
         for (IndexType i = length - 1; i >= index; --i) {
             if (persistent) {
@@ -154,7 +150,7 @@ struct LeafNodeBase : public Parent {
     }
 
     template <typename R, typename S, typename... Args>
-    void insert_index(IndexType index, R&& do_replace, S&& do_split, size_t& size, uint64_t& iter, bool right_most, Args&&... args) {
+    void insert_index(IndexType index, R&& do_replace, S&& do_split, size_t& size, uint64_t& iter, bool right_most, Args&&... args) noexcept(disable_exceptions) {
         ++size;
         if (length != leaf_size) {
             set_index(iter, index);

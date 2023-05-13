@@ -36,7 +36,7 @@ struct ModifyTypes {
         TreeType& tree;
         NodePtr<NodeType>& root;
 
-        DoReplace(TreeType& tree, NodePtr<NodeType>& root) noexcept : tree(tree), root(root) {}
+        DoReplace(TreeType& tree, NodePtr<NodeType>& root) : tree(tree), root(root) {}
 
         template <typename ReplaceType>
         void operator()(ReplaceType&& replace) {
@@ -65,7 +65,7 @@ struct ModifyTypes {
         NodePtr<NodeType>& root;
         uint64_t& iter;
 
-        DoSplit(TreeType& tree, NodePtr<NodeType>& root, uint64_t& iter) noexcept : tree(tree), root(root), iter(iter) {}
+        DoSplit(TreeType& tree, NodePtr<NodeType>& root, uint64_t& iter) : tree(tree), root(root), iter(iter) {}
 
         template <typename SplitType>
         void operator()([[maybe_unused]] SplitType&& split) {
@@ -82,7 +82,9 @@ struct ModifyTypes {
                 root_node->set_index(iter, split.new_element_left ? 0 : 1);
                 tree.root_variant = std::move(root_node);
             } else {
+#ifdef BPPTREE_SAFETY_CHECKS
                 throw std::logic_error("maximum depth exceeded");
+#endif
             }
         }
     };
@@ -91,7 +93,7 @@ struct ModifyTypes {
     struct DoErase {
         TreeType& tree;
 
-        explicit DoErase(TreeType& tree) noexcept : tree(tree) {}
+        explicit DoErase(TreeType& tree) : tree(tree) {}
 
         void operator()() {
             tree.root_variant = make_ptr<LeafNode>();

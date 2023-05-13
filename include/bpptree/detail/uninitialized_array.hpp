@@ -44,9 +44,9 @@ struct UninitializedArray {
     static_assert(sizeof(T) >= alignof(T)); //NOLINT
     alignas(T) std::array<std::byte, sizeof(T)*n> data;
 
-    UninitializedArray() noexcept = default;
+    UninitializedArray() = default;
 
-    UninitializedArray(UninitializedArray const& other, size_t length) noexcept {
+    UninitializedArray(UninitializedArray const& other, size_t length) {
         if constexpr (std::is_trivially_copy_constructible_v<T>) {
             std::memcpy(data.data(), other.data.data(), sizeof(T)*length);
         } else {
@@ -58,23 +58,23 @@ struct UninitializedArray {
         }
     }
 
-    UninitializedArray(UninitializedArray const& other) noexcept = delete;
-    UninitializedArray& operator=(UninitializedArray const& other) noexcept = delete;
-    UninitializedArray(UninitializedArray && other) noexcept = delete;
-    UninitializedArray& operator=(UninitializedArray && other) noexcept = delete;
+    UninitializedArray(UninitializedArray const& other) = delete;
+    UninitializedArray& operator=(UninitializedArray const& other) = delete;
+    UninitializedArray(UninitializedArray && other) = delete;
+    UninitializedArray& operator=(UninitializedArray && other) = delete;
 
     template <typename I, std::enable_if_t<std::is_integral_v<I>, bool> = true>
-    T& operator[](I const index) noexcept {
+    T& operator[](I const index) {
         return reinterpret_cast<T*>(data.data())[static_cast<size_t const>(index)];
     }
 
     template <typename I, std::enable_if_t<std::is_integral_v<I>, bool> = true>
-    T const& operator[](I const index) const noexcept {
+    T const& operator[](I const index) const {
         return reinterpret_cast<T const*>(data.data())[static_cast<size_t const>(index)];
     }
 
     template <typename I, std::enable_if_t<std::is_integral_v<I>, bool> = true>
-    T&& move(I const index) noexcept {
+    T&& move(I const index) {
         return std::move(reinterpret_cast<T*>(data.data())[static_cast<size_t const>(index)]);
     }
 
@@ -88,7 +88,7 @@ struct UninitializedArray {
     template <typename I, typename L, typename U,
             std::enable_if_t<std::is_integral_v<I>, bool> = true,
             std::enable_if_t<std::is_integral_v<L>, bool> = true>
-    T& set(I const index, L const length, U&& u) noexcept {
+    T& set(I const index, L const length, U&& u) {
         T& t = reinterpret_cast<T*>(data.data())[static_cast<size_t const>(index)];
         if constexpr (std::is_trivially_assignable_v<T&, U&&>) {
             return t = std::forward<U>(u);
@@ -101,7 +101,7 @@ struct UninitializedArray {
     }
 
     template <typename I, std::enable_if_t<std::is_integral_v<I>, bool> = true, typename... Us>
-    T& initialize(I const index, Us&&... us) noexcept {
+    T& initialize(I const index, Us&&... us) {
         T& t = reinterpret_cast<T*>(data.data())[static_cast<size_t const>(index)];
         return *new(&t) T(std::forward<Us>(us)...);
     }
@@ -110,7 +110,7 @@ struct UninitializedArray {
             std::enable_if_t<std::is_integral_v<I>, bool> = true,
             std::enable_if_t<std::is_integral_v<L>, bool> = true,
             typename... Us>
-    T& emplace(I const index, L const length, Us&&... us) noexcept {
+    T& emplace(I const index, L const length, Us&&... us) {
         T& t = reinterpret_cast<T*>(data.data())[static_cast<size_t const>(index)];
         if constexpr (sizeof...(Us) == 1 && std::is_assignable_v<T&, FirstElementT<Us...>&&>) {
             if constexpr (std::is_trivially_assignable_v<T&, Us&&...>) {
@@ -129,7 +129,7 @@ struct UninitializedArray {
     }
 
     template <typename I, std::enable_if_t<std::is_integral_v<I>, bool> = true, typename... Us>
-    T& emplace_unchecked(I const index, Us&&... us) noexcept {
+    T& emplace_unchecked(I const index, Us&&... us) {
         T& t = reinterpret_cast<T*>(data.data())[static_cast<size_t const>(index)];
         if constexpr (sizeof...(Us) == 1 && std::is_assignable_v<T&, FirstElementT<Us...>&&>) {
             return t = first_element(std::forward<Us>(us)...);

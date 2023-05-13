@@ -36,7 +36,7 @@ class NodePtr {
 
     PtrType* ptr = nullptr;
 
-    void dec_ref() noexcept {
+    void dec_ref() {
         if (ptr != nullptr) {
             if (--ptr->ref_count == 0) {
                 delete ptr;
@@ -46,7 +46,7 @@ class NodePtr {
         }
     }
 
-    void inc_ref() const noexcept {
+    void inc_ref() const {
         if (ptr != nullptr) {
             ++ptr->ref_count;
             if constexpr (count_allocations) ++increments;
@@ -56,7 +56,7 @@ class NodePtr {
 public:
     using Type = PtrType;
 
-    NodePtr() noexcept = default;
+    NodePtr() = default;
 
     NodePtr(PtrType* p) noexcept : ptr(p) {} //NOLINT
 
@@ -84,30 +84,30 @@ public:
         return *this;
     }
 
-    PtrType& operator*() noexcept {
+    PtrType& operator*() {
         return *ptr;
     }
 
-    PtrType const& operator*() const noexcept {
+    PtrType const& operator*() const {
         return *ptr;
     }
 
-    PtrType* operator->() noexcept {
+    PtrType* operator->() {
         return ptr;
     }
 
-    PtrType const* operator->() const noexcept {
+    PtrType const* operator->() const {
         return ptr;
     }
 
 public:
-    ~NodePtr() noexcept {
+    ~NodePtr() {
         dec_ref();
     }
 };
 
 template <typename PtrType, typename... Ts>
-NodePtr<PtrType> make_ptr(Ts&&... ts) noexcept {
+NodePtr<PtrType> make_ptr(Ts&&... ts) noexcept(std::is_nothrow_constructible_v<PtrType, Ts...>) {
     if constexpr (count_allocations) {
         ++allocations;
         ++increments;
