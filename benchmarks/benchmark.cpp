@@ -234,11 +234,11 @@ inline void sequential_benchmarks(std::integral_constant<N, n>) {
 
 int main() {
     auto sizes = std::make_tuple(
-            std::integral_constant<ssize, 1 << 23>(),
-            std::integral_constant<ssize, 1 << 21>(),
-            std::integral_constant<ssize, 1 << 19>(),
-            std::integral_constant<ssize, 1 << 17>(),
-            std::integral_constant<ssize, 1 << 15>());
-    std::apply([](auto... n){ (sequential_benchmarks(n), ...); }, sizes);
-    std::apply([](auto... n){ (random_benchmarks(n), ...); }, sizes);
+            integral_constant<bpptree::detail::ssize, 1 << 23>(),
+            integral_constant<bpptree::detail::ssize, 1 << 21>(),
+            integral_constant<bpptree::detail::ssize, 1 << 19>(),
+            integral_constant<bpptree::detail::ssize, 1 << 17>(),
+            integral_constant<bpptree::detail::ssize, 1 << 15>());
+    apply([](auto... n){ (sequential_benchmarks(n), ...); }, sizes);
+    apply([](auto... n){ (random_benchmarks(n), ...); }, sizes);
 }
