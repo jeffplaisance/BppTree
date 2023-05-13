@@ -197,9 +197,9 @@ template <typename Parent, typename SumType>
 struct SummedNodeInfo : public Parent {
     SumType sum{};
 
-    SummedNodeInfo() noexcept = default;
+    SummedNodeInfo() = default;
 
     template <typename P>
-    SummedNodeInfo(P const& p, const bool changed) noexcept : Parent(p, changed), sum(p->sum()) {}
+    SummedNodeInfo(P const& p, const bool changed) : Parent(p, changed), sum(p->sum()) {}
 };
 } //end namespace bpptree::detail

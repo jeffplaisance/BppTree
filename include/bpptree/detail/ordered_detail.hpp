@@ -168,9 +168,9 @@ public:
 
         UninitializedArray<Key, internal_size> keys;
 
-        InternalNode() noexcept = default;
+        InternalNode() = default;
 
-        InternalNode(InternalNode const& other) noexcept: Parent(other), keys(other.keys, other.length) {}
+        InternalNode(InternalNode const& other) noexcept(noexcept(Parent(other)) && std::is_nothrow_copy_constructible_v<Key>) : Parent(other), keys(other.keys, other.length) {}
 
         ~InternalNode() {
             if constexpr (!std::is_trivially_destructible_v<Key>) {
@@ -314,10 +314,10 @@ public:
     struct NodeInfo : public Parent {
         Key key{};
 
-        NodeInfo() noexcept = default;
+        NodeInfo() = default;
 
         template <typename P>
-        NodeInfo(P const& p, const bool changed) noexcept : Parent(p, changed), key(p->last_key()) {}
+        NodeInfo(P const& p, const bool changed) : Parent(p, changed), key(p->last_key()) {}
     };
 };
 } //end namespace bpptree::detail

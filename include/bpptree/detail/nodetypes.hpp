@@ -15,6 +15,7 @@ template <
         ssize leaf_node_bytes = 512,
         ssize internal_node_bytes = 512,
         ssize depth_limit = 16,
+        bool disable_exceptions = true,
         typename... Ts>
 struct NodeTypesDetail {
     template <typename Parent>
@@ -22,10 +23,10 @@ struct NodeTypesDetail {
 
     template <typename Parent>
     struct NodeInfoBase : public Parent {
-        NodeInfoBase() noexcept = default;
+        NodeInfoBase() = default;
 
         template <typename P>
-        explicit constexpr NodeInfoBase(P const&, bool const) noexcept {}
+        explicit constexpr NodeInfoBase(P const&, bool const) {}
     };
 
     template <typename Derived>
@@ -41,7 +42,7 @@ struct NodeTypesDetail {
         NodeInfo() = default;
 
         template <typename P>
-        NodeInfo(P&& p, const bool changed) : Parent(p, changed), ptr(), ptr_changed(changed) {
+        NodeInfo(P&& p, const bool changed) noexcept(disable_exceptions) : Parent(p, changed), ptr(), ptr_changed(changed) {
             if (changed) {
                 this->ptr = std::forward<P>(p);
             }
@@ -51,7 +52,7 @@ struct NodeTypesDetail {
     template <typename Derived, auto leaf_size>
     struct LeafNodeMixin {
         template <typename Parent>
-        using LeafNodeBaseCurried = LeafNodeBase<Parent, Value, leaf_size>;
+        using LeafNodeBaseCurried = LeafNodeBase<Parent, Value, leaf_size, disable_exceptions>;
         using Type = Chain<Derived,
                 Ts::template LeafNode...,
                 LeafNodeBaseCurried,
@@ -61,7 +62,7 @@ struct NodeTypesDetail {
     template<typename Derived, auto leaf_size, auto internal_size, auto depth>
     struct InternalNodeMixin {
         template <typename Parent>
-        using InternalNodeBaseCurried = InternalNodeBase<Parent, Value, leaf_size, internal_size, depth>;
+        using InternalNodeBaseCurried = InternalNodeBase<Parent, Value, leaf_size, internal_size, depth, disable_exceptions>;
         using Type = Chain<Derived,
                 Curry<Ts::template InternalNode, internal_size>::template Mixin...,
                 InternalNodeBaseCurried,
@@ -75,10 +76,10 @@ struct NodeTypesDetail {
 
         std::atomic<uint32_t> ref_count = 1;
 
-        LeafNode() noexcept : Parent() {};
+        LeafNode() = default;
 
         template <typename T>
-        LeafNode(T&& t, bool persistent) noexcept : Parent(std::forward<T>(t)) {
+        LeafNode(T&& t, bool persistent) : Parent(std::forward<T>(t)) {
             this->persistent = persistent;
         }
     };
@@ -90,10 +91,10 @@ struct NodeTypesDetail {
 
         std::atomic<uint32_t> ref_count = 1;
 
-        InternalNode() noexcept : Parent() {};
+        InternalNode() = default;
 
         template <typename T>
-        InternalNode(T&& t, bool persistent) noexcept : Parent(std::forward<T>(t)) {
+        InternalNode(T&& t, bool persistent) noexcept(noexcept(Parent(std::forward<T>(t)))) : Parent(std::forward<T>(t)) {
             this->persistent = persistent;
         }
     };

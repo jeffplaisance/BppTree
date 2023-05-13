@@ -65,7 +65,7 @@ public:
     template <typename Parent>
     struct Shared : public Parent {
         template <typename... Us>
-        explicit Shared(Us&&... us) noexcept : Parent(std::forward<Us>(us)...) {}
+        explicit Shared(Us&&... us) : Parent(std::forward<Us>(us)...) {}
 
         [[nodiscard]] decltype(auto) at_key(Key const& key) const {
             return this->self().dispatch(
@@ -176,7 +176,7 @@ public:
     template <typename Parent>
     struct Transient : public Parent {
         template <typename... Us>
-        explicit Transient(Us&&... us) noexcept : Parent(std::forward<Us>(us)...) {}
+        explicit Transient(Us&&... us) : Parent(std::forward<Us>(us)...) {}
 
     protected:
         template<typename T>
@@ -255,10 +255,10 @@ public:
             Transient& tree;
             Key const& key;
 
-            ProxyRef(const ProxyRef& other) noexcept = default;
-            ProxyRef(ProxyRef&& other) noexcept = default;
-            ProxyRef& operator=(const ProxyRef& other) noexcept = default;
-            ProxyRef& operator=(ProxyRef&& other) noexcept = default;
+            ProxyRef(const ProxyRef& other) = default;
+            ProxyRef(ProxyRef&& other) = default; //NOLINT
+            ProxyRef& operator=(const ProxyRef& other) = default;
+            ProxyRef& operator=(ProxyRef&& other) = default; //NOLINT
 
             template <typename F>
             ProxyRef& invoke_compound_assignment(F&& f) {
@@ -287,8 +287,8 @@ public:
                 return ret;
             }
         public:
-            ProxyRef(Transient& tree, Key const& key) noexcept : tree(tree), key(key) {}
-            ~ProxyRef() noexcept = default;
+            ProxyRef(Transient& tree, Key const& key) : tree(tree), key(key) {}
+            ~ProxyRef() = default;
 
             template <typename V>
             ProxyRef& operator=(V&& value) {
@@ -344,7 +344,7 @@ public:
     template <typename Parent>
     struct Persistent : public Parent {
         template <typename... Us>
-        explicit Persistent(Us&&... us) noexcept : Parent(std::forward<Us>(us)...) {}
+        explicit Persistent(Us&&... us) : Parent(std::forward<Us>(us)...) {}
 
         using SelfType = typename Parent::SelfType;
 
@@ -411,7 +411,8 @@ template <
         bool binary_search_v = false,
         int leaf_node_bytes_v = 512,
         int internal_node_bytes_v = 512,
-        int depth_limit_v = 16>
+        int depth_limit_v = 16,
+        bool disable_exceptions_v = true>
 struct BppTreeMap {
 
     template <typename T>
@@ -429,12 +430,16 @@ struct BppTreeMap {
     template <int d>
     using depth_limit = BppTreeMap<Key, Value, Compare, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, d>;
 
+    template <bool b>
+    using disable_exceptions = BppTreeMap<Key, Value, Compare, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v, b>;
+
     template <typename... Args>
     using mixins = typename BppTree<
             std::pair<Key, Value>,
             leaf_node_bytes_v,
             internal_node_bytes_v,
-            depth_limit_v>
+            depth_limit_v,
+            disable_exceptions_v>
         ::template mixins<
                 typename OrderedBuilder<>
                     ::compare<Compare>
@@ -452,7 +457,8 @@ template <
         bool binary_search_v = false,
         int leaf_node_bytes_v = 512,
         int internal_node_bytes_v = 512,
-        int depth_limit_v = 16>
+        int depth_limit_v = 16,
+        bool disable_exceptions_v = true>
 struct BppTreeSet {
 
     template <typename T>
@@ -470,12 +476,16 @@ struct BppTreeSet {
     template <int d>
     using depth_limit = BppTreeSet<Key, Compare, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, d>;
 
+    template <bool b>
+    using disable_exceptions = BppTreeSet<Key, Compare, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v, b>;
+
     template <typename... Args>
     using mixins = typename BppTree<
             Key,
             leaf_node_bytes_v,
             internal_node_bytes_v,
-            depth_limit_v>
+            depth_limit_v,
+            disable_exceptions_v>
     ::template mixins<
             typename OrderedBuilder<>
                 ::extractor<ValueExtractor>

@@ -170,9 +170,9 @@ struct BPPTREE_CONCAT(BPPTREE_MINMAX_UPPER, Detail) {
 
         UninitializedArray<Key, internal_size> BPPTREE_MINMAXS;
 
-        InternalNode() noexcept = default;
+        InternalNode() = default;
 
-        InternalNode(InternalNode const& other) noexcept : Parent(other), BPPTREE_MINMAXS(other.BPPTREE_MINMAXS, other.length) {}
+        InternalNode(InternalNode const& other) noexcept(noexcept(Parent(other)) && std::is_nothrow_copy_constructible_v<Key>) : Parent(other), BPPTREE_MINMAXS(other.BPPTREE_MINMAXS, other.length) {}
 
         ~InternalNode() {
             if constexpr (!std::is_trivially_destructible_v<Key>) {
@@ -377,10 +377,10 @@ struct BPPTREE_CONCAT(BPPTREE_MINMAX_UPPER, Detail) {
     struct NodeInfo : public Parent {
         Key BPPTREE_MINMAX{};
 
-        NodeInfo() noexcept = default;
+        NodeInfo() = default;
 
         template <typename P>
-        NodeInfo(P const& p, const bool changed) noexcept : Parent(p, changed), BPPTREE_MINMAX(p->BPPTREE_MINMAX()) {}
+        NodeInfo(P const& p, const bool changed) : Parent(p, changed), BPPTREE_MINMAX(p->BPPTREE_MINMAX()) {}
     };
 
     template <typename Parent>

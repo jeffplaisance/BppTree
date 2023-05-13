@@ -12,7 +12,7 @@
 
 namespace bpptree::detail {
 
-template <typename Parent, typename Value, auto leaf_size, auto internal_size, auto depth_v>
+template <typename Parent, typename Value, auto leaf_size, auto internal_size, auto depth_v, bool disable_exceptions>
 struct InternalNodeBase : public Parent {
 
     static constexpr int depth = depth_v;
@@ -44,29 +44,29 @@ struct InternalNodeBase : public Parent {
     bool persistent = false;
     Array<NodePtr<ChildType>, internal_size> pointers{};
 
-    static IndexType get_index(uint64_t it) noexcept {
+    static IndexType get_index(uint64_t it) {
         return (it >> it_shift) & it_mask;
     }
 
-    static void clear_index(uint64_t& it) noexcept {
+    static void clear_index(uint64_t& it) {
         it = it & it_clear;
     }
 
-    static void set_index(uint64_t& it, uint64_t index) noexcept {
+    static void set_index(uint64_t& it, uint64_t index) {
         clear_index(it);
         it = it | (index << it_shift);
     }
 
     template <typename T, std::enable_if_t<std::is_integral_v<T>, bool> = true>
-    static void set_index(uint64_t& it, T const t) noexcept {
+    static void set_index(uint64_t& it, T const t) {
         set_index(it, static_cast<uint64_t const>(t));
     }
 
-    static void inc_index(uint64_t& it) noexcept {
+    static void inc_index(uint64_t& it) {
         it += 1ULL << it_shift;
     }
 
-    static void dec_index(uint64_t& it) noexcept {
+    static void dec_index(uint64_t& it) {
         it -= 1ULL << it_shift;
     }
 
@@ -133,7 +133,7 @@ struct InternalNodeBase : public Parent {
     void compute_delta_erase2(IndexType, InfoType<NodeType>&) const {}
 
     template <typename R>
-    void insert_replace(IndexType index, ReplaceType<ChildType>& replace, R&& do_replace, uint64_t& iter) noexcept {
+    void insert_replace(IndexType index, ReplaceType<ChildType>& replace, R&& do_replace, uint64_t& iter) noexcept(disable_exceptions) {
         ReplaceType<NodeType> result{};
         result.carry = replace.carry && index == length - 1;
         set_index(iter, !replace.carry ? index : result.carry ? 0 : index + 1);
@@ -149,7 +149,7 @@ struct InternalNodeBase : public Parent {
         }
     }
 
-    void insert_split_replace(InternalNodeBase& node, IndexType index, SplitType<ChildType>& split) noexcept {
+    void insert_split_replace(InternalNodeBase& node, IndexType index, SplitType<ChildType>& split) noexcept(disable_exceptions) {
         for (IndexType i = length - 1; i > index; --i) {
             if (persistent) {
                 node.copy_element(i + 1, this->self(), i);
@@ -197,7 +197,7 @@ struct InternalNodeBase : public Parent {
         );
     }
 
-    bool insert_split_split(InternalNodeBase& left, InternalNodeBase& right, IndexType index, SplitType<ChildType>& split, uint64_t& iter, bool right_most) noexcept {
+    bool insert_split_split(InternalNodeBase& left, InternalNodeBase& right, IndexType index, SplitType<ChildType>& split, uint64_t& iter, bool right_most) noexcept(disable_exceptions) {
         IndexType split_point = right_most && index + 1 == internal_size ? index + 1 : (internal_size + 1) / 2;
         for (IndexType i = length - 1; i > index; --i) {
             if (persistent) {
@@ -241,7 +241,7 @@ struct InternalNodeBase : public Parent {
             S&& do_split,
             uint64_t& iter,
             bool right_most
-    ) noexcept {
+    ) noexcept(disable_exceptions) {
         if (length != internal_size) {
             set_index(iter, split.new_element_left ? index : index + 1);
             ReplaceType<NodeType> replace{};
@@ -295,7 +295,7 @@ struct InternalNodeBase : public Parent {
         );
     }
 
-    bool erase(InternalNodeBase& node, IndexType index, uint64_t& iter, bool right_most) noexcept {
+    bool erase(InternalNodeBase& node, IndexType index, uint64_t& iter, bool right_most) noexcept(disable_exceptions) {
         if (persistent) {
             for (IndexType i = 0; i < index; ++i) {
                 node.copy_element(i, this->self(), i);
@@ -322,7 +322,7 @@ struct InternalNodeBase : public Parent {
     }
 
     template <typename R, typename E>
-    void erase(IndexType index, R&& do_replace, E&& do_erase, uint64_t& iter, bool right_most) noexcept {
+    void erase(IndexType index, R&& do_replace, E&& do_erase, uint64_t& iter, bool right_most) noexcept(disable_exceptions) {
         if (length > 1) {
             ReplaceType<NodeType> replace{};
             compute_delta_erase(index, replace.delta);
