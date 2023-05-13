@@ -1,7 +1,6 @@
 #include "bpptree/bpptree.hpp"
 #include "bpptree/indexed.hpp"
 #include <iostream>
-#include <chrono>
 #include <iterator>
 #include "gtest/gtest.h"
 
@@ -17,6 +16,7 @@ struct DestructorChecker {
         was_destructed = false;
     }
 
+#pragma GCC optimize("Og")
     ~DestructorChecker() {
         EXPECT_FALSE(was_destructed);
         unlikely_value = 0;
