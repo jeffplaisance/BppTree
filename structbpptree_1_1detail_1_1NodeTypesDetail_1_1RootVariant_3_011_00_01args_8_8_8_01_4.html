@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>B++ Tree: bpptree::detail::NodeTypesDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts &gt;::RootVariant&lt; 1, args... &gt; Struct Template Reference</title>
+<title>B++ Tree: bpptree::detail::NodeTypesDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, disable_exceptions, Ts &gt;::RootVariant&lt; 1, args... &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -69,7 +69,7 @@ $(function() {
 <a href="#pub-types">Public Types</a> &#124;
 <a href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1RootVariant_3_011_00_01args_8_8_8_01_4-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">bpptree::detail::NodeTypesDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts &gt;::RootVariant&lt; 1, args... &gt; Struct Template Reference</div>  </div>
+<div class="title">bpptree::detail::NodeTypesDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, disable_exceptions, Ts &gt;::RootVariant&lt; 1, args... &gt; Struct Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -77,22 +77,22 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a3fa261cdd6389886d282a159962b53db"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1RootVariant_3_011_00_01args_8_8_8_01_4.html#a3fa261cdd6389886d282a159962b53db">type</a> = std::variant&lt; <a class="el" href="classbpptree_1_1detail_1_1NodePtr.html">NodePtr</a>&lt; <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1LeafNode.html">LeafNode</a>&lt; <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html#abeb1e9f093afa5081d4c9b542a37e8fb">leaf_node_size</a> &gt; &gt;, <a class="el" href="classbpptree_1_1detail_1_1NodePtr.html">NodePtr</a>&lt; <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1InternalNode.html">InternalNode</a>&lt; <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html#abeb1e9f093afa5081d4c9b542a37e8fb">leaf_node_size</a>, <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html#aa759dd94dc1b48f2be639609c7917b3c">internal_node_size</a>, args &gt; &gt;... &gt;</td></tr>
-<tr class="separator:a3fa261cdd6389886d282a159962b53db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01d3599066e5651b113be5875200607b"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1RootVariant_3_011_00_01args_8_8_8_01_4.html#a01d3599066e5651b113be5875200607b">type</a> = std::variant&lt; <a class="el" href="classbpptree_1_1detail_1_1NodePtr.html">NodePtr</a>&lt; <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1LeafNode.html">LeafNode</a>&lt; <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html#a3494ac3298cd691133b40b13e07214ed">leaf_node_size</a> &gt; &gt;, <a class="el" href="classbpptree_1_1detail_1_1NodePtr.html">NodePtr</a>&lt; <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1InternalNode.html">InternalNode</a>&lt; <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html#a3494ac3298cd691133b40b13e07214ed">leaf_node_size</a>, <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html#ab84263b11ef43fbd75195c29e93cf4f7">internal_node_size</a>, args &gt; &gt;... &gt;</td></tr>
+<tr class="separator:a01d3599066e5651b113be5875200607b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="a3fa261cdd6389886d282a159962b53db"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3fa261cdd6389886d282a159962b53db">&#9670;&nbsp;</a></span>type</h2>
+<a id="a01d3599066e5651b113be5875200607b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a01d3599066e5651b113be5875200607b">&#9670;&nbsp;</a></span>type</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Value , ssize leaf_node_bytes = 512, ssize internal_node_bytes = 512, ssize depth_limit = 16, typename... Ts&gt; </div>
+template&lt;typename Value , ssize leaf_node_bytes = 512, ssize internal_node_bytes = 512, ssize depth_limit = 16, bool disable_exceptions = true, typename... Ts&gt; </div>
 <div class="memtemplate">
 template&lt;int... args&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html">bpptree::detail::NodeTypesDetail</a>&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts &gt;::<a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1RootVariant.html">RootVariant</a>&lt; 1, args... &gt;::<a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1RootVariant_3_011_00_01args_8_8_8_01_4.html#a3fa261cdd6389886d282a159962b53db">type</a> =  std::variant&lt;<a class="el" href="classbpptree_1_1detail_1_1NodePtr.html">NodePtr</a>&lt;<a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1LeafNode.html">LeafNode</a>&lt;<a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html#abeb1e9f093afa5081d4c9b542a37e8fb">leaf_node_size</a>&gt; &gt;, <a class="el" href="classbpptree_1_1detail_1_1NodePtr.html">NodePtr</a>&lt;<a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1InternalNode.html">InternalNode</a>&lt;<a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html#abeb1e9f093afa5081d4c9b542a37e8fb">leaf_node_size</a>, <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html#aa759dd94dc1b48f2be639609c7917b3c">internal_node_size</a>, args&gt; &gt;...&gt;</td>
+          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html">bpptree::detail::NodeTypesDetail</a>&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, disable_exceptions, Ts &gt;::<a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1RootVariant.html">RootVariant</a>&lt; 1, args... &gt;::<a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1RootVariant_3_011_00_01args_8_8_8_01_4.html#a01d3599066e5651b113be5875200607b">type</a> =  std::variant&lt;<a class="el" href="classbpptree_1_1detail_1_1NodePtr.html">NodePtr</a>&lt;<a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1LeafNode.html">LeafNode</a>&lt;<a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html#a3494ac3298cd691133b40b13e07214ed">leaf_node_size</a>&gt; &gt;, <a class="el" href="classbpptree_1_1detail_1_1NodePtr.html">NodePtr</a>&lt;<a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1InternalNode.html">InternalNode</a>&lt;<a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html#a3494ac3298cd691133b40b13e07214ed">leaf_node_size</a>, <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html#ab84263b11ef43fbd75195c29e93cf4f7">internal_node_size</a>, args&gt; &gt;...&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">

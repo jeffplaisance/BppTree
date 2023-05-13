@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>B++ Tree: bpptree::detail::BppTreeMap&lt; Key, Value, Compare, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v &gt; Struct Template Reference</title>
+<title>B++ Tree: bpptree::detail::BppTreeMap&lt; Key, Value, Compare, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v, disable_exceptions_v &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -69,7 +69,7 @@ $(function() {
 <a href="#pub-types">Public Types</a> &#124;
 <a href="structbpptree_1_1detail_1_1BppTreeMap-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">bpptree::detail::BppTreeMap&lt; Key, Value, Compare, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v &gt; Struct Template Reference</div>  </div>
+<div class="title">bpptree::detail::BppTreeMap&lt; Key, Value, Compare, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v, disable_exceptions_v &gt; Struct Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -77,164 +77,185 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:afd6ebc8976303e8eb108ab1e3f9d643f"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:afd6ebc8976303e8eb108ab1e3f9d643f"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#afd6ebc8976303e8eb108ab1e3f9d643f">compare</a> = <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html">BppTreeMap</a>&lt; Key, Value, T, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v &gt;</td></tr>
-<tr class="separator:afd6ebc8976303e8eb108ab1e3f9d643f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a12d8c34f6f9862384107654336deff80"><td class="memTemplParams" colspan="2">template&lt;bool b&gt; </td></tr>
-<tr class="memitem:a12d8c34f6f9862384107654336deff80"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#a12d8c34f6f9862384107654336deff80">binary_search</a> = <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html">BppTreeMap</a>&lt; Key, Value, Compare, b, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v &gt;</td></tr>
-<tr class="separator:a12d8c34f6f9862384107654336deff80"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a24817516273814af6f944248aecf23c4"><td class="memTemplParams" colspan="2">template&lt;int l&gt; </td></tr>
-<tr class="memitem:a24817516273814af6f944248aecf23c4"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#a24817516273814af6f944248aecf23c4">leaf_node_bytes</a> = <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html">BppTreeMap</a>&lt; Key, Value, Compare, binary_search_v, l, internal_node_bytes_v, depth_limit_v &gt;</td></tr>
-<tr class="separator:a24817516273814af6f944248aecf23c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a714acbfe7de14e29a0015f7771e1b686"><td class="memTemplParams" colspan="2">template&lt;int i&gt; </td></tr>
-<tr class="memitem:a714acbfe7de14e29a0015f7771e1b686"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#a714acbfe7de14e29a0015f7771e1b686">internal_node_bytes</a> = <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html">BppTreeMap</a>&lt; Key, Value, Compare, binary_search_v, leaf_node_bytes_v, i, depth_limit_v &gt;</td></tr>
-<tr class="separator:a714acbfe7de14e29a0015f7771e1b686"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a415a7d44f49f0ecc24b9f2a33167f8fb"><td class="memTemplParams" colspan="2">template&lt;int d&gt; </td></tr>
-<tr class="memitem:a415a7d44f49f0ecc24b9f2a33167f8fb"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#a415a7d44f49f0ecc24b9f2a33167f8fb">depth_limit</a> = <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html">BppTreeMap</a>&lt; Key, Value, Compare, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, d &gt;</td></tr>
-<tr class="separator:a415a7d44f49f0ecc24b9f2a33167f8fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aabd78f445b6101076f4e7c2945c2fdfc"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
-<tr class="memitem:aabd78f445b6101076f4e7c2945c2fdfc"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#aabd78f445b6101076f4e7c2945c2fdfc">mixins</a> = typename <a class="el" href="structbpptree_1_1detail_1_1BppTree.html">BppTree</a>&lt; std::pair&lt; Key, Value &gt;, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v &gt; ::template <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#aabd78f445b6101076f4e7c2945c2fdfc">mixins</a>&lt; typename <a class="el" href="structbpptree_1_1detail_1_1OrderedBuilder.html">OrderedBuilder</a>&lt;&gt; ::<a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#afd6ebc8976303e8eb108ab1e3f9d643f">compare</a>&lt; Compare &gt; ::template <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#a12d8c34f6f9862384107654336deff80">binary_search</a>&lt; binary_search_v &gt;, Args... &gt;</td></tr>
-<tr class="separator:aabd78f445b6101076f4e7c2945c2fdfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a73f8a0f2ca8332a96fae398b4a6058fb"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#a73f8a0f2ca8332a96fae398b4a6058fb">Transient</a> = typename <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#aabd78f445b6101076f4e7c2945c2fdfc">mixins</a>&lt;&gt;::<a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#a73f8a0f2ca8332a96fae398b4a6058fb">Transient</a></td></tr>
-<tr class="separator:a73f8a0f2ca8332a96fae398b4a6058fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc74e21bf7e828e47c6e385d13de03db"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#afc74e21bf7e828e47c6e385d13de03db">Persistent</a> = typename <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#aabd78f445b6101076f4e7c2945c2fdfc">mixins</a>&lt;&gt;::<a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#afc74e21bf7e828e47c6e385d13de03db">Persistent</a></td></tr>
-<tr class="separator:afc74e21bf7e828e47c6e385d13de03db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b022f68c6e68464fdc74fa37c2967e2"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a1b022f68c6e68464fdc74fa37c2967e2"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#a1b022f68c6e68464fdc74fa37c2967e2">compare</a> = <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html">BppTreeMap</a>&lt; Key, Value, T, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v &gt;</td></tr>
+<tr class="separator:a1b022f68c6e68464fdc74fa37c2967e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac14b2f416dedaa97a169d7e49581ceb7"><td class="memTemplParams" colspan="2">template&lt;bool b&gt; </td></tr>
+<tr class="memitem:ac14b2f416dedaa97a169d7e49581ceb7"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#ac14b2f416dedaa97a169d7e49581ceb7">binary_search</a> = <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html">BppTreeMap</a>&lt; Key, Value, Compare, b, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v &gt;</td></tr>
+<tr class="separator:ac14b2f416dedaa97a169d7e49581ceb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67e4eb4dfa81ac23843d32d0d502a046"><td class="memTemplParams" colspan="2">template&lt;int l&gt; </td></tr>
+<tr class="memitem:a67e4eb4dfa81ac23843d32d0d502a046"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#a67e4eb4dfa81ac23843d32d0d502a046">leaf_node_bytes</a> = <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html">BppTreeMap</a>&lt; Key, Value, Compare, binary_search_v, l, internal_node_bytes_v, depth_limit_v &gt;</td></tr>
+<tr class="separator:a67e4eb4dfa81ac23843d32d0d502a046"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a145a494f517236e41a5f7bc284ecb3a2"><td class="memTemplParams" colspan="2">template&lt;int i&gt; </td></tr>
+<tr class="memitem:a145a494f517236e41a5f7bc284ecb3a2"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#a145a494f517236e41a5f7bc284ecb3a2">internal_node_bytes</a> = <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html">BppTreeMap</a>&lt; Key, Value, Compare, binary_search_v, leaf_node_bytes_v, i, depth_limit_v &gt;</td></tr>
+<tr class="separator:a145a494f517236e41a5f7bc284ecb3a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e909687caebdca8f8cc477bd1ce4e57"><td class="memTemplParams" colspan="2">template&lt;int d&gt; </td></tr>
+<tr class="memitem:a5e909687caebdca8f8cc477bd1ce4e57"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#a5e909687caebdca8f8cc477bd1ce4e57">depth_limit</a> = <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html">BppTreeMap</a>&lt; Key, Value, Compare, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, d &gt;</td></tr>
+<tr class="separator:a5e909687caebdca8f8cc477bd1ce4e57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b497eef0d4d4f7a10c75a413beabd62"><td class="memTemplParams" colspan="2">template&lt;bool b&gt; </td></tr>
+<tr class="memitem:a4b497eef0d4d4f7a10c75a413beabd62"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#a4b497eef0d4d4f7a10c75a413beabd62">disable_exceptions</a> = <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html">BppTreeMap</a>&lt; Key, Value, Compare, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v, b &gt;</td></tr>
+<tr class="separator:a4b497eef0d4d4f7a10c75a413beabd62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a190adc4822530adbe2170f54b3a2ab"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
+<tr class="memitem:a2a190adc4822530adbe2170f54b3a2ab"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#a2a190adc4822530adbe2170f54b3a2ab">mixins</a> = typename <a class="el" href="structbpptree_1_1detail_1_1BppTree.html">BppTree</a>&lt; std::pair&lt; Key, Value &gt;, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v, disable_exceptions_v &gt; ::template <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#a2a190adc4822530adbe2170f54b3a2ab">mixins</a>&lt; typename <a class="el" href="structbpptree_1_1detail_1_1OrderedBuilder.html">OrderedBuilder</a>&lt;&gt; ::<a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#a1b022f68c6e68464fdc74fa37c2967e2">compare</a>&lt; Compare &gt; ::template <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#ac14b2f416dedaa97a169d7e49581ceb7">binary_search</a>&lt; binary_search_v &gt;, Args... &gt;</td></tr>
+<tr class="separator:a2a190adc4822530adbe2170f54b3a2ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45e95095c36854ed74e6334cdb0531bc"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#a45e95095c36854ed74e6334cdb0531bc">Transient</a> = typename <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#a2a190adc4822530adbe2170f54b3a2ab">mixins</a>&lt;&gt;::<a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#a45e95095c36854ed74e6334cdb0531bc">Transient</a></td></tr>
+<tr class="separator:a45e95095c36854ed74e6334cdb0531bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff2a1658dc26b7dff5919de50bd60b50"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#aff2a1658dc26b7dff5919de50bd60b50">Persistent</a> = typename <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#a2a190adc4822530adbe2170f54b3a2ab">mixins</a>&lt;&gt;::<a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#aff2a1658dc26b7dff5919de50bd60b50">Persistent</a></td></tr>
+<tr class="separator:aff2a1658dc26b7dff5919de50bd60b50"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="a12d8c34f6f9862384107654336deff80"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a12d8c34f6f9862384107654336deff80">&#9670;&nbsp;</a></span>binary_search</h2>
+<a id="ac14b2f416dedaa97a169d7e49581ceb7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac14b2f416dedaa97a169d7e49581ceb7">&#9670;&nbsp;</a></span>binary_search</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Key , typename Value , typename Compare  = MinComparator, bool binary_search_v = false, int leaf_node_bytes_v = 512, int internal_node_bytes_v = 512, int depth_limit_v = 16&gt; </div>
+template&lt;typename Key , typename Value , typename Compare  = MinComparator, bool binary_search_v = false, int leaf_node_bytes_v = 512, int internal_node_bytes_v = 512, int depth_limit_v = 16, bool disable_exceptions_v = true&gt; </div>
 <div class="memtemplate">
 template&lt;bool b&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html">bpptree::detail::BppTreeMap</a>&lt; Key, Value, Compare, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v &gt;::<a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#a12d8c34f6f9862384107654336deff80">binary_search</a> =  <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html">BppTreeMap</a>&lt;Key, Value, Compare, b, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v&gt;</td>
+          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html">bpptree::detail::BppTreeMap</a>&lt; Key, Value, Compare, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v, disable_exceptions_v &gt;::<a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#ac14b2f416dedaa97a169d7e49581ceb7">binary_search</a> =  <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html">BppTreeMap</a>&lt;Key, Value, Compare, b, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="afd6ebc8976303e8eb108ab1e3f9d643f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afd6ebc8976303e8eb108ab1e3f9d643f">&#9670;&nbsp;</a></span>compare</h2>
+<a id="a1b022f68c6e68464fdc74fa37c2967e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b022f68c6e68464fdc74fa37c2967e2">&#9670;&nbsp;</a></span>compare</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Key , typename Value , typename Compare  = MinComparator, bool binary_search_v = false, int leaf_node_bytes_v = 512, int internal_node_bytes_v = 512, int depth_limit_v = 16&gt; </div>
+template&lt;typename Key , typename Value , typename Compare  = MinComparator, bool binary_search_v = false, int leaf_node_bytes_v = 512, int internal_node_bytes_v = 512, int depth_limit_v = 16, bool disable_exceptions_v = true&gt; </div>
 <div class="memtemplate">
 template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html">bpptree::detail::BppTreeMap</a>&lt; Key, Value, Compare, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v &gt;::<a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#afd6ebc8976303e8eb108ab1e3f9d643f">compare</a> =  <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html">BppTreeMap</a>&lt;Key, Value, T, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v&gt;</td>
+          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html">bpptree::detail::BppTreeMap</a>&lt; Key, Value, Compare, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v, disable_exceptions_v &gt;::<a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#a1b022f68c6e68464fdc74fa37c2967e2">compare</a> =  <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html">BppTreeMap</a>&lt;Key, Value, T, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a415a7d44f49f0ecc24b9f2a33167f8fb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a415a7d44f49f0ecc24b9f2a33167f8fb">&#9670;&nbsp;</a></span>depth_limit</h2>
+<a id="a5e909687caebdca8f8cc477bd1ce4e57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e909687caebdca8f8cc477bd1ce4e57">&#9670;&nbsp;</a></span>depth_limit</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Key , typename Value , typename Compare  = MinComparator, bool binary_search_v = false, int leaf_node_bytes_v = 512, int internal_node_bytes_v = 512, int depth_limit_v = 16&gt; </div>
+template&lt;typename Key , typename Value , typename Compare  = MinComparator, bool binary_search_v = false, int leaf_node_bytes_v = 512, int internal_node_bytes_v = 512, int depth_limit_v = 16, bool disable_exceptions_v = true&gt; </div>
 <div class="memtemplate">
 template&lt;int d&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html">bpptree::detail::BppTreeMap</a>&lt; Key, Value, Compare, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v &gt;::<a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#a415a7d44f49f0ecc24b9f2a33167f8fb">depth_limit</a> =  <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html">BppTreeMap</a>&lt;Key, Value, Compare, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, d&gt;</td>
+          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html">bpptree::detail::BppTreeMap</a>&lt; Key, Value, Compare, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v, disable_exceptions_v &gt;::<a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#a5e909687caebdca8f8cc477bd1ce4e57">depth_limit</a> =  <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html">BppTreeMap</a>&lt;Key, Value, Compare, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, d&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a714acbfe7de14e29a0015f7771e1b686"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a714acbfe7de14e29a0015f7771e1b686">&#9670;&nbsp;</a></span>internal_node_bytes</h2>
+<a id="a4b497eef0d4d4f7a10c75a413beabd62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b497eef0d4d4f7a10c75a413beabd62">&#9670;&nbsp;</a></span>disable_exceptions</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Key , typename Value , typename Compare  = MinComparator, bool binary_search_v = false, int leaf_node_bytes_v = 512, int internal_node_bytes_v = 512, int depth_limit_v = 16&gt; </div>
+template&lt;typename Key , typename Value , typename Compare  = MinComparator, bool binary_search_v = false, int leaf_node_bytes_v = 512, int internal_node_bytes_v = 512, int depth_limit_v = 16, bool disable_exceptions_v = true&gt; </div>
+<div class="memtemplate">
+template&lt;bool b&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html">bpptree::detail::BppTreeMap</a>&lt; Key, Value, Compare, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v, disable_exceptions_v &gt;::<a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#a4b497eef0d4d4f7a10c75a413beabd62">disable_exceptions</a> =  <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html">BppTreeMap</a>&lt;Key, Value, Compare, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v, b&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a145a494f517236e41a5f7bc284ecb3a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a145a494f517236e41a5f7bc284ecb3a2">&#9670;&nbsp;</a></span>internal_node_bytes</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Key , typename Value , typename Compare  = MinComparator, bool binary_search_v = false, int leaf_node_bytes_v = 512, int internal_node_bytes_v = 512, int depth_limit_v = 16, bool disable_exceptions_v = true&gt; </div>
 <div class="memtemplate">
 template&lt;int i&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html">bpptree::detail::BppTreeMap</a>&lt; Key, Value, Compare, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v &gt;::<a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#a714acbfe7de14e29a0015f7771e1b686">internal_node_bytes</a> =  <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html">BppTreeMap</a>&lt;Key, Value, Compare, binary_search_v, leaf_node_bytes_v, i, depth_limit_v&gt;</td>
+          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html">bpptree::detail::BppTreeMap</a>&lt; Key, Value, Compare, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v, disable_exceptions_v &gt;::<a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#a145a494f517236e41a5f7bc284ecb3a2">internal_node_bytes</a> =  <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html">BppTreeMap</a>&lt;Key, Value, Compare, binary_search_v, leaf_node_bytes_v, i, depth_limit_v&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a24817516273814af6f944248aecf23c4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a24817516273814af6f944248aecf23c4">&#9670;&nbsp;</a></span>leaf_node_bytes</h2>
+<a id="a67e4eb4dfa81ac23843d32d0d502a046"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67e4eb4dfa81ac23843d32d0d502a046">&#9670;&nbsp;</a></span>leaf_node_bytes</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Key , typename Value , typename Compare  = MinComparator, bool binary_search_v = false, int leaf_node_bytes_v = 512, int internal_node_bytes_v = 512, int depth_limit_v = 16&gt; </div>
+template&lt;typename Key , typename Value , typename Compare  = MinComparator, bool binary_search_v = false, int leaf_node_bytes_v = 512, int internal_node_bytes_v = 512, int depth_limit_v = 16, bool disable_exceptions_v = true&gt; </div>
 <div class="memtemplate">
 template&lt;int l&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html">bpptree::detail::BppTreeMap</a>&lt; Key, Value, Compare, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v &gt;::<a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#a24817516273814af6f944248aecf23c4">leaf_node_bytes</a> =  <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html">BppTreeMap</a>&lt;Key, Value, Compare, binary_search_v, l, internal_node_bytes_v, depth_limit_v&gt;</td>
+          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html">bpptree::detail::BppTreeMap</a>&lt; Key, Value, Compare, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v, disable_exceptions_v &gt;::<a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#a67e4eb4dfa81ac23843d32d0d502a046">leaf_node_bytes</a> =  <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html">BppTreeMap</a>&lt;Key, Value, Compare, binary_search_v, l, internal_node_bytes_v, depth_limit_v&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="aabd78f445b6101076f4e7c2945c2fdfc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aabd78f445b6101076f4e7c2945c2fdfc">&#9670;&nbsp;</a></span>mixins</h2>
+<a id="a2a190adc4822530adbe2170f54b3a2ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a190adc4822530adbe2170f54b3a2ab">&#9670;&nbsp;</a></span>mixins</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Key , typename Value , typename Compare  = MinComparator, bool binary_search_v = false, int leaf_node_bytes_v = 512, int internal_node_bytes_v = 512, int depth_limit_v = 16&gt; </div>
+template&lt;typename Key , typename Value , typename Compare  = MinComparator, bool binary_search_v = false, int leaf_node_bytes_v = 512, int internal_node_bytes_v = 512, int depth_limit_v = 16, bool disable_exceptions_v = true&gt; </div>
 <div class="memtemplate">
 template&lt;typename... Args&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html">bpptree::detail::BppTreeMap</a>&lt; Key, Value, Compare, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v &gt;::<a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#aabd78f445b6101076f4e7c2945c2fdfc">mixins</a> =  typename <a class="el" href="structbpptree_1_1detail_1_1BppTree.html">BppTree</a>&lt; std::pair&lt;Key, Value&gt;, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v&gt; ::template <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#aabd78f445b6101076f4e7c2945c2fdfc">mixins</a>&lt; typename <a class="el" href="structbpptree_1_1detail_1_1OrderedBuilder.html">OrderedBuilder</a>&lt;&gt; ::<a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#afd6ebc8976303e8eb108ab1e3f9d643f">compare</a>&lt;Compare&gt; ::template <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#a12d8c34f6f9862384107654336deff80">binary_search</a>&lt;binary_search_v&gt;, Args...&gt;</td>
+          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html">bpptree::detail::BppTreeMap</a>&lt; Key, Value, Compare, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v, disable_exceptions_v &gt;::<a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#a2a190adc4822530adbe2170f54b3a2ab">mixins</a> =  typename <a class="el" href="structbpptree_1_1detail_1_1BppTree.html">BppTree</a>&lt; std::pair&lt;Key, Value&gt;, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v, disable_exceptions_v&gt; ::template <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#a2a190adc4822530adbe2170f54b3a2ab">mixins</a>&lt; typename <a class="el" href="structbpptree_1_1detail_1_1OrderedBuilder.html">OrderedBuilder</a>&lt;&gt; ::<a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#a1b022f68c6e68464fdc74fa37c2967e2">compare</a>&lt;Compare&gt; ::template <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#ac14b2f416dedaa97a169d7e49581ceb7">binary_search</a>&lt;binary_search_v&gt;, Args...&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="afc74e21bf7e828e47c6e385d13de03db"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afc74e21bf7e828e47c6e385d13de03db">&#9670;&nbsp;</a></span>Persistent</h2>
+<a id="aff2a1658dc26b7dff5919de50bd60b50"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff2a1658dc26b7dff5919de50bd60b50">&#9670;&nbsp;</a></span>Persistent</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Key , typename Value , typename Compare  = MinComparator, bool binary_search_v = false, int leaf_node_bytes_v = 512, int internal_node_bytes_v = 512, int depth_limit_v = 16&gt; </div>
+template&lt;typename Key , typename Value , typename Compare  = MinComparator, bool binary_search_v = false, int leaf_node_bytes_v = 512, int internal_node_bytes_v = 512, int depth_limit_v = 16, bool disable_exceptions_v = true&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html">bpptree::detail::BppTreeMap</a>&lt; Key, Value, Compare, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v &gt;::<a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#afc74e21bf7e828e47c6e385d13de03db">Persistent</a> =  typename <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#aabd78f445b6101076f4e7c2945c2fdfc">mixins</a>&lt;&gt;::<a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#afc74e21bf7e828e47c6e385d13de03db">Persistent</a></td>
+          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html">bpptree::detail::BppTreeMap</a>&lt; Key, Value, Compare, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v, disable_exceptions_v &gt;::<a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#aff2a1658dc26b7dff5919de50bd60b50">Persistent</a> =  typename <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#a2a190adc4822530adbe2170f54b3a2ab">mixins</a>&lt;&gt;::<a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#aff2a1658dc26b7dff5919de50bd60b50">Persistent</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a73f8a0f2ca8332a96fae398b4a6058fb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a73f8a0f2ca8332a96fae398b4a6058fb">&#9670;&nbsp;</a></span>Transient</h2>
+<a id="a45e95095c36854ed74e6334cdb0531bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45e95095c36854ed74e6334cdb0531bc">&#9670;&nbsp;</a></span>Transient</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Key , typename Value , typename Compare  = MinComparator, bool binary_search_v = false, int leaf_node_bytes_v = 512, int internal_node_bytes_v = 512, int depth_limit_v = 16&gt; </div>
+template&lt;typename Key , typename Value , typename Compare  = MinComparator, bool binary_search_v = false, int leaf_node_bytes_v = 512, int internal_node_bytes_v = 512, int depth_limit_v = 16, bool disable_exceptions_v = true&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html">bpptree::detail::BppTreeMap</a>&lt; Key, Value, Compare, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v &gt;::<a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#a73f8a0f2ca8332a96fae398b4a6058fb">Transient</a> =  typename <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#aabd78f445b6101076f4e7c2945c2fdfc">mixins</a>&lt;&gt;::<a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#a73f8a0f2ca8332a96fae398b4a6058fb">Transient</a></td>
+          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html">bpptree::detail::BppTreeMap</a>&lt; Key, Value, Compare, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v, disable_exceptions_v &gt;::<a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#a45e95095c36854ed74e6334cdb0531bc">Transient</a> =  typename <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#a2a190adc4822530adbe2170f54b3a2ab">mixins</a>&lt;&gt;::<a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#a45e95095c36854ed74e6334cdb0531bc">Transient</a></td>
         </tr>
       </table>
 </div><div class="memdoc">

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>B++ Tree: bpptree::detail::NodeTypesDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts &gt;::Params&lt; Parent &gt; Struct Template Reference</title>
+<title>B++ Tree: bpptree::detail::NodeTypesDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, disable_exceptions, Ts &gt;::Params&lt; Parent &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -69,13 +69,13 @@ $(function() {
 <a href="#pub-types">Public Types</a> &#124;
 <a href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1Params-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">bpptree::detail::NodeTypesDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts &gt;::Params&lt; Parent &gt; Struct Template Reference</div>  </div>
+<div class="title">bpptree::detail::NodeTypesDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, disable_exceptions, Ts &gt;::Params&lt; Parent &gt; Struct Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
 <p><code>#include &lt;<a class="el" href="nodetypes_8hpp_source.html">nodetypes.hpp</a>&gt;</code></p>
 <div class="dynheader">
-Inheritance diagram for bpptree::detail::NodeTypesDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts &gt;::Params&lt; Parent &gt;:</div>
+Inheritance diagram for bpptree::detail::NodeTypesDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, disable_exceptions, Ts &gt;::Params&lt; Parent &gt;:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="structbpptree_1_1detail_1_1NodeTypesDetail_1_1Params.png" alt=""/>
@@ -83,71 +83,71 @@ Inheritance diagram for bpptree::detail::NodeTypesDetail&lt; Value, leaf_node_by
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a74f4535dfa12de633c25da3ab43c9253"><td class="memTemplParams" colspan="2">template&lt;typename PtrType &gt; </td></tr>
-<tr class="memitem:a74f4535dfa12de633c25da3ab43c9253"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1Params.html#a74f4535dfa12de633c25da3ab43c9253">NodeInfoType</a> = <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1NodeInfo.html">NodeInfo</a>&lt; PtrType &gt;</td></tr>
-<tr class="separator:a74f4535dfa12de633c25da3ab43c9253"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a28ca2f5cd38961ca8de203fb4bbe42e6"><td class="memTemplParams" colspan="2">template&lt;auto leaf_size&gt; </td></tr>
-<tr class="memitem:a28ca2f5cd38961ca8de203fb4bbe42e6"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1Params.html#a28ca2f5cd38961ca8de203fb4bbe42e6">LeafNodeType</a> = <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1LeafNode.html">LeafNode</a>&lt; leaf_size &gt;</td></tr>
-<tr class="separator:a28ca2f5cd38961ca8de203fb4bbe42e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aecb7b25e77a5a41b049f6dd2cded246c"><td class="memTemplParams" colspan="2">template&lt;auto leaf_size, auto internal_size, auto depth&gt; </td></tr>
-<tr class="memitem:aecb7b25e77a5a41b049f6dd2cded246c"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1Params.html#aecb7b25e77a5a41b049f6dd2cded246c">InternalNodeType</a> = <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1InternalNode.html">InternalNode</a>&lt; leaf_size, internal_size, depth &gt;</td></tr>
-<tr class="separator:aecb7b25e77a5a41b049f6dd2cded246c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2c8598debd4708fc9bdc41ee65404b3"><td class="memTemplParams" colspan="2">template&lt;typename PtrType &gt; </td></tr>
+<tr class="memitem:af2c8598debd4708fc9bdc41ee65404b3"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1Params.html#af2c8598debd4708fc9bdc41ee65404b3">NodeInfoType</a> = <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1NodeInfo.html">NodeInfo</a>&lt; PtrType &gt;</td></tr>
+<tr class="separator:af2c8598debd4708fc9bdc41ee65404b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b50f3ffa8869300edb6a19ec28a1615"><td class="memTemplParams" colspan="2">template&lt;auto leaf_size&gt; </td></tr>
+<tr class="memitem:a8b50f3ffa8869300edb6a19ec28a1615"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1Params.html#a8b50f3ffa8869300edb6a19ec28a1615">LeafNodeType</a> = <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1LeafNode.html">LeafNode</a>&lt; leaf_size &gt;</td></tr>
+<tr class="separator:a8b50f3ffa8869300edb6a19ec28a1615"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b3e4a90b2a41d3547a8970b5ce29934"><td class="memTemplParams" colspan="2">template&lt;auto leaf_size, auto internal_size, auto depth&gt; </td></tr>
+<tr class="memitem:a2b3e4a90b2a41d3547a8970b5ce29934"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1Params.html#a2b3e4a90b2a41d3547a8970b5ce29934">InternalNodeType</a> = <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1InternalNode.html">InternalNode</a>&lt; leaf_size, internal_size, depth &gt;</td></tr>
+<tr class="separator:a2b3e4a90b2a41d3547a8970b5ce29934"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="aecb7b25e77a5a41b049f6dd2cded246c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aecb7b25e77a5a41b049f6dd2cded246c">&#9670;&nbsp;</a></span>InternalNodeType</h2>
+<a id="a2b3e4a90b2a41d3547a8970b5ce29934"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b3e4a90b2a41d3547a8970b5ce29934">&#9670;&nbsp;</a></span>InternalNodeType</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Value , ssize leaf_node_bytes = 512, ssize internal_node_bytes = 512, ssize depth_limit = 16, typename... Ts&gt; </div>
+template&lt;typename Value , ssize leaf_node_bytes = 512, ssize internal_node_bytes = 512, ssize depth_limit = 16, bool disable_exceptions = true, typename... Ts&gt; </div>
 <div class="memtemplate">
 template&lt;typename Parent &gt; </div>
 <div class="memtemplate">
 template&lt;auto leaf_size, auto internal_size, auto depth&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html">bpptree::detail::NodeTypesDetail</a>&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts &gt;::<a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1Params.html">Params</a>&lt; Parent &gt;::<a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1Params.html#aecb7b25e77a5a41b049f6dd2cded246c">InternalNodeType</a> =  <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1InternalNode.html">InternalNode</a>&lt;leaf_size, internal_size, depth&gt;</td>
+          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html">bpptree::detail::NodeTypesDetail</a>&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, disable_exceptions, Ts &gt;::<a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1Params.html">Params</a>&lt; Parent &gt;::<a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1Params.html#a2b3e4a90b2a41d3547a8970b5ce29934">InternalNodeType</a> =  <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1InternalNode.html">InternalNode</a>&lt;leaf_size, internal_size, depth&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a28ca2f5cd38961ca8de203fb4bbe42e6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a28ca2f5cd38961ca8de203fb4bbe42e6">&#9670;&nbsp;</a></span>LeafNodeType</h2>
+<a id="a8b50f3ffa8869300edb6a19ec28a1615"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b50f3ffa8869300edb6a19ec28a1615">&#9670;&nbsp;</a></span>LeafNodeType</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Value , ssize leaf_node_bytes = 512, ssize internal_node_bytes = 512, ssize depth_limit = 16, typename... Ts&gt; </div>
+template&lt;typename Value , ssize leaf_node_bytes = 512, ssize internal_node_bytes = 512, ssize depth_limit = 16, bool disable_exceptions = true, typename... Ts&gt; </div>
 <div class="memtemplate">
 template&lt;typename Parent &gt; </div>
 <div class="memtemplate">
 template&lt;auto leaf_size&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html">bpptree::detail::NodeTypesDetail</a>&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts &gt;::<a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1Params.html">Params</a>&lt; Parent &gt;::<a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1Params.html#a28ca2f5cd38961ca8de203fb4bbe42e6">LeafNodeType</a> =  <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1LeafNode.html">LeafNode</a>&lt;leaf_size&gt;</td>
+          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html">bpptree::detail::NodeTypesDetail</a>&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, disable_exceptions, Ts &gt;::<a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1Params.html">Params</a>&lt; Parent &gt;::<a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1Params.html#a8b50f3ffa8869300edb6a19ec28a1615">LeafNodeType</a> =  <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1LeafNode.html">LeafNode</a>&lt;leaf_size&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a74f4535dfa12de633c25da3ab43c9253"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a74f4535dfa12de633c25da3ab43c9253">&#9670;&nbsp;</a></span>NodeInfoType</h2>
+<a id="af2c8598debd4708fc9bdc41ee65404b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2c8598debd4708fc9bdc41ee65404b3">&#9670;&nbsp;</a></span>NodeInfoType</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Value , ssize leaf_node_bytes = 512, ssize internal_node_bytes = 512, ssize depth_limit = 16, typename... Ts&gt; </div>
+template&lt;typename Value , ssize leaf_node_bytes = 512, ssize internal_node_bytes = 512, ssize depth_limit = 16, bool disable_exceptions = true, typename... Ts&gt; </div>
 <div class="memtemplate">
 template&lt;typename Parent &gt; </div>
 <div class="memtemplate">
 template&lt;typename PtrType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html">bpptree::detail::NodeTypesDetail</a>&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts &gt;::<a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1Params.html">Params</a>&lt; Parent &gt;::<a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1Params.html#a74f4535dfa12de633c25da3ab43c9253">NodeInfoType</a> =  <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1NodeInfo.html">NodeInfo</a>&lt;PtrType&gt;</td>
+          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html">bpptree::detail::NodeTypesDetail</a>&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, disable_exceptions, Ts &gt;::<a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1Params.html">Params</a>&lt; Parent &gt;::<a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1Params.html#af2c8598debd4708fc9bdc41ee65404b3">NodeInfoType</a> =  <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1NodeInfo.html">NodeInfo</a>&lt;PtrType&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">

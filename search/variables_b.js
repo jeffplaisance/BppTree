@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['persistent_816',['persistent',['../structbpptree_1_1detail_1_1InternalNodeBase.html#a3b8734ae1eddb2bc67f3a80699d27378',1,'bpptree::detail::InternalNodeBase::persistent()'],['../structbpptree_1_1detail_1_1LeafNodeBase.html#a19dfe6f1074c19acce82c416af118fad',1,'bpptree::detail::LeafNodeBase::persistent()']]],
-  ['pointers_817',['pointers',['../structbpptree_1_1detail_1_1InternalNodeBase.html#a2474ed4815395ac9f54479dd7eff6ccd',1,'bpptree::detail::InternalNodeBase']]],
-  ['ptr_818',['ptr',['../structbpptree_1_1detail_1_1NodeTypesDetail_1_1NodeInfo.html#a212fa4177a16197b090817d8cd0863a8',1,'bpptree::detail::NodeTypesDetail::NodeInfo']]],
-  ['ptr_5fchanged_819',['ptr_changed',['../structbpptree_1_1detail_1_1NodeTypesDetail_1_1NodeInfo.html#a0d1d1c6626265f115f45a049db4db88e',1,'bpptree::detail::NodeTypesDetail::NodeInfo']]]
+  ['persistent_817',['persistent',['../structbpptree_1_1detail_1_1InternalNodeBase.html#a70a5d88cbe25579b84f3bcf7c9e697f7',1,'bpptree::detail::InternalNodeBase::persistent()'],['../structbpptree_1_1detail_1_1LeafNodeBase.html#af15b75942d61efdff05c7e81ac5a55e3',1,'bpptree::detail::LeafNodeBase::persistent()']]],
+  ['pointers_818',['pointers',['../structbpptree_1_1detail_1_1InternalNodeBase.html#a2975b46bf6358ad56d125c5bece49755',1,'bpptree::detail::InternalNodeBase']]],
+  ['ptr_819',['ptr',['../structbpptree_1_1detail_1_1NodeTypesDetail_1_1NodeInfo.html#acfacb712beb37b95ac915b82d8667607',1,'bpptree::detail::NodeTypesDetail::NodeInfo']]],
+  ['ptr_5fchanged_820',['ptr_changed',['../structbpptree_1_1detail_1_1NodeTypesDetail_1_1NodeInfo.html#ab6fcc226253951cc2a8822c8f0b18f26',1,'bpptree::detail::NodeTypesDetail::NodeInfo']]]
 ];

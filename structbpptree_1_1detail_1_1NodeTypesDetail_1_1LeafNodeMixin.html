@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>B++ Tree: bpptree::detail::NodeTypesDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts &gt;::LeafNodeMixin&lt; Derived, leaf_size &gt; Struct Template Reference</title>
+<title>B++ Tree: bpptree::detail::NodeTypesDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, disable_exceptions, Ts &gt;::LeafNodeMixin&lt; Derived, leaf_size &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -69,7 +69,7 @@ $(function() {
 <a href="#pub-types">Public Types</a> &#124;
 <a href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1LeafNodeMixin-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">bpptree::detail::NodeTypesDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts &gt;::LeafNodeMixin&lt; Derived, leaf_size &gt; Struct Template Reference</div>  </div>
+<div class="title">bpptree::detail::NodeTypesDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, disable_exceptions, Ts &gt;::LeafNodeMixin&lt; Derived, leaf_size &gt; Struct Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -77,45 +77,45 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a8398aaf41e12e317483c6361fa162dd8"><td class="memTemplParams" colspan="2">template&lt;typename Parent &gt; </td></tr>
-<tr class="memitem:a8398aaf41e12e317483c6361fa162dd8"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1LeafNodeMixin.html#a8398aaf41e12e317483c6361fa162dd8">LeafNodeBaseCurried</a> = <a class="el" href="structbpptree_1_1detail_1_1LeafNodeBase.html">LeafNodeBase</a>&lt; Parent, Value, leaf_size &gt;</td></tr>
-<tr class="separator:a8398aaf41e12e317483c6361fa162dd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a14ae2afc464b848d45ee34b39863cd"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1LeafNodeMixin.html#a5a14ae2afc464b848d45ee34b39863cd">Type</a> = <a class="el" href="namespacebpptree_1_1detail.html#a201cdb537d848ea294dbb78d097fd143">Chain</a>&lt; Derived, Ts::template LeafNode..., <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1LeafNodeMixin.html#a8398aaf41e12e317483c6361fa162dd8">LeafNodeBaseCurried</a>, <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1Params.html">Params</a> &gt;</td></tr>
-<tr class="separator:a5a14ae2afc464b848d45ee34b39863cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe6cf29adbdaf4ad86dcbe36306264a5"><td class="memTemplParams" colspan="2">template&lt;typename Parent &gt; </td></tr>
+<tr class="memitem:abe6cf29adbdaf4ad86dcbe36306264a5"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1LeafNodeMixin.html#abe6cf29adbdaf4ad86dcbe36306264a5">LeafNodeBaseCurried</a> = <a class="el" href="structbpptree_1_1detail_1_1LeafNodeBase.html">LeafNodeBase</a>&lt; Parent, Value, leaf_size, disable_exceptions &gt;</td></tr>
+<tr class="separator:abe6cf29adbdaf4ad86dcbe36306264a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c4b4b0689f26166371daf94f64792ec"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1LeafNodeMixin.html#a9c4b4b0689f26166371daf94f64792ec">Type</a> = <a class="el" href="namespacebpptree_1_1detail.html#a201cdb537d848ea294dbb78d097fd143">Chain</a>&lt; Derived, Ts::template LeafNode..., <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1LeafNodeMixin.html#abe6cf29adbdaf4ad86dcbe36306264a5">LeafNodeBaseCurried</a>, <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1Params.html">Params</a> &gt;</td></tr>
+<tr class="separator:a9c4b4b0689f26166371daf94f64792ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="a8398aaf41e12e317483c6361fa162dd8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8398aaf41e12e317483c6361fa162dd8">&#9670;&nbsp;</a></span>LeafNodeBaseCurried</h2>
+<a id="abe6cf29adbdaf4ad86dcbe36306264a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe6cf29adbdaf4ad86dcbe36306264a5">&#9670;&nbsp;</a></span>LeafNodeBaseCurried</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Value , ssize leaf_node_bytes = 512, ssize internal_node_bytes = 512, ssize depth_limit = 16, typename... Ts&gt; </div>
+template&lt;typename Value , ssize leaf_node_bytes = 512, ssize internal_node_bytes = 512, ssize depth_limit = 16, bool disable_exceptions = true, typename... Ts&gt; </div>
 <div class="memtemplate">
 template&lt;typename Derived , auto leaf_size&gt; </div>
 <div class="memtemplate">
 template&lt;typename Parent &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html">bpptree::detail::NodeTypesDetail</a>&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts &gt;::<a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1LeafNodeMixin.html">LeafNodeMixin</a>&lt; Derived, leaf_size &gt;::<a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1LeafNodeMixin.html#a8398aaf41e12e317483c6361fa162dd8">LeafNodeBaseCurried</a> =  <a class="el" href="structbpptree_1_1detail_1_1LeafNodeBase.html">LeafNodeBase</a>&lt;Parent, Value, leaf_size&gt;</td>
+          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html">bpptree::detail::NodeTypesDetail</a>&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, disable_exceptions, Ts &gt;::<a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1LeafNodeMixin.html">LeafNodeMixin</a>&lt; Derived, leaf_size &gt;::<a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1LeafNodeMixin.html#abe6cf29adbdaf4ad86dcbe36306264a5">LeafNodeBaseCurried</a> =  <a class="el" href="structbpptree_1_1detail_1_1LeafNodeBase.html">LeafNodeBase</a>&lt;Parent, Value, leaf_size, disable_exceptions&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a5a14ae2afc464b848d45ee34b39863cd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5a14ae2afc464b848d45ee34b39863cd">&#9670;&nbsp;</a></span>Type</h2>
+<a id="a9c4b4b0689f26166371daf94f64792ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c4b4b0689f26166371daf94f64792ec">&#9670;&nbsp;</a></span>Type</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Value , ssize leaf_node_bytes = 512, ssize internal_node_bytes = 512, ssize depth_limit = 16, typename... Ts&gt; </div>
+template&lt;typename Value , ssize leaf_node_bytes = 512, ssize internal_node_bytes = 512, ssize depth_limit = 16, bool disable_exceptions = true, typename... Ts&gt; </div>
 <div class="memtemplate">
 template&lt;typename Derived , auto leaf_size&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html">bpptree::detail::NodeTypesDetail</a>&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts &gt;::<a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1LeafNodeMixin.html">LeafNodeMixin</a>&lt; Derived, leaf_size &gt;::<a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1LeafNodeMixin.html#a5a14ae2afc464b848d45ee34b39863cd">Type</a> =  <a class="el" href="namespacebpptree_1_1detail.html#a201cdb537d848ea294dbb78d097fd143">Chain</a>&lt;Derived, Ts::template LeafNode..., <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1LeafNodeMixin.html#a8398aaf41e12e317483c6361fa162dd8">LeafNodeBaseCurried</a>, <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1Params.html">Params</a>&gt;</td>
+          <td class="memname">using <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html">bpptree::detail::NodeTypesDetail</a>&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, disable_exceptions, Ts &gt;::<a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1LeafNodeMixin.html">LeafNodeMixin</a>&lt; Derived, leaf_size &gt;::<a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1LeafNodeMixin.html#a9c4b4b0689f26166371daf94f64792ec">Type</a> =  <a class="el" href="namespacebpptree_1_1detail.html#a201cdb537d848ea294dbb78d097fd143">Chain</a>&lt;Derived, Ts::template LeafNode..., <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1LeafNodeMixin.html#abe6cf29adbdaf4ad86dcbe36306264a5">LeafNodeBaseCurried</a>, <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1Params.html">Params</a>&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">

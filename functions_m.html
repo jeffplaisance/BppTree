@@ -65,15 +65,15 @@ $(function() {
 
 <h3><a id="index_m"></a>- m -</h3><ul>
 <li>make_persistent()
-: <a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase.html#afe9bc36fe8c13c5ba1e5c0ea7f691f69">bpptree::detail::InternalNodeBase&lt; Parent, Value, leaf_size, internal_size, depth_v &gt;</a>
-, <a class="el" href="structbpptree_1_1detail_1_1LeafNodeBase.html#a794a681d294e809bac34484fceecd22b">bpptree::detail::LeafNodeBase&lt; Parent, Value, leaf_size &gt;</a>
+: <a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase.html#a0a4a6a0c868f10f96da9e9eb3d0f9b82">bpptree::detail::InternalNodeBase&lt; Parent, Value, leaf_size, internal_size, depth_v, disable_exceptions &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1LeafNodeBase.html#ab3ada45c858251ba330ab21dd1816bcd">bpptree::detail::LeafNodeBase&lt; Parent, Value, leaf_size, disable_exceptions &gt;</a>
 </li>
 <li>max()
 : <a class="el" href="structbpptree_1_1detail_1_1Max_1_1Shared.html#afc90c2e4171c485b9bf1c3f58bb2783e">bpptree::detail::Max&lt; Value, KeyExtractor, Comp &gt;::Shared&lt; Parent &gt;</a>
 </li>
 <li>max_depth()
-: <a class="el" href="structbpptree_1_1detail_1_1BppTreeDetail_1_1Shared.html#acb58bbd1ec5fd716c60b49835cd975d3">bpptree::detail::BppTreeDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts &gt;::Shared&lt; Parent &gt;</a>
-, <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html#af60aaf639f12f058047e271b58aa5bcd">bpptree::detail::NodeTypesDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts &gt;</a>
+: <a class="el" href="structbpptree_1_1detail_1_1BppTreeDetail_1_1Shared.html#ae2717056364c22629ccaa81b0fdfaa94">bpptree::detail::BppTreeDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, disable_exceptions, Ts &gt;::Shared&lt; Parent &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html#a73566174db2c7e5a65d1d62df9893047">bpptree::detail::NodeTypesDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, disable_exceptions, Ts &gt;</a>
 </li>
 <li>max_element()
 : <a class="el" href="structbpptree_1_1detail_1_1Max_1_1Shared.html#a93f6ad147ade14f7ec4d9cfaf0f267bb">bpptree::detail::Max&lt; Value, KeyExtractor, Comp &gt;::Shared&lt; Parent &gt;</a>
@@ -82,8 +82,8 @@ $(function() {
 : <a class="el" href="structbpptree_1_1detail_1_1Max_1_1Shared.html#a549bfef97e51ffcafd7279f22dc64f57">bpptree::detail::Max&lt; Value, KeyExtractor, Comp &gt;::Shared&lt; Parent &gt;</a>
 </li>
 <li>max_size()
-: <a class="el" href="structbpptree_1_1detail_1_1BppTreeDetail_1_1Shared.html#acf3e9f41757a01d404ab1b2f9ffef8c3">bpptree::detail::BppTreeDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts &gt;::Shared&lt; Parent &gt;</a>
-, <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html#a72357a0d22aede788efacfe541b556cf">bpptree::detail::NodeTypesDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts &gt;</a>
+: <a class="el" href="structbpptree_1_1detail_1_1BppTreeDetail_1_1Shared.html#a0f11413414ab73d29dacb210ec7972d0">bpptree::detail::BppTreeDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, disable_exceptions, Ts &gt;::Shared&lt; Parent &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html#ad2e3e38d7095f11d83b919df36e58cbd">bpptree::detail::NodeTypesDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, disable_exceptions, Ts &gt;</a>
 </li>
 <li>min()
 : <a class="el" href="structbpptree_1_1detail_1_1Min_1_1Shared.html#accd68b1ea3f554b13b2905b1a5ec62a3">bpptree::detail::Min&lt; Value, KeyExtractor, Comp &gt;::Shared&lt; Parent &gt;</a>
@@ -98,33 +98,33 @@ $(function() {
 : <a class="el" href="structbpptree_1_1detail_1_1Curry.html#a0a63528836a065b4d9160ef0ba69fc4e">bpptree::detail::Curry&lt; M, args &gt;</a>
 </li>
 <li>mixins
-: <a class="el" href="structbpptree_1_1detail_1_1BppTree.html#a0259aad0480084c92380f2236447b022">bpptree::detail::BppTree&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit &gt;</a>
-, <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#aabd78f445b6101076f4e7c2945c2fdfc">bpptree::detail::BppTreeMap&lt; Key, Value, Compare, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v &gt;</a>
-, <a class="el" href="structbpptree_1_1detail_1_1BppTreeSet.html#a52832763701c9b4455a5f3ee710b9aa4">bpptree::detail::BppTreeSet&lt; Key, Compare, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v &gt;</a>
-, <a class="el" href="structbpptree_1_1detail_1_1BppTreeVector.html#a8e2bba65a443206cc8e81c21a2012894">bpptree::detail::BppTreeVector&lt; Value, SizeType, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v &gt;</a>
+: <a class="el" href="structbpptree_1_1detail_1_1BppTree.html#a66cab00b23591f5f7751b554e69e2b45">bpptree::detail::BppTree&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, disable_exceptions &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1BppTreeMap.html#a2a190adc4822530adbe2170f54b3a2ab">bpptree::detail::BppTreeMap&lt; Key, Value, Compare, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v, disable_exceptions_v &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1BppTreeSet.html#ae75db810b77d2c60c00095d10a2636ad">bpptree::detail::BppTreeSet&lt; Key, Compare, binary_search_v, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v, disable_exceptions_v &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1BppTreeVector.html#acada489ccd0854151b287c0cddbd6a8d">bpptree::detail::BppTreeVector&lt; Value, SizeType, leaf_node_bytes_v, internal_node_bytes_v, depth_limit_v, disable_exceptions_v &gt;</a>
 </li>
 <li>mod_count
 : <a class="el" href="structbpptree_1_1detail_1_1IteratorBase_3_01Tree_00_01is__const_00_01std_1_1enable__if__t_3_01Is894f4c120f57ac53184845689e7c5337.html#a0f488dc906e1658e8bebe91d50cf88ca">bpptree::detail::IteratorBase&lt; Tree, is_const, std::enable_if_t&lt; IsTransientTree&lt; Tree &gt;::value &gt; &gt;</a>
 </li>
 <li>Modifiers
-: <a class="el" href="structbpptree_1_1detail_1_1BppTreeDetail_1_1Shared.html#a4ac3a8912a23fec816d0a9ce2b2bdada">bpptree::detail::BppTreeDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts &gt;::Shared&lt; Parent &gt;</a>
+: <a class="el" href="structbpptree_1_1detail_1_1BppTreeDetail_1_1Shared.html#a0c7dda5f2f3dce13d31f167f738594ad">bpptree::detail::BppTreeDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, disable_exceptions, Ts &gt;::Shared&lt; Parent &gt;</a>
 </li>
 <li>Modify
-: <a class="el" href="structbpptree_1_1detail_1_1BppTreeDetail_1_1Shared.html#a566d03452838fcab0c43f3b01e520683">bpptree::detail::BppTreeDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts &gt;::Shared&lt; Parent &gt;</a>
-, <a class="el" href="structbpptree_1_1detail_1_1BppTreeDetail_1_1Transient.html#a377e7acc8a5a768765acede29623b48a">bpptree::detail::BppTreeDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, Ts &gt;::Transient</a>
+: <a class="el" href="structbpptree_1_1detail_1_1BppTreeDetail_1_1Shared.html#a52525dae568427cb69dbd0fd94af1c5e">bpptree::detail::BppTreeDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, disable_exceptions, Ts &gt;::Shared&lt; Parent &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1BppTreeDetail_1_1Transient.html#a81b70872a11c6d83d8e80c9d9786c93a">bpptree::detail::BppTreeDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, disable_exceptions, Ts &gt;::Transient</a>
 , <a class="el" href="structbpptree_1_1detail_1_1Indexed_1_1Transient.html#a69d30d12f55aa560fc2b03ea806616a1">bpptree::detail::Indexed&lt; Value, SizeType &gt;::Transient&lt; Parent &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1Ordered_1_1Transient.html#aa121761c4b36f238788ff10554bad798">bpptree::detail::Ordered&lt; KeyValue, KeyValueExtractor, LessThan, BinarySearch &gt;::Transient&lt; Parent &gt;</a>
 </li>
 <li>move()
-: <a class="el" href="structbpptree_1_1detail_1_1UninitializedArray.html#ae7a661f6f048a72eb6f43d140e9c1c93">bpptree::detail::UninitializedArray&lt; T, n &gt;</a>
+: <a class="el" href="structbpptree_1_1detail_1_1UninitializedArray.html#afdccfe129aa4797d65f3b7169db1b2ff">bpptree::detail::UninitializedArray&lt; T, n &gt;</a>
 </li>
 <li>move_element()
-: <a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase.html#a1edf60cd200488b8b22afde9cf3f2848">bpptree::detail::InternalNodeBase&lt; Parent, Value, leaf_size, internal_size, depth_v &gt;</a>
+: <a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase.html#a834f1134eba877ac289d08c62be5db3d">bpptree::detail::InternalNodeBase&lt; Parent, Value, leaf_size, internal_size, depth_v, disable_exceptions &gt;</a>
 </li>
 <li>move_element2()
 : <a class="el" href="structbpptree_1_1detail_1_1BPPTREE__MINMAX__UPPERDetail_1_1InternalNode.html#a3321ced7987e49d729fbc64c8a02931b">bpptree::detail::BPPTREE_MINMAX_UPPERDetail&lt; Value, KeyExtractor, Comp &gt;::InternalNode&lt; Parent, internal_size &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1IndexedInternalNode.html#a2d145d93f021ee3e3d291b7302d636e0">bpptree::detail::IndexedInternalNode&lt; Parent, Value, SizeType, internal_size &gt;</a>
-, <a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase.html#a1a0f582e6fc0e8a71fa01d18cf63c064">bpptree::detail::InternalNodeBase&lt; Parent, Value, leaf_size, internal_size, depth_v &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase.html#a4b53f303652bdbfafeb928b57a8739a8">bpptree::detail::InternalNodeBase&lt; Parent, Value, leaf_size, internal_size, depth_v, disable_exceptions &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1OrderedDetail_1_1InternalNode.html#a0dc2c526c61ee85fb5b0b0b92dedc819">bpptree::detail::OrderedDetail&lt; KeyValue, KeyValueExtractor, LessThan, binary_search &gt;::InternalNode&lt; Parent, internal_size &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1SummedInternalNode.html#a31ea5326e16620a2d9b6ca20649671d3">bpptree::detail::SummedInternalNode&lt; Parent, SumType, internal_size &gt;</a>
 </li>
