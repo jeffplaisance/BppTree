@@ -9,7 +9,7 @@
 #pragma once
 
 #include <new>
-#include <cstring>
+#include <memory>
 
 namespace bpptree::detail {
 
@@ -41,30 +41,24 @@ decltype(auto) first_element(First&& first) {
 template <typename T, size_t n>
 struct UninitializedArray {
 private:
+    // storage for the array is implemented as a union with a single member which is an array of T of size n.
+    // a union is used here because it prevents default construction of the array members.
+    // i did not use an array of unions containing a single T because there is no standard compliant way as far as i
+    // can tell to convert that to a T* that can be used to index into the array.
+    // useful reference: How to Hold a T - CJ Johnson - CppCon 2019 https://www.youtube.com/watch?v=WX8FsrUbLjc
     union U {
-        T t;
+        T data[n];
 
-        U() noexcept {}; //NOLINT
+        U() noexcept {};
         ~U() {};
     };
 
-    static_assert(sizeof(T) == sizeof(U));
-    static_assert(alignof(T) == alignof(U));
-    static_assert(sizeof(T) >= alignof(T)); //NOLINT
-    static_assert(sizeof(T) % alignof(T) == 0);
-
-    U data[n];
+    U un;
 public:
     UninitializedArray() = default;
 
     UninitializedArray(UninitializedArray const& other, size_t length) {
-        if constexpr (std::is_trivially_copy_constructible_v<T>) {
-            std::memcpy(static_cast<void*>(data), static_cast<void const*>(other.data), sizeof(T)*length);
-        } else {
-            for (size_t i = 0; i < length; ++i) {
-                new(data + i) T(other[i]);
-            }
-        }
+        std::uninitialized_copy_n(other.un.data, length, un.data);
     }
 
     UninitializedArray(UninitializedArray const& other) = delete;
@@ -74,12 +68,12 @@ public:
 
     template <typename I, std::enable_if_t<std::is_integral_v<I>, bool> = true>
     T& operator[](I const index) {
-        return *std::launder(&data[index].t);
+        return un.data[index];
     }
 
     template <typename I, std::enable_if_t<std::is_integral_v<I>, bool> = true>
     T const& operator[](I const index) const {
-        return *std::launder(&data[index].t);
+        return un.data[index];
     }
 
     template <typename I, std::enable_if_t<std::is_integral_v<I>, bool> = true>
@@ -105,19 +99,19 @@ public:
                 return (*this)[index] = std::forward<U>(u);
             }
         }
-        return *new(data + index) T(std::forward<U>(u));
+        return *new(un.data + index) T(std::forward<U>(u));
     }
 
     template <typename I, std::enable_if_t<std::is_integral_v<I>, bool> = true, typename... Us>
     T& initialize(I const index, Us&&... us) {
-        return *new(data + index) T(std::forward<Us>(us)...);
+        return *new(un.data + index) T(std::forward<Us>(us)...);
     }
 
     template <typename I, typename L,
             std::enable_if_t<std::is_integral_v<I>, bool> = true,
             std::enable_if_t<std::is_integral_v<L>, bool> = true,
             typename... Us>
-    T& emplace(I const index, L const length, Us&&... us) {
+    T& emplace(I const index, L const length, Us&&... us) noexcept {
         if constexpr (sizeof...(Us) == 1 && std::is_assignable_v<T&, FirstElementT<Us...>&&>) {
             if constexpr (std::is_trivially_assignable_v<T&, Us&&...>) {
                 return (*this)[index] = first_element(std::forward<Us>(us)...);
@@ -131,33 +125,33 @@ public:
                 (*this)[index].~T();
             }
         }
-        return *new(data + index) T(std::forward<Us>(us)...);
+        return *new(un.data + index) T(std::forward<Us>(us)...);
     }
 
     template <typename I, std::enable_if_t<std::is_integral_v<I>, bool> = true, typename... Us>
-    T& emplace_unchecked(I const index, Us&&... us) {
+    T& emplace_unchecked(I const index, Us&&... us) noexcept {
         if constexpr (sizeof...(Us) == 1 && std::is_assignable_v<T&, FirstElementT<Us...>&&>) {
             return (*this)[index] = first_element(std::forward<Us>(us)...);
         } else if constexpr (!std::is_trivially_destructible_v<T>) {
             (*this)[index].~T();
         }
-        return *new(data + index) T(std::forward<Us>(us)...);
+        return *new(un.data + index) T(std::forward<Us>(us)...);
     }
 
     T* begin() {
-        return std::launder(&data[0].t);
+        return &un.data[0];
     }
 
     T* end() {
-        return std::launder(&data[n].t);
+        return &un.data[n];
     }
 
     T const* cbegin() const {
-        return std::launder(&data[0].t);
+        return &un.data[0];
     }
 
     T const* cend() const {
-        return std::launder(&data[n].t);
+        return &un.data[n];
     }
 
     T const* begin() const {
