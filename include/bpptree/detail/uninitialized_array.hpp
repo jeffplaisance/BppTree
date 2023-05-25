@@ -10,7 +10,6 @@
 
 #include <new>
 #include <cstring>
-#include "common.hpp"
 
 namespace bpptree::detail {
 
@@ -41,19 +40,29 @@ decltype(auto) first_element(First&& first) {
  */
 template <typename T, size_t n>
 struct UninitializedArray {
-    static_assert(sizeof(T) >= alignof(T)); //NOLINT
-    alignas(T) std::array<std::byte, sizeof(T)*n> data;
+private:
+    union U {
+        T t;
 
+        U() noexcept {}; //NOLINT
+        ~U() {};
+    };
+
+    static_assert(sizeof(T) == sizeof(U));
+    static_assert(alignof(T) == alignof(U));
+    static_assert(sizeof(T) >= alignof(T)); //NOLINT
+    static_assert(sizeof(T) % alignof(T) == 0);
+
+    U data[n];
+public:
     UninitializedArray() = default;
 
     UninitializedArray(UninitializedArray const& other, size_t length) {
         if constexpr (std::is_trivially_copy_constructible_v<T>) {
-            std::memcpy(data.data(), other.data.data(), sizeof(T)*length);
+            std::memcpy(static_cast<void*>(data), static_cast<void const*>(other.data), sizeof(T)*length);
         } else {
-            T* base = reinterpret_cast<T*>(data.data());
-            T const* other_base = reinterpret_cast<T const*>(other.data.data());
             for (size_t i = 0; i < length; ++i) {
-                new(base + i) T(other_base[i]);
+                new(data + i) T(other[i]);
             }
         }
     }
@@ -65,23 +74,23 @@ struct UninitializedArray {
 
     template <typename I, std::enable_if_t<std::is_integral_v<I>, bool> = true>
     T& operator[](I const index) {
-        return reinterpret_cast<T*>(data.data())[static_cast<size_t const>(index)];
+        return *std::launder(&data[index].t);
     }
 
     template <typename I, std::enable_if_t<std::is_integral_v<I>, bool> = true>
     T const& operator[](I const index) const {
-        return reinterpret_cast<T const*>(data.data())[static_cast<size_t const>(index)];
+        return *std::launder(&data[index].t);
     }
 
     template <typename I, std::enable_if_t<std::is_integral_v<I>, bool> = true>
     T&& move(I const index) {
-        return std::move(reinterpret_cast<T*>(data.data())[static_cast<size_t const>(index)]);
+        return std::move((*this)[index]);
     }
 
     template <typename I, std::enable_if_t<std::is_integral_v<I>, bool> = true>
     void destruct(I const index) noexcept {
         if constexpr (!std::is_trivially_destructible_v<T>) {
-            reinterpret_cast<T*>(data.data())[static_cast<size_t const>(index)].~T();
+            (*this)[index].~T();
         }
     }
 
@@ -89,21 +98,19 @@ struct UninitializedArray {
             std::enable_if_t<std::is_integral_v<I>, bool> = true,
             std::enable_if_t<std::is_integral_v<L>, bool> = true>
     T& set(I const index, L const length, U&& u) {
-        T& t = reinterpret_cast<T*>(data.data())[static_cast<size_t const>(index)];
         if constexpr (std::is_trivially_assignable_v<T&, U&&>) {
-            return t = std::forward<U>(u);
+            return (*this)[index] = std::forward<U>(u);
         } else {
-            if (static_cast<ssize>(index) < static_cast<ssize const>(length)) {
-                return t = std::forward<U>(u);
+            if (static_cast<size_t>(index) < static_cast<size_t const>(length)) {
+                return (*this)[index] = std::forward<U>(u);
             }
         }
-        return *new(&t) T(std::forward<U>(u));
+        return *new(data + index) T(std::forward<U>(u));
     }
 
     template <typename I, std::enable_if_t<std::is_integral_v<I>, bool> = true, typename... Us>
     T& initialize(I const index, Us&&... us) {
-        T& t = reinterpret_cast<T*>(data.data())[static_cast<size_t const>(index)];
-        return *new(&t) T(std::forward<Us>(us)...);
+        return *new(data + index) T(std::forward<Us>(us)...);
     }
 
     template <typename I, typename L,
@@ -111,56 +118,54 @@ struct UninitializedArray {
             std::enable_if_t<std::is_integral_v<L>, bool> = true,
             typename... Us>
     T& emplace(I const index, L const length, Us&&... us) {
-        T& t = reinterpret_cast<T*>(data.data())[static_cast<size_t const>(index)];
         if constexpr (sizeof...(Us) == 1 && std::is_assignable_v<T&, FirstElementT<Us...>&&>) {
             if constexpr (std::is_trivially_assignable_v<T&, Us&&...>) {
-                return t = first_element(std::forward<Us>(us)...);
+                return (*this)[index] = first_element(std::forward<Us>(us)...);
             } else {
-                if (static_cast<ssize const>(index) < static_cast<ssize const>(length)) {
-                    return t = first_element(std::forward<Us>(us)...);
+                if (static_cast<size_t const>(index) < static_cast<size_t const>(length)) {
+                    return (*this)[index] = first_element(std::forward<Us>(us)...);
                 }
             }
         } else if constexpr (!std::is_trivially_destructible_v<T>) {
-            if (static_cast<ssize const>(index) < static_cast<ssize const>(length)) {
-                t.~T();
+            if (static_cast<size_t const>(index) < static_cast<size_t const>(length)) {
+                (*this)[index].~T();
             }
         }
-        return *new(&t) T(std::forward<Us>(us)...);
+        return *new(data + index) T(std::forward<Us>(us)...);
     }
 
     template <typename I, std::enable_if_t<std::is_integral_v<I>, bool> = true, typename... Us>
     T& emplace_unchecked(I const index, Us&&... us) {
-        T& t = reinterpret_cast<T*>(data.data())[static_cast<size_t const>(index)];
         if constexpr (sizeof...(Us) == 1 && std::is_assignable_v<T&, FirstElementT<Us...>&&>) {
-            return t = first_element(std::forward<Us>(us)...);
+            return (*this)[index] = first_element(std::forward<Us>(us)...);
         } else if constexpr (!std::is_trivially_destructible_v<T>) {
-            t.~T();
+            (*this)[index].~T();
         }
-        return *new(&t) T(std::forward<Us>(us)...);
+        return *new(data + index) T(std::forward<Us>(us)...);
     }
 
     T* begin() {
-        return reinterpret_cast<T*>(data.data());
+        return std::launder(&data[0].t);
     }
 
     T* end() {
-        return reinterpret_cast<T*>(data.data()) + n;
-    }
-
-    T const* begin() const {
-        return reinterpret_cast<T const*>(data.data());
-    }
-
-    T const* end() const {
-        return reinterpret_cast<T const*>(data.data()) + n;
+        return std::launder(&data[n].t);
     }
 
     T const* cbegin() const {
-        return reinterpret_cast<T const*>(data.data());
+        return std::launder(&data[0].t);
     }
 
     T const* cend() const {
-        return reinterpret_cast<T const*>(data.data()) + n;
+        return std::launder(&data[n].t);
+    }
+
+    T const* begin() const {
+        return cbegin();
+    }
+
+    T const* end() const {
+        return cend();
     }
 };
 } //end namespace bpptree::detail

@@ -9,6 +9,7 @@
 #pragma once
 
 #include "uninitialized_array.hpp"
+#include "common.hpp"
 
 namespace bpptree::detail {
 
