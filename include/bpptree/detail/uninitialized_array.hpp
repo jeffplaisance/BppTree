@@ -28,11 +28,6 @@ struct FirstElement<First, Rest...> {
 template <typename... Args>
 using FirstElementT = typename FirstElement<Args...>::type;
 
-template <typename First>
-decltype(auto) first_element(First&& first) {
-    return std::forward<First>(first);
-}
-
 /**
  * Similar to std::array but contents are not default initialized.
  * The expectation is that the user tracks an index externally below which all elements have been initialized
@@ -92,7 +87,9 @@ public:
             std::enable_if_t<std::is_integral_v<I>, bool> = true,
             std::enable_if_t<std::is_integral_v<L>, bool> = true>
     T& set(I const index, L const length, U&& u) {
-        if constexpr (std::is_trivially_assignable_v<T&, U&&>) {
+        // can only assign to uninitialized memory if the type is trivial, otherwise the lifetime of the object has
+        // not yet begun and a constructor must be called
+        if constexpr (std::is_trivial_v<T> && std::is_trivially_assignable_v<T&, U&&>) {
             return (*this)[index] = std::forward<U>(u);
         } else {
             if (static_cast<size_t>(index) < static_cast<size_t const>(length)) {
@@ -113,11 +110,13 @@ public:
             typename... Us>
     T& emplace(I const index, L const length, Us&&... us) noexcept {
         if constexpr (sizeof...(Us) == 1 && std::is_assignable_v<T&, FirstElementT<Us...>&&>) {
-            if constexpr (std::is_trivially_assignable_v<T&, Us&&...>) {
-                return (*this)[index] = first_element(std::forward<Us>(us)...);
+            // can only assign to uninitialized memory if the type is trivial, otherwise the lifetime of the object has
+            // not yet begun and a constructor must be called
+            if constexpr (std::is_trivial_v<T> && std::is_trivially_assignable_v<T&, Us&&...>) {
+                return (*this)[index] = (..., std::forward<Us>(us));
             } else {
                 if (static_cast<size_t const>(index) < static_cast<size_t const>(length)) {
-                    return (*this)[index] = first_element(std::forward<Us>(us)...);
+                    return (*this)[index] = (..., std::forward<Us>(us));
                 }
             }
         } else if constexpr (!std::is_trivially_destructible_v<T>) {
@@ -131,7 +130,7 @@ public:
     template <typename I, std::enable_if_t<std::is_integral_v<I>, bool> = true, typename... Us>
     T& emplace_unchecked(I const index, Us&&... us) noexcept {
         if constexpr (sizeof...(Us) == 1 && std::is_assignable_v<T&, FirstElementT<Us...>&&>) {
-            return (*this)[index] = first_element(std::forward<Us>(us)...);
+            return (*this)[index] = (..., std::forward<Us>(us));
         } else if constexpr (!std::is_trivially_destructible_v<T>) {
             (*this)[index].~T();
         }
