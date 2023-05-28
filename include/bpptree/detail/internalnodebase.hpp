@@ -42,7 +42,7 @@ struct InternalNodeBase : public Parent {
 
     uint16_t length = 0;
     bool persistent = false;
-    Array<NodePtr<ChildType>, internal_size> pointers{};
+    NodePtr<ChildType> pointers[internal_size]{};
 
     static IndexType get_index(uint64_t it) {
         return (it >> it_shift) & it_mask;
@@ -448,12 +448,6 @@ struct InternalNodeBase : public Parent {
             }
             return 0;
         }
-    }
-
-    void get_indexes(uint64_t it, std::vector<uint16_t>& indexes) const {
-        IndexType index = get_index(it);
-        indexes.emplace_back(index);
-        pointers[index]->get_indexes(it, indexes);
     }
 };
 } //end namespace bpptree::detail

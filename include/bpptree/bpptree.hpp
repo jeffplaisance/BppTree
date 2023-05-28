@@ -10,12 +10,8 @@
 
 #include <iostream>
 #include <cstdint>
-#include <array>
 #include <variant>
-#include <atomic>
 #include <algorithm>
-#include <cassert>
-#include <vector>
 
 #include "bpptree/detail/operations.hpp"
 #include "bpptree/detail/sandwich.hpp"

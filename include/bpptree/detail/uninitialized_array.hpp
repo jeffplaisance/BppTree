@@ -13,21 +13,6 @@
 
 namespace bpptree::detail {
 
-template <typename... Args> struct FirstElement;
-
-template <>
-struct FirstElement<> {
-    using type = void;
-};
-
-template <typename First, typename... Rest>
-struct FirstElement<First, Rest...> {
-    using type = First;
-};
-
-template <typename... Args>
-using FirstElementT = typename FirstElement<Args...>::type;
-
 /**
  * Similar to std::array but contents are not default initialized.
  * The expectation is that the user tracks an index externally below which all elements have been initialized
@@ -49,6 +34,16 @@ private:
     };
 
     U un;
+
+    template <typename... Us>
+    static constexpr bool is_assignable_from() {
+        if constexpr (sizeof...(Us) == 1) {
+            if constexpr (std::is_assignable_v<T&, Us&&...>) {
+                return true;
+            }
+        }
+        return false;
+    }
 public:
     UninitializedArray() = default;
 
@@ -78,9 +73,7 @@ public:
 
     template <typename I, std::enable_if_t<std::is_integral_v<I>, bool> = true>
     void destruct(I const index) noexcept {
-        if constexpr (!std::is_trivially_destructible_v<T>) {
-            (*this)[index].~T();
-        }
+        (*this)[index].~T();
     }
 
     template <typename I, typename L, typename U,
@@ -91,10 +84,9 @@ public:
         // not yet begun and a constructor must be called
         if constexpr (std::is_trivial_v<T> && std::is_trivially_assignable_v<T&, U&&>) {
             return (*this)[index] = std::forward<U>(u);
-        } else {
-            if (static_cast<size_t>(index) < static_cast<size_t const>(length)) {
-                return (*this)[index] = std::forward<U>(u);
-            }
+        }
+        if (static_cast<size_t const>(index) < static_cast<size_t const>(length)) {
+            return (*this)[index] = std::forward<U>(u);
         }
         return *new(un.data + index) T(std::forward<U>(u));
     }
@@ -109,31 +101,28 @@ public:
             std::enable_if_t<std::is_integral_v<L>, bool> = true,
             typename... Us>
     T& emplace(I const index, L const length, Us&&... us) noexcept {
-        if constexpr (sizeof...(Us) == 1 && std::is_assignable_v<T&, FirstElementT<Us...>&&>) {
-            // can only assign to uninitialized memory if the type is trivial, otherwise the lifetime of the object has
-            // not yet begun and a constructor must be called
-            if constexpr (std::is_trivial_v<T> && std::is_trivially_assignable_v<T&, Us&&...>) {
+        // can only assign to uninitialized memory if the type is trivial, otherwise the lifetime of the object has
+        // not yet begun and a constructor must be called
+        if constexpr (is_assignable_from<Us&&...>() && std::is_trivial_v<T>) {
+            if constexpr (std::is_trivially_assignable_v<T&, Us&&...>) {
                 return (*this)[index] = (..., std::forward<Us>(us));
-            } else {
-                if (static_cast<size_t const>(index) < static_cast<size_t const>(length)) {
-                    return (*this)[index] = (..., std::forward<Us>(us));
-                }
             }
-        } else if constexpr (!std::is_trivially_destructible_v<T>) {
-            if (static_cast<size_t const>(index) < static_cast<size_t const>(length)) {
-                (*this)[index].~T();
+        }
+        if (static_cast<size_t const>(index) < static_cast<size_t const>(length)) {
+            if constexpr (is_assignable_from<Us&&...>()) {
+                return (*this)[index] = (..., std::forward<Us>(us));
             }
+            (*this)[index].~T();
         }
         return *new(un.data + index) T(std::forward<Us>(us)...);
     }
 
     template <typename I, std::enable_if_t<std::is_integral_v<I>, bool> = true, typename... Us>
     T& emplace_unchecked(I const index, Us&&... us) noexcept {
-        if constexpr (sizeof...(Us) == 1 && std::is_assignable_v<T&, FirstElementT<Us...>&&>) {
+        if constexpr (is_assignable_from<Us&&...>()) {
             return (*this)[index] = (..., std::forward<Us>(us));
-        } else if constexpr (!std::is_trivially_destructible_v<T>) {
-            (*this)[index].~T();
         }
+        (*this)[index].~T();
         return *new(un.data + index) T(std::forward<Us>(us)...);
     }
 

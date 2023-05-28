@@ -183,10 +183,8 @@ struct BPPTREE_CONCAT(BPPTREE_MINMAX_UPPER, Detail) {
         InternalNode(InternalNode const& other) noexcept(noexcept(Parent(other)) && std::is_nothrow_copy_constructible_v<Key>) : Parent(other), BPPTREE_MINMAXS(other.BPPTREE_MINMAXS, other.length) {}
 
         ~InternalNode() {
-            if constexpr (!std::is_trivially_destructible_v<Key>) {
-                for (IndexType i = 0; i < this->length; ++i) {
-                    BPPTREE_MINMAXS.destruct(i);
-                }
+            for (IndexType i = 0; i < this->length; ++i) {
+                BPPTREE_MINMAXS.destruct(i);
             }
         }
 

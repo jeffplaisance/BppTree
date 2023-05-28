@@ -8,7 +8,6 @@
 
 #pragma once
 
-#include <array>
 #include <type_traits>
 #include "bpptree/detail/helpers.hpp"
 #include "bpptree/detail/summed_detail.hpp"

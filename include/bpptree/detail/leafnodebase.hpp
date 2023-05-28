@@ -43,10 +43,8 @@ struct LeafNodeBase : public Parent {
     LeafNodeBase(LeafNodeBase const& other) : length(other.length), persistent(other.persistent), values(other.values, other.length) {}
 
     ~LeafNodeBase() {
-        if constexpr (!std::is_trivially_destructible_v<Value>) {
-            for (IndexType i = 0; i < length; ++i) {
-                values.destruct(i);
-            }
+        for (IndexType i = 0; i < length; ++i) {
+            values.destruct(i);
         }
     }
 
@@ -135,10 +133,8 @@ struct LeafNodeBase : public Parent {
                 set_element(left, right, i, split_point, std::move(values[i]));
             }
         }
-        if constexpr (!std::is_trivially_destructible_v<Value>) {
-            for (IndexType i = split_point; i < left.length; ++i) {
-                left.values.destruct(i);
-            }
+        for (IndexType i = split_point; i < left.length; ++i) {
+            left.values.destruct(i);
         }
         left.length = static_cast<uint16_t>(split_point);
         right.length = static_cast<uint16_t>(leaf_size + 1 - split_point);
@@ -324,11 +320,6 @@ struct LeafNodeBase : public Parent {
         leaf = &this->self();
         set_index(it, sum);
         return 0;
-    }
-
-    void get_indexes(uint64_t it, std::vector<uint16_t>& indexes) const {
-        IndexType index = get_index(it);
-        indexes.emplace_back(index);
     }
 };
 } //end namespace bpptree::detail

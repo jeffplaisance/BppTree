@@ -31,20 +31,6 @@ static constexpr bool default_disable_exceptions =
     BPPTREE_DISABLE_EXCEPTIONS;
 #endif
 
-//a std::array that doesn't cause warnings when you index into it with signed integers when -Wsign-conversion is enabled
-template <typename T, size_t n>
-struct Array : std::array<T, n> {
-    template <typename I, std::enable_if_t<std::is_integral_v<I>, bool> = true>
-    decltype(auto) operator[](I const index) {
-        return std::array<T, n>::operator[](static_cast<size_t const>(index));
-    }
-
-    template <typename I, std::enable_if_t<std::is_integral_v<I>, bool> = true>
-    decltype(auto) operator[](I const index) const {
-        return std::array<T, n>::operator[](static_cast<size_t const>(index));
-    }
-};
-
 template <size_t index = 0>
 struct TupleExtractor {
     template <typename... Ts>

@@ -11,7 +11,6 @@
 #include <type_traits>
 #include <cstdint>
 #include <utility>
-#include <vector>
 #include <limits>
 #include "common.hpp"
 #include "helpers.hpp"
@@ -282,12 +281,6 @@ struct IteratorDetail : public IteratorBase<Tree, is_const> {
     template <typename RHS>
     [[nodiscard]] bool operator!=(RHS const& rhs) const {
         return !(*this == rhs); //NOLINT
-    }
-
-    [[nodiscard]] std::vector<uint16_t> get_indexes() const {
-        std::vector<uint16_t> ret;
-        std::as_const(*tree).dispatch([this, &ret](auto const& root) { root->get_indexes(iter, ret); });
-        return ret;
     }
 
     using difference_type = ssize;
