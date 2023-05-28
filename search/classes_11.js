@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['valueextractor_543',['ValueExtractor',['../structbpptree_1_1detail_1_1ValueExtractor.html',1,'bpptree::detail']]]
+  ['wrappedcastingextractor_531',['WrappedCastingExtractor',['../structbpptree_1_1detail_1_1WrappedCastingExtractor.html',1,'bpptree::detail']]]
 ];

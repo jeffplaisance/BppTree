@@ -1,6 +1,11 @@
 var searchData=
 [
-  ['leafnode_499',['LeafNode',['../structbpptree_1_1detail_1_1BPPTREE__MINMAX__UPPERDetail_1_1LeafNode.html',1,'bpptree::detail::BPPTREE_MINMAX_UPPERDetail&lt; Value, KeyExtractor, Comp &gt;::LeafNode&lt; Parent &gt;'],['../structbpptree_1_1detail_1_1NodeTypesDetail_1_1LeafNode.html',1,'bpptree::detail::NodeTypesDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, disable_exceptions, Ts &gt;::LeafNode&lt; leaf_size &gt;'],['../structbpptree_1_1detail_1_1OrderedDetail_1_1LeafNode.html',1,'bpptree::detail::OrderedDetail&lt; KeyValue, KeyValueExtractor, LessThan, binary_search &gt;::LeafNode&lt; Parent &gt;']]],
-  ['leafnodebase_500',['LeafNodeBase',['../structbpptree_1_1detail_1_1LeafNodeBase.html',1,'bpptree::detail']]],
-  ['leafnodemixin_501',['LeafNodeMixin',['../structbpptree_1_1detail_1_1NodeTypesDetail_1_1LeafNodeMixin.html',1,'bpptree::detail::NodeTypesDetail']]]
+  ['max_488',['Max',['../structbpptree_1_1detail_1_1Max.html',1,'bpptree::detail']]],
+  ['maxbuilder_489',['MaxBuilder',['../structbpptree_1_1detail_1_1MaxBuilder.html',1,'bpptree::detail']]],
+  ['maxcomparator_490',['MaxComparator',['../structbpptree_1_1detail_1_1MaxComparator.html',1,'bpptree::detail']]],
+  ['min_491',['Min',['../structbpptree_1_1detail_1_1Min.html',1,'bpptree::detail']]],
+  ['minbuilder_492',['MinBuilder',['../structbpptree_1_1detail_1_1MinBuilder.html',1,'bpptree::detail']]],
+  ['mincomparator_493',['MinComparator',['../structbpptree_1_1detail_1_1MinComparator.html',1,'bpptree::detail']]],
+  ['modify_494',['Modify',['../structbpptree_1_1detail_1_1ModifyTypes_1_1Modify.html',1,'bpptree::detail::ModifyTypes']]],
+  ['modifytypes_495',['ModifyTypes',['../structbpptree_1_1detail_1_1ModifyTypes.html',1,'bpptree::detail']]]
 ];

@@ -1,10 +1,6 @@
 var searchData=
 [
-  ['pairextractor_518',['PairExtractor',['../structbpptree_1_1detail_1_1PairExtractor.html',1,'bpptree::detail']]],
-  ['pairextractor_3c_200_20_3e_519',['PairExtractor&lt; 0 &gt;',['../structbpptree_1_1detail_1_1PairExtractor.html',1,'bpptree::detail']]],
-  ['params_520',['Params',['../structbpptree_1_1detail_1_1NodeTypesDetail_1_1Params.html',1,'bpptree::detail::NodeTypesDetail']]],
-  ['persistent_521',['Persistent',['../structbpptree_1_1detail_1_1BPPTREE__MINMAX__UPPERDetail_1_1Persistent.html',1,'bpptree::detail::BPPTREE_MINMAX_UPPERDetail&lt; Value, KeyExtractor, Comp &gt;::Persistent&lt; Parent &gt;'],['../structbpptree_1_1detail_1_1BppTreeDetail_1_1Persistent.html',1,'bpptree::detail::BppTreeDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, disable_exceptions, Ts &gt;::Persistent'],['../structbpptree_1_1detail_1_1Indexed_1_1Persistent.html',1,'bpptree::detail::Indexed&lt; Value, SizeType &gt;::Persistent&lt; Parent &gt;'],['../structbpptree_1_1detail_1_1Ordered_1_1Persistent.html',1,'bpptree::detail::Ordered&lt; KeyValue, KeyValueExtractor, LessThan, BinarySearch &gt;::Persistent&lt; Parent &gt;'],['../structbpptree_1_1detail_1_1Summed_1_1Persistent.html',1,'bpptree::detail::Summed&lt; Value, Extractor &gt;::Persistent&lt; Parent &gt;']]],
-  ['proxyoperators_522',['ProxyOperators',['../structbpptree_1_1detail_1_1ProxyOperators.html',1,'bpptree::detail']]],
-  ['proxyoperators_3c_20proxyref_20_3e_523',['ProxyOperators&lt; ProxyRef &gt;',['../structbpptree_1_1detail_1_1ProxyOperators.html',1,'bpptree::detail']]],
-  ['proxyref_524',['ProxyRef',['../structbpptree_1_1detail_1_1Indexed_1_1Transient_1_1ProxyRef.html',1,'bpptree::detail::Indexed&lt; Value, SizeType &gt;::Transient&lt; Parent &gt;::ProxyRef'],['../structbpptree_1_1detail_1_1IteratorDetail_1_1ProxyRef.html',1,'bpptree::detail::IteratorDetail&lt; Value, Tree, LeafNode, is_const, reverse &gt;::ProxyRef'],['../structbpptree_1_1detail_1_1Ordered_1_1Transient_1_1ProxyRef.html',1,'bpptree::detail::Ordered&lt; KeyValue, KeyValueExtractor, LessThan, BinarySearch &gt;::Transient&lt; Parent &gt;::ProxyRef']]]
+  ['replace_512',['Replace',['../structbpptree_1_1detail_1_1Replace.html',1,'bpptree::detail']]],
+  ['rootvariant_513',['RootVariant',['../structbpptree_1_1detail_1_1NodeTypesDetail_1_1RootVariant.html',1,'bpptree::detail::NodeTypesDetail']]],
+  ['rootvariant_3c_201_2c_20args_2e_2e_2e_20_3e_514',['RootVariant&lt; 1, args... &gt;',['../structbpptree_1_1detail_1_1NodeTypesDetail_1_1RootVariant_3_011_00_01args_8_8_8_01_4.html',1,'bpptree::detail::NodeTypesDetail']]]
 ];
