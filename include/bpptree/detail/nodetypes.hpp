@@ -113,20 +113,6 @@ struct NodeTypesDetail {
         Params() = default;
 
         Params(Params const& other) noexcept(noexcept(Parent(other))) : Parent(other) {}
-
-        Params& operator=(Params const& other) noexcept(noexcept(Parent::operator=(other))) {
-            Parent::operator=(other);
-            return *this;
-        }
-
-        Params(Params&& other) noexcept(noexcept(Parent(std::move(other)))) : Parent(std::move(other)) {}
-
-        Params& operator=(Params&& other) noexcept(noexcept(Parent::operator=(std::move(other)))) {
-            Parent::operator=(std::move(other));
-            return *this;
-        }
-
-        ~Params() = default;
     };
 
     template<int leaf_size>
