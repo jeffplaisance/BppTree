@@ -40,7 +40,7 @@ struct LeafNodeBase : public Parent {
 
     LeafNodeBase() = default;
 
-    LeafNodeBase(LeafNodeBase const& other) : length(other.length), persistent(other.persistent), values(other.values, other.length) {}
+    LeafNodeBase(LeafNodeBase const& other) : Parent(other), length(other.length), persistent(other.persistent), values(other.values, other.length) {}
 
     ~LeafNodeBase() {
         for (IndexType i = 0; i < length; ++i) {

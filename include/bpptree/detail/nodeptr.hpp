@@ -107,7 +107,7 @@ public:
 };
 
 template <typename PtrType, typename... Ts>
-NodePtr<PtrType> make_ptr(Ts&&... ts) noexcept(std::is_nothrow_constructible_v<PtrType, Ts...>) {
+NodePtr<PtrType> make_ptr(Ts&&... ts) noexcept(std::is_nothrow_constructible_v<PtrType, Ts&&...>) {
     if constexpr (count_allocations) {
         ++allocations;
         ++increments;

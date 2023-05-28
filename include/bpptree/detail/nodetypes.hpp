@@ -76,8 +76,6 @@ struct NodeTypesDetail {
 
         using Parent = typename LeafNodeMixin<LeafNode<leaf_size>, leaf_size>::Type;
 
-        std::atomic<uint32_t> ref_count = 1;
-
         LeafNode() = default;
 
         template <typename T>
@@ -90,8 +88,6 @@ struct NodeTypesDetail {
     struct InternalNode : public InternalNodeMixin<InternalNode<leaf_size, internal_size, depth>, leaf_size, internal_size, depth>::Type {
 
         using Parent = typename InternalNodeMixin<InternalNode<leaf_size, internal_size, depth>, leaf_size, internal_size, depth>::Type;
-
-        std::atomic<uint32_t> ref_count = 1;
 
         InternalNode() = default;
 
@@ -111,6 +107,26 @@ struct NodeTypesDetail {
 
         template <auto leaf_size, auto internal_size, auto depth>
         using InternalNodeType = InternalNode<leaf_size, internal_size, depth>;
+
+        std::atomic<uint32_t> ref_count = 1;
+
+        Params() = default;
+
+        Params(Params const& other) noexcept(noexcept(Parent(other))) : Parent(other) {}
+
+        Params& operator=(Params const& other) noexcept(noexcept(Parent::operator=(other))) {
+            Parent::operator=(other);
+            return *this;
+        }
+
+        Params(Params&& other) noexcept(noexcept(Parent(std::move(other)))) : Parent(std::move(other)) {}
+
+        Params& operator=(Params&& other) noexcept(noexcept(Parent::operator=(std::move(other)))) {
+            Parent::operator=(std::move(other));
+            return *this;
+        }
+
+        ~Params() = default;
     };
 
     template<int leaf_size>
