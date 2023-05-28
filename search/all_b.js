@@ -1,7 +1,7 @@
 var searchData=
 [
   ['make_5fpersistent_233',['make_persistent',['../structbpptree_1_1detail_1_1LeafNodeBase.html#ab3ada45c858251ba330ab21dd1816bcd',1,'bpptree::detail::LeafNodeBase::make_persistent()'],['../structbpptree_1_1detail_1_1InternalNodeBase.html#a0a4a6a0c868f10f96da9e9eb3d0f9b82',1,'bpptree::detail::InternalNodeBase::make_persistent()']]],
-  ['make_5fptr_234',['make_ptr',['../namespacebpptree_1_1detail.html#a21bf163c4af31f5697ad058104b15b5c',1,'bpptree::detail']]],
+  ['make_5fptr_234',['make_ptr',['../namespacebpptree_1_1detail.html#a600f5ac0980e7904bbc273d6de06f97f',1,'bpptree::detail']]],
   ['max_235',['Max',['../structbpptree_1_1detail_1_1Max.html',1,'bpptree::detail']]],
   ['max_236',['max',['../structbpptree_1_1detail_1_1Max_1_1Shared.html#afc90c2e4171c485b9bf1c3f58bb2783e',1,'bpptree::detail::Max::Shared::max(It const &amp;begin, It const &amp;end) const'],['../structbpptree_1_1detail_1_1Max_1_1Shared.html#a6ac5ac93a7c6961d6bc08115f79a90c9',1,'bpptree::detail::Max::Shared::max() const']]],
   ['max_2ehpp_237',['max.hpp',['../max_8hpp.html',1,'']]],
