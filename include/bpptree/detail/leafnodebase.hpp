@@ -34,16 +34,16 @@ struct LeafNodeBase : public Parent {
 
     static constexpr uint64_t it_clear = ~(it_mask << it_shift);
 
-    uint16_t length = 0;
-    bool persistent = false;
     UninitializedArray<Value, leaf_size> values;
 
     LeafNodeBase() = default;
 
-    LeafNodeBase(LeafNodeBase const& other) : Parent(other), length(other.length), persistent(other.persistent), values(other.values, other.length) {}
+    LeafNodeBase(LeafNodeBase const& other) : Parent(other), values(other.values, other.length) {}
+
+    LeafNodeBase& operator=(LeafNodeBase const& other) = delete;
 
     ~LeafNodeBase() {
-        for (IndexType i = 0; i < length; ++i) {
+        for (IndexType i = 0; i < this->length; ++i) {
             values.destruct(i);
         }
     }
@@ -86,20 +86,20 @@ struct LeafNodeBase : public Parent {
 
     template <typename... Args>
     void insert_no_split(LeafNodeBase& node, IndexType index, Args&&... args) noexcept(disable_exceptions) {
-        for (IndexType i = length - 1; i >= index; --i) {
-            if (persistent) {
+        for (IndexType i = this->length - 1; i >= index; --i) {
+            if (this->persistent) {
                 node.values.set(i + 1, node.length, values[i]);
             } else {
                 node.values.set(i + 1, node.length, values.move(i));
             }
         }
         node.values.emplace(index, node.length, std::forward<Args>(args)...);
-        if (persistent) {
+        if (this->persistent) {
             for (IndexType i = 0; i < index; ++i) {
                 node.values.set(i, node.length, values[i]);
             }
         }
-        node.length = length + 1;
+        node.length = this->length + 1;
     }
 
     template <typename T>
@@ -114,8 +114,8 @@ struct LeafNodeBase : public Parent {
     template <typename... Args>
     bool insert_split(LeafNodeBase& left, LeafNodeBase& right, IndexType index, uint64_t& iter, bool right_most, Args&&... args) noexcept(disable_exceptions) {
         IndexType split_point = right_most && index == leaf_size ? index : (leaf_size + 1) / 2;
-        for (IndexType i = length - 1; i >= index; --i) {
-            if (persistent) {
+        for (IndexType i = this->length - 1; i >= index; --i) {
+            if (this->persistent) {
                 set_element(left, right, i + 1, split_point, values[i]);
             } else {
                 set_element(left, right, i + 1, split_point, std::move(values[i]));
@@ -126,8 +126,8 @@ struct LeafNodeBase : public Parent {
         } else {
             right.values.emplace(index - split_point, right.length, std::forward<Args>(args)...);
         }
-        for (IndexType i = persistent ? 0 : split_point; i < index; ++i) {
-            if (persistent) {
+        for (IndexType i = this->persistent ? 0 : split_point; i < index; ++i) {
+            if (this->persistent) {
                 set_element(left, right, i, split_point, values[i]);
             } else {
                 set_element(left, right, i, split_point, std::move(values[i]));
@@ -149,11 +149,11 @@ struct LeafNodeBase : public Parent {
     template <typename R, typename S, typename... Args>
     void insert_index(IndexType index, R&& do_replace, S&& do_split, size_t& size, uint64_t& iter, bool right_most, Args&&... args) noexcept(disable_exceptions) {
         ++size;
-        if (length != leaf_size) {
+        if (this->length != leaf_size) {
             set_index(iter, index);
             ReplaceType replace{};
             compute_delta_insert(index, replace.delta, args...);
-            if (persistent) {
+            if (this->persistent) {
                 replace.delta.ptr = make_ptr<NodeType>();
                 replace.delta.ptr_changed = true;
                 insert_no_split(*replace.delta.ptr, index, std::forward<Args>(args)...);
@@ -164,7 +164,7 @@ struct LeafNodeBase : public Parent {
             }
         } else {
             auto right = make_ptr<NodeType>();
-            if (persistent) {
+            if (this->persistent) {
                 NodePtr<NodeType> left = make_ptr<NodeType>();
                 bool new_element_left = insert_split(*left, *right, index, iter, right_most, std::forward<Args>(args)...);
                 do_split(SplitType(std::move(left), std::move(right), true, new_element_left));
@@ -186,8 +186,8 @@ struct LeafNodeBase : public Parent {
         set_index(iter, index);
         ReplaceType replace{};
         compute_delta_set(index, replace.delta, args...);
-        if (persistent) {
-            replace.delta.ptr = make_ptr<NodeType>(this->self(), false);
+        if (this->persistent) {
+            replace.delta.ptr = make_ptr<NodeType>(this->self());
             replace.delta.ptr_changed = true;
             replace.delta.ptr->values.emplace(index, replace.delta.ptr->length, std::forward<Args>(args)...);
             do_replace(replace);
@@ -204,22 +204,22 @@ struct LeafNodeBase : public Parent {
     }
 
     bool erase(LeafNodeBase& node, IndexType index, uint64_t& iter, bool right_most) {
-        if (persistent) {
+        if (this->persistent) {
             for (IndexType i = 0; i < index; ++i) {
                 node.values.set(i, node.length, values[i]);
             }
         }
-        for (IndexType i = index + 1; i < length; ++i) {
-            if (persistent) {
+        for (IndexType i = index + 1; i < this->length; ++i) {
+            if (this->persistent) {
                 node.values.set(i - 1, node.length, values[i]);
             } else {
                 node.values.set(i - 1, node.length, values.move(i));
             }
         }
-        if (node.length == length) {
-            node.values.destruct(length - 1);
+        if (node.length == this->length) {
+            node.values.destruct(this->length - 1);
         }
-        node.length = length - 1;
+        node.length = this->length - 1;
         bool carry = index == node.length && !right_most;
         set_index(iter, carry ? 0 : index);
         return carry;
@@ -227,10 +227,10 @@ struct LeafNodeBase : public Parent {
 
     template <typename R, typename E>
     void erase(IndexType index, R&& do_replace, E&& do_erase, uint64_t& iter, bool right_most) {
-        if (length > 1) {
+        if (this->length > 1) {
             ReplaceType replace{};
             compute_delta_erase(index, replace.delta);
-            if (persistent) {
+            if (this->persistent) {
                 replace.delta.ptr = make_ptr<NodeType>();
                 replace.delta.ptr_changed = true;
                 replace.carry = erase(*replace.delta.ptr, index, iter, right_most);
@@ -273,7 +273,7 @@ struct LeafNodeBase : public Parent {
     }
 
     void make_persistent() {
-        persistent = true;
+        this->persistent = true;
     }
 
     void seek_first(uint64_t& it) const {
@@ -281,11 +281,11 @@ struct LeafNodeBase : public Parent {
     }
 
     void seek_last(uint64_t& it) const {
-        set_index(it, length - 1);
+        set_index(it, this->length - 1);
     }
 
     void seek_end(uint64_t& it) const {
-        set_index(it, length);
+        set_index(it, this->length);
     }
 
     void seek_begin(typename LeafNodeBase::SelfType const*& leaf, uint64_t& it) const {
@@ -294,7 +294,7 @@ struct LeafNodeBase : public Parent {
     }
 
     void seek_end(typename LeafNodeBase::SelfType const*& leaf, uint64_t& it) const {
-        set_index(it, length);
+        set_index(it, this->length);
         leaf = &this->self();
     }
 
@@ -303,14 +303,14 @@ struct LeafNodeBase : public Parent {
     }
 
     Value const& back() const {
-        return values[length - 1];
+        return values[this->length - 1];
     }
 
     ssize advance(typename LeafNodeBase::SelfType const*& leaf, uint64_t& it, ssize n) const {
         auto sum = get_index(it) + n;
-        if (sum >= length) {
-            auto ret = sum - (length - 1);
-            set_index(it, length - 1);
+        if (sum >= this->length) {
+            auto ret = sum - (this->length - 1);
+            set_index(it, this->length - 1);
             return ret;
         }
         if (sum < 0) {

@@ -174,6 +174,8 @@ public:
 
         InternalNode(InternalNode const& other) noexcept(noexcept(Parent(other)) && std::is_nothrow_copy_constructible_v<Key>) : Parent(other), keys(other.keys, other.length) {}
 
+        InternalNode& operator=(InternalNode const& other) = delete;
+
         ~InternalNode() {
             for (IndexType i = 0; i < this->length; ++i) {
                 keys.destruct(i);

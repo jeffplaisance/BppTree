@@ -21,7 +21,7 @@ template <
         typename... Ts>
 struct NodeTypesDetail {
     template <typename Parent>
-    struct Params;
+    struct NodeBase;
 
     template <typename Parent>
     struct NodeInfoBase : public Parent {
@@ -58,7 +58,7 @@ struct NodeTypesDetail {
         using Type = Chain<Derived,
                 Ts::template LeafNode...,
                 LeafNodeBaseCurried,
-                Params>;
+                NodeBase>;
     };
 
     template<typename Derived, auto leaf_size, auto internal_size, auto depth>
@@ -68,37 +68,17 @@ struct NodeTypesDetail {
         using Type = Chain<Derived,
                 Curry<Ts::template InternalNode, internal_size>::template Mixin...,
                 InternalNodeBaseCurried,
-                Params>;
+                NodeBase>;
     };
 
     template <auto leaf_size>
-    struct LeafNode : public LeafNodeMixin<LeafNode<leaf_size>, leaf_size>::Type {
-
-        using Parent = typename LeafNodeMixin<LeafNode<leaf_size>, leaf_size>::Type;
-
-        LeafNode() = default;
-
-        template <typename T>
-        LeafNode(T&& t, bool persistent) : Parent(std::forward<T>(t)) {
-            this->persistent = persistent;
-        }
-    };
+    struct LeafNode : public LeafNodeMixin<LeafNode<leaf_size>, leaf_size>::Type {};
 
     template<auto leaf_size, auto internal_size, auto depth>
-    struct InternalNode : public InternalNodeMixin<InternalNode<leaf_size, internal_size, depth>, leaf_size, internal_size, depth>::Type {
-
-        using Parent = typename InternalNodeMixin<InternalNode<leaf_size, internal_size, depth>, leaf_size, internal_size, depth>::Type;
-
-        InternalNode() = default;
-
-        template <typename T>
-        InternalNode(T&& t, bool persistent) noexcept(noexcept(Parent(std::forward<T>(t)))) : Parent(std::forward<T>(t)) {
-            this->persistent = persistent;
-        }
-    };
+    struct InternalNode : public InternalNodeMixin<InternalNode<leaf_size, internal_size, depth>, leaf_size, internal_size, depth>::Type {};
 
     template <typename Parent>
-    struct Params : public Parent {
+    struct NodeBase : public Parent {
         template <typename PtrType>
         using NodeInfoType = NodeInfo<PtrType>;
 
@@ -109,10 +89,18 @@ struct NodeTypesDetail {
         using InternalNodeType = InternalNode<leaf_size, internal_size, depth>;
 
         std::atomic<uint32_t> ref_count = 1;
+        uint16_t length = 0;
+        bool persistent = false;
 
-        Params() = default;
+        NodeBase() = default;
 
-        Params(Params const& other) noexcept(noexcept(Parent(other))) : Parent(other) {}
+        // ref_count and persistent are intentionally not copied
+        NodeBase(NodeBase const& other) noexcept : Parent(other), length(other.length) {}
+
+        // copy assignment is deleted because there is no scenario in which overwriting an existing node makes sense
+        NodeBase& operator=(NodeBase const& other) = delete;
+
+        ~NodeBase() = default;
     };
 
     template<int leaf_size>
