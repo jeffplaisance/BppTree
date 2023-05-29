@@ -136,6 +136,8 @@ Static Public Member Functions</h2></td></tr>
 Static Public Attributes</h2></td></tr>
 <tr class="memitem:a3494ac3298cd691133b40b13e07214ed"><td class="memItemLeft" align="right" valign="top">static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html#a3494ac3298cd691133b40b13e07214ed">leaf_node_size</a> = <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html#a8101d1bb6a4b3831b37aa30853c9d0c2">get_leaf_node_size</a>()</td></tr>
 <tr class="separator:a3494ac3298cd691133b40b13e07214ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aafc49de44f86f4703afa2a0a3722caad"><td class="memItemLeft" align="right" valign="top">static constexpr <a class="el" href="namespacebpptree_1_1detail.html#a09d4ddfe5112e73c4d2e3332783d3b00">ssize</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html#aafc49de44f86f4703afa2a0a3722caad">internal_element_size_lower_bound</a> = (Ts::sizeof_hint() + ... + sizeof(void*))</td></tr>
+<tr class="separator:aafc49de44f86f4703afa2a0a3722caad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab84263b11ef43fbd75195c29e93cf4f7"><td class="memItemLeft" align="right" valign="top">static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html#ab84263b11ef43fbd75195c29e93cf4f7">internal_node_size</a> = <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html#a3f511412d225a08e72c340acee703dc0">get_internal_node_size</a>()</td></tr>
 <tr class="separator:ab84263b11ef43fbd75195c29e93cf4f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a73566174db2c7e5a65d1d62df9893047"><td class="memItemLeft" align="right" valign="top">static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html#a73566174db2c7e5a65d1d62df9893047">max_depth</a> = <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html#a8b6e726a2e370a6f986ef9b4115461c7">find_max_depth</a>&lt;<a class="el" href="namespacebpptree_1_1detail.html#a3d636ad26554cfe8dd1a7f1ed22021f5">bits_required</a>&lt;<a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html#a3494ac3298cd691133b40b13e07214ed">leaf_node_size</a>&gt;(), 1&gt;()</td></tr>
@@ -408,6 +410,30 @@ template&lt;size_t a, size_t b&gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="aafc49de44f86f4703afa2a0a3722caad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aafc49de44f86f4703afa2a0a3722caad">&#9670;&nbsp;</a></span>internal_element_size_lower_bound</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Value , ssize leaf_node_bytes = 512, ssize internal_node_bytes = 512, ssize depth_limit = 16, bool disable_exceptions = true, typename... Ts&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="namespacebpptree_1_1detail.html#a09d4ddfe5112e73c4d2e3332783d3b00">ssize</a> <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html">bpptree::detail::NodeTypesDetail</a>&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, disable_exceptions, Ts &gt;::internal_element_size_lower_bound = (Ts::sizeof_hint() + ... + sizeof(void*))</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="ab84263b11ef43fbd75195c29e93cf4f7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab84263b11ef43fbd75195c29e93cf4f7">&#9670;&nbsp;</a></span>internal_node_size</h2>
 
