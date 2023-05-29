@@ -102,6 +102,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aab810f0f4075c6bb9a5bbd9bb1f4c0ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab9e4d6799b27ff7cd5f32813012fa918"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1LeafNodeBase.html#ab9e4d6799b27ff7cd5f32813012fa918">LeafNodeBase</a> (<a class="el" href="structbpptree_1_1detail_1_1LeafNodeBase.html">LeafNodeBase</a> <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a> &amp;other)</td></tr>
 <tr class="separator:ab9e4d6799b27ff7cd5f32813012fa918"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a904fb617a35a82ad74eb75a72a32eb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structbpptree_1_1detail_1_1LeafNodeBase.html">LeafNodeBase</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1LeafNodeBase.html#a4a904fb617a35a82ad74eb75a72a32eb">operator=</a> (<a class="el" href="structbpptree_1_1detail_1_1LeafNodeBase.html">LeafNodeBase</a> <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a> &amp;other)=delete</td></tr>
+<tr class="separator:a4a904fb617a35a82ad74eb75a72a32eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3f536f4e26d400febb861ab457ebcc5c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1LeafNodeBase.html#a3f536f4e26d400febb861ab457ebcc5c">~LeafNodeBase</a> ()</td></tr>
 <tr class="separator:a3f536f4e26d400febb861ab457ebcc5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad97db9dd172219b8d1f5da1b4b848401"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
@@ -188,10 +190,6 @@ Static Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a9b6b61ce61156f02fa3bc8a5fdbc1dc7"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1LeafNodeBase.html#a9b6b61ce61156f02fa3bc8a5fdbc1dc7">length</a> = 0</td></tr>
-<tr class="separator:a9b6b61ce61156f02fa3bc8a5fdbc1dc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af15b75942d61efdff05c7e81ac5a55e3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1LeafNodeBase.html#af15b75942d61efdff05c7e81ac5a55e3">persistent</a> = false</td></tr>
-<tr class="separator:af15b75942d61efdff05c7e81ac5a55e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad7b9b074bfd1a06428e78b74e12e83f4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structbpptree_1_1detail_1_1UninitializedArray.html">UninitializedArray</a>&lt; Value, leaf_size &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1LeafNodeBase.html#ad7b9b074bfd1a06428e78b74e12e83f4">values</a></td></tr>
 <tr class="separator:ad7b9b074bfd1a06428e78b74e12e83f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -1370,6 +1368,34 @@ template&lt;typename Parent , typename Value , auto leaf_size, bool disable_exce
 
 </div>
 </div>
+<a id="a4a904fb617a35a82ad74eb75a72a32eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a904fb617a35a82ad74eb75a72a32eb">&#9670;&nbsp;</a></span>operator=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Parent , typename Value , auto leaf_size, bool disable_exceptions&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structbpptree_1_1detail_1_1LeafNodeBase.html">LeafNodeBase</a>&amp; <a class="el" href="structbpptree_1_1detail_1_1LeafNodeBase.html">bpptree::detail::LeafNodeBase</a>&lt; Parent, Value, leaf_size, disable_exceptions &gt;::operator= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structbpptree_1_1detail_1_1LeafNodeBase.html">LeafNodeBase</a>&lt; Parent, Value, leaf_size, disable_exceptions &gt; <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="ac0f35c8188847dec1562fc90badd2338"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac0f35c8188847dec1562fc90badd2338">&#9670;&nbsp;</a></span>seek_begin()</h2>
 
@@ -1861,38 +1887,6 @@ template&lt;typename Parent , typename Value , auto leaf_size, bool disable_exce
 <span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
   </tr>
 </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a9b6b61ce61156f02fa3bc8a5fdbc1dc7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9b6b61ce61156f02fa3bc8a5fdbc1dc7">&#9670;&nbsp;</a></span>length</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename Parent , typename Value , auto leaf_size, bool disable_exceptions&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">uint16_t <a class="el" href="structbpptree_1_1detail_1_1LeafNodeBase.html">bpptree::detail::LeafNodeBase</a>&lt; Parent, Value, leaf_size, disable_exceptions &gt;::length = 0</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="af15b75942d61efdff05c7e81ac5a55e3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af15b75942d61efdff05c7e81ac5a55e3">&#9670;&nbsp;</a></span>persistent</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename Parent , typename Value , auto leaf_size, bool disable_exceptions&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">bool <a class="el" href="structbpptree_1_1detail_1_1LeafNodeBase.html">bpptree::detail::LeafNodeBase</a>&lt; Parent, Value, leaf_size, disable_exceptions &gt;::persistent = false</td>
-        </tr>
-      </table>
 </div><div class="memdoc">
 
 </div>

@@ -98,7 +98,7 @@ $(function() {
 , <a class="el" href="structbpptree_1_1detail_1_1ModifyTypes_1_1DoReplace.html#ac2b5f6ecb670e13802d1d69c26c8b326">bpptree::detail::ModifyTypes&lt; LeafNode, InternalNode, max_depth &gt;::DoReplace&lt; TreeType, NodeType &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1ModifyTypes_1_1DoSplit.html#a2d50215b66211047927d63f8d3356f02">bpptree::detail::ModifyTypes&lt; LeafNode, InternalNode, max_depth &gt;::DoSplit&lt; TreeType, NodeType &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1ModifyTypes_1_1Modify.html#ae4fbec1f76bde73e72b2b3367d5a4e25">bpptree::detail::ModifyTypes&lt; LeafNode, InternalNode, max_depth &gt;::Modify&lt; Operation &gt;</a>
-, <a class="el" href="structbpptree_1_1detail_1_1PairExtractor.html#a80c5d04b75ad82ca88189fa39b4422b7">bpptree::detail::PairExtractor&lt; index &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1PairExtractor.html#ad8fe1671a361acd935d937e631922dff">bpptree::detail::PairExtractor&lt; index &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1TupleExtractor.html#af8954038334be521cef06d711db5b50c">bpptree::detail::TupleExtractor&lt; index &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1Update2.html#a85d4efcc980173742cee627aeef5fa81">bpptree::detail::Update2</a>
 , <a class="el" href="structbpptree_1_1detail_1_1Update.html#a33053882a7b9f6fa5c0a0d42e5c15c92">bpptree::detail::Update</a>
@@ -106,7 +106,7 @@ $(function() {
 , <a class="el" href="structbpptree_1_1detail_1_1WrappedCastingExtractor.html#a93d1594a841571523b81525466cc2135">bpptree::detail::WrappedCastingExtractor&lt; Extractor, T &gt;</a>
 </li>
 <li>operator*()
-: <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a64bed00953b3d65c50904175a30ac8de">bpptree::detail::IteratorDetail&lt; Value, Tree, LeafNode, is_const, reverse &gt;</a>
+: <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#aee7272f080683d888f8dc861160832be">bpptree::detail::IteratorDetail&lt; Value, Tree, LeafNode, is_const, reverse &gt;</a>
 , <a class="el" href="classbpptree_1_1detail_1_1NodePtr.html#abe82c83297b6dec7e42e717ab17eb097">bpptree::detail::NodePtr&lt; PtrType &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1ProxyOperators.html#adffd2045b935fc9c70e0b81229575e65">bpptree::detail::ProxyOperators&lt; T &gt;</a>
 </li>
@@ -160,10 +160,14 @@ $(function() {
 : <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a36573bb51c14d985480ff4b286dc4d4d">bpptree::detail::IteratorDetail&lt; Value, Tree, LeafNode, is_const, reverse &gt;</a>
 </li>
 <li>operator=()
-: <a class="el" href="structbpptree_1_1detail_1_1Indexed_1_1Transient_1_1ProxyRef.html#ae5790911737e3901c259ff599b32bd4e">bpptree::detail::Indexed&lt; Value, SizeType &gt;::Transient&lt; Parent &gt;::ProxyRef</a>
+: <a class="el" href="structbpptree_1_1detail_1_1BPPTREE__MINMAX__UPPERDetail_1_1InternalNode.html#ad9dfd90961d278188c2474be95c45448">bpptree::detail::BPPTREE_MINMAX_UPPERDetail&lt; Value, KeyExtractor, Comp &gt;::InternalNode&lt; Parent, internal_size &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1Indexed_1_1Transient_1_1ProxyRef.html#ae5790911737e3901c259ff599b32bd4e">bpptree::detail::Indexed&lt; Value, SizeType &gt;::Transient&lt; Parent &gt;::ProxyRef</a>
 , <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail_1_1ProxyRef.html#a82fe5038cf2f3cce44dcefb0c7101750">bpptree::detail::IteratorDetail&lt; Value, Tree, LeafNode, is_const, reverse &gt;::ProxyRef</a>
+, <a class="el" href="structbpptree_1_1detail_1_1LeafNodeBase.html#a4a904fb617a35a82ad74eb75a72a32eb">bpptree::detail::LeafNodeBase&lt; Parent, Value, leaf_size, disable_exceptions &gt;</a>
 , <a class="el" href="classbpptree_1_1detail_1_1NodePtr.html#a4532163312e9ea90b420b7b0083ad5fd">bpptree::detail::NodePtr&lt; PtrType &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail_1_1NodeBase.html#a1fc0aaf187203cfb595a744b22cafd21">bpptree::detail::NodeTypesDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, disable_exceptions, Ts &gt;::NodeBase&lt; Parent &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1Ordered_1_1Transient_1_1ProxyRef.html#a154afdfb618d17b2809d714a2a882e10">bpptree::detail::Ordered&lt; KeyValue, KeyValueExtractor, LessThan, BinarySearch &gt;::Transient&lt; Parent &gt;::ProxyRef</a>
+, <a class="el" href="structbpptree_1_1detail_1_1OrderedDetail_1_1InternalNode.html#a9964780d097857fe6f21feb7a3c54600">bpptree::detail::OrderedDetail&lt; KeyValue, KeyValueExtractor, LessThan, binary_search &gt;::InternalNode&lt; Parent, internal_size &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1UninitializedArray.html#a2c10267a52a1375ccd1db89c2db20ade">bpptree::detail::UninitializedArray&lt; T, n &gt;</a>
 </li>
 <li>operator==()
@@ -183,7 +187,7 @@ $(function() {
 </li>
 <li>operator[]()
 : <a class="el" href="structbpptree_1_1detail_1_1Indexed_1_1Persistent.html#afa6fff467ea21be4007c403ca143f6c0">bpptree::detail::Indexed&lt; Value, SizeType &gt;::Persistent&lt; Parent &gt;</a>
-, <a class="el" href="structbpptree_1_1detail_1_1Indexed_1_1Transient.html#a7bc7f62888f785883af0810fa1c27a56">bpptree::detail::Indexed&lt; Value, SizeType &gt;::Transient&lt; Parent &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1Indexed_1_1Transient.html#a76355f1c262bd110a03405bf34c09d33">bpptree::detail::Indexed&lt; Value, SizeType &gt;::Transient&lt; Parent &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a3f8c462c561a0a22ae347e24982b2794">bpptree::detail::IteratorDetail&lt; Value, Tree, LeafNode, is_const, reverse &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1Ordered_1_1Persistent.html#afcd5b7e08c3b50f00d32073b433d1c67">bpptree::detail::Ordered&lt; KeyValue, KeyValueExtractor, LessThan, BinarySearch &gt;::Persistent&lt; Parent &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1Ordered_1_1Transient.html#a478dda77cf29961a8fe39bfdc14dab35">bpptree::detail::Ordered&lt; KeyValue, KeyValueExtractor, LessThan, BinarySearch &gt;::Transient&lt; Parent &gt;</a>
