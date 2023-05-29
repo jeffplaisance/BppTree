@@ -114,21 +114,28 @@ struct NodeTypesDetail {
 
     template<int leaf_size>
     static constexpr int get_leaf_node_size2() {
-        if constexpr (sizeof(LeafNode<leaf_size>) > leaf_node_bytes) {
+        constexpr ssize size = sizeof(LeafNode<leaf_size>);
+        if constexpr (size > leaf_node_bytes) {
             return get_leaf_node_size3<leaf_size - 1>();
+        } else if constexpr (size + sizeof(Value) > leaf_node_bytes) {
+            return leaf_size;
         } else {
             return get_leaf_node_size2<leaf_size + 1>();
         }
     }
 
     static constexpr int get_leaf_node_size() {
-        constexpr int initial = (leaf_node_bytes-8)/sizeof(Value);
+        constexpr int initial = (leaf_node_bytes - 8) / sizeof(Value);
         return get_leaf_node_size2<initial>();
     }
 
     static constexpr int leaf_node_size = get_leaf_node_size();
     static_assert(leaf_node_size > 0);
     static_assert(leaf_node_size < 65536);
+
+    // each element added to an internal node increases its size by
+    // at least this amount but potentially more due to padding
+    static constexpr ssize internal_element_size_lower_bound = (Ts::sizeof_hint() + ... + sizeof(void*));
 
     template<int internal_size>
     static constexpr int get_internal_node_size3() {
@@ -141,15 +148,18 @@ struct NodeTypesDetail {
 
     template<int internal_size>
     static constexpr int get_internal_node_size2() {
-        if constexpr (sizeof(InternalNode<leaf_node_size, internal_size, 2>) > internal_node_bytes) {
+        constexpr ssize size = sizeof(InternalNode<leaf_node_size, internal_size, 2>);
+        if constexpr (size > internal_node_bytes) {
             return get_internal_node_size3<internal_size - 1>();
+        } else if constexpr (size + internal_element_size_lower_bound > internal_node_bytes) {
+            return internal_size;
         } else {
             return get_internal_node_size2<internal_size + 1>();
         }
     }
 
     static constexpr int get_internal_node_size() {
-        constexpr int initial = (internal_node_bytes - 8) / (Ts::sizeof_hint() + ... + sizeof(void*));
+        constexpr int initial = (internal_node_bytes - 8) / internal_element_size_lower_bound;
         return get_internal_node_size2<initial>();
     }
 
