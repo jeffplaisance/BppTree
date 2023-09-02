@@ -271,12 +271,8 @@ public:
             auto [index, remainder] = finder(this->self(), search_val);
             this->pointers[index]->template insert_or_assign<duplicate_policy>(remainder,
                                                   finder,
-                                                  [this, index = index, &do_replace, &iter](auto&& replace) {
-                                                      this->insert_replace(index, replace, do_replace, iter);
-                                                  },
-                                                  [this, index = index, &do_replace, &do_split, right_most, &iter](auto&& split) {
-                                                      this->insert_split(index, split, do_replace, do_split, iter, right_most);
-                                                  },
+                                                  typename Parent::template DoReplace<R&>(this->self(), index, do_replace, iter),
+                                                  typename Parent::template DoSplit<R&, S&>(this->self(), index, do_replace, do_split, iter, right_most),
                                                   size,
                                                   iter,
                                                   right_most && index == this->length - 1,

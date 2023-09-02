@@ -266,15 +266,47 @@ struct InternalNodeBase : public Parent {
         }
     }
 
+    template <typename R>
+    struct DoReplace {
+        typename Parent::SelfType& self;
+        IndexType index;
+        R& do_replace;
+        uint64_t& iter;
+
+        DoReplace(typename Parent::SelfType& self, IndexType index, R& do_replace, uint64_t& iter) :
+            self(self), index(index), do_replace(do_replace), iter(iter) {}
+
+        template <typename T>
+        void operator()(T&& replace) {
+            self.insert_replace(index, replace, do_replace, iter);
+        }
+    };
+
+    template <typename R, typename S>
+    struct DoSplit {
+        typename Parent::SelfType& self;
+        IndexType index;
+        R& do_replace;
+        S& do_split;
+        uint64_t& iter;
+        bool right_most;
+
+        DoSplit(typename Parent::SelfType& self, IndexType index, R& do_replace, S& do_split, uint64_t& iter, bool right_most) :
+                self(self), index(index), do_replace(do_replace), do_split(do_split), iter(iter), right_most(right_most) {}
+
+        template <typename T>
+        void operator()(T&& split) {
+            self.insert_split(index, split, do_replace, do_split, iter, right_most);
+        }
+    };
+
     template <typename T, typename F, typename R, typename S, typename... Args>
     void insert(T const& search_val, F&& finder, R&& do_replace, S&& do_split, size_t& size, uint64_t& iter, bool right_most, Args&&... args) {
         auto [index, remainder] = finder(this->self(), search_val);
         pointers[index]->insert(remainder,
                                 finder,
-                                [this, index = index, &do_replace, &iter](auto&& replace)
-                                { this->insert_replace(index, replace, do_replace, iter); },
-                                [this, index = index, &do_replace, &do_split, &iter, right_most](auto&& split)
-                                { this->insert_split(index, split, do_replace, do_split, iter, right_most); },
+                                DoReplace(this->self(), index, do_replace, iter),
+                                DoSplit(this->self(), index, do_replace, do_split, iter, right_most),
                                 size,
                                 iter,
                                 right_most && index == this->length - 1,
@@ -286,8 +318,7 @@ struct InternalNodeBase : public Parent {
         auto [index, remainder] = finder(this->self(), search_val);
         pointers[index]->assign(remainder,
                  finder,
-                 [this, index = index, &do_replace, &iter](auto&& replace)
-                 { this->insert_replace(index, replace, do_replace, iter); },
+                 DoReplace(this->self(), index, do_replace, iter),
                  iter,
                  std::forward<Args>(args)...
         );
@@ -339,15 +370,30 @@ struct InternalNodeBase : public Parent {
         }
     }
 
+    template <typename R, typename E>
+    struct DoErase {
+        typename Parent::SelfType& self;
+        IndexType index;
+        R& do_replace;
+        E& do_erase;
+        uint64_t& iter;
+        bool right_most;
+
+        DoErase(typename Parent::SelfType& self, IndexType index, R& do_replace, E& do_split, uint64_t& iter, bool right_most) :
+                self(self), index(index), do_replace(do_replace), do_erase(do_split), iter(iter), right_most(right_most) {}
+
+        void operator()() {
+            self.erase(index, do_replace, do_erase, iter, right_most);
+        }
+    };
+
     template <typename T, typename F, typename R, typename E>
     void erase(T const& search_val, F&& finder, R&& do_replace, E&& do_erase, size_t& size, uint64_t& iter, bool right_most) {
         auto [index, remainder] = finder(this->self(), search_val);
         pointers[index]->erase(remainder,
                                finder,
-                               [this, index = index, &do_replace, &iter](auto&& replace)
-                               { this->insert_replace(index, replace, do_replace, iter); },
-                               [this, index = index, &do_replace, &do_erase, &iter, right_most]()
-                               { this->erase(index, do_replace, do_erase, iter, right_most); },
+                               DoReplace(this->self(), index, do_replace, iter),
+                               DoErase(this->self(), index, do_replace, do_erase, iter, right_most),
                                size,
                                iter,
                                right_most && index == this->length - 1);
@@ -358,8 +404,7 @@ struct InternalNodeBase : public Parent {
         auto [index, remainder] = finder(this->self(), search_val);
         pointers[index]->update(remainder,
                                 finder,
-                                [this, index = index, &do_replace, &iter](auto&& replace)
-                                { this->insert_replace(index, replace, do_replace, iter); },
+                                DoReplace(this->self(), index, do_replace, iter),
                                 iter,
                                 updater
         );
@@ -370,8 +415,7 @@ struct InternalNodeBase : public Parent {
         auto [index, remainder] = finder(this->self(), search_val);
         pointers[index]->update2(remainder,
                                 finder,
-                                [this, index = index, &do_replace, &iter](auto&& replace)
-                                { this->insert_replace(index, replace, do_replace, iter); },
+                                DoReplace(this->self(), index, do_replace, iter),
                                 iter,
                                 updater
         );

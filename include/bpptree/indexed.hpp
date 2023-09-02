@@ -17,6 +17,14 @@
 namespace bpptree {
 namespace detail {
 
+inline constexpr auto insertion_index = [](auto const& node, auto const& search_val) {
+    return node.insertion_index(search_val);
+};
+
+inline constexpr auto find_index = [](auto const& node, auto const& search_val) {
+    return node.find_index(search_val);
+};
+
 /**
  * Indexed mixin adds support for indexing into a B++ tree by an integer index
  * Supports lookup, assign, insert, update, and erase by index in O(log N) time
@@ -122,9 +130,7 @@ struct Indexed {
         void insert_index(SizeType index, Args&&... args) {
             this->self().dispatch(
                 Modify<Insert>(),
-                [](auto const& node, auto const& search_val) {
-                    return node.insertion_index(search_val);
-                },
+                insertion_index,
                 index,
                 std::forward<Args>(args)...
             );
@@ -137,9 +143,7 @@ struct Indexed {
         void assign_index(SizeType index, Args&&... args) {
             this->self().dispatch(
                 Modify<Assign>(),
-                [](auto const& node, auto const& search_val) {
-                    return node.find_index(search_val);
-                },
+                find_index,
                 index + 1,
                 std::forward<Args>(args)...
             );
@@ -151,9 +155,7 @@ struct Indexed {
         void erase_index(SizeType index) {
             this->self().dispatch(
                 Modify<Erase>(),
-                [](auto const& node, auto const& search_val) {
-                    return node.find_index(search_val);
-                },
+                find_index,
                 index + 1
             );
         }
@@ -166,9 +168,7 @@ struct Indexed {
         void update_index(SizeType index, U&& updater) {
             this->self().dispatch(
                     Modify<Update>(),
-                    [](auto const& node, auto const& search_val) {
-                        return node.find_index(search_val);
-                    },
+                    find_index,
                     index + 1,
                     updater
             );

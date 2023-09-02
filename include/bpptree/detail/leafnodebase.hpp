@@ -86,11 +86,11 @@ struct LeafNodeBase : public Parent {
 
     template <typename... Args>
     void insert_no_split(LeafNodeBase& node, IndexType index, Args&&... args) noexcept(disable_exceptions) {
-        for (IndexType i = this->length - 1; i >= index; --i) {
+        for (IndexType i = this->length; i > index; --i) {
             if (this->persistent) {
-                node.values.set(i + 1, node.length, values[i]);
+                node.values.set(i, node.length, values[i - 1]);
             } else {
-                node.values.set(i + 1, node.length, values.move(i));
+                node.values.set(i, node.length, values.move(i - 1));
             }
         }
         node.values.emplace(index, node.length, std::forward<Args>(args)...);
@@ -114,11 +114,11 @@ struct LeafNodeBase : public Parent {
     template <typename... Args>
     bool insert_split(LeafNodeBase& left, LeafNodeBase& right, IndexType index, uint64_t& iter, bool right_most, Args&&... args) noexcept(disable_exceptions) {
         IndexType split_point = right_most && index == leaf_size ? index : (leaf_size + 1) / 2;
-        for (IndexType i = this->length - 1; i >= index; --i) {
+        for (IndexType i = this->length; i > index; --i) {
             if (this->persistent) {
-                set_element(left, right, i + 1, split_point, values[i]);
+                set_element(left, right, i, split_point, values[i - 1]);
             } else {
-                set_element(left, right, i + 1, split_point, std::move(values[i]));
+                set_element(left, right, i, split_point, std::move(values[i - 1]));
             }
         }
         if (index < split_point) {

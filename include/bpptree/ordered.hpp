@@ -20,6 +20,14 @@
 namespace bpptree {
 namespace detail {
 
+inline constexpr auto find_lower_bound = [](auto const& node, auto const& key) {
+    return std::make_tuple(node.lower_bound_index(key), key);
+};
+
+inline constexpr auto find_key_index_checked = [](auto const& node, auto const& key) {
+    return std::make_tuple(node.find_key_index_checked(key), key);
+};
+
 /**
  * Ordered mixin adds lookup by key into a B++ tree. Values in the B++ tree must be ordered by key to use Ordered.
  * Supports lookup, lower_bound, upper_bound, assign, insert, update, and erase by key in O(log N) time
@@ -36,7 +44,11 @@ struct Ordered {
 private:
     static constexpr KeyValueExtractor extractor{};
 
+    static constexpr auto extract_key = [](auto const&... args){ return extractor.get_key(args...); };
+
     static constexpr LessThan less_than{};
+
+    static constexpr auto less_than_or_equal = [](auto const& a, auto const& b){ return !less_than(b, a); };
 
     static constexpr bool binary_search = BinarySearch::value;
 
@@ -77,7 +89,7 @@ public:
         void seek_key_internal(Key const& key, It& it) const {
             this->self().dispatch(
                     [&key, &it](auto& root) {
-                        if (!root->seek_key(it.leaf, it.iter, key, [](auto const& a, auto const& b){ return less_than(a, b); })) {
+                        if (!root->seek_key(it.leaf, it.iter, key, less_than)) {
                             root->seek_end(it.leaf, it.iter);
                         }
                     }
@@ -115,7 +127,7 @@ public:
          */
         [[nodiscard]] typename Parent::iterator lower_bound(Key const& key) {
             typename Parent::iterator ret(this->self());
-            std::as_const(this->self()).dispatch([&key, &ret](auto& root) { root->seek_key(ret.leaf, ret.iter, key, [](auto const& a, auto const& b){ return less_than(a, b); }); });
+            std::as_const(this->self()).dispatch([&key, &ret](auto& root) { root->seek_key(ret.leaf, ret.iter, key, less_than); });
             return ret;
         }
 
@@ -124,7 +136,7 @@ public:
          */
         [[nodiscard]] typename Parent::const_iterator lower_bound_const(Key const& key) const {
             typename Parent::const_iterator ret(this->self());
-            this->self().dispatch([&key, &ret](auto& root) { root->seek_key(ret.leaf, ret.iter, key, [](auto const& a, auto const& b){ return less_than(a, b); }); });
+            this->self().dispatch([&key, &ret](auto& root) { root->seek_key(ret.leaf, ret.iter, key, less_than); });
             return ret;
         }
 
@@ -141,7 +153,7 @@ public:
          */
         [[nodiscard]] typename Parent::iterator upper_bound(Key const& key) {
             typename Parent::iterator ret(this->self());
-            std::as_const(this->self()).dispatch([&key, &ret](auto& root) { root->seek_key(ret.leaf, ret.iter, key, [](auto const& a, auto const& b){ return !less_than(b, a); }); });
+            std::as_const(this->self()).dispatch([&key, &ret](auto& root) { root->seek_key(ret.leaf, ret.iter, key, less_than_or_equal); });
             return ret;
         }
 
@@ -151,7 +163,7 @@ public:
          */
         [[nodiscard]] typename Parent::const_iterator upper_bound_const(Key const& key) const {
             typename Parent::const_iterator ret(this->self());
-            this->self().dispatch([&key, &ret](auto& root) { root->seek_key(ret.leaf, ret.iter, key, [](auto const& a, auto const& b){ return !less_than(b, a); }); });
+            this->self().dispatch([&key, &ret](auto& root) { root->seek_key(ret.leaf, ret.iter, key, less_than_or_equal); });
             return ret;
         }
 
@@ -186,9 +198,7 @@ public:
         void insert_v(Args&&... args) {
             this->self().dispatch(
                 Modify<InsertOrAssign<DuplicatePolicy::ignore>>(),
-                [](auto const& node, Key const& key) {
-                    return std::tuple<IndexType, Key const&>(node.lower_bound_index(key), key);
-                },
+                find_lower_bound,
                 extractor.get_key(std::as_const(args)...),
                 std::forward<Args>(args)...
             );
@@ -198,9 +208,7 @@ public:
         void assign_v(Args&&... args) {
             this->self().dispatch(
                 Modify<Assign>(),
-                [](auto const& node, Key const& key) {
-                    return std::tuple<IndexType, Key const&>(node.find_key_index_checked(key), key);
-                },
+                find_key_index_checked,
                 extractor.get_key(std::as_const(args)...),
                 std::forward<Args>(args)...
             );
@@ -209,9 +217,7 @@ public:
         void erase_key(Key const& key) {
             this->self().dispatch(
                     Modify<Erase>(),
-                    [](auto const& node, Key const& key) {
-                        return std::tuple<IndexType, Key const&>(node.find_key_index_checked(key), key);
-                    },
+                    find_key_index_checked,
                     key
             );
         }
@@ -220,14 +226,12 @@ public:
         void update_key(Key const& key, U&& updater) {
             this->self().dispatch(
                     Modify<Update2>(),
-                    [](auto const& node, Key const& key) {
-                        return std::tuple<IndexType, Key const&>(node.find_key_index_checked(key), key);
-                    },
+                    find_key_index_checked,
                     key,
                     [&key, &updater](auto&& callback, auto const& v) {
                         Value new_val = updater(extractor.get_value(v));
 #ifdef BPPTREE_SAFETY_CHECKS
-                        decltype(auto) extracted = extractor.apply([](auto const&... args){ return extractor.get_key(args...); }, key, new_val);
+                        decltype(auto) extracted = extractor.apply(extract_key, key, new_val);
                         if (less_than(extracted, key) || less_than(key, extracted)) { //NOLINT
                             throw std::logic_error("key from value does not match key passed to update_key!");
                         }
@@ -241,9 +245,7 @@ public:
         void insert_or_assign(Args&&... args) {
             this->self().dispatch(
                 Modify<InsertOrAssign<DuplicatePolicy::replace>>(),
-                [](auto const& node, Key const& key) {
-                    return std::tuple<IndexType, Key const&>(node.lower_bound_index(key), key);
-                },
+                find_lower_bound,
                 extractor.get_key(std::as_const(args)...),
                 std::forward<Args>(args)...
             );
