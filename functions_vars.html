@@ -103,6 +103,17 @@ $(function() {
 <li>direction
 : <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#ab7424a1361cde5e7a279b39d41bbccec">bpptree::detail::IteratorDetail&lt; Value, Tree, LeafNode, is_const, reverse &gt;</a>
 </li>
+<li>do_erase
+: <a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase_1_1DoErase.html#a0a59f9f0c8438261a85b730f858b8cfb">bpptree::detail::InternalNodeBase&lt; Parent, Value, leaf_size, internal_size, depth_v, disable_exceptions &gt;::DoErase&lt; R, E &gt;</a>
+</li>
+<li>do_replace
+: <a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase_1_1DoErase.html#af68549cc50a57156f4f04e9bc6ea1309">bpptree::detail::InternalNodeBase&lt; Parent, Value, leaf_size, internal_size, depth_v, disable_exceptions &gt;::DoErase&lt; R, E &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase_1_1DoReplace.html#acf95fa458f690aefb29ef81103830b44">bpptree::detail::InternalNodeBase&lt; Parent, Value, leaf_size, internal_size, depth_v, disable_exceptions &gt;::DoReplace&lt; R &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase_1_1DoSplit.html#ae71c5fd03715dc7b8901aef11525ffbd">bpptree::detail::InternalNodeBase&lt; Parent, Value, leaf_size, internal_size, depth_v, disable_exceptions &gt;::DoSplit&lt; R, S &gt;</a>
+</li>
+<li>do_split
+: <a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase_1_1DoSplit.html#a3df38042f3ed264595c22d8fc2fb9994">bpptree::detail::InternalNodeBase&lt; Parent, Value, leaf_size, internal_size, depth_v, disable_exceptions &gt;::DoSplit&lt; R, S &gt;</a>
+</li>
 </ul>
 
 
@@ -116,6 +127,11 @@ $(function() {
 
 
 <h3><a id="index_i"></a>- i -</h3><ul>
+<li>index
+: <a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase_1_1DoErase.html#ae2050afde4c8080d38e12fbc092e58d1">bpptree::detail::InternalNodeBase&lt; Parent, Value, leaf_size, internal_size, depth_v, disable_exceptions &gt;::DoErase&lt; R, E &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase_1_1DoReplace.html#a24b580678a2c423ff4ebf2cc77204c6d">bpptree::detail::InternalNodeBase&lt; Parent, Value, leaf_size, internal_size, depth_v, disable_exceptions &gt;::DoReplace&lt; R &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase_1_1DoSplit.html#a884158f24dd024b15fcaa175e651f233">bpptree::detail::InternalNodeBase&lt; Parent, Value, leaf_size, internal_size, depth_v, disable_exceptions &gt;::DoSplit&lt; R, S &gt;</a>
+</li>
 <li>internal_element_size_lower_bound
 : <a class="el" href="structbpptree_1_1detail_1_1NodeTypesDetail.html#aafc49de44f86f4703afa2a0a3722caad">bpptree::detail::NodeTypesDetail&lt; Value, leaf_node_bytes, internal_node_bytes, depth_limit, disable_exceptions, Ts &gt;</a>
 </li>
@@ -145,7 +161,10 @@ $(function() {
 , <a class="el" href="structbpptree_1_1detail_1_1LeafNodeBase.html#a1bacb8ccc661010180fd00ad561f2a71">bpptree::detail::LeafNodeBase&lt; Parent, Value, leaf_size, disable_exceptions &gt;</a>
 </li>
 <li>iter
-: <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#ad405991e0f5a9492b6e6757008ccf0f5">bpptree::detail::IteratorDetail&lt; Value, Tree, LeafNode, is_const, reverse &gt;</a>
+: <a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase_1_1DoErase.html#a8b93abe1fbc241c67fc3d09c62ff728b">bpptree::detail::InternalNodeBase&lt; Parent, Value, leaf_size, internal_size, depth_v, disable_exceptions &gt;::DoErase&lt; R, E &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase_1_1DoReplace.html#a8c816b53400ffb0136814e66d3d7abbc">bpptree::detail::InternalNodeBase&lt; Parent, Value, leaf_size, internal_size, depth_v, disable_exceptions &gt;::DoReplace&lt; R &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase_1_1DoSplit.html#a7683eb70b74365e12bee9def49af9268">bpptree::detail::InternalNodeBase&lt; Parent, Value, leaf_size, internal_size, depth_v, disable_exceptions &gt;::DoSplit&lt; R, S &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#ad405991e0f5a9492b6e6757008ccf0f5">bpptree::detail::IteratorDetail&lt; Value, Tree, LeafNode, is_const, reverse &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1ModifyTypes_1_1DoSplit.html#ad5c9b4541a6289c7ca395ed87195b79d">bpptree::detail::ModifyTypes&lt; LeafNode, InternalNode, max_depth &gt;::DoSplit&lt; TreeType, NodeType &gt;</a>
 </li>
 </ul>
@@ -226,6 +245,10 @@ $(function() {
 <li>right
 : <a class="el" href="structbpptree_1_1detail_1_1Split.html#a66f30bc268720c92bce9e8181decc1ea">bpptree::detail::Split&lt; NodeInfoType &gt;</a>
 </li>
+<li>right_most
+: <a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase_1_1DoErase.html#ac887906e1140d865ee55bec963034879">bpptree::detail::InternalNodeBase&lt; Parent, Value, leaf_size, internal_size, depth_v, disable_exceptions &gt;::DoErase&lt; R, E &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase_1_1DoSplit.html#a4f7ce9b366b6e6dea583256f5f472caa">bpptree::detail::InternalNodeBase&lt; Parent, Value, leaf_size, internal_size, depth_v, disable_exceptions &gt;::DoSplit&lt; R, S &gt;</a>
+</li>
 <li>root
 : <a class="el" href="structbpptree_1_1detail_1_1ModifyTypes_1_1DoReplace.html#acb725705e32db2056235c73577929e1c">bpptree::detail::ModifyTypes&lt; LeafNode, InternalNode, max_depth &gt;::DoReplace&lt; TreeType, NodeType &gt;</a>
 , <a class="el" href="structbpptree_1_1detail_1_1ModifyTypes_1_1DoSplit.html#a260f2bb7245685c9384b2e1e71781544">bpptree::detail::ModifyTypes&lt; LeafNode, InternalNode, max_depth &gt;::DoSplit&lt; TreeType, NodeType &gt;</a>
@@ -237,6 +260,11 @@ $(function() {
 
 
 <h3><a id="index_s"></a>- s -</h3><ul>
+<li>self
+: <a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase_1_1DoErase.html#a092027625636314e0c645db98a786a4d">bpptree::detail::InternalNodeBase&lt; Parent, Value, leaf_size, internal_size, depth_v, disable_exceptions &gt;::DoErase&lt; R, E &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase_1_1DoReplace.html#a12b41280b458dfc82a002292db504e5a">bpptree::detail::InternalNodeBase&lt; Parent, Value, leaf_size, internal_size, depth_v, disable_exceptions &gt;::DoReplace&lt; R &gt;</a>
+, <a class="el" href="structbpptree_1_1detail_1_1InternalNodeBase_1_1DoSplit.html#ac1040e29bb2e291b74a50c3f110b613a">bpptree::detail::InternalNodeBase&lt; Parent, Value, leaf_size, internal_size, depth_v, disable_exceptions &gt;::DoSplit&lt; R, S &gt;</a>
+</li>
 <li>sum
 : <a class="el" href="structbpptree_1_1detail_1_1SummedNodeInfo.html#ad73ae6cc2c6d5c80da6c992b56463ca7">bpptree::detail::SummedNodeInfo&lt; Parent, SumType &gt;</a>
 </li>

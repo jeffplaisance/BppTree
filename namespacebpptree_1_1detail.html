@@ -310,6 +310,14 @@ Variables</h2></td></tr>
 <tr class="separator:a992383cafeb9fb77c79ae99f0cfede90"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f330a64c0d5a2c9cafcb90bd14fe7c1"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebpptree_1_1detail.html#a2f330a64c0d5a2c9cafcb90bd14fe7c1">find_iterator</a></td></tr>
 <tr class="separator:a2f330a64c0d5a2c9cafcb90bd14fe7c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e88b8a3136663a927f11da800d56544"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebpptree_1_1detail.html#a5e88b8a3136663a927f11da800d56544">insertion_index</a></td></tr>
+<tr class="separator:a5e88b8a3136663a927f11da800d56544"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ef7f8be461535947beffa95c48480e5"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebpptree_1_1detail.html#a2ef7f8be461535947beffa95c48480e5">find_index</a></td></tr>
+<tr class="separator:a2ef7f8be461535947beffa95c48480e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49d08fd19783202afd2dead34d34bf6c"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebpptree_1_1detail.html#a49d08fd19783202afd2dead34d34bf6c">find_lower_bound</a></td></tr>
+<tr class="separator:a49d08fd19783202afd2dead34d34bf6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a900f12dee4c78834efde87aafd0ebdf0"><td class="memItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebpptree_1_1detail.html#a900f12dee4c78834efde87aafd0ebdf0">find_key_index_checked</a></td></tr>
+<tr class="separator:a900f12dee4c78834efde87aafd0ebdf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
 <a id="a201cdb537d848ea294dbb78d097fd143"></a>
@@ -610,6 +618,31 @@ template&lt;typename PtrType , typename... Ts&gt; </div>
 </div><!-- fragment -->
 </div>
 </div>
+<a id="a2ef7f8be461535947beffa95c48480e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ef7f8be461535947beffa95c48480e5">&#9670;&nbsp;</a></span>find_index</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr auto bpptree::detail::find_index</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= [](<span class="keyword">auto</span> <span class="keyword">const</span>&amp; node, <span class="keyword">auto</span> <span class="keyword">const</span>&amp; search_val) {</div>
+<div class="line">    <span class="keywordflow">return</span> node.find_index(search_val);</div>
+<div class="line">}</div>
+</div><!-- fragment -->
+</div>
+</div>
 <a id="a2f330a64c0d5a2c9cafcb90bd14fe7c1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2f330a64c0d5a2c9cafcb90bd14fe7c1">&#9670;&nbsp;</a></span>find_iterator</h2>
 
@@ -631,6 +664,31 @@ template&lt;typename PtrType , typename... Ts&gt; </div>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">= [](<span class="keyword">auto</span> <span class="keyword">const</span>&amp; node, uint64_t <span class="keyword">const</span>&amp; it) {</div>
 <div class="line">    <span class="keywordflow">return</span> std::tuple&lt;int32_t, uint64_t&gt;(node.get_index(it), it);</div>
+<div class="line">}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a900f12dee4c78834efde87aafd0ebdf0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a900f12dee4c78834efde87aafd0ebdf0">&#9670;&nbsp;</a></span>find_key_index_checked</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr auto bpptree::detail::find_key_index_checked</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= [](<span class="keyword">auto</span> <span class="keyword">const</span>&amp; node, <span class="keyword">auto</span> <span class="keyword">const</span>&amp; key) {</div>
+<div class="line">    <span class="keywordflow">return</span> std::make_tuple(node.find_key_index_checked(key), key);</div>
 <div class="line">}</div>
 </div><!-- fragment -->
 </div>
@@ -664,6 +722,31 @@ template&lt;typename PtrType , typename... Ts&gt; </div>
 </div><!-- fragment -->
 </div>
 </div>
+<a id="a49d08fd19783202afd2dead34d34bf6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49d08fd19783202afd2dead34d34bf6c">&#9670;&nbsp;</a></span>find_lower_bound</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr auto bpptree::detail::find_lower_bound</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= [](<span class="keyword">auto</span> <span class="keyword">const</span>&amp; node, <span class="keyword">auto</span> <span class="keyword">const</span>&amp; key) {</div>
+<div class="line">    <span class="keywordflow">return</span> std::make_tuple(node.lower_bound_index(key), key);</div>
+<div class="line">}</div>
+</div><!-- fragment -->
+</div>
+</div>
 <a id="a30a0e98b7bb5ceef1f9eb9ae1398cee2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a30a0e98b7bb5ceef1f9eb9ae1398cee2">&#9670;&nbsp;</a></span>increments</h2>
 
@@ -684,6 +767,31 @@ template&lt;typename PtrType , typename... Ts&gt; </div>
 </table>
 </div><div class="memdoc">
 
+</div>
+</div>
+<a id="a5e88b8a3136663a927f11da800d56544"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e88b8a3136663a927f11da800d56544">&#9670;&nbsp;</a></span>insertion_index</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr auto bpptree::detail::insertion_index</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= [](<span class="keyword">auto</span> <span class="keyword">const</span>&amp; node, <span class="keyword">auto</span> <span class="keyword">const</span>&amp; search_val) {</div>
+<div class="line">    <span class="keywordflow">return</span> node.insertion_index(search_val);</div>
+<div class="line">}</div>
+</div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->
