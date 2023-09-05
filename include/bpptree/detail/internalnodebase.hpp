@@ -305,8 +305,8 @@ struct InternalNodeBase : public Parent {
         auto [index, remainder] = finder(this->self(), search_val);
         pointers[index]->insert(remainder,
                                 finder,
-                                DoReplace(this->self(), index, do_replace, iter),
-                                DoSplit(this->self(), index, do_replace, do_split, iter, right_most),
+                                DoReplace<R>(this->self(), index, do_replace, iter),
+                                DoSplit<R, S>(this->self(), index, do_replace, do_split, iter, right_most),
                                 size,
                                 iter,
                                 right_most && index == this->length - 1,
@@ -318,7 +318,7 @@ struct InternalNodeBase : public Parent {
         auto [index, remainder] = finder(this->self(), search_val);
         pointers[index]->assign(remainder,
                  finder,
-                 DoReplace(this->self(), index, do_replace, iter),
+                 DoReplace<R>(this->self(), index, do_replace, iter),
                  iter,
                  std::forward<Args>(args)...
         );
@@ -392,8 +392,8 @@ struct InternalNodeBase : public Parent {
         auto [index, remainder] = finder(this->self(), search_val);
         pointers[index]->erase(remainder,
                                finder,
-                               DoReplace(this->self(), index, do_replace, iter),
-                               DoErase(this->self(), index, do_replace, do_erase, iter, right_most),
+                               DoReplace<R>(this->self(), index, do_replace, iter),
+                               DoErase<R, E>(this->self(), index, do_replace, do_erase, iter, right_most),
                                size,
                                iter,
                                right_most && index == this->length - 1);
@@ -404,7 +404,7 @@ struct InternalNodeBase : public Parent {
         auto [index, remainder] = finder(this->self(), search_val);
         pointers[index]->update(remainder,
                                 finder,
-                                DoReplace(this->self(), index, do_replace, iter),
+                                DoReplace<R>(this->self(), index, do_replace, iter),
                                 iter,
                                 updater
         );
@@ -415,7 +415,7 @@ struct InternalNodeBase : public Parent {
         auto [index, remainder] = finder(this->self(), search_val);
         pointers[index]->update2(remainder,
                                 finder,
-                                DoReplace(this->self(), index, do_replace, iter),
+                                DoReplace<R>(this->self(), index, do_replace, iter),
                                 iter,
                                 updater
         );
