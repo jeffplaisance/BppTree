@@ -114,8 +114,12 @@ Public Types</h2></td></tr>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ac7cb86954c50ac6870f72b9b36958991"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#ac7cb86954c50ac6870f72b9b36958991">IteratorDetail</a> (<a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#aba96b0e8549dffcaa0d7cadd2c99ff4b">TreeType</a> &amp;<a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#abbc43aaf2ee04c6dd4e15175c007bcd1">tree</a>)</td></tr>
 <tr class="separator:ac7cb86954c50ac6870f72b9b36958991"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a712060f7afb08a0bdec7f890495e8389"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a712060f7afb08a0bdec7f890495e8389">fix_leaf</a> () <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a></td></tr>
+<tr class="separator:a712060f7afb08a0bdec7f890495e8389"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a78e44a60cdccb3c004cc0f3efdd8d6d4"><td class="memItemLeft" align="right" valign="top">Value <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a>  &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a78e44a60cdccb3c004cc0f3efdd8d6d4">get</a> () <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a></td></tr>
 <tr class="separator:a78e44a60cdccb3c004cc0f3efdd8d6d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04fdb1de368a836a5295c59f10004f21"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#a04fdb1de368a836a5295c59f10004f21">valid</a> () <a class="el" href="minmax2_8ipp.html#a6cfe030032327565892bf68ffb04d1ad">const</a></td></tr>
+<tr class="separator:a04fdb1de368a836a5295c59f10004f21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee7272f080683d888f8dc861160832be"><td class="memTemplParams" colspan="2">template&lt;bool c = is_const, std::enable_if_t&lt;!c, bool &gt;  = true&gt; </td></tr>
 <tr class="memitem:aee7272f080683d888f8dc861160832be"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail_1_1ProxyRef.html">ProxyRef</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html#aee7272f080683d888f8dc861160832be">operator*</a> ()</td></tr>
 <tr class="separator:aee7272f080683d888f8dc861160832be"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -349,6 +353,33 @@ template&lt;typename Value , typename Tree , typename LeafNode , bool is_const, 
           <td class="paramtype"><a class="el" href="namespacebpptree_1_1detail.html#a09d4ddfe5112e73c4d2e3332783d3b00">ssize</a>&#160;</td>
           <td class="paramname"><em>n</em></td><td>)</td>
           <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a712060f7afb08a0bdec7f890495e8389"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a712060f7afb08a0bdec7f890495e8389">&#9670;&nbsp;</a></span>fix_leaf()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Value , typename Tree , typename LeafNode , bool is_const, bool reverse&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, is_const, reverse &gt;::fix_leaf </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -920,6 +951,33 @@ template&lt;typename Value , typename Tree , typename LeafNode , bool is_const, 
           <td>(</td>
           <td class="paramtype">int64_t&#160;</td>
           <td class="paramname"><em>n</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a04fdb1de368a836a5295c59f10004f21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04fdb1de368a836a5295c59f10004f21">&#9670;&nbsp;</a></span>valid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Value , typename Tree , typename LeafNode , bool is_const, bool reverse&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="structbpptree_1_1detail_1_1IteratorDetail.html">bpptree::detail::IteratorDetail</a>&lt; Value, Tree, LeafNode, is_const, reverse &gt;::valid </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
           <td> const</td>
         </tr>
       </table>

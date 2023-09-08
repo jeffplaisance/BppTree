@@ -378,22 +378,27 @@ $(function() {
 <div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;    }</div>
 <div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160; </div>
 <div class="line"><a name="l00309"></a><span class="lineno"><a class="line" href="structbpptree_1_1detail_1_1LeafNodeBase.html#abb883a596a9fe61771b880b314107b9b">  309</a></span>&#160;    <a class="code" href="namespacebpptree_1_1detail.html#a09d4ddfe5112e73c4d2e3332783d3b00">ssize</a> <a class="code" href="structbpptree_1_1detail_1_1LeafNodeBase.html#abb883a596a9fe61771b880b314107b9b">advance</a>(<span class="keyword">typename</span> LeafNodeBase::SelfType <span class="keyword">const</span>*&amp; leaf, uint64_t&amp; it, <a class="code" href="namespacebpptree_1_1detail.html#a09d4ddfe5112e73c4d2e3332783d3b00">ssize</a> n)<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;        <span class="keyword">auto</span> sum = <a class="code" href="structbpptree_1_1detail_1_1LeafNodeBase.html#a3a8a87f9f69a82964211176c8df49b84">get_index</a>(it) + n;</div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;        <span class="keywordflow">if</span> (sum &gt;= this-&gt;length) {</div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;            <span class="keyword">auto</span> <a class="code" href="minmax2_8ipp.html#a339672ff94e6199019102f50d317c3d7">ret</a> = sum - (this-&gt;length - 1);</div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;            <a class="code" href="structbpptree_1_1detail_1_1LeafNodeBase.html#a2fe81694c6dd2a1821aa7d348b13d949">set_index</a>(it, this-&gt;length - 1);</div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="minmax2_8ipp.html#a339672ff94e6199019102f50d317c3d7">ret</a>;</div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;        }</div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;        <span class="keywordflow">if</span> (sum &lt; 0) {</div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;            <a class="code" href="structbpptree_1_1detail_1_1LeafNodeBase.html#aa92b2dc05d96de72e00bce6158f07533">clear_index</a>(it);</div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;            <span class="keywordflow">return</span> sum;</div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;        }</div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;        leaf = &amp;this-&gt;<span class="keyword">self</span>();</div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;        <a class="code" href="structbpptree_1_1detail_1_1LeafNodeBase.html#a2fe81694c6dd2a1821aa7d348b13d949">set_index</a>(it, sum);</div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;        <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;    }</div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;};</div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;} <span class="comment">//end namespace bpptree::detail</span></div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;        <span class="comment">//if n == 0 then we are just fixing the leaf pointer</span></div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;        <span class="keywordflow">if</span> (n == 0) {</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;            leaf = &amp;this-&gt;<span class="keyword">self</span>();</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;            <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;        }</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;        <span class="keyword">auto</span> sum = <a class="code" href="structbpptree_1_1detail_1_1LeafNodeBase.html#a3a8a87f9f69a82964211176c8df49b84">get_index</a>(it) + n;</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;        <span class="keywordflow">if</span> (sum &gt;= this-&gt;length) {</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;            <span class="keyword">auto</span> <a class="code" href="minmax2_8ipp.html#a339672ff94e6199019102f50d317c3d7">ret</a> = sum - (this-&gt;length - 1);</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;            <a class="code" href="structbpptree_1_1detail_1_1LeafNodeBase.html#a2fe81694c6dd2a1821aa7d348b13d949">set_index</a>(it, this-&gt;length - 1);</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="minmax2_8ipp.html#a339672ff94e6199019102f50d317c3d7">ret</a>;</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;        }</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;        <span class="keywordflow">if</span> (sum &lt; 0) {</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;            <a class="code" href="structbpptree_1_1detail_1_1LeafNodeBase.html#aa92b2dc05d96de72e00bce6158f07533">clear_index</a>(it);</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;            <span class="keywordflow">return</span> sum;</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;        }</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;        leaf = &amp;this-&gt;<span class="keyword">self</span>();</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;        <a class="code" href="structbpptree_1_1detail_1_1LeafNodeBase.html#a2fe81694c6dd2a1821aa7d348b13d949">set_index</a>(it, sum);</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;    }</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;};</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;} <span class="comment">//end namespace bpptree::detail</span></div>
 <div class="ttc" id="aclassbpptree_1_1detail_1_1NodePtr_html"><div class="ttname"><a href="classbpptree_1_1detail_1_1NodePtr.html">bpptree::detail::NodePtr&lt; NodeType &gt;</a></div></div>
 <div class="ttc" id="acommon_8hpp_html"><div class="ttname"><a href="common_8hpp.html">common.hpp</a></div></div>
 <div class="ttc" id="aminmax2_8ipp_html_a339672ff94e6199019102f50d317c3d7"><div class="ttname"><a href="minmax2_8ipp.html#a339672ff94e6199019102f50d317c3d7">ret</a></div><div class="ttdeci">return ret</div><div class="ttdef"><b>Definition:</b> minmax2.ipp:72</div></div>
@@ -452,7 +457,7 @@ $(function() {
 <div class="ttc" id="astructbpptree_1_1detail_1_1UninitializedArray_html"><div class="ttname"><a href="structbpptree_1_1detail_1_1UninitializedArray.html">bpptree::detail::UninitializedArray&lt; Value, leaf_size &gt;</a></div></div>
 <div class="ttc" id="astructbpptree_1_1detail_1_1UninitializedArray_html_a1e3a9cdbe211ef982a2066b300835dbc"><div class="ttname"><a href="structbpptree_1_1detail_1_1UninitializedArray.html#a1e3a9cdbe211ef982a2066b300835dbc">bpptree::detail::UninitializedArray::destruct</a></div><div class="ttdeci">void destruct(I const index) noexcept</div><div class="ttdef"><b>Definition:</b> uninitialized_array.hpp:75</div></div>
 <div class="ttc" id="astructbpptree_1_1detail_1_1UninitializedArray_html_a7d072341ef93379a2ae3519ac11b3e10"><div class="ttname"><a href="structbpptree_1_1detail_1_1UninitializedArray.html#a7d072341ef93379a2ae3519ac11b3e10">bpptree::detail::UninitializedArray::set</a></div><div class="ttdeci">T &amp; set(I const index, L const length, U &amp;&amp;u)</div><div class="ttdef"><b>Definition:</b> uninitialized_array.hpp:82</div></div>
-<div class="ttc" id="astructbpptree_1_1detail_1_1UninitializedArray_html_a82de899613fe168ab83fa86c511465cc"><div class="ttname"><a href="structbpptree_1_1detail_1_1UninitializedArray.html#a82de899613fe168ab83fa86c511465cc">bpptree::detail::UninitializedArray::emplace_unchecked</a></div><div class="ttdeci">T &amp; emplace_unchecked(I const index, Us &amp;&amp;... us) noexcept</div><div class="ttdef"><b>Definition:</b> uninitialized_array.hpp:121</div></div>
+<div class="ttc" id="astructbpptree_1_1detail_1_1UninitializedArray_html_a82de899613fe168ab83fa86c511465cc"><div class="ttname"><a href="structbpptree_1_1detail_1_1UninitializedArray.html#a82de899613fe168ab83fa86c511465cc">bpptree::detail::UninitializedArray::emplace_unchecked</a></div><div class="ttdeci">T &amp; emplace_unchecked(I const index, Us &amp;&amp;... us) noexcept</div><div class="ttdef"><b>Definition:</b> uninitialized_array.hpp:125</div></div>
 <div class="ttc" id="astructbpptree_1_1detail_1_1UninitializedArray_html_afdccfe129aa4797d65f3b7169db1b2ff"><div class="ttname"><a href="structbpptree_1_1detail_1_1UninitializedArray.html#afdccfe129aa4797d65f3b7169db1b2ff">bpptree::detail::UninitializedArray::move</a></div><div class="ttdeci">T &amp;&amp; move(I const index)</div><div class="ttdef"><b>Definition:</b> uninitialized_array.hpp:70</div></div>
 <div class="ttc" id="auninitialized__array_8hpp_html"><div class="ttname"><a href="uninitialized__array_8hpp.html">uninitialized_array.hpp</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
