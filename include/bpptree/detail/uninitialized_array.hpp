@@ -83,10 +83,12 @@ public:
         // can only assign to uninitialized memory if the type is trivial, otherwise the lifetime of the object has
         // not yet begun and a constructor must be called
         if constexpr (std::is_trivial_v<T> && std::is_trivially_assignable_v<T&, U&&>) {
-            return (*this)[index] = std::forward<U>(u);
+            (*this)[index] = std::forward<U>(u);
+            return (*this)[index];
         }
         if (static_cast<size_t const>(index) < static_cast<size_t const>(length)) {
-            return (*this)[index] = std::forward<U>(u);
+            (*this)[index] = std::forward<U>(u);
+            return (*this)[index];
         }
         return *new(un.data + index) T(std::forward<U>(u));
     }
@@ -105,12 +107,14 @@ public:
         // not yet begun and a constructor must be called
         if constexpr (is_assignable_from<Us&&...>() && std::is_trivial_v<T>) {
             if constexpr (std::is_trivially_assignable_v<T&, Us&&...>) {
-                return (*this)[index] = (..., std::forward<Us>(us));
+                (*this)[index] = (..., std::forward<Us>(us));
+                return (*this)[index];
             }
         }
         if (static_cast<size_t const>(index) < static_cast<size_t const>(length)) {
             if constexpr (is_assignable_from<Us&&...>()) {
-                return (*this)[index] = (..., std::forward<Us>(us));
+                (*this)[index] = (..., std::forward<Us>(us));
+                return (*this)[index];
             }
             (*this)[index].~T();
         }
@@ -120,7 +124,8 @@ public:
     template <typename I, std::enable_if_t<std::is_integral_v<I>, bool> = true, typename... Us>
     T& emplace_unchecked(I const index, Us&&... us) noexcept {
         if constexpr (is_assignable_from<Us&&...>()) {
-            return (*this)[index] = (..., std::forward<Us>(us));
+            (*this)[index] = (..., std::forward<Us>(us));
+            return (*this)[index];
         }
         (*this)[index].~T();
         return *new(un.data + index) T(std::forward<Us>(us)...);

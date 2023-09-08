@@ -50,7 +50,7 @@ struct IteratorDetail : public IteratorBase<Tree, is_const> {
 
     explicit IteratorDetail(TreeType& tree) : Parent(tree), tree(&tree) {}
 
-    [[nodiscard]] Value const& get() const {
+    void fix_leaf() const {
         if constexpr (is_transient_tree) {
             if (this->mod_count != tree->mod_count) {
                 std::as_const(*tree).dispatch([this](auto const& root) {
@@ -62,7 +62,19 @@ struct IteratorDetail : public IteratorBase<Tree, is_const> {
                 this->mod_count = tree->mod_count;
             }
         }
+    }
+
+    [[nodiscard]] Value const& get() const {
+        fix_leaf();
         return leaf->get_iter(iter);
+    }
+
+    bool valid() const {
+        if (iter == rend) {
+            return false;
+        }
+        fix_leaf();
+        return LeafNode::get_index(iter) < leaf->length;
     }
 
     struct ProxyRef : public ProxyOperators<ProxyRef> {

@@ -307,6 +307,11 @@ struct LeafNodeBase : public Parent {
     }
 
     ssize advance(typename LeafNodeBase::SelfType const*& leaf, uint64_t& it, ssize n) const {
+        //if n == 0 then we are just fixing the leaf pointer
+        if (n == 0) {
+            leaf = &this->self();
+            return 0;
+        }
         auto sum = get_index(it) + n;
         if (sum >= this->length) {
             auto ret = sum - (this->length - 1);

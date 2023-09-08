@@ -12,15 +12,19 @@ static void run_test(T& tree, B&& begin_f, E&& end_f) {
         EXPECT_EQ(reverse? tree.back() : tree.front(), i);
     }
     auto end = end_f();
+    EXPECT_FALSE(end.valid());
     for (int32_t i : rand_ints) {
         tree.insert(end, i);
+        EXPECT_TRUE(end.valid());
         EXPECT_EQ(*end, i);
         EXPECT_EQ(reverse ? tree.front() : tree.back(), i);
         ++end;
+        EXPECT_FALSE(end.valid());
         EXPECT_EQ(end, end_f());
     }
     while (!tree.empty()) {
         --end;
+        EXPECT_TRUE(end.valid());
         begin = begin_f();
         EXPECT_EQ(tree.front(), tree.back());
         EXPECT_EQ(*begin, *end);
@@ -30,6 +34,7 @@ static void run_test(T& tree, B&& begin_f, E&& end_f) {
         end = end_f() - 1;
         //invalidates begin
         tree.erase(end);
+        EXPECT_FALSE(end.valid());
         EXPECT_EQ(end, end_f());
     }
     begin = begin_f();
@@ -39,11 +44,14 @@ static void run_test(T& tree, B&& begin_f, E&& end_f) {
         EXPECT_EQ(reverse? tree.back() : tree.front(), i);
     }
     end = end_f();
+    EXPECT_FALSE(end.valid());
     for (int32_t i : rand_ints) {
         tree.insert(end, i);
+        EXPECT_TRUE(end.valid());
         EXPECT_EQ(*end, i);
         EXPECT_EQ(reverse ? tree.front() : tree.back(), i);
         ++end;
+        EXPECT_FALSE(end.valid());
         EXPECT_EQ(end, end_f());
     }
     auto middle = begin_f() + signed_cast(rand_ints.size());
