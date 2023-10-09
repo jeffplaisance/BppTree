@@ -38,7 +38,8 @@ class NodePtr {
 
     void dec_ref() {
         if (ptr != nullptr) {
-            if (--ptr->ref_count == 0) {
+            if (ptr->ref_count.fetch_sub(1, std::memory_order_release) == 1) {
+                std::atomic_thread_fence(std::memory_order_acquire);
                 delete ptr;
                 if constexpr (count_allocations) ++deallocations;
             }
@@ -48,7 +49,7 @@ class NodePtr {
 
     void inc_ref() const {
         if (ptr != nullptr) {
-            ++ptr->ref_count;
+            ptr->ref_count.fetch_add(1, std::memory_order_relaxed);
             if constexpr (count_allocations) ++increments;
         }
     }

@@ -42,6 +42,18 @@ struct InternalNodeBase : public Parent {
 
     NodePtr<ChildType> pointers[internal_size]{};
 
+    void prefetch_children(bool condition) {
+        if (condition) {
+            for (IndexType i = 0; i < this->length; ++i) {
+                __builtin_prefetch(&*pointers[i], 1, 3);
+            }
+        }
+    }
+
+    ~InternalNodeBase() {
+        prefetch_children(true);
+    }
+
     static IndexType get_index(uint64_t it) {
         return (it >> it_shift) & it_mask;
     }
@@ -303,6 +315,7 @@ struct InternalNodeBase : public Parent {
     template <typename T, typename F, typename R, typename S, typename... Args>
     void insert(T const& search_val, F&& finder, R&& do_replace, S&& do_split, size_t& size, uint64_t& iter, bool right_most, Args&&... args) {
         auto [index, remainder] = finder(this->self(), search_val);
+        prefetch_children(this->persistent);
         pointers[index]->insert(remainder,
                                 finder,
                                 DoReplace<R>(this->self(), index, do_replace, iter),
@@ -316,6 +329,7 @@ struct InternalNodeBase : public Parent {
     template <typename T, typename F, typename R, typename... Args>
     void assign(T const& search_val, F&& finder, R&& do_replace, uint64_t& iter, Args&&... args) {
         auto [index, remainder] = finder(this->self(), search_val);
+        prefetch_children(this->persistent);
         pointers[index]->assign(remainder,
                  finder,
                  DoReplace<R>(this->self(), index, do_replace, iter),
@@ -390,6 +404,7 @@ struct InternalNodeBase : public Parent {
     template <typename T, typename F, typename R, typename E>
     void erase(T const& search_val, F&& finder, R&& do_replace, E&& do_erase, size_t& size, uint64_t& iter, bool right_most) {
         auto [index, remainder] = finder(this->self(), search_val);
+        prefetch_children(this->persistent);
         pointers[index]->erase(remainder,
                                finder,
                                DoReplace<R>(this->self(), index, do_replace, iter),
@@ -402,6 +417,7 @@ struct InternalNodeBase : public Parent {
     template <typename T, typename F, typename R, typename U>
     void update(T const& search_val, F&& finder, R&& do_replace, uint64_t& iter, U&& updater) {
         auto [index, remainder] = finder(this->self(), search_val);
+        prefetch_children(this->persistent);
         pointers[index]->update(remainder,
                                 finder,
                                 DoReplace<R>(this->self(), index, do_replace, iter),
@@ -413,6 +429,7 @@ struct InternalNodeBase : public Parent {
     template <typename T, typename F, typename R, typename U>
     void update2(T const& search_val, F&& finder, R&& do_replace, uint64_t& iter, U&& updater) {
         auto [index, remainder] = finder(this->self(), search_val);
+        prefetch_children(this->persistent);
         pointers[index]->update2(remainder,
                                 finder,
                                 DoReplace<R>(this->self(), index, do_replace, iter),
@@ -428,6 +445,7 @@ struct InternalNodeBase : public Parent {
     void make_persistent() {
         if (!this->persistent) {
             this->persistent = true;
+            prefetch_children(true);
             for (IndexType i = 0; i < this->length; ++i) {
                 pointers[i]->make_persistent();
             }

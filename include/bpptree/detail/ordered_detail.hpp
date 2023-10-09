@@ -16,6 +16,12 @@
 
 namespace bpptree::detail {
 
+template <typename T, typename = void>
+struct HasDataPtr : std::false_type {};
+
+template <typename T>
+struct HasDataPtr<T, std::enable_if_t<std::is_pointer_v<decltype(std::declval<T const&>().data())>>> : std::true_type {};
+
 template <typename KeyValue, typename KeyValueExtractor, typename LessThan, bool binary_search>
 struct OrderedDetail {
 private:
@@ -32,6 +38,16 @@ public:
 
         template <typename Comp>
         IndexType find_key_index(Key const& search_val, Comp const& comp) const {
+            if constexpr (std::is_pointer_v<Key>) {
+                for (IndexType i = 0; i < this->length; ++i) {
+                    __builtin_prefetch(extractor.get_key(this->values[i]), 0, 3);
+                }
+            }
+            if constexpr (HasDataPtr<Key>::value) {
+                for (IndexType i = 0; i < this->length; ++i) {
+                    __builtin_prefetch(extractor.get_key(this->values[i]).data(), 0, 3);
+                }
+            }
             if constexpr (!binary_search) {
                 IndexType index = 0;
                 while (index < this->length) {
@@ -238,6 +254,16 @@ public:
 
         template <typename Comp>
         IndexType find_key_index(Key const& search_val, Comp const& comp) const {
+            if constexpr (std::is_pointer_v<Key>) {
+                for (IndexType i = 0; i < this->length; ++i) {
+                    __builtin_prefetch(keys[i], 0, 3);
+                }
+            }
+            if constexpr (HasDataPtr<Key>::value) {
+                for (IndexType i = 0; i < this->length; ++i) {
+                    __builtin_prefetch(keys[i].data(), 0, 3);
+                }
+            }
             if constexpr (!binary_search) {
                 IndexType index = 0;
                 while (index < this->length - 1) {
@@ -269,6 +295,7 @@ public:
         void insert_or_assign(Key const& search_val, F&& finder, R&& do_replace, S&& do_split,
                             size_t& size, uint64_t& iter, bool right_most, Args&& ... args) {
             auto [index, remainder] = finder(this->self(), search_val);
+            this->prefetch_children(this->persistent);
             this->pointers[index]->template insert_or_assign<duplicate_policy>(remainder,
                                                   finder,
                                                   typename Parent::template DoReplace<R>(this->self(), index, do_replace, iter),

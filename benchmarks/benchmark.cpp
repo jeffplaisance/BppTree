@@ -64,7 +64,7 @@ inline void random_benchmarks(std::integral_constant<N, n>) {
         }
     }
     if constexpr (true) {
-        using TreeType = BppTreeMap<int, int>::internal_node_bytes<256>::leaf_node_bytes<1024>::Persistent;
+        using TreeType = BppTreeMap<int, int>::Persistent;
         TreeType tree{};
         cout << "BppTreeMap<int, int>::Persistent : " << n << endl;
         cout << "=============================================================" << endl;
@@ -155,6 +155,39 @@ inline void sequential_benchmark(T&& tree, std::string const& message) {
     cout << sum << endl << endl;
 }
 
+template <typename T, typename = void>
+struct HasPushBack : std::false_type {};
+
+template <typename T>
+struct HasPushBack<T, std::void_t<decltype(std::declval<T>().push_back(std::make_pair(0, 0)))>> : std::true_type {};
+
+template <auto n, typename T>
+inline void iterator_benchmark(T&& tree, std::string const& message) {
+    cout << "Running iterator benchmark using " << message << " with size " << n << endl;
+    cout << "=============================================================" << endl;
+    auto startTime = std::chrono::steady_clock::now();
+    for (int i = 0; i < n; i++) {
+        if constexpr (HasPushBack<T>::value) {
+            tree.push_back(std::make_pair(i, i));
+        } else {
+            tree[i] = i;
+        }
+    }
+    auto endTime = std::chrono::steady_clock::now();
+    std::chrono::duration<double> elapsed = endTime - startTime;
+    cout << elapsed.count() << 's' << endl;
+
+    int64_t sum = 0;
+    startTime = std::chrono::steady_clock::now();
+    for (auto const& p: std::as_const(tree)) {
+        sum += p.second;
+    }
+    endTime = std::chrono::steady_clock::now();
+    elapsed = endTime - startTime;
+    cout << elapsed.count() << 's' << endl;
+    cout << sum << endl << endl;
+}
+
 template <typename N, auto n>
 inline void sequential_benchmarks(std::integral_constant<N, n>) {
     for (int j = 0; j < 5; ++j) {
@@ -162,6 +195,11 @@ inline void sequential_benchmarks(std::integral_constant<N, n>) {
         sequential_benchmark<n>(tlx::btree_map<int, int>(), "tlx::btree_map<int, int>");
         sequential_benchmark<n>(BppTreeMap<int, int>::Transient(), "BppTreeMap<int, int>::Transient");
         sequential_benchmark<n>(std::map<int, int>(), "std::map<int, int>");
+
+        iterator_benchmark<n>(absl::btree_map<int, int>(), "absl::btree_map<int, int>");
+        iterator_benchmark<n>(tlx::btree_map<int, int>(), "tlx::btree_map<int, int>");
+        iterator_benchmark<n>(BppTreeMap<int, int>::Transient(), "BppTreeMap<int, int>::Transient");
+        iterator_benchmark<n>(std::map<int, int>(), "std::map<int, int>");
     }
     if constexpr (true) {
         using TreeType = BppTreeMap<int, int>::internal_node_bytes<256>::leaf_node_bytes<1024>::Persistent;
