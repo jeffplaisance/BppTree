@@ -17,6 +17,12 @@
 namespace bpptree::detail {
 
 template <typename T, typename = void>
+struct IsPtrOrSmartPtr : std::false_type {};
+
+template <typename T>
+struct IsPtrOrSmartPtr<T, std::enable_if_t<std::is_pointer_v<decltype(&*std::declval<T const&>())>>> : std::true_type {};
+
+template <typename T, typename = void>
 struct HasDataPtr : std::false_type {};
 
 template <typename T>
@@ -38,9 +44,9 @@ public:
 
         template <typename Comp>
         IndexType find_key_index(Key const& search_val, Comp const& comp) const {
-            if constexpr (std::is_pointer_v<Key>) {
+            if constexpr (IsPtrOrSmartPtr<Key>::value) {
                 for (IndexType i = 0; i < this->length; ++i) {
-                    __builtin_prefetch(extractor.get_key(this->values[i]), 0, 3);
+                    __builtin_prefetch(&*extractor.get_key(this->values[i]), 0, 3);
                 }
             }
             if constexpr (HasDataPtr<Key>::value) {
@@ -254,9 +260,9 @@ public:
 
         template <typename Comp>
         IndexType find_key_index(Key const& search_val, Comp const& comp) const {
-            if constexpr (std::is_pointer_v<Key>) {
+            if constexpr (IsPtrOrSmartPtr<Key>::value) {
                 for (IndexType i = 0; i < this->length; ++i) {
-                    __builtin_prefetch(keys[i], 0, 3);
+                    __builtin_prefetch(&*keys[i], 0, 3);
                 }
             }
             if constexpr (HasDataPtr<Key>::value) {
