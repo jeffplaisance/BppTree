@@ -95,19 +95,19 @@ public:
         using IteratorType = IteratorDetail<Value, typename Parent::SelfType, LeafNode, is_const, reverse>;
 
     public:
-        [[nodiscard]] size_t size() {
+        [[nodiscard]] size_t size() const {
             return tree_size;
         }
 
-        [[nodiscard]] constexpr size_t max_size() {
+        [[nodiscard]] constexpr size_t max_size() const {
             return max_size_v;
         }
 
-        [[nodiscard]] size_t depth() {
+        [[nodiscard]] size_t depth() const {
             return std::as_const(this->self()).dispatch([](auto const& root){ return static_cast<size_t>(root->depth); });
         }
 
-        [[nodiscard]] constexpr size_t max_depth() {
+        [[nodiscard]] constexpr size_t max_depth() const {
             return max_depth_v;
         }
 
