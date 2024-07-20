@@ -1,21 +1,24 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>B++ Tree &mdash; B++ Tree 0.1.0 documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=fd3f3429" />
+
+  
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=01f34227"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -71,7 +74,7 @@
            <div itemprop="articleBody">
              
   <section id="b-tree">
-<h1>B++ Tree<a class="headerlink" href="#b-tree" title="Permalink to this headline"></a></h1>
+<h1>B++ Tree<a class="headerlink" href="#b-tree" title="Link to this heading"></a></h1>
 <a class="reference external image-reference" href="https://github.com/jeffplaisance/BppTree/actions?query=workflow%3ATests+branch%3Amain"><img alt="GitHub Actions Badge" src="https://github.com/jeffplaisance/BppTree/actions/workflows/workflow.yml/badge.svg" /></a>
 <a class="reference external image-reference" href="https://codecov.io/gh/jeffplaisance/BppTree"><img alt="CodeCov Badge" src="https://codecov.io/gh/jeffplaisance/BppTree/branch/main/graph/badge.svg" /></a>
 <p><a class="reference external" href="https://jeffplaisance.github.io/BppTree">See full documentation here</a></p>
@@ -86,7 +89,7 @@ that is what I have selected as the default, but the node size is parameterized 
 like.</p>
 <p>The B++ Tree library requires C++17 or later.</p>
 <section id="mutability">
-<h2>Mutability<a class="headerlink" href="#mutability" title="Permalink to this headline"></a></h2>
+<h2>Mutability<a class="headerlink" href="#mutability" title="Link to this heading"></a></h2>
 <p>All B++ Trees are easily convertible between their mutable and immutable representations. In this library, the mutable
 form of a B++ Tree is called Transient and the immutable form of a B++ Tree is called
 <a class="reference external" href="https://en.wikipedia.org/wiki/Persistent_data_structure">Persistent</a>. Every Transient tree
@@ -101,25 +104,25 @@ into a Transient tree, modify, and then turn back into a Persistent tree, this w
 number of modifications that were made.</p>
 </section>
 <section id="mixins">
-<h2>Mixins<a class="headerlink" href="#mixins" title="Permalink to this headline"></a></h2>
+<h2>Mixins<a class="headerlink" href="#mixins" title="Link to this heading"></a></h2>
 <p>The internal nodes of a B++ Tree with no mixins only contain pointers to their children. Without mixins, a B++ tree can
 be used as a mutable or immutable replacement for <code class="docutils literal notranslate"><span class="pre">std::deque</span></code> (with O(log N) <code class="docutils literal notranslate"><span class="pre">emplace_front</span></code> and <code class="docutils literal notranslate"><span class="pre">emplace_back</span></code>),
 but that is about all it can do. Almost all of the functionality comes from the mixins, and as they are all optional,
 you only have to pay for what you choose to use. The only restriction is that each mixin can only be added once to a
 tree, otherwise the method names will conflict and you will only be able to call the methods for one of them.</p>
 <section id="ordered">
-<h3>Ordered<a class="headerlink" href="#ordered" title="Permalink to this headline"></a></h3>
+<h3>Ordered<a class="headerlink" href="#ordered" title="Link to this heading"></a></h3>
 <p><a class="reference internal" href="ordered.html#api-ordered"><span class="std std-ref">Ordered</span></a> adds lookup by key into a B++ tree. Values in the B++ tree must be ordered by key to use Ordered.
 Supports lookup, lower_bound, upper_bound, assign, insert, update, and erase by key in O(log N) time.</p>
 </section>
 <section id="indexed">
-<h3>Indexed<a class="headerlink" href="#indexed" title="Permalink to this headline"></a></h3>
+<h3>Indexed<a class="headerlink" href="#indexed" title="Link to this heading"></a></h3>
 <p><a class="reference internal" href="indexed.html#api-indexed"><span class="std std-ref">Indexed</span></a> adds support for indexing into a B++ tree by an integer index. Supports lookup, assign, insert,
 update, and erase by index in O(log N) time. Also supports getting the index of an element from an iterator. Given two
 iterators a and b from an indexed tree, <code class="docutils literal notranslate"><span class="pre">a-b</span></code> is O(log N) (it is O(N) for non-indexed trees)</p>
 </section>
 <section id="summed">
-<h3>Summed<a class="headerlink" href="#summed" title="Permalink to this headline"></a></h3>
+<h3>Summed<a class="headerlink" href="#summed" title="Link to this heading"></a></h3>
 <p><a class="reference internal" href="summed.html#api-summed"><span class="std std-ref">Summed</span></a> adds prefix sum support to a B++ tree in O(log N) time. <code class="docutils literal notranslate"><span class="pre">sum()</span></code> returns the sum over the entire
 tree. <code class="docutils literal notranslate"><span class="pre">tree.sum_inclusive(it)</span></code> returns the sum up to and including the element pointed to by the iterator ‘it’.
 <code class="docutils literal notranslate"><span class="pre">tree.sum_exclusive(it)</span></code> returns the sum up to but not including the element pointed to by the iterator ‘it’. If you
@@ -127,14 +130,14 @@ want to sum between two iterators, just do <code class="docutils literal notrans
 returns an iterator pointing to the first element for which <code class="docutils literal notranslate"><span class="pre">tree.sum_inclusive(it)</span> <span class="pre">&gt;=</span> <span class="pre">target</span></code>.</p>
 </section>
 <section id="min">
-<h3>Min<a class="headerlink" href="#min" title="Permalink to this headline"></a></h3>
+<h3>Min<a class="headerlink" href="#min" title="Link to this heading"></a></h3>
 <p><a class="reference internal" href="min.html#api-min"><span class="std std-ref">Min</span></a> adds support for finding the minimum value in a B++ tree in O(log N) time. You can find just the min
 value using the <code class="docutils literal notranslate"><span class="pre">tree.min()</span></code> method or get an iterator pointing to the min element with <code class="docutils literal notranslate"><span class="pre">tree.min_element()</span></code>. You
 can also find the min value/element in a subrange of the tree (identified by two iterators) with <code class="docutils literal notranslate"><span class="pre">tree.min(it1,</span> <span class="pre">it2)</span></code>
 or <code class="docutils literal notranslate"><span class="pre">tree.min_element(it1,</span> <span class="pre">it2)</span></code>.</p>
 </section>
 <section id="max">
-<h3>Max<a class="headerlink" href="#max" title="Permalink to this headline"></a></h3>
+<h3>Max<a class="headerlink" href="#max" title="Link to this heading"></a></h3>
 <p><a class="reference internal" href="max.html#api-max"><span class="std std-ref">Max</span></a> adds support for finding the maximum value in a B++ tree in O(log N) time. You can find just the max
 value using the <code class="docutils literal notranslate"><span class="pre">tree.max()</span></code> method or get an iterator pointing to the max element with <code class="docutils literal notranslate"><span class="pre">tree.max_element()</span></code>. You
 can also find the max value/element in a subrange of the tree (identified by two iterators) with <code class="docutils literal notranslate"><span class="pre">tree.max(it1,</span> <span class="pre">it2)</span></code>
@@ -144,7 +147,7 @@ conflicts!</p>
 </section>
 </section>
 <section id="iterator-stability">
-<h2>Iterator Stability<a class="headerlink" href="#iterator-stability" title="Permalink to this headline"></a></h2>
+<h2>Iterator Stability<a class="headerlink" href="#iterator-stability" title="Link to this heading"></a></h2>
 <p>Iterators into Persistent B++ Trees are never invalidated. Iterators into Transient B++ Trees are not invalidated when
 modifying an existing element in the tree, i.e. the assign and update methods do not invalidate iterators. <strong>ALL</strong> iterators
 into a Transient B++ Tree are invalidated whenever an insert or erase is performed, with the exception that the methods
@@ -152,7 +155,7 @@ into a Transient B++ Tree are invalidated whenever an insert or erase is perform
 iterators into tree would still be invalidated).</p>
 </section>
 <section id="proxy-references">
-<h2>Proxy References<a class="headerlink" href="#proxy-references" title="Permalink to this headline"></a></h2>
+<h2>Proxy References<a class="headerlink" href="#proxy-references" title="Link to this heading"></a></h2>
 <p>The only way to allow assignment through <code class="docutils literal notranslate"><span class="pre">operator[]</span></code> on Ordered and Indexed is with proxy references, because the
 metadata in the internal nodes of the B++ Tree has to be updated on all modifications. As a result, you should not use
 auto to declare the type of a variable to which the result of <code class="docutils literal notranslate"><span class="pre">operator[]</span></code> is assigned. The non-const iterators also
@@ -160,7 +163,7 @@ use proxy references for <code class="docutils literal notranslate"><span class=
 methods (<code class="docutils literal notranslate"><span class="pre">at_*</span></code>, <code class="docutils literal notranslate"><span class="pre">assign_*</span></code>, <code class="docutils literal notranslate"><span class="pre">update_*</span></code>) which do the same things without using proxy references.</p>
 </section>
 <section id="builders">
-<h2>Builders<a class="headerlink" href="#builders" title="Permalink to this headline"></a></h2>
+<h2>Builders<a class="headerlink" href="#builders" title="Link to this heading"></a></h2>
 <p>Ok, enough about how B++ Trees work, how do I use one? The BppTree template is used to specify the value type
 (required), and optionally the leaf and internal node sizes in bytes, as well as a maximum depth for the tree, which can
 reduce compile times and code size if set to a smaller number at the expense of limiting the maximum tree size. The
@@ -172,104 +175,104 @@ first element of the pair as the key and calculates sums over the second element
 implement your own extractor, note that extractors must have a constructor that takes no arguments and must have no
 mutable state.</p>
 <p>Here is how to make a B++ Tree with no mixins:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">NoMixins</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BppTree</span><span class="o">&lt;</span><span class="kt">int32_t</span><span class="o">&gt;::</span><span class="n">Transient</span><span class="p">;</span><span class="w"></span>
-<span class="n">NoMixins</span><span class="w"> </span><span class="n">no_mixins</span><span class="p">{};</span><span class="w"></span>
-<span class="n">no_mixins</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span><span class="w"></span>
-<span class="n">no_mixins</span><span class="p">.</span><span class="n">emplace_front</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
-<span class="n">assert</span><span class="p">(</span><span class="n">no_mixins</span><span class="p">.</span><span class="n">front</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
-<span class="n">assert</span><span class="p">(</span><span class="n">no_mixins</span><span class="p">.</span><span class="n">back</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">NoMixins</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BppTree</span><span class="o">&lt;</span><span class="kt">int32_t</span><span class="o">&gt;::</span><span class="n">Transient</span><span class="p">;</span>
+<span class="n">NoMixins</span><span class="w"> </span><span class="n">no_mixins</span><span class="p">{};</span>
+<span class="n">no_mixins</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+<span class="n">no_mixins</span><span class="p">.</span><span class="n">emplace_front</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">assert</span><span class="p">(</span><span class="n">no_mixins</span><span class="p">.</span><span class="n">front</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+<span class="n">assert</span><span class="p">(</span><span class="n">no_mixins</span><span class="p">.</span><span class="n">back</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Here is how to make a B++ Tree that can be used like a <code class="docutils literal notranslate"><span class="pre">std::map</span></code>:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">Map</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BppTree</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int32_t</span><span class="p">,</span><span class="w"> </span><span class="kt">int32_t</span><span class="o">&gt;&gt;::</span><span class="n">mixins</span><span class="o">&lt;</span><span class="n">OrderedBuilder</span><span class="o">&lt;&gt;&gt;::</span><span class="n">Transient</span><span class="p">;</span><span class="w"></span>
-<span class="n">Map</span><span class="w"> </span><span class="n">bpptree_map</span><span class="p">{};</span><span class="w"></span>
-<span class="n">bpptree_map</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span><span class="w"></span>
-<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bpptree_map</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="o">++</span><span class="n">bpptree_map</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-<span class="n">assert</span><span class="p">(</span><span class="n">bpptree_map</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">9</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">Map</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BppTree</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int32_t</span><span class="p">,</span><span class="w"> </span><span class="kt">int32_t</span><span class="o">&gt;&gt;::</span><span class="n">mixins</span><span class="o">&lt;</span><span class="n">OrderedBuilder</span><span class="o">&lt;&gt;&gt;::</span><span class="n">Transient</span><span class="p">;</span>
+<span class="n">Map</span><span class="w"> </span><span class="n">bpptree_map</span><span class="p">{};</span>
+<span class="n">bpptree_map</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bpptree_map</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="o">++</span><span class="n">bpptree_map</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>
+<span class="p">}</span>
+<span class="n">assert</span><span class="p">(</span><span class="n">bpptree_map</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">9</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Because Ordered B++ trees where the value is a key value pair are incredibly common, there is a convenience helper
 which makes the above a little bit simpler:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">Map</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BppTreeMap</span><span class="o">&lt;</span><span class="kt">int32_t</span><span class="p">,</span><span class="w"> </span><span class="kt">int32_t</span><span class="o">&gt;::</span><span class="n">Transient</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">Map</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BppTreeMap</span><span class="o">&lt;</span><span class="kt">int32_t</span><span class="p">,</span><span class="w"> </span><span class="kt">int32_t</span><span class="o">&gt;::</span><span class="n">Transient</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Here is how to make a B++ Tree that can be used like a <code class="docutils literal notranslate"><span class="pre">std::vector</span></code>:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">Vector</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BppTree</span><span class="o">&lt;</span><span class="kt">int32_t</span><span class="o">&gt;::</span><span class="n">mixins</span><span class="o">&lt;</span><span class="n">IndexedBuilder</span><span class="o">&lt;&gt;&gt;::</span><span class="n">Transient</span><span class="p">;</span><span class="w"></span>
-<span class="n">Vector</span><span class="w"> </span><span class="n">bpptree_vec</span><span class="p">{};</span><span class="w"></span>
-<span class="n">bpptree_vec</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span><span class="w"></span>
-<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bpptree_vec</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="o">++</span><span class="n">bpptree_vec</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-<span class="n">assert</span><span class="p">(</span><span class="n">bpptree_vec</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">6</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">Vector</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BppTree</span><span class="o">&lt;</span><span class="kt">int32_t</span><span class="o">&gt;::</span><span class="n">mixins</span><span class="o">&lt;</span><span class="n">IndexedBuilder</span><span class="o">&lt;&gt;&gt;::</span><span class="n">Transient</span><span class="p">;</span>
+<span class="n">Vector</span><span class="w"> </span><span class="n">bpptree_vec</span><span class="p">{};</span>
+<span class="n">bpptree_vec</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bpptree_vec</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="o">++</span><span class="n">bpptree_vec</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="p">}</span>
+<span class="n">assert</span><span class="p">(</span><span class="n">bpptree_vec</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">6</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>As with the Ordered example above, there is also a convenience helper for making Indexed B++ trees:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">Vector</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BppTreeVector</span><span class="o">&lt;</span><span class="kt">int32_t</span><span class="o">&gt;::</span><span class="n">Transient</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">Vector</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BppTreeVector</span><span class="o">&lt;</span><span class="kt">int32_t</span><span class="o">&gt;::</span><span class="n">Transient</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Here is how to make a B++ Tree that can be used like a <code class="docutils literal notranslate"><span class="pre">std::vector</span></code> and that can calculate prefix sums in O(log N) time:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">SummingVector</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BppTreeVector</span><span class="o">&lt;</span><span class="kt">int32_t</span><span class="o">&gt;::</span><span class="n">mixins</span><span class="o">&lt;</span><span class="n">SummedBuilder</span><span class="o">&lt;&gt;&gt;::</span><span class="n">Transient</span><span class="p">;</span><span class="w"></span>
-<span class="n">SummingVector</span><span class="w"> </span><span class="n">bpptree_vec2</span><span class="p">{};</span><span class="w"></span>
-<span class="n">bpptree_vec2</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span><span class="w"></span>
-<span class="n">bpptree_vec2</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
-<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bpptree_vec2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="o">++</span><span class="n">bpptree_vec2</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-<span class="n">assert</span><span class="p">(</span><span class="n">bpptree_vec2</span><span class="p">.</span><span class="n">sum</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">8</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">SummingVector</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BppTreeVector</span><span class="o">&lt;</span><span class="kt">int32_t</span><span class="o">&gt;::</span><span class="n">mixins</span><span class="o">&lt;</span><span class="n">SummedBuilder</span><span class="o">&lt;&gt;&gt;::</span><span class="n">Transient</span><span class="p">;</span>
+<span class="n">SummingVector</span><span class="w"> </span><span class="n">bpptree_vec2</span><span class="p">{};</span>
+<span class="n">bpptree_vec2</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+<span class="n">bpptree_vec2</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bpptree_vec2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="o">++</span><span class="n">bpptree_vec2</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="p">}</span>
+<span class="n">assert</span><span class="p">(</span><span class="n">bpptree_vec2</span><span class="p">.</span><span class="n">sum</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">8</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Here is how to make a B++ Tree that can be used like a <code class="docutils literal notranslate"><span class="pre">std::deque</span></code> and a <code class="docutils literal notranslate"><span class="pre">std::priority_queue</span></code> at the same time:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">Queue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BppTree</span><span class="o">&lt;</span><span class="kt">int32_t</span><span class="o">&gt;::</span><span class="n">mixins</span><span class="o">&lt;</span><span class="n">MinBuilder</span><span class="o">&lt;&gt;&gt;::</span><span class="n">Transient</span><span class="p">;</span><span class="w"></span>
-<span class="n">Queue</span><span class="w"> </span><span class="n">bpptree_queue</span><span class="p">{};</span><span class="w"></span>
-<span class="n">bpptree_queue</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span><span class="w"></span>
-<span class="n">bpptree_queue</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
-<span class="n">bpptree_queue</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span><span class="w"></span>
-<span class="n">assert</span><span class="p">(</span><span class="n">bpptree_queue</span><span class="p">.</span><span class="n">min</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
-<span class="n">assert</span><span class="p">(</span><span class="n">bpptree_queue</span><span class="p">.</span><span class="n">front</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span><span class="w"></span>
-<span class="n">assert</span><span class="p">(</span><span class="n">bpptree_queue</span><span class="p">.</span><span class="n">back</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">Queue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BppTree</span><span class="o">&lt;</span><span class="kt">int32_t</span><span class="o">&gt;::</span><span class="n">mixins</span><span class="o">&lt;</span><span class="n">MinBuilder</span><span class="o">&lt;&gt;&gt;::</span><span class="n">Transient</span><span class="p">;</span>
+<span class="n">Queue</span><span class="w"> </span><span class="n">bpptree_queue</span><span class="p">{};</span>
+<span class="n">bpptree_queue</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+<span class="n">bpptree_queue</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">bpptree_queue</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">assert</span><span class="p">(</span><span class="n">bpptree_queue</span><span class="p">.</span><span class="n">min</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+<span class="n">assert</span><span class="p">(</span><span class="n">bpptree_queue</span><span class="p">.</span><span class="n">front</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span>
+<span class="n">assert</span><span class="p">(</span><span class="n">bpptree_queue</span><span class="p">.</span><span class="n">back</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Here is how to make a B++ Tree that can be used like a <code class="docutils literal notranslate"><span class="pre">std::map</span></code> and also calculate prefix sums in O(log N) time:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">SummingMap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BppTreeMap</span><span class="o">&lt;</span><span class="kt">int32_t</span><span class="p">,</span><span class="w"> </span><span class="kt">int32_t</span><span class="o">&gt;::</span><span class="n">mixins</span><span class="o">&lt;</span><span class="n">SummedBuilder</span><span class="o">&lt;</span><span class="n">PairExtractor</span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;&gt;&gt;::</span><span class="n">Transient</span><span class="p">;</span><span class="w"></span>
-<span class="n">SummingMap</span><span class="w"> </span><span class="n">bpptree_map</span><span class="p">{};</span><span class="w"></span>
-<span class="n">bpptree_map</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span><span class="w"></span>
-<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bpptree_map</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="o">++</span><span class="n">bpptree_map</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-<span class="n">bpptree_map</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"></span>
-<span class="n">bpptree_map</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
-<span class="n">assert</span><span class="p">(</span><span class="n">bpptree_map</span><span class="p">.</span><span class="n">sum</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">15</span><span class="p">);</span><span class="w"></span>
-<span class="n">assert</span><span class="p">(</span><span class="n">bpptree_map</span><span class="p">.</span><span class="n">sum_inclusive</span><span class="p">(</span><span class="n">bpptree_map</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">11</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">SummingMap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BppTreeMap</span><span class="o">&lt;</span><span class="kt">int32_t</span><span class="p">,</span><span class="w"> </span><span class="kt">int32_t</span><span class="o">&gt;::</span><span class="n">mixins</span><span class="o">&lt;</span><span class="n">SummedBuilder</span><span class="o">&lt;</span><span class="n">PairExtractor</span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;&gt;&gt;::</span><span class="n">Transient</span><span class="p">;</span>
+<span class="n">SummingMap</span><span class="w"> </span><span class="n">bpptree_map</span><span class="p">{};</span>
+<span class="n">bpptree_map</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bpptree_map</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="o">++</span><span class="n">bpptree_map</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>
+<span class="p">}</span>
+<span class="n">bpptree_map</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
+<span class="n">bpptree_map</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="n">assert</span><span class="p">(</span><span class="n">bpptree_map</span><span class="p">.</span><span class="n">sum</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">15</span><span class="p">);</span>
+<span class="n">assert</span><span class="p">(</span><span class="n">bpptree_map</span><span class="p">.</span><span class="n">sum_inclusive</span><span class="p">(</span><span class="n">bpptree_map</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">11</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Here is how to make a B++ Tree that can be used like a <code class="docutils literal notranslate"><span class="pre">std::set</span></code></p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">TreeSet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BppTree</span><span class="o">&lt;</span><span class="kt">int32_t</span><span class="o">&gt;::</span><span class="n">mixins</span><span class="o">&lt;</span><span class="n">OrderedBuilder</span><span class="o">&lt;&gt;::</span><span class="n">extractor</span><span class="o">&lt;</span><span class="n">ValueExtractor</span><span class="o">&gt;&gt;::</span><span class="n">Transient</span><span class="p">;</span><span class="w"></span>
-<span class="n">TreeSet</span><span class="w"> </span><span class="n">tree_set</span><span class="p">{};</span><span class="w"></span>
-<span class="n">tree_set</span><span class="p">.</span><span class="n">insert_or_assign</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span><span class="w"></span>
-<span class="n">tree_set</span><span class="p">.</span><span class="n">insert_or_assign</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span><span class="w"></span>
-<span class="n">tree_set</span><span class="p">.</span><span class="n">insert_or_assign</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span><span class="w"></span>
-<span class="n">assert</span><span class="p">(</span><span class="n">tree_set</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="mi">5</span><span class="p">));</span><span class="w"></span>
-<span class="n">assert</span><span class="p">(</span><span class="n">tree_set</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="mi">8</span><span class="p">));</span><span class="w"></span>
-<span class="n">assert</span><span class="p">(</span><span class="n">tree_set</span><span class="p">.</span><span class="n">size</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">TreeSet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BppTree</span><span class="o">&lt;</span><span class="kt">int32_t</span><span class="o">&gt;::</span><span class="n">mixins</span><span class="o">&lt;</span><span class="n">OrderedBuilder</span><span class="o">&lt;&gt;::</span><span class="n">extractor</span><span class="o">&lt;</span><span class="n">ValueExtractor</span><span class="o">&gt;&gt;::</span><span class="n">Transient</span><span class="p">;</span>
+<span class="n">TreeSet</span><span class="w"> </span><span class="n">tree_set</span><span class="p">{};</span>
+<span class="n">tree_set</span><span class="p">.</span><span class="n">insert_or_assign</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+<span class="n">tree_set</span><span class="p">.</span><span class="n">insert_or_assign</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span>
+<span class="n">tree_set</span><span class="p">.</span><span class="n">insert_or_assign</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+<span class="n">assert</span><span class="p">(</span><span class="n">tree_set</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="mi">5</span><span class="p">));</span>
+<span class="n">assert</span><span class="p">(</span><span class="n">tree_set</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="mi">8</span><span class="p">));</span>
+<span class="n">assert</span><span class="p">(</span><span class="n">tree_set</span><span class="p">.</span><span class="n">size</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Like BppTreeMap and BppTreeVector, there is also a convenience helper for making set-like B++ trees:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">TreeSet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BppTreeSet</span><span class="o">&lt;</span><span class="kt">int32_t</span><span class="o">&gt;::</span><span class="n">Transient</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">TreeSet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BppTreeSet</span><span class="o">&lt;</span><span class="kt">int32_t</span><span class="o">&gt;::</span><span class="n">Transient</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Take a look at examples/inverted_index.hpp for a neat implementation of an inverted index, complete with Transient and
 Persistent variations, implemented using B++ Trees.</p>
 </section>
 <section id="interface-stability">
-<h2>Interface Stability<a class="headerlink" href="#interface-stability" title="Permalink to this headline"></a></h2>
+<h2>Interface Stability<a class="headerlink" href="#interface-stability" title="Link to this heading"></a></h2>
 <p>Long term, I would like to maintain a stable API for B++ Trees, but as this project is quite new, I reserve the
 right to change the API in order to make the B++ Tree library better. That said, I am fairly happy with the API as it
 stands today and have no current plans to change it.</p>
 </section>
 <section id="related-projects">
-<h2>Related Projects<a class="headerlink" href="#related-projects" title="Permalink to this headline"></a></h2>
+<h2>Related Projects<a class="headerlink" href="#related-projects" title="Link to this heading"></a></h2>
 <p><a class="reference external" href="https://github.com/arximboldi/immer">Immer</a> is an excellent library that provides many more persistent data
 structures such as:</p>
 <ul class="simple">
@@ -284,7 +287,7 @@ maximum performance for random inserts, the immer containers are probably a bett
 </section>
 </section>
 <section id="table-of-contents">
-<h1>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline"></a></h1>
+<h1>Table of Contents<a class="headerlink" href="#table-of-contents" title="Link to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">B++ Tree</a></li>
